@@ -23,7 +23,7 @@ export default function Login() {
     e.preventDefault();
 
     if (validataionCheck()) {
-      const url = "http://192.168.50.76:3000/member/login";
+      const url = "http://127.0.0.1:8000/member/login";
 
       axios({
         method: "POST",
