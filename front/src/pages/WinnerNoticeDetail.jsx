@@ -1,30 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons"; 
 import { faCalendar } from "@fortawesome/free-regular-svg-icons"; 
 import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export default function WinnerNoticeDetail(){
+		const [winnerList, setWinnerList] = useState([]);
+		const {id} = useParams();
+
+		useEffect(()=> {
+			axios.get('http://localhost:3000/data/event.json')
+				.then((res)=> {
+					setWinnerList(res.data);
+					const result = res.data.find((res)=> res.id === id);
+					setWinnerList(result);
+				})
+				.catch(error => console.log(error));
+		},[id])
+
+		console.log(winnerList);
+
+
 		return (
 		<div className='content'>
 			<Location />
 			<SubTitle />
 			<div className='notice-detail'>
-				<h1 className="notice-detail-title">[6/8 대면종료후] ARTMS - 정규1집 [Dall] 1:1 VIDEO CALL EVENT 당첨자 안내</h1>
+				<h1 className="notice-detail-title">{winnerList.title}</h1>
 				<ul className='notice-detail-view'>
 					<li>
 						<span className='notice-detail-icon'><FontAwesomeIcon icon={faUser} /></span>
-						<strong className='notice-detail-author'>EVERLINE</strong>
+						<strong className='notice-detail-author'>{winnerList.author}</strong>
 					</li>
 					<li>
 						<span className='notice-detail-icon'><FontAwesomeIcon icon={faCalendar} /></span>
-						<span className='notice-detail-date'>2024.05.21</span>
+						<span className='notice-detail-date'>{winnerList.date}</span>
 					</li>
 				</ul>
 				<div className='notice-detail-cont'>
-						<p>안녕하세요. 에버라인입니다.<br/>
+						<p>1111111111<br/>
 
 
 ARTMS - 정규1집 [Dall] 1:1 영상통화 팬사인회 이벤트 당첨자 명단을 발표하오니, 첨부된 명단과 아래 주의사항을 확인하신 후 참여해주시기 바랍니다. <br/>

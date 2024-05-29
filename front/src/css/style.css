@@ -823,6 +823,15 @@ h4 {
 	font-size: 14px;
 	border-bottom: #666;
 }
+.notice-table input{
+	width: 100%;
+	height: 45px;
+	padding: 0 10px;
+}
+.notice-table textarea{
+	width: 100%;
+	min-height: 200px;
+}
 
 /* 팝업 오버레이 배경 */
 .popup-overlay {

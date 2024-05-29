@@ -5,7 +5,11 @@ import "../css/signup.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import DaumPostcode from "react-daum-postcode";
-import { passCheck, validateCheck, changeEmailDomain } from "../apis/validate.js";
+import {
+  passCheck,
+  validateCheck,
+  changeEmailDomain,
+} from "../apis/validate.js";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -50,37 +54,6 @@ export default function Signup() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-  };
-
-  /**
-   * 아이디 중복체크
-   */
-  const handleIdCheck = () => {
-    if (refs.userIdRef.current.value == "") {
-      alert("아이디를 입력해주세요");
-      refs.userIdRef.current.focus();
-    } else {
-      const url = "http://192.168.50.76:3000/member/idCheck";
-      const userId = refs.userIdRef.current.value;
-      axios({
-        method: "post",
-        url: url,
-        data: { userId: userId },
-      })
-        .then((res) => {
-          console.log(res.data);
-          if (res.data.cnt === 1) {
-            alert("이미 사용중인 아이디 입니다. 다시 입력해주세요");
-            refs.userIdRef.current.focus();
-          } else {
-            alert("사용 가능한 아이디입니다.");
-            refs.emailIdRef.current.focus();
-          }
-        })
-        .catch(
-          (error) => console.error("Error:", error) // 디버그 로그
-        );
-    }
   };
 
   const handleSwitchMode = (newMode) => {
@@ -166,23 +139,14 @@ export default function Signup() {
   const handleSubmit = async () => {
     if (validateCheck(refs, formData)) {
       if (passCheck(refs)) {
-        const url = "http://127.0.0.1:8000/member/signup";
-        axios({
-          method: "post",
-          url: url,
-          data: formData,
-        })
-          .then((res) => {
-            console.log("result ->", res.data);
-            console.log("formdata ->", formData);
-            if (res.data.cnt === 1) {
-              alert("회원가입성공");
-              window.location.href = "/member";
-            } else {
-              alert("회원가입 실패, 정보를 다시 입력하세요");
-            }
-          })
-          .catch();
+        const isSuccess = true;
+        setSignupSuccess(isSuccess);
+
+        if (isSuccess) {
+          console.log(formData)
+          alert("회원가입성공");
+          window.location.href = "/";
+        }
       }
     }
   };
@@ -216,9 +180,6 @@ export default function Signup() {
                 onChange={handleChange}
                 ref={refs.userIdRef}
               />
-              <button type="button" onClick={handleIdCheck}>
-                중복확인
-              </button>
             </li>
             <li>
               <p>
@@ -239,7 +200,10 @@ export default function Signup() {
                 onChange={handleChange}
                 ref={refs.emailDomainRef}
               />
-              <select name="emailDomain" onChange={(e) => changeEmailDomain(e, refs, handleChange)}>
+              <select
+                name="emailDomain"
+                onChange={(e) => changeEmailDomain(e, refs, handleChange)}
+              >
                 <option value="self">직접입력</option>
                 <option value="naver.com">네이버</option>
                 <option value="gmail.com">구글</option>
@@ -252,7 +216,9 @@ export default function Signup() {
                 ref={refs.snsSentRef}
                 name="snsSent"
                 id="snsSent"
-                onChange={(e) => setFormData({ ...formData, snsSent: e.target.checked })}
+                onChange={(e) =>
+                  setFormData({ ...formData, snsSent: e.target.checked })
+                }
                 checked={formData.snsSent}
               />
               <span>정보/이벤트 SMS 수신에 동의합니다.</span>
@@ -270,7 +236,8 @@ export default function Signup() {
             </li>
             <li>
               <span>
-                <FontAwesomeIcon icon={faExclamation} /> 영문대문자/영문소문자/숫자/특수문자 중 2종류 이상을 조합하여
+                <FontAwesomeIcon icon={faExclamation} />{" "}
+                영문대문자/영문소문자/숫자/특수문자 중 2종류 이상을 조합하여
                 10자리 이상
               </span>
             </li>
@@ -287,7 +254,8 @@ export default function Signup() {
             </li>
             <li>
               <span>
-                <FontAwesomeIcon icon={faExclamation} /> 배송 문제를 방지하기 위해 본인의 실명을 작성해주세요.
+                <FontAwesomeIcon icon={faExclamation} /> 배송 문제를 방지하기
+                위해 본인의 실명을 작성해주세요.
               </span>
             </li>
             <li>
@@ -304,12 +272,23 @@ export default function Signup() {
             <li>
               <p>주소</p>
               <div>
-                <input type="text" name="zipcode" ref={refs.zipcodeRef} value={formData.zipcode} readOnly />
+                <input
+                  type="text"
+                  name="zipcode"
+                  ref={refs.zipcodeRef}
+                  value={formData.zipcode}
+                  readOnly
+                />
                 <button type="button" onClick={handleToggle}>
                   주소검색
                 </button>
               </div>
-              <input type="text" name="address" value={formData.address} ref={refs.addressRef} />
+              <input
+                type="text"
+                name="address"
+                value={formData.address}
+                ref={refs.addressRef}
+              />
               <input
                 type="text"
                 name="detailAddress"
@@ -331,7 +310,11 @@ export default function Signup() {
               )}
             </li>
             <li>
-              <select value={year} onChange={handleYearChange} ref={refs.birthdayYearRef}>
+              <select
+                value={year}
+                onChange={handleYearChange}
+                ref={refs.birthdayYearRef}
+              >
                 <option value="">년도</option>
                 {years.map((y) => (
                   <option key={y} value={y}>
@@ -339,7 +322,11 @@ export default function Signup() {
                   </option>
                 ))}
               </select>
-              <select value={month} onChange={handleMonthChange} ref={refs.birthdayMonthRef}>
+              <select
+                value={month}
+                onChange={handleMonthChange}
+                ref={refs.birthdayMonthRef}
+              >
                 <option value="">월</option>
                 {months.map((m) => (
                   <option key={m} value={m}>
@@ -347,7 +334,11 @@ export default function Signup() {
                   </option>
                 ))}
               </select>
-              <select value={day} onChange={handleDayChange} ref={refs.birthdayDayRef}>
+              <select
+                value={day}
+                onChange={handleDayChange}
+                ref={refs.birthdayDayRef}
+              >
                 <option value="">일</option>
                 {days.map((d) => (
                   <option key={d} value={d}>
@@ -358,7 +349,8 @@ export default function Signup() {
             </li>
             <li>
               <span>
-                <FontAwesomeIcon icon={faExclamation} /> 생일 쿠폰 등 혜택을 위해 생일을 입력해 주세요.
+                <FontAwesomeIcon icon={faExclamation} /> 생일 쿠폰 등 혜택을
+                위해 생일을 입력해 주세요.
               </span>
             </li>
             {mode === "bussiness" && (
@@ -375,28 +367,53 @@ export default function Signup() {
           <ul className="agreement">
             <h3>약관동의</h3>
             <li>
-              <input type="checkbox" name="agreeAll" checked={formData.agreeAll} onChange={handleAgreeAll} />
+              <input
+                type="checkbox"
+                name="agreeAll"
+                checked={formData.agreeAll}
+                onChange={handleAgreeAll}
+              />
               <p>에버라인</p>
               <p>의 모든 약관을 확인하고 전체 동의합니다.</p>
             </li>
             <li>
-              <input type="checkbox" name="service" checked={formData.service} onChange={handleAgree} />
+              <input
+                type="checkbox"
+                name="service"
+                checked={formData.service}
+                onChange={handleAgree}
+              />
               <p>[필수]</p> <p>이용약관</p>
-              <a href="https://www.everlineshop.com/service/agreement.php?code=001001" target="_blank">
+              <a
+                href="https://www.everlineshop.com/service/agreement.php?code=001001"
+                target="_blank"
+              >
                 전체
               </a>
             </li>
             <li>
-              <input type="checkbox" name="personal" checked={formData.personal} onChange={handleAgree} />
+              <input
+                type="checkbox"
+                name="personal"
+                checked={formData.personal}
+                onChange={handleAgree}
+              />
               <p>[필수]</p> <p>개인정보 수집 및 이용</p>
-              <a href="https://www.everlineshop.com/service/private.php" target="_blank">
+              <a
+                href="https://www.everlineshop.com/service/private.php"
+                target="_blank"
+              >
                 전체
               </a>
             </li>
           </ul>
           <ul className="buttons">
             <li>
-              <button className="white-btn" type="button" onClick={handleSubmit}>
+              <button
+                className="white-btn"
+                type="button"
+                onClick={handleSubmit}
+              >
                 회원가입
               </button>
             </li>
