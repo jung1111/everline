@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import memberRouter from './router/memberRouter.js';
 import noticeRouter from './router/noticeRouter.js';
 import inquiryRouter from './router/inquiryRouter.js'
 
@@ -13,6 +14,7 @@ server.use(cors());
 
 
 //라우터
+server.use('/member', memberRouter);
 server.use('/notice', noticeRouter);//공지사항
 server.use('/inquiry', inquiryRouter); //1:1문의
 

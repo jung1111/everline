@@ -10,7 +10,7 @@ export default function Notice(){
 		const [noticeList, setNoticeList] = useState([]); 
 
 		useEffect(()=>{
-			fetch('data/notice.json')
+			fetch('data/event.json')
 				.then(res => res.json())
 				.then(result => setNoticeList(result))
 				.catch(error => console.log(error))

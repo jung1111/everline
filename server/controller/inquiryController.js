@@ -1,5 +1,20 @@
 import * as repository from '../repository/inquiryRepository.js'
 
+// 게시글 조회수 업데이트
+export const updateHits = async(req, res) => {
+	const {bid} = req.body;
+	const result = await repository.updateHits(bid);
+	res.json(result);
+}
+
+
+//게시글 삭제하기
+export const bidDelete = async(req, res) => {
+	const {bid} = req.body;
+	const result = await repository.bidDelete(bid);
+	res.json(result);
+}
+
 
 //게시글 수정완료
 export const update = async(req, res) => {

@@ -1,19 +1,35 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 export default function InquiryDelete(){
 		const navigate = useNavigate();
+		const {bid, rno} = useParams();
 
 		//삭제완료
 		const handleDeleteSubmit = () => {
-
+			const url = 'http://127.0.0.1:8000/inquiry/delete'
+			axios({
+				method: 'post',
+				url: url,
+				data: {bid:bid}
+			})
+			.then(result => {
+				if(result.data.cnt === 1) {
+					navigate('/inquiry');
+				}else{
+					alert('실패')
+				}
+			})
+			.catch(error => console.log(error));
 		}
 
 		//페이지 이동
-		const handleNavigate = () => {
-
+		const handleNavigate = (type) => {
+			(type === "list") ? navigate('/inquiry') : navigate(`/inquiry/${bid}/${rno}`);
 		}
-
+   
+ 
 
 		return (
 		<div className='content'>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import LocationNotice from '../components/LocationNotice';
@@ -9,6 +9,7 @@ import axios from 'axios';
 
 export default function Inquiry(){
 	const [inqList, setInqList] = useState([]); 
+	const navigate = useNavigate();
 
 	useEffect(()=>{
 		const url = 'http://127.0.0.1:8000/inquiry/list'
@@ -21,6 +22,29 @@ export default function Inquiry(){
 	},[])
 
 	// console.log('inqList',inqList);
+	
+	// 조회수 업데이트 > 게시글 상세보기
+	const handleUpdateHits = (bid, rno) => {
+		// alert('bid->>>'+ bid);
+		try {
+			//1. 조회수 업데이트
+			const url = 'http://localhost:8000/inquiry/updateHits';
+			axios({
+				method: 'post',
+				url: url,
+				data:{ "bid" : bid}
+			})
+			.then(result => {
+				//2. 조회수 업데이트 성공시 상세보기로 이동
+				if(result.data.cnt === 1 ) navigate(`/inquiry/${bid}/${rno}`);
+			})
+			.catch(error => console.log(error));
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
+
 
 		return (
 		<div className='content'>
@@ -46,7 +70,9 @@ export default function Inquiry(){
 							inqList.map((item)=>(
 								<tr>
 										<td>{item.rno}</td>
-										<td><Link to={`/inquiry/${item.bid}/${item.rno}`}>{item.btitle}</Link></td>
+										<td>
+												<span onClick={() => handleUpdateHits(item.bid, item.rno)}>{item.btitle}</span>																
+										</td>
 										<td>{item.bhits}</td>
 										<td>{item.bdate}</td>
 								</tr>

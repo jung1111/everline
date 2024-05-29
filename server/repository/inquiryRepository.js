@@ -1,6 +1,37 @@
-import {db} from '../db/database_mysql80.js';
+import {db} from '../db/database_mysql.js';
 
+// 조회수 업데이트
+export const updateHits = async(bid) => {
+	let result_rows = 0;
+	const sql = `
+		update ever_board
+			set bhits = bhits + 1
+			where bid = ?
+	`;
+	try {
+		const [result] = await db.execute(sql, [bid]);
+		result_rows = result.affectedRows;
+	} catch (error) {
+		console.log(error);
+	}
+	return {cnt: result_rows};
+}
 
+//게시글 삭제하기
+export const bidDelete = async(bid) => {
+	let result_rows = 0;
+	const sql = `
+		delete from ever_board where bid = ?
+	`;
+	try {
+		const [result] = await db.execute(sql, [bid])
+		result_rows = result.affectedRows;
+	} catch (error) {
+		console.log(error);
+	}
+	return{cnt: result_rows};
+
+}
 
 //게시글 수정완료
 export const update = async(boardFormData) => {
@@ -12,7 +43,7 @@ export const update = async(boardFormData) => {
 		];
 
 		const sql = `
-		update shoppy_board
+		update ever_board
 			set btitle = ? , bcontent = ? 
 			where bid = ?
 		`;
@@ -31,7 +62,7 @@ export const update = async(boardFormData) => {
 export const detail = async(bid) => {
 	const sql = `
 		select bid, btitle, bcontent, bhits, cast(bdate as char) bdate
-			from shoppy_board
+			from ever_board
 			where bid = ?
 	`;
 	return db	
@@ -43,7 +74,7 @@ export const detail = async(bid) => {
 export const insert = async(boardFormData) => {
 	let result_rows = 0;
 	const sql = `
-		insert into shoppy_board(btitle, bcontent, bhits, bdate)
+		insert into ever_board(btitle, bcontent, bhits, bdate)
 			values(?,?,0, now())
 	`;
 
@@ -61,8 +92,9 @@ export const list = async() => {
 	const sql = `
 	select row_number() over (order by bdate desc) as rno, 
 		bid, btitle, bcontent, bhits, left(bdate, 10) as bdate
-		from shoppy_board
+		from ever_board
 	`;
+
 	return db
 			.execute(sql)
 			.then(result => result[0]);

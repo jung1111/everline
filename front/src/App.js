@@ -16,6 +16,8 @@ import NoticeDetail from "./pages/NoticeDetail.jsx";
 import Inquiry from "./pages/Inquiry.jsx";
 import InquiryDetail from "./pages/InquiryDetail.jsx";
 import InquiryWrite from "./pages/InquiryWrite.jsx";
+import InquiryUpdate from './pages/InquiryUpdate.jsx';
+import InquiryDelete from './pages/InquiryDelete.jsx';
 import Faq from "./pages/Faq.jsx";
 import CartPage from "./pages/cart/CartPage.jsx";
 import { useState } from "react";
@@ -59,8 +61,6 @@ export default function App() {
         { path: "/member/FindAccount", element: <FindAccount /> },
         { path: "/member/signup", element: <Signup /> },
         { path: "/eventlist", element: <EventList /> },
-        { path: "/winner", element: <WinnerNoticeList /> },
-        { path: "/winner/:id", element: <WinnerNoticeDetail /> },
         {
           path: "/carts",
           element: (
@@ -71,12 +71,15 @@ export default function App() {
           path: "/order",
           element: <OrderPage />,
         },
+				{ path: "/winner", element: <WinnerNoticeList /> },
         { path: "/winner/:id", element: <WinnerNoticeDetail /> },
         { path: "/notice", element: <Notice /> },
         { path: "/notice/:id", element: <NoticeDetail /> },
-        { path: "/inquiry", element: <Inquiry /> },
-        { path: "/inquiry/:id", element: <InquiryDetail /> },
-        { path: "/inquiry/write", element: <InquiryWrite /> },
+				{ path: "/inquiry", element: <Inquiry />,},
+				{ path: "/inquiry/:bid/:rno", element: <InquiryDetail />,},
+				{ path: "/inquiry/write", element: <InquiryWrite />,},
+				{ path: "/inquiry/update/:bid/:rno", element: <InquiryUpdate />,},
+				{ path: "/inquiry/delete/:bid/:rno", element: <InquiryDelete />,},
         { path: "/faq", element: <Faq /> },
       ],
     },
