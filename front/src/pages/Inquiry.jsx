@@ -7,6 +7,12 @@ import LocationNotice from '../components/LocationNotice';
 import SubTitleNotice from '../components/SubTitleNotice';
 import axios from 'axios';
 
+//paging navigation
+import Pagination from 'rc-pagination';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'rc-pagination/assets/index.css';
+
+
 export default function Inquiry(){
 	const [inqList, setInqList] = useState([]); 
 	const navigate = useNavigate();
