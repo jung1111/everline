@@ -1,58 +1,44 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
-const BannerSlider = () => {
-const [currentIndex, setCurrentIndex] = useState(0);
-const [slidelist, setSlideList] = useState([]);
+export default function BannerSlider() {
+const [banners, setBanners] = useState([])
 
-    useEffect(() => {
-    axios
-    .get("/data/slide.json")
-    .then((res) => setSlideList(res.data))
-    .catch((error) => console.log(error));
-}, []);
+useEffect(()=>{
+  axios
+    .get("http://localhost:3000/data/slide.json")
+    .then(res=> setBanners(res.data))
+    .catch(error=>console.log(error));
+},{})
 
-const goToPrevSlide = () => {
-    const index = (currentIndex - 1 + slidelist.length) % slidelist.length;
-    setCurrentIndex(index);
-};
 
-const goToNextSlide = () => {
-    const index = (currentIndex + 1) % slidelist.length;
-    setCurrentIndex(index);
-};
+const [currentBanner, setCurrentBanner] = useState(0);
 
-return (
-    <div className="banner_slider">
-        <div className="banner_slider_number"> 
-            <span>{currentIndex +2}</span>
-            <span>{currentIndex +1}</span>
+  const goToPrevBanner = () => {
+    const prevBanner = (currentBanner + banners.length - 1) % banners.length;
+    setCurrentBanner(prevBanner);
+  };
+
+  const goToNextBanner = () => {
+    const nextBanner = (currentBanner + 1) % banners.length;
+    setCurrentBanner(nextBanner);
+  };
+
+  return (
+    <div className="BannerSlider_container">
+      <div className="BannerSlider_content">
+        {banners.map((banner, index)=>(
+        <div>
+          
+          <h3 style={{ display: index === currentBanner ? 'block' : 'none' }}>{banner.title}<p>OFFICIAL MD</p></h3>
+          <img key={index} src={banner.image} alt={`Banner ${currentBanner + 1}`} style={{ display: index === currentBanner ? 'block' : 'none' }} />
         </div>
-        <div className="button_box_prev">
-            <button className="prev" onClick={goToPrevSlide}></button>
-        </div>
-        <div className="slider_container">
-            {slidelist.map((banner, index) => (
-            <div key={index} className={`slide ${index === currentIndex ? "active" : ""}`}>
-                <div className="slide_box"> 
-                    <div className="caption">
-                        <p>OFFICIAL MD</p>
-                        <strong>{banner.title}</strong>
-                        <p>발매일</p>
-                        <Link to="/product"><button className="more" type="button">More</button></Link>
-                    </div>
-                    <img className ="img"src={banner.image} alt="" />
-                    <div>OFFICIAL MD</div>
-                </div>
-            </div>
-            ))}
-        </div>
-        <div className="button_box_next">
-            <button className="next" onClick={goToNextSlide}></button>
-        </div>
+        ))}
+        <button onClick={goToPrevBanner} className="prev">
+        </button>
+        <button onClick={goToNextBanner} className="next">
+        </button>
+      </div>
     </div>
   );
-};
-
-export default BannerSlider;
+}
