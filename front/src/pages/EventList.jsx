@@ -5,7 +5,7 @@ import ListAll from "../components/ListAll";
 
 export default function EventList() {
   const selectList = [
-    { value: "popularity", title: "이름순" },
+    { value: "popularity", title: "이름순11" },
     { value: "highpricestitle", title: "높은가격순" },
     { value: "lospricestitle", title: "낮은가격순" },
   ];
