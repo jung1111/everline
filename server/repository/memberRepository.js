@@ -1,6 +1,8 @@
 /* login처리 */
 import { db } from "../db/database_mysql.js";
 
+
+
 export const getLogin = (userId, userPass) => {
   // did(DB id) = test, dpass =1234
   const did = "test";
