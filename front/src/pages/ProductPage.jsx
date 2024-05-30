@@ -13,10 +13,9 @@ export default function ProductPage() {
       .catch(error => console.log(error))
   }, [])
   return (
-    <div className='container'>
       <div className='content'>
         <div className='content_breadcrumb'>
-          <Link to="/" className='breadcrumb_home'></Link>
+
           <span>&nbsp;&nbsp;PRODUCT</span>
         </div>
         <div className='content_area'>
@@ -67,6 +66,5 @@ export default function ProductPage() {
           </div>
         </div>
       </div>
-    </div>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';
+import SubMenu from '../components/SubMenu';
 import ListAll from '../components/ListAll';
 
 export default function EventList(){
@@ -60,8 +61,12 @@ export default function EventList(){
 
 		return (
 		<div className='content'>
-			<Location />
-			<SubTitle />
+			<Location depth1="EVENT" depth2="이벤트목록"/>
+			<SubTitle title="EVENT"/>
+			<ul className='sub-menu'>
+				<SubMenu menu="이벤트목록"/>
+				<SubMenu menu="당첨자발표"/>
+			</ul>
 			<ListAll eventList={eventList} handleChange={handleChange} selectList={selectList} />
 
 			{/* 목록 컴포넌트 넣을예정 */}

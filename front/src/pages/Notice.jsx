@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
-import LocationNotice from '../components/LocationNotice';
+import Location from '../components/Location';
 import SubTitleNotice from '../components/SubTitleNotice';
 import TableNotice from '../components/TableNotice';
 import axios from 'axios';
@@ -22,7 +22,7 @@ export default function Notice(){
 
 		return (
 		<div className='content'>
-			<LocationNotice />
+			<Location title="공지사항1111" />
 			<SubTitleNotice />
 			<div className='count'>
 				<span className="count-no">

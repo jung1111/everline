@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
-export default function Location(){
+export default function Location({depth1, depth2}){
+
 		return (
 		<div className='location'>
 				<ul className='location-link'>
@@ -13,11 +14,11 @@ export default function Location(){
 						<span className='location-link-arrow'><FontAwesomeIcon icon={faChevronRight} /></span>
 					</li>
 					<li>
-						<span className='location-link-text'>EVENT</span>
+						<span className='location-link-text'>{depth1}</span>
 						<span className='location-link-arrow'><FontAwesomeIcon icon={faChevronRight} /></span>
 					</li>
 					<li>
-						<span className='location-link-text'>이벤트 목록</span>
+						<span className='location-link-text'>{depth2}</span>
 						</li>
 				</ul>
 		</div>
