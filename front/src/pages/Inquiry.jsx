@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
-import LocationNotice from '../components/LocationNotice';
-import SubTitleNotice from '../components/SubTitleNotice';
+import Location from '../components/Location';
+import SubTitle from '../components/SubTitle';
+import SubMenu from '../components/SubMenu';
 import axios from 'axios';
 
 //paging navigation
@@ -54,15 +55,20 @@ export default function Inquiry(){
 
 		return (
 		<div className='content'>
-			<LocationNotice />
-			<SubTitleNotice />
+			<Location depth1="CUSTOMER" depth2="1:1문의"/>
+			<SubTitle title="CUSTOMER"/>
+			<ul className='sub-menu'>
+				<SubMenu menu="공지사항" src="/notice"/>
+				<SubMenu menu="1:1문의" src="/inquiry"/>
+				<SubMenu menu="FAQ"  src="/faq"/>
+			</ul>
 			<div className='count'>
 				<span className="count-no">
 					<span className='count-no-icon'><FontAwesomeIcon icon={faList} /></span>
 					<span className='count-no-text'><span className='count-no-red'>{inqList.length}</span> 개의 게시물</span>
 				</span>
 			</div>
-			<table className='notice-table'>
+			<table className='Notice-table'>
 				<thead>
 					<tr>
 						<th>번호</th>

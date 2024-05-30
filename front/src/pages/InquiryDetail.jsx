@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import LocationNotice from '../components/LocationNotice';
-import SubTitleNotice from '../components/SubTitleNotice';
+import Location from '../components/Location';
+import SubTitle from '../components/SubTitle';
 import axios from 'axios';
 
 
@@ -31,8 +31,8 @@ export default function InquiryDetail(){
 		// console.log('board->>>',board);
 		return (
 		<div className='content'>
-				<LocationNotice />
-				<SubTitleNotice />
+				<Location />
+				<SubTitle />
 				<h1>상세정보</h1>
          <table border="1">
             <tr>

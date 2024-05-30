@@ -3,8 +3,9 @@ import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons"; 
 import { faCalendar } from "@fortawesome/free-regular-svg-icons"; 
-import LocationNotice from '../components/LocationNotice';
-import SubTitleNotice from '../components/SubTitleNotice';
+import Location from '../components/Location';
+import SubTitle from '../components/SubTitle';
+import SubMenu from '../components/SubMenu';
 import axios from 'axios';
 
 export default function NoticeDetail(){
@@ -12,7 +13,7 @@ export default function NoticeDetail(){
 	const {id} = useParams();
 
 	useEffect(()=> {
-		axios.get('http://localhost:3000/data/notice.json')
+		axios.get('http://localhost:3000/data/event.json')
 		.then((res)=>{
 			setData(res.data)
 			const jsonData = res.data.find((res) => res.id === id);
@@ -26,21 +27,26 @@ export default function NoticeDetail(){
 
 		return (
 		<div className='content'>
-			<LocationNotice />
-			<SubTitleNotice />
-			<div className='notice-detail'>
-				<h1 className="notice-detail-title">{data.title}</h1>
-				<ul className='notice-detail-view'>
+			<Location depth1="CUSTOMER" depth2="공지사항"/>
+			<SubTitle title="CUSTOMER"/>
+			<ul className='sub-menu'>
+				<SubMenu menu="공지사항" src="/notice"/>
+				<SubMenu menu="1:1문의" src="/inquiry"/>
+				<SubMenu menu="FAQ"  src="/faq"/>
+			</ul>
+			<div className='Notice-detail'>
+				<h1 className="Notice-detail-title">{data.title}</h1>
+				<ul className='Notice-detail-view'>
 					<li>
-						<span className='notice-detail-icon'><FontAwesomeIcon icon={faUser} /></span>
-						<strong className='notice-detail-author'>{data.author}</strong>
+						<span className='Notice-detail-icon'><FontAwesomeIcon icon={faUser} /></span>
+						<strong className='Notice-detail-author'>{data.author}</strong>
 					</li>
 					<li>
-						<span className='notice-detail-icon'><FontAwesomeIcon icon={faCalendar} /></span>
-						<span className='notice-detail-date'>{data.date}</span>
+						<span className='Notice-detail-icon'><FontAwesomeIcon icon={faCalendar} /></span>
+						<span className='Notice-detail-date'>{data.date}</span>
 					</li>
 				</ul>
-				<div className='notice-detail-cont'>
+				<div className='Notice-detail-cont'>
 						<p>공지사항 상세페이지<br/>
 
 

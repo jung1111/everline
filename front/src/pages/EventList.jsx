@@ -64,22 +64,22 @@ export default function EventList(){
 			<Location depth1="EVENT" depth2="이벤트목록"/>
 			<SubTitle title="EVENT"/>
 			<ul className='sub-menu'>
-				<SubMenu menu="이벤트목록"/>
-				<SubMenu menu="당첨자발표"/>
+				<SubMenu menu="이벤트목록" src="/eventlist"/>
+				<SubMenu menu="당첨자발표" src="/winner"/>
 			</ul>
 			<ListAll eventList={eventList} handleChange={handleChange} selectList={selectList} />
 
 			{/* 목록 컴포넌트 넣을예정 */}
 			{
 				rows.map((row, index)=>(
-					<ul className='event' key={index}>
+					<ul className='EventList' key={index}>
 					{
 						row.map((list)=>(
 							<li>
-								<div className='event-img'>
+								<div className='EventList-img'>
 									<img src={list.image} />
 								</div>
-								<h2 className='event-title'>{list.name}</h2>
+								<h2 className='EventList-title'>{list.title}</h2>
 							</li>
 						))
 					}					
