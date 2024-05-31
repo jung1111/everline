@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';
+import SubMenu from '../components/SubMenu';
 import Table from '../components/Table';
 
 export default function WinnerNoticeList(){
@@ -16,8 +17,12 @@ export default function WinnerNoticeList(){
 
 		return (
 		<div className='content'>
-			<Location />
-			<SubTitle />
+			<Location depth1="EVENT" depth2="당첨자발표"/>
+			<SubTitle title="EVENT"/>
+			<ul className='sub-menu'>
+				<SubMenu menu="이벤트목록" src="/eventlist"/>
+				<SubMenu menu="당첨자발표" src="/winner"/>
+			</ul>
 			<div className='count'>
 				<span className="count-no">
 					<span className='count-no-icon'><FontAwesomeIcon icon={faList} /></span>

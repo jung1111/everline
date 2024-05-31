@@ -21,7 +21,7 @@ export default function Header({cartCount}) {
   					<Link className="link" to="/faq">FQA</Link>
             <Link className="link" to="/member"><FontAwesomeIcon icon={faUser} /></Link>
             <Link className="link" to="/carts"><FontAwesomeIcon icon={faBagShopping} /><span>{cartCount}</span></Link>
-            <Link className="link" to="/customerService"><FontAwesomeIcon icon={faHeadset} /></Link>
+            {/* <Link className="link" to="/customerService"><FontAwesomeIcon icon={faHeadset} /></Link> */}
 				</nav>
       </div>
     </div>

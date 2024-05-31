@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import LocationNotice from '../components/LocationNotice';
-import SubTitleNotice from '../components/SubTitleNotice';
+import Location from '../components/Location';
+import SubTitle from '../components/SubTitle';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -47,8 +47,8 @@ export default function NoticeWrite(){
 
 		return (
 		<div className='content'>
-				<LocationNotice />
-				<SubTitleNotice />
+				<Location />
+				<SubTitle />
 				<table className='notice-table'>
 						<tbody>		
 							<tr>					
