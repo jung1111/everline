@@ -10,6 +10,7 @@ import {
   validateCheck,
   changeEmailDomain,
 } from "../apis/validate.js";
+import SubTitle from "../components/SubTitle.jsx";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -17,6 +18,10 @@ export default function Signup() {
     userPass: "",
     userPassCheck: "",
     userName: "",
+    mobileNumber1: "010",
+    mobileNumber2: "",
+    phoneNumber1: "",
+    phoneNumber2: "",
     emailId: "",
     emailDomain: "",
     snsSent: false,
@@ -36,6 +41,10 @@ export default function Signup() {
     userPassRef: useRef(null),
     userPassCheckRef: useRef(null),
     userNameRef: useRef(null),
+    mobileNumber1Ref: useRef(null),
+    mobileNumber2Ref: useRef(null),
+    phoneNumber1Ref: useRef(null),
+    phoneNumber2Ref: useRef(null),
     emailIdRef: useRef(null),
     emailDomainRef: useRef(null),
     snsSentRef: useRef(null),
@@ -49,11 +58,41 @@ export default function Signup() {
 
   const [mode, setMode] = useState("individual");
   const [isOpen, setIsOpen] = useState(false);
-  const [signupSuccess, setSignupSuccess] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  /**
+   * 아이디 중복체크
+   */
+  const handleIdCheck = () => {
+    if (refs.userIdRef.current.value == "") {
+      alert("아이디를 입력해주세요");
+      refs.userIdRef.current.focus();
+    } else {
+      const url = "http://127.0.0.1:8000/member/idCheck";
+      const userId = refs.userIdRef.current.value;
+      axios({
+        method: "post",
+        url: url,
+        data: { userId: userId },
+      })
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.cnt === 1) {
+            alert("이미 사용중인 아이디 입니다. 다시 입력해주세요");
+            refs.userIdRef.current.focus();
+          } else {
+            alert("사용 가능한 아이디입니다.");
+            refs.emailIdRef.current.focus();
+          }
+        })
+        .catch(
+          (error) => console.error("Error:", error) // 디버그 로그
+        );
+    }
   };
 
   const handleSwitchMode = (newMode) => {
@@ -139,14 +178,23 @@ export default function Signup() {
   const handleSubmit = async () => {
     if (validateCheck(refs, formData)) {
       if (passCheck(refs)) {
-        const isSuccess = true;
-        setSignupSuccess(isSuccess);
-
-        if (isSuccess) {
-          console.log(formData)
-          alert("회원가입성공");
-          window.location.href = "/";
-        }
+        const url = "http://127.0.0.1:8000/member/signup";
+        axios({
+          method: "post",
+          url: url,
+          data: formData,
+        })
+          .then((res) => {
+            //console.log("result ->", res.data);
+            //console.log("formdata ->", formData);
+            if (res.data.cnt === 1) {
+              alert("회원가입성공");
+              window.location.href = "/member";
+            } else {
+              alert("회원가입 실패, 정보를 다시 입력하세요");
+            }
+          })
+          .catch();
       }
     }
   };
@@ -180,6 +228,9 @@ export default function Signup() {
                 onChange={handleChange}
                 ref={refs.userIdRef}
               />
+              <button type="button" onClick={handleIdCheck}>
+                중복확인
+              </button>
             </li>
             <li>
               <p>
@@ -253,12 +304,6 @@ export default function Signup() {
               />
             </li>
             <li>
-              <span>
-                <FontAwesomeIcon icon={faExclamation} /> 배송 문제를 방지하기
-                위해 본인의 실명을 작성해주세요.
-              </span>
-            </li>
-            <li>
               <input
                 type="text"
                 name="userName"
@@ -267,6 +312,46 @@ export default function Signup() {
                 value={formData.userName}
                 ref={refs.userNameRef}
                 onChange={handleChange}
+              />
+            </li>
+            <li>
+              <span>
+                <FontAwesomeIcon icon={faExclamation} /> 배송 문제를 방지하기
+                위해 본인의 실명을 작성해주세요.
+              </span>
+            </li>
+            <li>
+              {/* 필수전화번호 */}
+              <select name="mobileNumber1">
+                <option value="010">010</option>
+                <option value="011">011</option>
+                <option value="016">016</option>
+                <option value="017">017</option>
+              </select>
+              <input
+                type="text"
+                name="mobileNumber2"
+                value={formData.mobileNumber2}
+                onChange={handleChange}
+                ref={refs.mobileNumber2Ref}
+                placeholder="휴대폰 번호"
+              />
+            </li>
+            <li>
+              {/* 일반전화번호 */}
+              <select name="phoneNumber1">
+                <option value="010">010</option>
+                <option value="011">011</option>
+                <option value="016">016</option>
+                <option value="017">017</option>
+              </select>
+              <input
+                type="text"
+                name="phoneNumber2"
+                value={formData.phoneNumber2}
+                onChange={handleChange}
+                ref={refs.phoneNumber2Ref}
+                placeholder="전화번호"
               />
             </li>
             <li>

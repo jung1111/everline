@@ -1,10 +1,12 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faN } from "@fortawesome/free-solid-svg-icons";
 import { faApple } from "@fortawesome/free-brands-svg-icons";
 
 export default function Login() {
+  const navigate = useNavigate();
   const userIdRef = useRef(null);
   const userPassRef = useRef(null);
   const [formData, setFormData] = useState({ userId: "", userPass: "" });
@@ -14,20 +16,34 @@ export default function Login() {
     setFormData({ ...formData, [name]: value });
   };
 
+  /**
+   * 로그인 버튼 클릭 - 서버연동
+   */
   const handleSubmit = (e) => {
-    //submit 버튼이 클릭했습니다. 이벤트!!!
     e.preventDefault();
 
     if (validataionCheck()) {
-      //validataionCheck() 결과가 true이면 서버전송
-      console.log(formData);
-
-      //서버전송 GET : 패킷(header) : url => axios.get()  ==> /:id
-      //서버전송 POST : 패킷(body) => axios.post()
+      const url = "http://127.0.0.1:8000/member/login";
+      axios({
+        method: "POST",
+        url: url,
+        data: formData,
+      })
+        .then((res) => {
+          console.log("result ->", res.data);
+          if (res.data.cnt === 1) {
+            alert("로그인 성공!!");
+            navigate("/"); //홈으로 이동
+          } else {
+            alert("로그인 실패, 다시 입력해주세요");
+            setFormData({ userId: "", userPass: "" });
+            userIdRef.current.focus();
+          }
+        })
+        .catch((error) => console.log(error));
     }
   };
 
-  //validataionCheck()
   const validataionCheck = () => {
     let checkFlag = true;
 
