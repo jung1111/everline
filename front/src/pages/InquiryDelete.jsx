@@ -1,5 +1,8 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import Location from '../components/Location';
+import SubTitle from '../components/SubTitle';
+import SubMenu from '../components/SubMenu';
 import axios from 'axios';
 
 export default function InquiryDelete(){
@@ -33,6 +36,13 @@ export default function InquiryDelete(){
 
 		return (
 		<div className='content'>
+				<Location depth1="CUSTOMER" depth2="1:1문의"/>
+				<SubTitle title="CUSTOMER"/>
+				<ul className='sub-menu'>
+					<SubMenu menu="공지사항" src="/notice"/>
+					<SubMenu menu="1:1문의" src="/inquiry"/>
+					<SubMenu menu="FAQ"  src="/faq"/>
+				</ul>
 				 <h1>삭제하기</h1>
         <div>
             <h3>정말로 삭제하시겠습니까?</h3>

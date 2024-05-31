@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import Location from '../components/Location';
+import SubTitle from '../components/SubTitle';
+import SubMenu from '../components/SubMenu';
 import axios from 'axios';
 
 export default function InquiryUpdate(){
@@ -55,7 +58,14 @@ export default function InquiryUpdate(){
 
 		return (
 		<div className='content'>
-				 <h1>게시판 수정</h1>
+				<Location depth1="CUSTOMER" depth2="1:1문의"/>
+				<SubTitle title="CUSTOMER"/>
+				<ul className='sub-menu'>
+					<SubMenu menu="공지사항" src="/notice"/>
+					<SubMenu menu="1:1문의" src="/inquiry"/>
+					<SubMenu menu="FAQ"  src="/faq"/>
+				</ul>
+				<h1>게시판 수정</h1>
         <table border="1">
             <tr>
                 <th>제목</th>

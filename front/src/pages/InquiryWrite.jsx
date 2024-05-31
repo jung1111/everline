@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';
+import SubMenu from '../components/SubMenu';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -47,8 +48,13 @@ export default function NoticeWrite(){
 
 		return (
 		<div className='content'>
-				<Location />
-				<SubTitle />
+				<Location depth1="CUSTOMER" depth2="1:1문의"/>
+				<SubTitle title="CUSTOMER"/>
+				<ul className='sub-menu'>
+					<SubMenu menu="공지사항" src="/notice"/>
+					<SubMenu menu="1:1문의" src="/inquiry"/>
+					<SubMenu menu="FAQ"  src="/faq"/>
+				</ul>
 				<table className='notice-table'>
 						<tbody>		
 							<tr>					
