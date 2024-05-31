@@ -1,22 +1,39 @@
-import { db } from "../db/database_mysql80.js";
+import { db } from "../db/database_mysql.js";
 import bcrypt from "bcryptjs";
 
-/* login처리 */
+/** login처리 */
 
-export const getLogin = (userId, userPass) => {
-  if (did === userId && dpass === userPass) {
-    result.cnt = 1;
-  } else {
-    result.cnt = 0;
+export const getLogin = async (userId, userPass) => {
+  let login_result = 0;
+  const sql = `
+    SELECT COUNT(user_id) AS cnt, 
+           ANY_VALUE(user_pass) AS user_pass 
+    FROM ever_member
+    WHERE user_id = ?
+  `;
+
+  try {
+    const [rows] = await db.execute(sql, [userId]);
+    const result = rows[0];
+    console.log("result----->", result);
+
+    if (result.cnt === 1) {
+      const isPasswordCorrect = bcrypt.compareSync(userPass, result.user_pass);
+      if (isPasswordCorrect) {
+        login_result = 1;
+      }
+    }
+  } catch (error) {
+    console.error("Error login:", error);
   }
-  console.log("result", result);
-  return result;
+
+  return { cnt: login_result };
 };
 
 /* id check */
 export const getIdCheck = async (userId) => {
   const sql = `
-  select count(user_id) cnt from everline_member where user_id = ?
+  select count(user_id) cnt from ever_member where user_id = ?
   `;
 
   return db.execute(sql, [userId]).then((result) => result[0][0]);
@@ -39,7 +56,7 @@ export const getSignup = async (formData) => {
   }
 
   const sql = `
-  insert into everline_member(
+  insert into ever_member(
     USER_ID,
     USER_PASS,
     USER_NAME,

@@ -6,7 +6,7 @@ export default function SubTitle({ title }) {
 
   return (
     <div className="sub-title">
-      <h2>EVENT</h2>
+      <h2>{title}</h2>
     </div>
   );
 }

@@ -1,7 +1,5 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import "../css/signup.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import DaumPostcode from "react-daum-postcode";
@@ -11,6 +9,7 @@ import {
   changeEmailDomain,
 } from "../apis/validate.js";
 import SubTitle from "../components/SubTitle.jsx";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -198,13 +197,15 @@ export default function Signup() {
       }
     }
   };
+  const navigate = useNavigate();
+  const handleCancel = () => {
+    navigate("/member");
+  };
 
   return (
     <div className="content">
+      <SubTitle title="회원가입" />
       <div className="member">
-        <div className="sub-title">
-          <h1>회원가입</h1>
-        </div>
         <form className="signup-form">
           <h3>회원종류</h3>
           <ul className="signup-type">
@@ -503,7 +504,9 @@ export default function Signup() {
               </button>
             </li>
             <li>
-              <button type="button">취소</button>
+              <button type="button" onClick={handleCancel}>
+                취소
+              </button>
             </li>
           </ul>
         </form>
