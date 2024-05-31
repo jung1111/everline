@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import Location from '../components/Location';
+import SubTitle from '../components/SubTitle';
+import ListAll from '../components/ListAll';
 
 
-
-export default function ProductPage() {
+export default function ProductPage({menu}) {
   const [productlist, setProductList] = useState([])
   useEffect(() => {
     axios
@@ -12,42 +14,40 @@ export default function ProductPage() {
       .then(res => setProductList(res.data))
       .catch(error => console.log(error))
   }, [])
+
+  const rows = [];
+  for(let i = 0; i < productlist.length; i += 4) {
+    rows.push(productlist.slice(i,i+4))
+  }
+
   return (
       <div className='content'>
-        <div className='content_breadcrumb'>
+			<Location depth1="PRODUCT"/>
+			<SubTitle title="PRODUCT"/>
+      {
+				rows.map((row, index)=>(
+					<ul className='ProductPage' key={index}>
+					{
+						row.map((product)=>(
+							<li>
+								<div className='ProductPage-img-box'>
+									<Link to={`/detail/${product.id}`}>
+                    <img className='ProductPage-img' src={product.image} />
+                  </Link>
+								</div>
+                <div className='ProductPage-info'>
+                  <span className='ProductPage-title'>{product.title}</span>
+                  <span className='ProductPage-price'>{product.price}</span>
+                  <span className="ProductPage-soldout">품절</span>
+                </div>
 
-          <span>&nbsp;&nbsp;PRODUCT</span>
-        </div>
-        <div className='content_area'>
-          <div className='content_title'>
-            <h1>
-              PRODUCT
-            </h1>
-          </div>
-          <div className='content_category'>
-            <ul>
-              <li>
-                <Link to=""><span className='category_title'>EVER MUSIC</span></Link>
-              </li>
-              <li>
-                <Link to=""><span className='category_title'>EVER MD</span></Link>
-              </li>
-              <li>
-                <Link to=""><span className='category_title'>EVER CON</span></Link>
-              </li>
-              <li>
-                <Link to=""><span className='category_title'>EVER FRIENDS</span></Link>
-              </li>
-              <li>
-                <Link to=""><span className='category_title'>EVER LIGHT STICK</span></Link>
-              </li>
-              <li>
-                <Link to=""><span className='category_title'>SALE</span></Link>
-              </li>
-            </ul>
-          </div>
-          <div className='products'>
-            <ul className='product_list'>
+							</li>
+						))
+					}					
+			</ul>
+				))
+			}
+            {/* <ul className='product_list'>
               {productlist.map(product => (
                 <li className='product'>
                   <div className='product_imgbox'>
@@ -62,9 +62,7 @@ export default function ProductPage() {
                   </div>
                 </li>
               ))}
-            </ul>
+            </ul> */}
           </div>
-        </div>
-      </div>
   )
 }
