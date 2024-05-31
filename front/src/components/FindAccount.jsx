@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/style.css";
+import SubTitle from "./SubTitle.jsx";
 
 const FindAccount = () => {
   const [mode, setMode] = useState("id"); // 'id' 또는 'ps'
@@ -19,10 +20,7 @@ const FindAccount = () => {
     <div className="content">
       {mode === "id" && (
         <div className="member" onSubmit={handleSubmit}>
-          <div className="sub-title">
-            <h1>아이디찾기</h1>
-            <h2></h2>
-          </div>
+          <SubTitle title="아이디찾기" />
           <form className="find-form">
             <ul>
               <li>
@@ -73,10 +71,7 @@ const FindAccount = () => {
 
       {mode === "ps" && (
         <div className="member" onSubmit={handleSubmit}>
-          <div className="sub-title">
-            <h1>비밀번호찾기</h1>
-            <h2></h2>
-          </div>
+          <SubTitle title="비밀번호찾기" />
           <form className="find-form">
             <ul>
               <li>
