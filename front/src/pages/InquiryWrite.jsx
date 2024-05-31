@@ -55,28 +55,30 @@ export default function NoticeWrite(){
 					<SubMenu menu="1:1문의" src="/inquiry"/>
 					<SubMenu menu="FAQ"  src="/faq"/>
 				</ul>
-				<table className='notice-table'>
-						<tbody>		
-							<tr>					
-								<th scope='row'>제목</th>
-								<td>
-									<input type='text' name='btitle' value={boardFormData.btitle}  onChange={handleChange}/>
-								</td>
-							</tr>	
-							<tr>
-								<th scope='row'>내용</th>
-								<td>
-									<textarea name='bcontent' value={boardFormData.bcontent} onChange={handleChange}/>
-								</td>
-							</tr>	
-						</tbody>
-				</table>
-				<div style={{textAlign:'center'}}>
-					<button type='button' onClick={handleWriteSubmit}>등록완료</button>
-					<button type='button' onClick={handleWriteReset}>다시쓰기</button>
-					<button type='button' onClick={handleNavigate}>리스트</button>
+				<div className='Board'>
+					<table className='Board-table'>
+							<tbody>		
+								<tr>					
+									<th scope='row'>제목</th>
+									<td>
+										<input type='text' name='btitle' value={boardFormData.btitle}  onChange={handleChange}/>
+									</td>
+								</tr>	
+								<tr>
+									<th scope='row'>내용</th>
+									<td>
+										<textarea name='bcontent' value={boardFormData.bcontent} onChange={handleChange}/>
+									</td>
+								</tr>	
+							</tbody>
+					</table>
+					<div className='BoardButton'>
+						<button className='red' type='button' onClick={handleWriteSubmit}>등록완료</button>
+						<button type='button' onClick={handleWriteReset}>다시쓰기</button>
+						<button type='button' onClick={handleNavigate}>리스트</button>
+					</div>
 				</div>
-				
 		</div>
 	);
 }
+

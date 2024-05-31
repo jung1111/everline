@@ -65,30 +65,28 @@ export default function InquiryUpdate(){
 					<SubMenu menu="1:1문의" src="/inquiry"/>
 					<SubMenu menu="FAQ"  src="/faq"/>
 				</ul>
-				<h1>게시판 수정</h1>
-        <table border="1">
-            <tr>
-                <th>제목</th>
-                <td>
-                    <input type='text' name='btitle' value={boardFormData.btitle} onChange={handleChange}/>
-                </td>
-            </tr> 
-            <tr>
-                <th>내용</th>
-                <td>
-                    <textarea name='bcontent' value={boardFormData.bcontent}  onChange={handleChange}/>
-                </td>
-            </tr> 
-            <tr>
-               
-                <td colSpan={2}>
-                   <button type='button' onClick={handleUpdateSubmit}>수정완료</button>{/* 호출만 함 */}
-                   <button type='button' onClick={handleUpdateReset}>다시쓰기</button>
-                   <button type='button' onClick={()=>handleNavigate('pre')}>이전페이지</button>{/*파라미터로 값을 넘길때  */}
-                   <button type='button' onClick={()=>handleNavigate('list')}>리스트</button>
-                </td>
-            </tr>          
-        </table>
+				<div className='Board'>
+					<table className='Board-table'>
+							<tr>
+									<th>제목</th>
+									<td>
+											<input type='text' name='btitle' value={boardFormData.btitle} onChange={handleChange}/>
+									</td>
+							</tr> 
+							<tr>
+									<th>내용</th>
+									<td>
+											<textarea name='bcontent' value={boardFormData.bcontent}  onChange={handleChange}/>
+									</td>
+							</tr>		         
+					</table>
+					<div className='BoardButton'>
+						<button type='button' onClick={handleUpdateSubmit}>수정완료</button>{/* 호출만 함 */}
+						<button type='button' onClick={handleUpdateReset}>다시쓰기</button>
+						<button type='button' onClick={()=>handleNavigate('pre')}>이전페이지</button>{/*파라미터로 값을 넘길때  */}
+						<button type='button' onClick={()=>handleNavigate('list')}>리스트</button>
+					</div>
+				</div>
 		</div>
 	);
 }
