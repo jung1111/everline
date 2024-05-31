@@ -100,7 +100,8 @@ export default function Inquiry(){
 			</div>	
 			<Link to='/inquiry/write'>
 				<div className='BoardButton'>
-					<BoardButton button="글쓰기"/>
+					{/* <BoardButton button="글쓰기"/> */}
+					<button type='button'>글쓰기</button>
 				</div>
 			</Link>
 			

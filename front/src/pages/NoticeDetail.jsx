@@ -64,7 +64,8 @@ ARTMS - 정규1집 [Dall] 1:1 영상통화 팬사인회 이벤트 당첨자 명�
 				</div>
 				<Link to="/notice">
 					<div className='BoardButton'>
-						<BoardButton button="목록"/>
+						{/* <BoardButton button="목록"/> */}
+						<button type='button'>목록</button>
 					</div>
 				</Link>
 			</div> 			
