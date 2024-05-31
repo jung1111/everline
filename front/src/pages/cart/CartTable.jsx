@@ -32,9 +32,11 @@ export default function CartTable({ cartItems, setCartItems }) {
 
   // 총 배송비 계산
   const totalDeliveryCharge = () => {
+    if (selectedItems.length === 0) {
+      return 0;
+    }
     return totalPrice(selectedItems) < 70000 ? 3500 : 0;
   };
-
   // 항목의 체크 상태 업데이트
   const updateCheckedState = (index, isChecked) => {
     const updatedCartList = [...cartItems];
@@ -123,138 +125,118 @@ export default function CartTable({ cartItems, setCartItems }) {
   console.log(cartItems);
 
   return (
-    <div>
-      <div id="content">
-        <>
-          <table className="cart-area" border="1">
-            <thead>
-              <tr>
-                <th>
-                  <input
-                    type="checkbox"
-                    onClick={handleCheckAll}
-                    checked={allChecked}
-                  />
-                </th>
-                <th>상품/옵션 정보</th>
-                <th>수량</th>
-                <th>상품금액</th>
-                <th>할인/적립</th>
-                <th>합계금액</th>
-                <th>배송비</th>
-              </tr>
-            </thead>
-            <tbody>
-              {cartItems.map((item, index) => (
-                <tr key={item.id}>
-                  <td>
-                    <input
-                      type="checkbox"
-                      checked={item.checked}
-                      onChange={() => handleCheck(index)}
+    <div className="cart-container">
+      <table className="cart-table-area">
+        <thead className="cart-table-head">
+          <tr>
+            <th>
+              <input
+                type="checkbox"
+                className="custom-checkbox"
+                onClick={handleCheckAll}
+                checked={allChecked}
+              />
+            </th>
+            <th>상품/옵션 정보</th>
+            <th>수량</th>
+            <th>상품금액</th>
+            <th>할인/적립</th>
+            <th>합계금액</th>
+            <th>배송비</th>
+          </tr>
+        </thead>
+        <tbody className="cart-table-body">
+          {cartItems.map((item, index) => (
+            <tr key={item.id}>
+              <td>
+                <input
+                  type="checkbox"
+                  className="custom-checkbox"
+                  checked={item.checked}
+                  onChange={() => handleCheck(index)}
+                />
+              </td>
+              <td>
+                <div className="product-info">
+                  <Link to={`/detail/${item.id}`}>
+                    <img
+                      src={item.image}
+                      alt="상품 이미지"
+                      className="product-image"
                     />
-                  </td>
-                  <td>
-                    <div style={{ display: "flex" }}>
-                      <Link to={`/detail/${item.id}`}>
-                        <img
-                          src={item.image}
-                          alt="상품 이미지"
-                          style={{
-                            width: "70px",
-                            height: "70px",
-                            border: "1px solid red",
-                          }}
-                        />
-                      </Link>
-                      <div>
-                        <button
-                          onClick={openCouponPopup}
-                          style={{ display: "block" }}
-                        >
-                          coupon
-                        </button>
-                        <Link to={`/detail/${item.id}`}>{item.name}</Link>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                      <span>{item.qty}개</span>
-                      <button onClick={() => openPopup(item)}>옵션변경</button>
-                    </div>
-                  </td>
-                  <td>{item.price?.toLocaleString()}원</td>
-                  <td>
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                      <span>적립</span>
-                      <span>
-                        상품 +
-                        {Math.round((item.price * item.qty * 0.01) / 10) * 10}원
-                      </span>
-                    </div>
-                  </td>
-                  <td>{(item.price * item.qty).toLocaleString()}원</td>
-                  {index === 0 && (
-                    <td rowSpan={cartItems.length}>
-                      고정배송비 <br />
-                      {totalDeliveryCharge()}원<br />
-                      (택배-선결제)
-                    </td>
-                  )}
-                </tr>
-              ))}
-              <tr>
-                <td colSpan="7">
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <div>
-                      <span>
-                        적립예정 마일리지:{" "}
-                        {Math.round((totalPrice(selectedItems) * 0.01) / 10) *
-                          10}
-                        원
-                      </span>
-                    </div>
-                    <div>
-                      <span>
-                        총 {selectedItems.length} 개의 상품금액{" "}
-                        {totalPrice(selectedItems).toLocaleString()}원 + 배송비{" "}
-                        {totalDeliveryCharge()}원 = 합계{" "}
-                        {(
-                          totalPrice(selectedItems) + totalDeliveryCharge()
-                        ).toLocaleString()}
-                        원
-                      </span>
-                    </div>
+                  </Link>
+                  <div>
+                    <button onClick={openCouponPopup} className="coupon-button">
+                      COUPON
+                    </button>
+                    <Link to={`/detail/${item.id}`}>{item.name}</Link>
                   </div>
+                </div>
+              </td>
+              <td>
+                <div className="quantity-control">
+                  <span>{item.qty}개</span>
+                  <button onClick={() => openPopup(item)}>옵션변경</button>
+                </div>
+              </td>
+              <td>{item.price?.toLocaleString()}원</td>
+              <td>
+                <div className="discount-info">
+                  <span>적립</span>
+                  <span>
+                    상품 +{Math.round((item.price * item.qty * 0.01) / 10) * 10}
+                    원
+                  </span>
+                </div>
+              </td>
+              <td>{(item.price * item.qty).toLocaleString()}원</td>
+              {index === 0 && (
+                <td rowSpan={cartItems.length} className="delivery-charge">
+                  고정배송비 <br />
+                  {totalDeliveryCharge()}원<br />
+                  (택배-선결제)
                 </td>
-              </tr>
-            </tbody>
-          </table>
-        </>
-      </div>
+              )}
+            </tr>
+          ))}
+          <tr>
+            <td colSpan="7">
+              <div className="summary">
+                <div className="mileage-info">
+                  <span>
+                    적립예정 마일리지:{" "}
+                    {Math.round((totalPrice(selectedItems) * 0.01) / 10) * 10}원
+                  </span>
+                </div>
+                <div className="total-price-info">
+                  <span>
+                    총 {selectedItems.length} 개의 상품금액{" "}
+                    {totalPrice(selectedItems).toLocaleString()}원 + 배송비{" "}
+                    {selectedItems.length === 0 ? 0 : totalDeliveryCharge()}원 =
+                    합계{" "}
+                    {(
+                      totalPrice(selectedItems) +
+                      (selectedItems.length === 0 ? 0 : totalDeliveryCharge())
+                    ).toLocaleString()}
+                    원
+                  </span>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
       {showPopup && selectedProduct && (
         <div className="popup-overlay">
           <div className="popup-content">
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
+            <div className="popup-product-info">
               <img
                 src={selectedProduct.image}
                 alt={selectedProduct.name}
-                style={{ width: "100px" }}
+                className="popup-product-image"
               />
               <p>{selectedProduct.name}</p>
-              <div style={{ display: "flex", alignItems: "center" }}>
+              <div className="quantity-selector">
                 <button
                   onClick={() =>
                     decreaseQuantity(
@@ -277,13 +259,7 @@ export default function CartTable({ cartItems, setCartItems }) {
                       parseInt(e.target.value)
                     )
                   }
-                  style={{
-                    appearance: "none",
-                    border: "none",
-                    outline: "none",
-                    width: "40px",
-                    textAlign: "center",
-                  }}
+                  className="quantity-input"
                 />
                 <button
                   onClick={() =>
@@ -302,13 +278,7 @@ export default function CartTable({ cartItems, setCartItems }) {
                 원
               </p>
             </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginTop: "20px",
-              }}
-            >
+            <div className="popup-buttons">
               <button onClick={cancelPopup}>취소</button>
               <button onClick={confirmPopup}>확인</button>
             </div>
@@ -319,11 +289,11 @@ export default function CartTable({ cartItems, setCartItems }) {
         <div className="popup-overlay">
           <div className="popup-content">
             <h3>쿠폰 적용하기</h3>
-            <div style={{ padding: "20px" }}>
+            <div className="coupon-popup-content">
               <p>여기에 사용 가능한 쿠폰 리스트를 표시합니다.</p>
               <button
                 onClick={closeCouponPopup}
-                style={{ marginRight: "10px" }}
+                className="coupon-popup-cancel"
               >
                 취소
               </button>
@@ -331,6 +301,7 @@ export default function CartTable({ cartItems, setCartItems }) {
                 onClick={() => {
                   console.log("쿠폰 적용");
                 }}
+                className="coupon-popup-apply"
               >
                 쿠폰 적용
               </button>
