@@ -1,40 +1,91 @@
-/* login처리 */
 import { db } from "../db/database_mysql.js";
+import bcrypt from "bcryptjs";
 
+/** login처리 */
 
+export const getLogin = async (userId, userPass) => {
+  let login_result = 0;
+  const sql = `
+    SELECT COUNT(user_id) AS cnt, 
+           ANY_VALUE(user_pass) AS user_pass 
+    FROM ever_member
+    WHERE user_id = ?
+  `;
 
-export const getLogin = (userId, userPass) => {
-  // did(DB id) = test, dpass =1234
-  const did = "test";
-  const dpass = "1234";
-  const result = {};
+  try {
+    const [rows] = await db.execute(sql, [userId]);
+    const result = rows[0];
+    console.log("result----->", result);
 
-  //패스워드 체크 후 숫자로 결과 전송
-  // 로그인 성공 : {cnt:1}
-  // 로그인 실패 : {cnt:0}
-  if (did === userId && dpass === userPass) {
-    result.cnt = 1;
-  } else {
-    result.cnt = 0;
+    if (result.cnt === 1) {
+      const isPasswordCorrect = bcrypt.compareSync(userPass, result.user_pass);
+      if (isPasswordCorrect) {
+        login_result = 1;
+      }
+    }
+  } catch (error) {
+    console.error("Error login:", error);
   }
-  console.log("result", result);
-  return result;
+
+  return { cnt: login_result };
 };
 
 /* id check */
-export const getIdCheck = (userId) => {
-  const did = "test";
-  const result = {};
-  if (did === userId) {
-    result.cnt = 1; // 이미 있는 id
-  } else {
-    result.cnt = 0; //사용가능
-  }
-  return result;
+export const getIdCheck = async (userId) => {
+  const sql = `
+  select count(user_id) cnt from ever_member where user_id = ?
+  `;
+
+  return db.execute(sql, [userId]).then((result) => result[0][0]);
 };
 
 /* sign up */
-export const getSignup = (formData) => {
+export const getSignup = async (formData) => {
+  let result_rows = 0;
   console.log("formData", formData);
-  return { cnt: 1 };
+
+  const mobile1 = formData.mobileNumber1;
+  let mobile2 = "";
+  let mobile3 = "";
+  if (formData.mobileNumber2.length == 8) {
+    mobile2 = formData.mobileNumber2.slice(0, 4);
+    mobile3 = formData.mobileNumber2.slice(4);
+  } else {
+    mobile2 = formData.mobileNumber2.slice(0, 3);
+    mobile3 = formData.mobileNumber2.slice(3);
+  }
+
+  const sql = `
+  insert into ever_member(
+    USER_ID,
+    USER_PASS,
+    USER_NAME,
+    MOBILE_NUMBER,
+    EMAIL_ID,
+    EMAIL_DOMAIN,
+    ZIPCODE,
+    ADDRESS,
+    SIGNUP_DATE
+  )
+  values(?,?,?,?,?,?,?,?,now())
+  `;
+  const params = [
+    formData.userId,
+    bcrypt.hashSync(formData.userPass, 7),
+    formData.userName,
+    mobile1.concat("-", mobile2, "-", mobile3),
+    formData.emailId,
+    formData.emailDomain,
+    formData.zipcode,
+    formData.address.concat(" ", formData.detailAddress),
+  ];
+  try {
+    const [result] = await db.execute(sql, params);
+    result_rows = result.affectedRows;
+    console.log("rows", result.affectedRows);
+  } catch (error) {
+    console.log(error);
+  }
+
+  return { cnt: result_rows };
 };

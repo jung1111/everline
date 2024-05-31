@@ -7,6 +7,7 @@ common css
   font-size: 14px;
 }
 
+ul *,
 li * {
   list-style-type: none;
   text-decoration: none;
@@ -88,7 +89,7 @@ location css
   justify-content: flex-end;
 }
 
-.location-link>li {
+.location-link > li {
   position: relative;
 }
 
@@ -99,7 +100,7 @@ location css
 
 .location-link-home {
   font-size: 14px;
-  color: var(--color-red)
+  color: var(--color-red);
 }
 
 .location-link-arrow {
@@ -125,7 +126,7 @@ subt-itle css
 }
 
 .sub-title h2::after {
-  content: '';
+  content: "";
   position: absolute;
   background: url("https://www.everlineshop.com/data/skin/front/everline/images/base/pic_point.svg");
   width: 30px;
@@ -142,20 +143,20 @@ sub-menu css
   margin-top: 80px;
 }
 
-.sub-menu>li {
+.sub-menu > li {
   position: relative;
   width: 50%;
   text-align: center;
   padding: 12px 0;
 }
 
-.sub-menu li>a {
+.sub-menu li > a {
   color: var(--color-black);
   border-top: transparent solid 1px;
 }
 
-.sub-menu>li>a::before,
-.sub-menu>li>a::after {
+.sub-menu > li > a::before,
+.sub-menu > li > a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -164,24 +165,24 @@ sub-menu css
   height: 1px;
 }
 
-.sub-menu>li>a::before {
-  background-color: var(--color-black); 
+.sub-menu > li > a::before {
+  background-color: var(--color-black);
   opacity: 0.1;
 }
 
-.sub-menu>li>a::after {
+.sub-menu > li > a::after {
   width: 1px;
   background-color: var(--color-red);
   opacity: 0;
   transition: 0.3s;
 }
 
-.sub-menu>li>a:hover:after {
+.sub-menu > li > a:hover:after {
   width: 100%;
   opacity: 1;
 }
 
-.sub-menu>li>a:hover {
+.sub-menu > li > a:hover {
   color: var(--color-red);
 }
 
@@ -201,7 +202,7 @@ listall css
 
 .count-no-icon {
   font-size: 14px;
-  color: var(--color-grey)
+  color: var(--color-grey);
 }
 
 .count-no-text {
@@ -232,7 +233,6 @@ filter css
 ***********************/
 
 /* 위의 구분 주석 복사 붙여넣기 후 개인 css 작성 */
-
 
 /**********************
 carttable css
@@ -267,6 +267,7 @@ bannerslider css
 .BannerSlider_content {
   margin: 50px 0 50px 0;
 }
+
 .BannerSlider_content div {
   margin: auto;
   display: flex;
@@ -276,12 +277,13 @@ bannerslider css
 .BannerSlider_content div > img {
   width: 600px;
 }
+
 .BannerSlider_content div > h3 {
   width: 300px;
 }
 
+
 /**********************
-<<<<<<< HEAD
 ProductPagepage css
 ***********************/
 .ProductPage {
@@ -354,4 +356,79 @@ ProductPagepage css
   border-radius: 8px;
   font-size: 12px;
   margin-top: 15px;
+}
+
+/** Login */
+
+.member {
+  border: 1px solid red;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.member-form * {
+  background-color: var(--color-white);
+}
+
+.member-form {
+  width: 760px;
+  height: auto;
+  margin: 2rem auto;
+  text-align: center; /* 부모 요소인 .member-form에 대해 가운데 정렬 */
+}
+
+.member-form input {
+  display: inline-block; /* input 요소를 인라인 블록 요소로 설정하여 수평으로 정렬 */
+  width: 360px;
+  height: 50px;
+  margin-top: 20px;
+  margin-right: 22px;
+  padding: 0 20px !important;
+  border: none !important;
+  background-color: rgba(16, 24, 32, 0.06);
+  font-size: 14px !important;
+  color: #64646b;
+  letter-spacing: -0.5px;
+  line-height: 40px !important;
+  text-align: left;
+}
+
+.member-input {
+  padding-top: 30px;
+}
+
+.member-find-btn {
+  display: flex;
+  width: 360px;
+  margin: 15px auto;
+  justify-content: flex-end; /* 왼쪽 정렬 */
+  padding: 10px 5px;
+  gap: 1rem;
+  /*   border: 1px solid green;
+ */
+}
+
+.member-btn {
+  padding-bottom: 20px;
+}
+
+.member-sns-btn {
+  padding-bottom: 20px;
+}
+
+.member-sns-btn button {
+  border: 1px solid var(--color-grey);
+  border-radius: 2px;
+  padding-bottom: 20px;
+}
+
+.member ul li button {
+  display: block;
+  margin: 15px 176px;
+  width: 360px;
+  height: 50px;
+  font-size: 14px;
+  font-weight: 800;
+  /*   border-style: none;
+ */
 }
