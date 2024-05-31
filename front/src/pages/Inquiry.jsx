@@ -6,6 +6,7 @@ import { faList } from "@fortawesome/free-solid-svg-icons";
 import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';
 import SubMenu from '../components/SubMenu';
+import BoardButton from '../components/BoardButton';
 import axios from 'axios';
 
 //paging navigation
@@ -68,34 +69,42 @@ export default function Inquiry(){
 					<span className='count-no-text'><span className='count-no-red'>{inqList.length}</span> 개의 게시물</span>
 				</span>
 			</div>
-			<table className='Notice-table'>
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>날짜</th>
-					</tr>
-				</thead>
-				<tbody>
-					{
-							inqList.map((item)=>(
-								<tr>
-										<td>{item.rno}</td>
-										<td>
-												<span onClick={() => handleUpdateHits(item.bid, item.rno)}>{item.btitle}</span>																
-										</td>
-										<td>{item.bhits}</td>
-										<td>{item.bdate}</td>
-								</tr>
-							))
-						}
-								
-				</tbody>
-			</table>	
+			<div className='Board'>
+				<table className='Board-table'>
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>날짜</th>
+						</tr>
+					</thead>
+					<tbody>
+						{
+								inqList.map((item)=>(
+									<tr>
+											<td>{item.rno}</td>
+											<td>
+												<Link>
+													<span onClick={() => handleUpdateHits(item.bid, item.rno)}>{item.btitle}</span>		
+												</Link>															
+											</td>
+											<td>{item.bhits}</td>
+											<td>{item.bdate}</td>
+									</tr>
+								))
+							}
+									
+					</tbody>
+				</table>
+			</div>	
 			<Link to='/inquiry/write'>
-				<button type='button' style={{marginTop:"20px"}}>글쓰기</button>
+				<div className='BoardButton'>
+					{/* <BoardButton button="글쓰기"/> */}
+					<button type='button'>글쓰기</button>
+				</div>
 			</Link>
+			
 		</div>
 	);
 }

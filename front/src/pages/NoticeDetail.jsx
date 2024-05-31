@@ -6,6 +6,7 @@ import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';
 import SubMenu from '../components/SubMenu';
+import BoardButton from '../components/BoardButton';
 import axios from 'axios';
 
 export default function NoticeDetail(){
@@ -34,19 +35,19 @@ export default function NoticeDetail(){
 				<SubMenu menu="1:1문의" src="/inquiry"/>
 				<SubMenu menu="FAQ"  src="/faq"/>
 			</ul>
-			<div className='Notice-detail'>
-				<h1 className="Notice-detail-title">{data.title}</h1>
-				<ul className='Notice-detail-view'>
+			<div className='Board-detail'>
+				<h1 className="Board-detail-title">{data.title}</h1>
+				<ul className='Board-detail-view'>
 					<li>
-						<span className='Notice-detail-icon'><FontAwesomeIcon icon={faUser} /></span>
-						<strong className='Notice-detail-author'>{data.author}</strong>
+						<span className='Board-detail-icon'><FontAwesomeIcon icon={faUser} /></span>
+						<strong className='Board-detail-author'>{data.author}</strong>
 					</li>
 					<li>
-						<span className='Notice-detail-icon'><FontAwesomeIcon icon={faCalendar} /></span>
-						<span className='Notice-detail-date'>{data.date}</span>
+						<span className='Board-detail-icon'><FontAwesomeIcon icon={faCalendar} /></span>
+						<span className='Board-detail-date'>{data.date}</span>
 					</li>
 				</ul>
-				<div className='Notice-detail-cont'>
+				<div className='Board-detail-cont'>
 						<p>공지사항 상세페이지<br/>
 
 
@@ -62,7 +63,10 @@ ARTMS - 정규1집 [Dall] 1:1 영상통화 팬사인회 이벤트 당첨자 명�
 						</p>
 				</div>
 				<Link to="/notice">
-					<button type='button'>목록</button>
+					<div className='BoardButton'>
+						{/* <BoardButton button="목록"/> */}
+						<button type='button'>목록</button>
+					</div>
 				</Link>
 			</div> 			
 		</div>
