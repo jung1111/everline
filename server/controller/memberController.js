@@ -25,3 +25,13 @@ export const getSignup = async (req, res) => {
   res.json(result);
   res.end();
 };
+
+export const findUserId = async (req, res) => {
+  const { userName, mobileNumber1, mobileNumber2 } = req.body;
+  const result = await repository.findUserId(
+    userName,
+    mobileNumber1,
+    mobileNumber2
+  ); // 수정된 부분
+  res.json(result);
+};
