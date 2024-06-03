@@ -7,12 +7,12 @@ import SubTitle from '../components/SubTitle';
 import ListAll from '../components/ListAll';
 
 
-export default function ProductPage({menu}) {
+export default function ProductPage() {
   const [productlist, setProductList] = useState([])
   const selectList = [
     {"value": "popularity", "title": "이름순"},
-    {"value": "highpricestitle","title" : "높은가격순"},
-    {"value": "lospricestitle", "title" : "낮은가격순"}
+    {"value": "highpricestitle","title" : "낮은가격순"},
+    {"value": "lospricestitle", "title" : "높은가격순"}
     ];
 
   useEffect(() => {
@@ -77,7 +77,7 @@ const handleChange = (e) => {
 								</div>
                 <div className='ProductPage-info'>
                   <span className='ProductPage-title'>{product.title}</span>
-                  <span className='ProductPage-price'>{product.price}</span>
+                  <span className='ProductPage-price'>{product.price.toLocaleString()}원</span>
                   <span className="ProductPage-soldout">품절</span>
                 </div>
 							</li>

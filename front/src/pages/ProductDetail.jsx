@@ -3,10 +3,9 @@ import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Location from '../components/Location';
-import SubTitle from '../components/SubTitle';
 import axios from "axios";
 
-export default function ProductDetail({ addCartCount }) {
+export default function ProductDetail({ addCartCount}) {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
 
@@ -64,7 +63,7 @@ export default function ProductDetail({ addCartCount }) {
         <div className="ProductDetail">
               <div className="ProductDetail-infobox">
                 <h2>{product.title}</h2>
-                <h3>{product.price}원</h3>
+                <h3>{product.price}</h3>
               </div>
               <div>
                 <div className="ProductDetail-info" onClick={Click}>
@@ -113,8 +112,10 @@ export default function ProductDetail({ addCartCount }) {
               </div>
               <div className="line"></div>
                 <div className="ProductDetail-info">
-                  <span className='totalprice'>총 합계금액</span>
-                  <span className='totalprice'>{product.price}</span>
+                  <div className='totalprice-box'>
+                    <span>총 합계금액</span>
+                    <span>{product.price}</span>
+                  </div>
                 </div>
               <div className="line"></div>
               <div className="product_btn_box">
