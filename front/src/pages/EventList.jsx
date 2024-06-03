@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "../css/board.css";
 import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';
 import SubMenu from '../components/SubMenu';
@@ -31,24 +32,17 @@ export default function EventList(){
 		// 필터
 		const handleChange = (e) => {
 			let clickList = e.target.value;
-			let event = [...eventList];
+			let sortEvent = [...eventList];
 
 			if(clickList === selectList[0].value){
-				let popularity = event;
-				//popularity.sort((a, b) => b.title.localeCompare(a.title));  이건 내림차순
-				popularity.sort((a, b)=> a.title.toUpperCase() < b.title.toUpperCase()?-1:1);  
-				setEventList(popularity);
-				console.log('필터링테스트', popularity);
+				sortEvent.sort((a, b)=> a.title.localeCompare(b.title));  
 			}else if(clickList === selectList[1].value){
-				let highpricestitle = event;
-				highpricestitle.sort((a, b)=> b.price - a.price);
-				setEventList(highpricestitle);
+				sortEvent.sort((a, b)=> b.price - a.price);
 			}
 			else if(clickList === selectList[2].value){
-				let lospricestitle = event;
-				lospricestitle.sort((a, b)=> a.price - b.price);
-				setEventList(lospricestitle);
+				sortEvent.sort((a, b)=> a.price - b.price);
 			}
+			setEventList(sortEvent)
 		}
 
 		return (

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "../css/board.css";
 import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';
 import SubMenu from '../components/SubMenu';

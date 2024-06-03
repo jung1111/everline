@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "../css/board.css";
 import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons"; 
@@ -64,8 +65,7 @@ ARTMS - 정규1집 [Dall] 1:1 영상통화 팬사인회 이벤트 당첨자 명�
 				</div>
 				<Link to="/notice">
 					<div className='BoardButton'>
-						{/* <BoardButton button="목록"/> */}
-						<button type='button'>목록</button>
+						<BoardButton button="목록"/>
 					</div>
 				</Link>
 			</div> 			

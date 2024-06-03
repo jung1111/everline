@@ -15,7 +15,40 @@ button{
 .text-center{
 	text-align: center !important;
 }
-
+/**********************
+BoardButton css
+***********************/
+.BoardButton{
+	text-align: center;
+	display: block;
+	margin-top: 4rem;
+}
+.BoardButton button{
+	padding: 0.5rem 2rem;
+	background-color: #f8f8f8;
+	color: var(--color-black);
+	font-size: 1rem;
+	margin: 0 0.2rem;
+	border:1px solid var(--color-grey);
+}
+.BoardButton button.red{
+	background-color: var(--color-red);
+	color: var(--color-white);
+	border: 1px solid var(--color-red);
+}
+.BoardButton button:hover{
+	background-color: var(--color-red);
+	color: var(--color-white);
+	border: 1px solid var(--color-red);
+	transition: 0.5s;
+}
+.BoardButton button.red:hover{
+	background-color:var(--color-grey);
+	border: 1px solid var(--color-grey);
+}
+.BoardButton button:focus{
+	outline: 2px solid var(--color-black);
+}
 
 /**********************
 board 게시판공통 css
