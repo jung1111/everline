@@ -1,0 +1,153 @@
+/* Login */
+
+.member * {
+  background-color: var(--color-white);
+}
+
+.member {
+  /* border: 1px solid red; */
+  width: 760px;
+  margin-top: 50px;
+  margin-left: 275px;
+  text-align: center;
+}
+
+.member-form {
+  /* border: 1px solid red; */
+  width: auto;
+  height: auto;
+  margin: 3rem auto;
+  text-align: center; /* 부모 요소인 .member-form에 대해 가운데 정렬 */
+}
+
+.member-input {
+  list-style: none; /* ul 스타일 제거 */
+  padding-top: 40px; /* 기본 패딩 제거 */
+  margin: 0; /* 기본 마진 제거 */
+}
+
+.input-field {
+  width: 360px;
+  height: 50px;
+  margin-top: 20px;
+  margin-right: 20px;
+  padding: 30px 20px 0 20px; /* padding-top을 포함하여 패딩 통합 */
+  border: none;
+  border-radius: 3px;
+  background-color: rgba(16, 24, 32, 0.06);
+  font-size: 14px;
+  color: #64646b;
+  text-align: left;
+}
+
+.input-field::placeholder {
+  font-size: 15px; /* 동일한 폰트 크기 설정 */
+  color: var(--color-black);
+  transform: translateY(-15px); /* 위로 5px 이동 */
+}
+
+/* 아이디 저장 & 아이디비번 찾기 */
+
+.member ul li button {
+  display: block;
+  margin: 15px 176px;
+  width: 360px;
+  height: 50px;
+  font-size: 14px;
+  font-weight: 800;
+}
+.member-find-btn {
+  display: flex;
+  width: 360px;
+  margin: 15px auto;
+  font-size: 10px;
+  justify-content: space-between; /* 자식 요소들을 가로로 균등하게 배치합니다. */
+  align-items: center; /* 세로 중앙 정렬 */
+  gap: 1rem;
+}
+
+.member-find-btn li:first-child {
+  margin-right: auto; /* 첫 번째 li 요소를 왼쪽으로 정렬합니다. */
+  margin-top: 4px;
+}
+
+.member-find-btn li:first-child input::before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  position: relative; /* 상대적 위치 지정 */
+  top: -15px; /* 위로 5px 이동 */
+}
+
+.member-link-color1 {
+  color: var(--color-black);
+}
+
+.member-find-btn .custom-checkbox {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #ddd;
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.member-find-btn .custom-checkbox:checked {
+  border: 1px solid var(--color-red);
+}
+
+.member-find-btn .custom-checkbox:checked::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-red);
+  display: block;
+}
+
+.member-btn {
+  padding-bottom: 20px;
+}
+
+.member-btn .red-btn {
+  color: var(--color-white);
+  border: none;
+  background-color: var(--color-red);
+}
+.member-btn .white-btn {
+  color: var(--color-red);
+  border: 1px solid #e1e1e1;
+  background-color: var(--color-white);
+}
+
+.member-link-color2 {
+  color: var(--color-red);
+}
+
+/* sns 연동 */
+.member-sns-btn {
+  padding-bottom: 20px;
+}
+.member-sns-btn button {
+  border: 1px solid #e1e1e1;
+  border-radius: 2px;
+  padding-top: 0 20px;
+}
+
+.member-link-color3 {
+  color: rgb(26, 192, 73);
+  text-decoration: none;
+}
+
+.member-link-color4 {
+  color: rgb(45, 22, 24);
+  text-decoration: none;
+}
+
+.member-link-color5 {
+  color: var(--color-black);
+  text-decoration: none;
+}

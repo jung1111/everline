@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import "../css/member.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -62,7 +63,7 @@ export default function Login() {
 
   return (
     <div className="content">
-      <SubTitle title="로그인" />
+      <SubTitle title="로그인" style={{ fontWeight: "900" }} />
       <div className="member">
         <form className="member-form" onSubmit={handleSubmit}>
           <div className="member-back">
@@ -75,10 +76,7 @@ export default function Login() {
                   value={formData.userId}
                   onChange={handleChange}
                   placeholder="  아이디"
-                  style={{
-                    fontSize: "15px",
-                    paddingLeft: "20px", // 여백 조절
-                  }}
+                  class="input-field"
                 />
               </li>
               <li>
@@ -89,21 +87,28 @@ export default function Login() {
                   value={formData.userPass}
                   onChange={handleChange}
                   placeholder="  비밀번호"
-                  style={{
-                    fontSize: "15px",
-                    paddingLeft: "20px", // 여백 조절
-                  }}
+                  class="input-field"
                 />
               </li>
             </ul>
 
             <ul className="member-find-btn">
               <li>
-                <Link to="/member/FindAccount">아이디 찾기 </Link>
+                <label>
+                  <input type="checkbox" className="custom-checkbox" /> 아이디
+                  저장
+                </label>
+              </li>
+              <li>
+                <Link to="/member/FindAccount">
+                  <span className="member-link-colo1r">아이디 찾기</span>
+                </Link>
               </li>
               <li>|</li>
               <li>
-                <Link to="/member/FindAccount">비밀번호 찾기</Link>
+                <Link to="/member/FindAccount">
+                  <span className="member-link-color1">비밀번호 찾기</span>
+                </Link>
               </li>
             </ul>
             <ul className="member-btn">
@@ -112,7 +117,9 @@ export default function Login() {
                   로그인
                 </button>
                 <button className="white-btn" type="button">
-                  <Link to="/member/signup">회원가입</Link>
+                  <Link to="/member/signup" style={{ textDecoration: "none" }}>
+                    <span className="member-link-color2">회원가입</span>
+                  </Link>
                 </button>
               </li>
             </ul>
@@ -123,7 +130,10 @@ export default function Login() {
                     icon={faN}
                     style={{ fontSize: "17px", fontWeight: "bold" }}
                   />
-                  <Link to="https://bit.ly/3weQpic">
+                  <Link
+                    to="https://bit.ly/3weQpic"
+                    className="member-link-color3"
+                  >
                     {" "}
                     네이버 아이디로 로그인
                   </Link>
@@ -133,7 +143,10 @@ export default function Login() {
                     icon={faComment}
                     style={{ fontSize: "15px" }}
                   />
-                  <Link to="https://bit.ly/44x2wDK">
+                  <Link
+                    to="https://bit.ly/44x2wDK"
+                    className="member-link-color4"
+                  >
                     {" "}
                     카카오 아이디로 로그인
                   </Link>
@@ -143,7 +156,10 @@ export default function Login() {
                     icon={faApple}
                     style={{ fontSize: "20px" }}
                   />
-                  <Link to="https://apple.co/3UxpE0v">
+                  <Link
+                    to="https://apple.co/3UxpE0v"
+                    className="member-link-color5"
+                  >
                     {" "}
                     애플 아이디로 로그인
                   </Link>
