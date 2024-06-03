@@ -1,0 +1,640 @@
+/*********************
+common css
+*********************/
+* {
+  font-family: "Noto Sans KR", sans-serif;
+}
+#root{
+<<<<<<< HEAD
+   background-color: var(--color-bg);
+   font-size: 14px;
+=======
+	background-color: var(--color-bg);
+	font-size: 14px;
+>>>>>>> 4cd5ac7c653d6d96256a6ce51cf4a291ee3d48fb
+}
+
+ul *,
+li * {
+  list-style-type: none;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none !important;
+  color: var(--color-black) !important;
+}
+button{
+<<<<<<< HEAD
+   border-width:0;
+=======
+	border-width:0;
+>>>>>>> 4cd5ac7c653d6d96256a6ce51cf4a291ee3d48fb
+}
+:root {
+  --color-bg: rgb(247, 244, 244);
+  --color-red: #ee2737;
+  --color-black: #101820;
+  --color-grey: #727272;
+  --color-white: #ffffff;
+}
+.text-left{
+<<<<<<< HEAD
+   text-align: left !important;
+}
+.text-center{
+   text-align: center !important;
+=======
+	text-align: left !important;
+}
+.text-center{
+	text-align: center !important;
+>>>>>>> 4cd5ac7c653d6d96256a6ce51cf4a291ee3d48fb
+}
+
+/**********************
+Placeholder 텍스트 색상 
+***********************/
+input::placeholder {
+  color: black;
+  font-weight: 600;
+}
+
+/**********************
+header css
+***********************/
+.header-outer {
+  border: 1px solid var(--color-red);
+  margin: auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: var(--color-red);
+  border: 2px solid rgb(237, 237, 239);
+}
+
+.header-right {
+  font-size: 20px;
+  color: var(--color-black);
+  font-weight: 700;
+  margin: auto;
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.link {
+  padding-left: 50px;
+}
+
+.content {
+  position: relative;
+  width: 1320px;
+  margin: auto;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+  border: 1px solid blue;
+}
+
+/**********************
+location css
+***********************/
+.location {
+  position: absolute;
+  z-index: 1;
+  top: 50px;
+  right: 0;
+  width: 100%;
+  height: 40px;
+}
+
+.location-link {
+  display: flex;
+  gap: 1.7rem;
+  justify-content: flex-end;
+}
+
+.location-link > li {
+  position: relative;
+}
+
+.location-link-text {
+  font-size: 13px;
+  color: #222;
+}
+
+.location-link-home {
+  font-size: 14px;
+  color: var(--color-red);
+}
+
+.location-link-arrow {
+  position: absolute;
+  display: block;
+  top: 6px;
+  right: -15px;
+  font-size: 9px;
+  color: #b8b8b8;
+}
+
+/**********************
+subt-itle css
+***********************/
+.sub-title {
+  margin-top: 150px;
+}
+
+.sub-title h2 {
+  position: relative;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.sub-title h2::after {
+  content: "";
+  position: absolute;
+  background: url("https://www.everlineshop.com/data/skin/front/everline/images/base/pic_point.svg");
+  width: 30px;
+  height: 25px;
+  display: block;
+  left: calc(50% - 20px);
+  bottom: -2rem;
+}
+/**********************
+sub-menu css
+***********************/
+.sub-menu {
+  display: flex;
+  margin-top: 80px;
+}
+
+.sub-menu > li {
+  position: relative;
+  width: 50%;
+  text-align: center;
+  padding: 12px 0;
+}
+
+.sub-menu li > a {
+  color: var(--color-black);
+  border-top: transparent solid 1px;
+}
+
+.sub-menu > li > a::before,
+.sub-menu > li > a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+}
+
+.sub-menu > li > a::before {
+  background-color: var(--color-black);
+  opacity: 0.1;
+}
+
+.sub-menu > li > a::after {
+  width: 1px;
+  background-color: var(--color-red);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.sub-menu > li > a:hover:after {
+  width: 100%;
+  opacity: 1;
+}
+
+.sub-menu > li > a:hover {
+  color: var(--color-red);
+}
+
+/**********************
+listall css
+***********************/
+.count {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4rem 0 2rem;
+}
+
+.count-no {
+  display: flex;
+}
+
+.count-no-icon {
+  font-size: 14px;
+  color: var(--color-grey);
+}
+
+.count-no-text {
+  font-size: 0.8rem;
+  color: var(--color-black);
+  margin-left: 8px;
+  letter-spacing: -0.5px;
+}
+
+.count-no-red {
+  color: var(--color-red);
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/**********************
+filter css
+***********************/
+.filter {
+  width: 100px;
+}
+<<<<<<< HEAD
+=======
+/**********************
+BoardButton css
+***********************/
+.BoardButton{
+	text-align: center;
+	display: block;
+	margin-top: 4rem;
+}
+.BoardButton button{
+	padding: 0.5rem 2rem;
+	background-color: #f8f8f8;
+	color: var(--color-black);
+	font-size: 1rem;
+	margin: 0 0.2rem;
+	border:1px solid var(--color-grey);
+}
+.BoardButton button.red{
+	background-color: var(--color-red);
+	color: var(--color-white);
+	border: 1px solid var(--color-red);
+}
+.BoardButton button:hover{
+	background-color: var(--color-red);
+	color: var(--color-white);
+	border: 1px solid var(--color-red);
+	transition: 0.5s;
+}
+.BoardButton button.red:hover{
+	background-color:var(--color-grey);
+	border: 1px solid var(--color-grey);
+}
+.BoardButton button:focus{
+	outline: 2px solid var(--color-black);
+}
+/**********************************************위의 css는 공통이므로 수정 시 협의 후 진행 ************************************ */
+
+/* 개인 css 작성방법 */
+
+>>>>>>> 4cd5ac7c653d6d96256a6ce51cf4a291ee3d48fb
+/**********************
+BoardButton css
+***********************/
+.BoardButton{
+   text-align: center;
+   display: block;
+   margin-top: 4rem;
+}
+.BoardButton button{
+   padding: 0.5rem 2rem;
+   background-color: #f8f8f8;
+   color: var(--color-black);
+   font-size: 1rem;
+   margin: 0 0.2rem;
+   border:1px solid var(--color-grey);
+}
+.BoardButton button.red{
+   background-color: var(--color-red);
+   color: var(--color-white);
+   border: 1px solid var(--color-red);
+}
+.BoardButton button:hover{
+   background-color: var(--color-red);
+   color: var(--color-white);
+   border: 1px solid var(--color-red);
+   transition: 0.5s;
+}
+.BoardButton button.red:hover{
+   background-color:var(--color-grey);
+   border: 1px solid var(--color-grey);
+}
+.BoardButton button:focus{
+   outline: 2px solid var(--color-black);
+}
+<<<<<<< HEAD
+/**********************************************위의 css는 공통이므로 수정 시 협의 후 진행 ************************************ */
+=======
+
+.BannerSlider_content div > h3 {
+  width: 300px;
+}
+
+
+/**********************
+ProductPagepage css
+***********************/
+.ProductPage {
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+  padding: 0;
+}
+
+.ProductPage-img-box {
+  border: 1px solid blue;
+  width: 300px;
+  margin: 0 33px 0 33px;
+  text-align: center;
+  padding: 18px 0 18px 0;
+  background-color: var(--color-white);
+}
+
+.ProductPage-img {
+  width: 258px;
+  height: 258px;
+  margin: 0;
+  object-fit: cover;
+}
+
+.ProductPage-info {
+  border: 1px solid blue;
+  text-align: start;
+  margin: 0 33px 0 33px;
+  width: 300px;
+  font-size: 16px;
+  padding-top: 20px;
+}
+
+.ProductPage-title {
+  /* border: 1px solid rebeccapurple; */
+  display: -webkit-box;
+  height: auto;
+  padding: 0;
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: 500;
+  color: #101820;
+  line-height: 20px;
+  letter-spacing: -0.3px;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: keep-all;
+}
+
+.ProductPage-price {
+  /* border: 1px solid green; */
+  display: inline-block;
+  padding: 0;
+  color: #101820;
+  font-weight: 800;
+  margin-top: 15px;
+}
+
+.ProductPage-soldout {
+  border: 2px solid #666;
+  background-color: rgb(247, 244, 244);
+  color: #666;
+  display: block;
+  width: 30px;
+  font-weight: bold;
+  padding: 0 1.5px;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 12px;
+  margin-top: 15px;
+}
+
+/** Login */
+
+.member {
+  border: 1px solid red;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.member-form * {
+  background-color: var(--color-white);
+}
+
+.member-form {
+  width: 760px;
+  height: auto;
+  margin: 2rem auto;
+  text-align: center; /* 부모 요소인 .member-form에 대해 가운데 정렬 */
+}
+
+.member-form input {
+  display: inline-block; /* input 요소를 인라인 블록 요소로 설정하여 수평으로 정렬 */
+  width: 360px;
+  height: 50px;
+  margin-top: 20px;
+  margin-right: 22px;
+  padding: 0 20px !important;
+  border: none !important;
+  background-color: rgba(16, 24, 32, 0.06);
+  font-size: 14px !important;
+  color: #64646b;
+  letter-spacing: -0.5px;
+  line-height: 40px !important;
+  text-align: left;
+}
+
+.member-input {
+  padding-top: 30px;
+}
+
+.member-find-btn {
+  display: flex;
+  width: 360px;
+  margin: 15px auto;
+  justify-content: flex-end; /* 왼쪽 정렬 */
+  padding: 10px 5px;
+  gap: 1rem;
+  /*   border: 1px solid green;
+ */
+}
+
+.member-btn {
+  padding-bottom: 20px;
+}
+
+.member-sns-btn {
+  padding-bottom: 20px;
+}
+
+.member-sns-btn button {
+  border: 1px solid var(--color-grey);
+  border-radius: 2px;
+  padding-bottom: 20px;
+}
+
+.member ul li button {
+  display: block;
+  margin: 15px 176px;
+  width: 360px;
+  height: 50px;
+  font-size: 14px;
+  font-weight: 800;
+  /*   border-style: none;
+ */
+}
+/**********************
+board 게시판공통 css
+***********************/
+/* Board - 리스트 */
+.Board {
+  background-color: #fff;
+  padding: 2rem;
+}
+
+.Board-table {
+  width: 100%;
+  border-top: 1px solid var(--color-red);
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.Board-table thead th,
+.Board-table th {
+  padding: 0.7rem;
+  border-bottom: rgba(16, 24, 32, 0.1) solid 1px;
+  background-color: #f7f7f7;
+  font-size: 14px;
+  font-weight: 700;
+  color: #101820;
+  letter-spacing: -0.3px;
+  line-height: 24px;
+	text-align: center;
+}
+
+.Board-table tbody td,
+.Board-table td {
+  position: relative;
+  text-align: center;
+  padding: 0.9rem;
+  border-bottom: rgba(16, 24, 32, 0.06) solid 1px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #727577;
+  letter-spacing: -0.3px;
+  line-height: 24px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.Board-table tbody td a:hover span{
+	text-decoration: underline;
+	color: var(--color-red);
+}
+
+.Board-table tbody td.Board-list-subject {
+  text-align: left;
+}
+/* Board - 상세 */
+.Board-detail {
+  width: 100%;
+  background: #fff;
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.Board-detail-title {
+  position: relative;
+  border-color: rgba(16, 24, 32, 0.1);
+  background-color: #f7f7f7;
+  border-top: 1px solid var(--color-red);
+  border-bottom: rgba(16, 24, 32, 0.06) solid 1px;
+  padding: 1rem;
+  font-size: 14px;
+  font-weight: bold;
+	margin-bottom: 0;
+}
+
+.Board-detail-view {
+  display: flex;
+  gap: 20px;
+  padding: 1rem;
+  border-bottom: rgba(16, 24, 32, 0.06) solid 1px;
+	margin-bottom: 0;
+}
+
+.Board-detail-view>li {
+  position: relative;
+}
+
+.Board-detail-view>li:first-child::after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 16px;
+  background-color: #d4d4d4;
+  top: 3px;
+  right: -9px;
+}
+
+.Board-detail-author,
+.Board-detail-date {
+  font-size: 13px;
+  color: #666;
+}
+
+.Board-detail-icon {
+  margin-right: 10px;
+  color: #666;
+}
+
+.Board-detail-cont {
+  padding: 1rem;
+  font-size: 14px;
+  border-bottom: #666;
+}
+.Board-table input{
+	width: 100%;
+	height: 45px;
+	padding: 0 10px;
+}
+.Board-table textarea{
+	width: 100%;
+	min-height: 200px;
+}
+.Board-delete-img{
+	display: block;
+	width: 250px;
+	height: 250px;
+	margin: 0 auto;
+}
+
+/**********************
+EventList css
+***********************/
+.EventList{
+	display: flex;
+	justify-content: space-between;
+	gap: 2.5rem;
+}
+.EventList > li{
+	width: 100%;
+}
+.EventList-img{
+	height: 360px;
+	padding: 1.5rem;
+	background: #fff;
+	overflow: hidden;
+} 
+.EventList-img > img{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.EventList-title{
+	font-size: 1rem;
+	margin-top: 15px;
+}
+/*최신파일*/
+>>>>>>> 4cd5ac7c653d6d96256a6ce51cf4a291ee3d48fb

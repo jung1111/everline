@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';
+import SubMenu from '../components/SubMenu';
 import axios from 'axios';
 
 
@@ -31,35 +32,41 @@ export default function InquiryDetail(){
 		// console.log('board->>>',board);
 		return (
 		<div className='content'>
-				<Location />
-				<SubTitle />
-				<h1>상세정보</h1>
-         <table border="1">
-            <tr>
-                <th>번호</th>
-                <td>{rno}</td>
-                <th>조회수</th>
-                <td>{board.bhits}</td>
-                <th>등록일자</th>
-                <td>{board.bdate}</td>
-            </tr>
-            <tr>
-                <th>제목</th>
-                <td colSpan={5}>{board.btitle}</td>
-            </tr>
-            <tr>
-                <th>내용</th>
-                <td colSpan={5}>{board.bcontent}</td>
-            </tr>
-            <tr>
-               
-                <td colSpan={6}>
-                   <button type='button' onClick={()=>handleNavigate('update')}>수정하기</button>
-                   <button type='button' onClick={()=>handleNavigate('delete')}>삭제하기</button>
-                   <button type='button' onClick={()=>handleNavigate('list')}>리스트</button>
-                </td>
-            </tr>
-        </table>
+			<Location depth1="CUSTOMER" depth2="1:1문의"/>
+			<SubTitle title="CUSTOMER"/>
+			<ul className='sub-menu'>
+				<SubMenu menu="공지사항" src="/notice"/>
+				<SubMenu menu="1:1문의" src="/inquiry"/>
+				<SubMenu menu="FAQ"  src="/faq"/>
+			</ul>
+				<div className='Board'>
+					<table className='Board-table'>
+						<tbody>
+							<tr>
+									<th>번호</th>
+									<td>{rno}</td>
+									<th>조회수</th>
+									<td>{board.bhits}</td>
+									<th>등록일자</th>
+									<td>{board.bdate}</td>
+							</tr>
+							<tr>
+									<th>제목</th>
+									<td className='text-left' colSpan={5}>{board.btitle}</td>
+							</tr>
+							<tr>
+									<th>내용</th>
+									<td className='text-left' colSpan={5}>{board.bcontent}</td>
+							</tr>						
+						</tbody>
+					</table>			
+					<div className='BoardButton'>
+						<button type='button' onClick={()=>handleNavigate('update')}>수정하기</button>
+						<button type='button' onClick={()=>handleNavigate('delete')}>삭제하기</button>
+						<button type='button' onClick={()=>handleNavigate('list')}>리스트</button>
+
+					</div>
+				</div>
 		</div>
 	);
 }

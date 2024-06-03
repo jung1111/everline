@@ -1,6 +1,9 @@
 import React from "react";
 import CartTable from "./CartTable";
 import CartControl from "./CartControl";
+import Location from "../../components/Location.jsx";
+import SubTitle from "../../components/SubTitle.jsx";
+import "../../css/cart.css";
 
 export default function CartPage({
   cartItems,
@@ -9,33 +12,22 @@ export default function CartPage({
   cartCount,
 }) {
   return (
-    <div className="container">
-      <div className="content">
-        <div className="content_breadcrumb"></div>
-        <div className="content_area">
-          <div className="content_title">
-            <h1>장바구니</h1>
-          </div>
-          {cartItems.length === 0 ? (
-            <div>
-              {" "}
-              <h1 style={{ textAlign: "center", padding: "200px" }}>
-                장바구니가 비었습니다.
-              </h1>
-            </div>
-          ) : (
-            <>
-              <CartTable
-                cartItems={cartItems}
-                setCartItems={setCartItems}
-                setCartCount={setCartCount}
-                cartCount={cartCount}
-              />
-              <CartControl cartItems={cartItems} setCartItems={setCartItems} />
-            </>
-          )}
+    <div className="content">
+      <Location depth1="장바구니" />
+      <SubTitle title="장바구니" />
+      {cartItems.length === 0 ? (
+        <h1 className="empty-cart-message">장바구니가 비었습니다.</h1>
+      ) : (
+        <div className="cart-table">
+          <CartTable
+            cartItems={cartItems}
+            setCartItems={setCartItems}
+            setCartCount={setCartCount}
+            cartCount={cartCount}
+          />
+          <CartControl cartItems={cartItems} setCartItems={setCartItems} />
         </div>
-      </div>
+      )}
     </div>
   );
 }
