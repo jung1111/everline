@@ -1,4 +1,5 @@
 import React from 'react';
+import "../css/board.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import Location from '../components/Location';

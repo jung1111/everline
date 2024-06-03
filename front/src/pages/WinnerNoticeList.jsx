@@ -29,7 +29,7 @@ export default function WinnerNoticeList(){
 					<span className='count-no-text'><span className='count-no-red'>{noticeList.length}</span> 개의 게시물</span>
 				</span>
 			</div>
-			<Table noticeList={noticeList} />
+			<Table name="winner" noticeList={noticeList} />
 		</div>
 	);
 }

@@ -28,7 +28,6 @@ export default function EventList(){
 			rows.push(eventList.slice(i,i+2))
 		}
 		
-
 		// 필터
 		const handleChange = (e) => {
 			let clickList = e.target.value;
@@ -36,32 +35,21 @@ export default function EventList(){
 
 			if(clickList === selectList[0].value){
 				let popularity = event;
-				popularity.sort((a, b)=>{
-					if(a.title > b.title) return 1;
-					if(a.title < b.title) return -1;
-					return 0;
-				})
+				//popularity.sort((a, b) => b.title.localeCompare(a.title));  이건 내림차순
+				popularity.sort((a, b)=> a.title.toUpperCase() < b.title.toUpperCase()?-1:1);  
 				setEventList(popularity);
+				console.log('필터링테스트', popularity);
 			}else if(clickList === selectList[1].value){
 				let highpricestitle = event;
-				highpricestitle.sort((a, b)=>{
-					if(a.price > b.price) return 1;
-					if(a.price < b.price) return -1;
-					return 0;
-				})
+				highpricestitle.sort((a, b)=> b.price - a.price);
 				setEventList(highpricestitle);
-			}else if(clickList === selectList[2].value){
+			}
+			else if(clickList === selectList[2].value){
 				let lospricestitle = event;
-				lospricestitle.sort((a, b)=>{
-					if(a.price < b.price) return 1;
-					if(a.price > b.price) return -1;
-					return 0;
-				})
+				lospricestitle.sort((a, b)=> a.price - b.price);
 				setEventList(lospricestitle);
 			}
-
 		}
-
 
 		return (
 		<div className='content'>
@@ -84,6 +72,7 @@ export default function EventList(){
 									<img src={list.image} />
 								</div>
 								<h2 className='EventList-title'>{list.title}</h2>
+								<p>{list.price}</p>
 							</li>
 						))
 					}					
