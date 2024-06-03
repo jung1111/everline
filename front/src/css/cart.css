@@ -1,9 +1,11 @@
 /* 기본 테이블 스타일 */
 .cart-table {
+  margin-top: 4.5rem;
+  border: 3px solid blue;
   background-color: var(--color-white);
   padding: 2rem;
   width: 100%;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   border-spacing: 0;
   border-collapse: collapse;
   text-align: center;
@@ -19,30 +21,34 @@
 .cart-table-head th {
   background-color: var(--color-bg);
   padding: 15px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgba(16, 24, 32, 0.1);
   font-weight: bold;
 }
 
 .cart-table-body tr {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #eeee;
 }
 
 .cart-table-body td {
   padding: 15px;
   vertical-align: middle;
 }
-
+.cart-table-product-row,
+.cart-table-product-row * {
+  background-color: var(--color-white); /* 행의 배경색을 하얀색으로 설정 */
+}
 .delivery-charge {
-  border-top: 1px solid var(--color-grey);
+  border-left: 1px solid #eee;
   padding: 15px;
   text-align: center;
 }
 
 /* 커스텀 체크박스 스타일 */
 .custom-checkbox {
+  background-color: var(--color-white);
   width: 24px;
   height: 24px;
-  border: 1px solid #ddd;
+  border: 1px solid #ededed;
   appearance: none;
   cursor: pointer;
   position: relative;
@@ -55,34 +61,49 @@
 .custom-checkbox:checked::before {
   content: "";
   position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 16px;
-  height: 16px;
+  top: 5px;
+  left: 5px;
+  width: 13px;
+  height: 13px;
   background-color: var(--color-red);
 }
 
 /* 상품 정보 스타일 */
 .product-info {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .product-image {
   width: 70px;
   height: 70px;
-  border: 1px solid #ddd;
+  border: 5px solid #fff;
   margin-right: 15px;
+  box-shadow: 0px 0px 10px rgba(16, 24, 32, 0.1);
+  padding: 0;
+  overflow: hidden;
+}
+.product-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .coupon-button {
   display: inline-block;
-  margin-bottom: 10px;
-  padding: 5px 10px;
-  background-color: var(--color-black);
-  color: var(--color-white);
+  margin-bottom: 3px;
+  font-size: 11.5px;
+  font-weight: bold;
+  border-radius: 12px;
+  width: 62px; /* 고정 너비 */
+  height: 22px; /* 고정 높이 */
+  background-color: #101820;
+  color: white; /* 명시적으로 흰색 설정 */
   border: none;
-  cursor: pointer;
+  text-align: center; /* 텍스트 가운데 정렬 */
+  line-height: 22px; /* 버튼 높이에 맞게 텍스트 가운데 정렬 */
+  padding: 0; /* 패딩 제거 */
+  vertical-align: middle; /* 세로 가운데 정렬 */
 }
 
 /* 수량 조절 스타일 */

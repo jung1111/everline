@@ -13,7 +13,6 @@ export default function CartPage({
 }) {
   return (
     <div className="content">
-      <Location depth1="장바구니" />
       <SubTitle title="장바구니" />
       {cartItems.length === 0 ? (
         <h1 className="empty-cart-message">장바구니가 비었습니다.</h1>

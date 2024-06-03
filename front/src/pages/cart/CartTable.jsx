@@ -147,7 +147,7 @@ export default function CartTable({ cartItems, setCartItems }) {
         </thead>
         <tbody className="cart-table-body">
           {cartItems.map((item, index) => (
-            <tr key={item.id}>
+            <tr key={item.id} className="cart-table-product-row">
               <td>
                 <input
                   type="checkbox"
@@ -165,7 +165,7 @@ export default function CartTable({ cartItems, setCartItems }) {
                       className="product-image"
                     />
                   </Link>
-                  <div>
+                  <div className="product-details">
                     <button onClick={openCouponPopup} className="coupon-button">
                       COUPON
                     </button>
@@ -174,14 +174,14 @@ export default function CartTable({ cartItems, setCartItems }) {
                 </div>
               </td>
               <td>
-                <div className="quantity-control">
+                <div className="quantity-control cart">
                   <span>{item.qty}개</span>
                   <button onClick={() => openPopup(item)}>옵션변경</button>
                 </div>
               </td>
               <td>{item.price?.toLocaleString()}원</td>
               <td>
-                <div className="discount-info">
+                <div className="discount-info cart">
                   <span>적립</span>
                   <span>
                     상품 +{Math.round((item.price * item.qty * 0.01) / 10) * 10}
