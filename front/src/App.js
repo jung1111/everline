@@ -1,4 +1,4 @@
-import "./css/style.css";
+import "./css/commons.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./pages/Root";
 import Main from "./components/Main";
