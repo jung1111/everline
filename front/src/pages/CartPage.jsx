@@ -1,10 +1,8 @@
 import React from "react";
-import CartTable from "./CartTable";
-import CartControl from "./CartControl";
-import Location from "../../components/Location.jsx";
-import SubTitle from "../../components/SubTitle.jsx";
-import "../../css/cart.css";
-
+import CartTable from "../components/cart/CartTable.jsx";
+import CartControl from "../components/cart/CartControl.jsx";
+import SubTitle from "../components/SubTitle.jsx";
+import "../css/cart.css";
 export default function CartPage({
   cartItems,
   setCartItems,
@@ -13,10 +11,9 @@ export default function CartPage({
 }) {
   return (
     <div className="content">
-      <Location depth1="장바구니" />
       <SubTitle title="장바구니" />
       {cartItems.length === 0 ? (
-        <h1 className="empty-cart-message">장바구니가 비었습니다.</h1>
+        <h3 className="empty-cart-message">장바구니가 비었습니다.</h3>
       ) : (
         <div className="cart-table">
           <CartTable
