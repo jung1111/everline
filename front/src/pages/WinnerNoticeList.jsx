@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "../css/board.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import Location from '../components/Location';
@@ -29,7 +30,7 @@ export default function WinnerNoticeList(){
 					<span className='count-no-text'><span className='count-no-red'>{noticeList.length}</span> 개의 게시물</span>
 				</span>
 			</div>
-			<Table noticeList={noticeList} />
+			<Table name="winner" noticeList={noticeList} />
 		</div>
 	);
 }
