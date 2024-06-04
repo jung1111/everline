@@ -88,15 +88,19 @@ export const insert = async(boardFormData) => {
 }
 
 //게시판 리스트
-export const list = async() => {
+export const list = async(params) => {
 	const sql = `
-	select row_number() over (order by bdate desc) as rno, 
-		bid, btitle, bcontent, bhits, left(bdate, 10) as bdate
-		from ever_board
+		select rno, bid, btitle, bhits, bdate, total from
+			(select row_number() over (order by bdate desc) as rno,
+			bid, btitle, bcontent, bhits, left(bdate, 10) as bdate,
+				(select count(*) from ever_board) total
+			from ever_board) eb1
+		where rno between ? and ?
 	`;
 
 	return db
-			.execute(sql)
+			.execute(sql, [params.startIndex, params.endIndex])
 			.then(result => result[0]);
 
 }
+

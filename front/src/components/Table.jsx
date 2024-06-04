@@ -1,9 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
+// paging navigation
+import Pagination from 'rc-pagination';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'rc-pagination/assets/index.css';
+
 
 export default function Table({noticeList, name}){
-		//  console.log(noticeList);
 
+	
 		return (
 		<div className='Board'>
 			<table className='Board-table'>
@@ -32,11 +37,10 @@ export default function Table({noticeList, name}){
 						</tr>
 
 						))
-					}
-								
+					}						
 				</tbody>
 			</table>			
-	
+			
 		</div>
 	);
 }

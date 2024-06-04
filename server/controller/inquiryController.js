@@ -43,6 +43,7 @@ export const insert = async(req, res) => {
 
 //게시판 리스트
 export const list = async(req, res) => {
-	const result = await repository.list();
+	const params = req.body;
+	const result = await repository.list(params);
 	res.json(result);
 }

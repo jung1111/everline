@@ -7,6 +7,8 @@ import SubTitle from '../components/SubTitle';
 import SubMenu from '../components/SubMenu';
 import Table from '../components/Table';
 import axios from 'axios';
+import MainNotice from "../components/MainNotice";
+
 
 export default function Notice(){
 		const [noticeList, setNoticeList] = useState([]); 
@@ -16,10 +18,6 @@ export default function Notice(){
 				.then(res => res.json())
 				.then(result => setNoticeList(result))
 				.catch(error => console.log(error))
-
-			// axios.get('http://127.0.0.1:8080/notice') 서버연동
-			// 	.then(res => setNoticeList(res.data))
-			// 	.catch(erorr => console.log(erorr))
 		},[])
 
 		return (
@@ -38,7 +36,7 @@ export default function Notice(){
 				</span>
 			</div>
 			<Table name="notice" noticeList={noticeList} />
-			
+			<MainNotice />
 		</div>
 	);
 }

@@ -6,8 +6,10 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons"; 
 import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';
+import SubMenu from '../components/SubMenu';
 import BoardButton from '../components/BoardButton';
 import axios from 'axios';
+
 
 export default function WinnerNoticeDetail(){
 		const [winnerList, setWinnerList] = useState([]);
@@ -28,21 +30,25 @@ export default function WinnerNoticeDetail(){
 
 		return (
 		<div className='content'>
-			<Location />
-			<SubTitle />
-			<div className='notice-detail'>
-				<h1 className="notice-detail-title">{winnerList.title}</h1>
-				<ul className='notice-detail-view'>
+			<Location depth1="EVENT" depth2="당첨자발표"/>
+			<SubTitle title="EVENT"/>
+			<ul className='sub-menu'>
+				<SubMenu menu="이벤트목록" src="/eventlist"/>
+				<SubMenu menu="당첨자발표" src="/winner"/>
+			</ul>
+			<div className='Board-detail'>
+				<h1 className="Board-detail-title">{winnerList.title}</h1>
+				<ul className='Board-detail-view'>
 					<li>
-						<span className='notice-detail-icon'><FontAwesomeIcon icon={faUser} /></span>
-						<strong className='notice-detail-author'>{winnerList.author}</strong>
+						<span className='Board-detail-icon'><FontAwesomeIcon icon={faUser} /></span>
+						<strong className='Board-detail-author'>{winnerList.author}</strong>
 					</li>
 					<li>
-						<span className='notice-detail-icon'><FontAwesomeIcon icon={faCalendar} /></span>
-						<span className='notice-detail-date'>{winnerList.date}</span>
+						<span className='Board-detail-icon'><FontAwesomeIcon icon={faCalendar} /></span>
+						<span className='Board-detail-date'>{winnerList.date}</span>
 					</li>
 				</ul>
-				<div className='notice-detail-cont'>
+				<div className='Board-detail-cont'>
 						<p>1111111111<br/>
 
 
@@ -58,7 +64,9 @@ ARTMS - 정규1집 [Dall] 1:1 영상통화 팬사인회 이벤트 당첨자 명�
 						</p>
 				</div>
 				<Link to="/winner">
-					<BoardButton button="목록"/>
+					<div className='BoardButton'>
+						<BoardButton button="목록"/>
+					</div>
 				</Link>
 			</div> 			
 		</div>

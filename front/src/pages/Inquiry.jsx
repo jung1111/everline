@@ -19,18 +19,34 @@ import 'rc-pagination/assets/index.css';
 export default function Inquiry(){
 	const [inqList, setInqList] = useState([]); 
 	const navigate = useNavigate();
+	// paging
+	const [currentPage, setCurrentPage] = useState(1);
+	const [totalCount, setTotalCount] = useState(0);
+	const [pageSize, setPageSize] = useState(8);
+
 
 	useEffect(()=>{
+		//startIndex, endIndex
+		let startIndex = 0;
+		let endIndex = 0;
+
+		startIndex = (currentPage -1) * pageSize + 1;
+		endIndex = currentPage * pageSize;
+		
 		const url = 'http://127.0.0.1:8000/inquiry/list'
 		axios({
-			method: 'get',
-			url: url
+			method: 'post',
+			url: url,
+			data: {'startIndex': startIndex,'endIndex': endIndex}
 		})
-		.then(result => setInqList(result.data))
+		.then(result => {
+			setInqList(result.data)
+			setTotalCount(result.data[0].total)
+		})
 		.catch(error => console.log(error))
-	},[])
+	},[currentPage])
 
-	// console.log('inqList',inqList);
+	console.log('totalCount',totalCount);
 	
 	// 조회수 업데이트 > 게시글 상세보기
 	const handleUpdateHits = (bid, rno) => {
@@ -67,7 +83,7 @@ export default function Inquiry(){
 			<div className='count'>
 				<span className="count-no">
 					<span className='count-no-icon'><FontAwesomeIcon icon={faList} /></span>
-					<span className='count-no-text'><span className='count-no-red'>{inqList.length}</span> 개의 게시물</span>
+					<span className='count-no-text'><span className='count-no-red'>{totalCount}</span> 개의 게시물</span>
 				</span>
 			</div>
 			<div className='Board'>
@@ -98,14 +114,15 @@ export default function Inquiry(){
 									
 					</tbody>
 				</table>
+				<Pagination className='d-flex justify-content-center' style={{marginTop:'15px'}} 
+									current={currentPage} total={totalCount} pageSize={pageSize} onChange={(page)=>setCurrentPage(page)}/>		
 			</div>	
 			<Link to='/inquiry/write'>
 				<div className='BoardButton'>
-					{/* <BoardButton button="글쓰기"/> */}
-					<button type='button'>글쓰기</button>
+					<BoardButton button="글쓰기"/>
 				</div>
 			</Link>
-			
+				
 		</div>
 	);
 }
