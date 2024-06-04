@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "../css/board.css";
 import { useNavigate, useParams } from 'react-router-dom';
 import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';
@@ -64,7 +65,6 @@ export default function InquiryDetail(){
 						<button type='button' onClick={()=>handleNavigate('update')}>수정하기</button>
 						<button type='button' onClick={()=>handleNavigate('delete')}>삭제하기</button>
 						<button type='button' onClick={()=>handleNavigate('list')}>리스트</button>
-
 					</div>
 				</div>
 		</div>

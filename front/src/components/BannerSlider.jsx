@@ -1,6 +1,7 @@
 import '../css/product.css'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function BannerSlider() {
 const [banners, setBanners] = useState([])
@@ -26,20 +27,19 @@ const [currentBanner, setCurrentBanner] = useState(0);
   };
 
   return (
-    <div className="BannerSlider_container">
-      <div className="BannerSlider_content">
+    <div className="BannerSlider-container">
+      <div className="BannerSlider-content">
         {banners.map((banner, index)=>(
-        <div>
-          
-          <h3 style={{ display: index === currentBanner ? 'block' : 'none' }}>{banner.title}<p>OFFICIAL MD</p></h3>
+          <div>
+          <h3 style={{ display: index === currentBanner ? 'block' : 'none' }}><h6 style={{ display: index === currentBanner ? 'block' : 'none' }}>OFFICIAL MD</h6>{banner.title}</h3>
           <img key={index} src={banner.image} alt={`Banner ${currentBanner + 1}`} style={{ display: index === currentBanner ? 'block' : 'none' }} />
+          <Link to="/product"><button className='more-btn' style={{ display: index === currentBanner ? 'block' : 'none' }}>More</button></Link>
         </div>
         ))}
-        <button onClick={goToPrevBanner} className="prev">
-        </button>
-        <button onClick={goToNextBanner} className="next">
-        </button>
+          <button onClick={goToPrevBanner} className="prev"></button>
+          <button onClick={goToNextBanner} className="next"></button>
       </div>
+      <span className='officialmd'>OFFICIAL MD</span>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Table({noticeList}){
+export default function Table({noticeList, name}){
 		//  console.log(noticeList);
 
 		return (
@@ -21,7 +21,7 @@ export default function Table({noticeList}){
 						<tr key={item.id}>
 							<td className="Board-list-no">{item.no}</td>
 							<td className="Board-list-subject">							
-								<Link to={`/notice/${item.id}`}>
+								<Link to={`/${name}/${item.id}`}>
 									<span>{item.title}</span>
 									<img src={item.srcImg} alt={item.altImg} />
 									<img src={item.srcNew} alt={item.altNew} />

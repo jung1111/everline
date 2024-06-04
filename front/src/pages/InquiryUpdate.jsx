@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "../css/board.css";
 import { useNavigate, useParams } from 'react-router-dom';
 import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';

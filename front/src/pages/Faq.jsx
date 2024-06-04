@@ -1,9 +1,11 @@
 import React from 'react';
+import "../css/board.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';
 import SubMenu from '../components/SubMenu';
+import FaqToggle from '../components/FaqToggle';
 
 export default function Faq(){
 		return (
@@ -18,29 +20,15 @@ export default function Faq(){
 			<div className='count'>
 				<span className="count-no">
 					<span className='count-no-icon'><FontAwesomeIcon icon={faList} /></span>
-					<span className='count-no-text'><span className='count-no-red'>{/*noticeList.length*/}</span> 개의 게시물</span>
+					<span className='count-no-text'><span className='count-no-red'>2</span> 개의 게시물</span>
 				</span>
 			</div>
+
+			
 				<table className='Board-table faq'>
 					<tbody>
-						<tr>
-							<td>16</td>
-							<td>주문결제입금</td>
-							<td>주소지를 잘못 입력했나요?</td>
-							<span>플러스 아이콘</span>
-						</tr>
-						<tr>
-							<td>17</td>
-							<td>주문결제입금</td>
-							<td>주소지를 잘못 입력했나요?</td>
-							<span>플러스 아이콘</span>
-						</tr>
-						<tr>
-							<td>18</td>
-							<td>주문결제입금</td>
-							<td>주소지를 잘못 입력했나요?</td>
-							<span>플러스 아이콘</span>
-						</tr>
+						<FaqToggle no={1} cartegory={"주문결제입금"} title={'주소지를 잘못 입력했나요?'} icon={"아이콘"} />
+						<FaqToggle no={2} cartegory={"주문결제입금"} title={'상품등록 하고싶어요'} icon={"아이콘"} />					
 					</tbody>
 				</table>
 		</div>
