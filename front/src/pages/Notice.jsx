@@ -1,3 +1,4 @@
+import "../css/board.css";
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
@@ -36,7 +37,7 @@ export default function Notice(){
 					<span className='count-no-text'><span className='count-no-red'>{noticeList.length}</span> 개의 게시물</span>
 				</span>
 			</div>
-			<Table noticeList={noticeList} />
+			<Table name="notice" noticeList={noticeList} />
 			
 		</div>
 	);

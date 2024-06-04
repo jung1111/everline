@@ -3,8 +3,10 @@ common css
 *********************/
 * {
     font-family: "Noto Sans KR", sans-serif;
-    background-color: var(--color-bg);
     font-size: 14px;
+}
+#root{
+	background-color: var(--color-bg);
 }
 
 ul *,

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "../css/board.css";
 import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';
 import SubMenu from '../components/SubMenu';
@@ -28,40 +29,21 @@ export default function EventList(){
 			rows.push(eventList.slice(i,i+2))
 		}
 		
-
 		// 필터
 		const handleChange = (e) => {
 			let clickList = e.target.value;
-			let event = [...eventList];
+			let sortEvent = [...eventList];
 
 			if(clickList === selectList[0].value){
-				let popularity = event;
-				popularity.sort((a, b)=>{
-					if(a.title > b.title) return 1;
-					if(a.title < b.title) return -1;
-					return 0;
-				})
-				setEventList(popularity);
+				sortEvent.sort((a, b)=> a.title.localeCompare(b.title));  
 			}else if(clickList === selectList[1].value){
-				let highpricestitle = event;
-				highpricestitle.sort((a, b)=>{
-					if(a.price > b.price) return 1;
-					if(a.price < b.price) return -1;
-					return 0;
-				})
-				setEventList(highpricestitle);
-			}else if(clickList === selectList[2].value){
-				let lospricestitle = event;
-				lospricestitle.sort((a, b)=>{
-					if(a.price < b.price) return 1;
-					if(a.price > b.price) return -1;
-					return 0;
-				})
-				setEventList(lospricestitle);
+				sortEvent.sort((a, b)=> b.price - a.price);
 			}
-
+			else if(clickList === selectList[2].value){
+				sortEvent.sort((a, b)=> a.price - b.price);
+			}
+			setEventList(sortEvent)
 		}
-
 
 		return (
 		<div className='content'>
@@ -84,6 +66,7 @@ export default function EventList(){
 									<img src={list.image} />
 								</div>
 								<h2 className='EventList-title'>{list.title}</h2>
+								<p>{list.price}</p>
 							</li>
 						))
 					}					
