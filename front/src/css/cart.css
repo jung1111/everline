@@ -1,12 +1,17 @@
 /* 기본 테이블 스타일 */
 .cart-table {
+  margin-top: 5rem;
   background-color: var(--color-white);
-  padding: 2rem;
+  padding: 4rem;
   width: 100%;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   border-spacing: 0;
   border-collapse: collapse;
   text-align: center;
+}
+
+.cart-table * {
+  font-size: 0.95rem;
 }
 
 .cart-table-area {
@@ -19,12 +24,12 @@
 .cart-table-head th {
   background-color: var(--color-bg);
   padding: 15px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgba(16, 24, 32, 0.1);
   font-weight: bold;
 }
 
 .cart-table-body tr {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #eeee;
 }
 
 .cart-table-body td {
@@ -32,17 +37,21 @@
   vertical-align: middle;
 }
 
+.cart-table-product-row * {
+  background-color: var(--color-white);
+}
 .delivery-charge {
-  border-top: 1px solid var(--color-grey);
+  border-left: 1px solid #eee;
   padding: 15px;
   text-align: center;
 }
 
 /* 커스텀 체크박스 스타일 */
 .custom-checkbox {
+  background-color: var(--color-white);
   width: 24px;
   height: 24px;
-  border: 1px solid #ddd;
+  border: 1px solid #ededed;
   appearance: none;
   cursor: pointer;
   position: relative;
@@ -55,34 +64,48 @@
 .custom-checkbox:checked::before {
   content: "";
   position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 16px;
-  height: 16px;
+  top: 5px;
+  left: 5px;
+  width: 13px;
+  height: 13px;
   background-color: var(--color-red);
 }
 
 /* 상품 정보 스타일 */
 .product-info {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  max-width: 560px;
+  text-align: left;
 }
 
 .product-image {
   width: 70px;
   height: 70px;
-  border: 1px solid #ddd;
+  border: 5px solid #fff;
   margin-right: 15px;
+  box-shadow: 0px 0px 10px rgba(16, 24, 32, 0.1);
+  padding: 0;
+  overflow: hidden;
+}
+.product-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .coupon-button {
   display: inline-block;
-  margin-bottom: 10px;
-  padding: 5px 10px;
-  background-color: var(--color-black);
-  color: var(--color-white);
-  border: none;
-  cursor: pointer;
+  margin-bottom: 3px;
+  font-size: 11.5px;
+  font-weight: bold;
+  border-radius: 12px;
+  width: 62px; /* 고정 너비 */
+  height: 22px; /* 고정 높이 */
+  background-color: #101820;
+  color: white;
+  line-height: 22px; /* 버튼 높이에 맞게 텍스트 가운데 정렬 */
+  padding: 0;
 }
 
 /* 수량 조절 스타일 */
@@ -90,15 +113,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-weight: bold;
 }
 
-.option-button {
-  margin-top: 10px;
-  padding: 5px 10px;
-  background-color: var(--color-black);
-  color: var(--color-white);
-  border: none;
-  cursor: pointer;
+.red-button {
+  margin-top: 4px;
+  font-size: 11px;
+  width: 58px;
+  font-weight: 800;
+  padding: 0 7px;
+  height: 24px;
+  line-height: 22px;
+  color: var(--color-red);
+  border: 1px solid #ededed;
+}
+.red-button:hover {
+  border: 1px solid var(--color-red);
 }
 
 .discount-info {
@@ -106,10 +136,18 @@
   flex-direction: column;
 }
 
+.discount-info-strong {
+  color: var(--color-red);
+  font-weight: 700;
+}
+.summary-row {
+  background-color: var(--color-bg);
+  text-align: center;
+}
+
 .summary {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
 }
 
 .mileage-info,
@@ -118,6 +156,11 @@
   flex-direction: column;
 }
 
+.total-price-info-strong {
+  font-size: 15px;
+  color: var(--color-red);
+  letter-spacing: -0.5px;
+}
 /* 팝업 스타일 */
 .popup-overlay {
   position: fixed;
@@ -132,41 +175,146 @@
 }
 
 .popup-content {
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
+  background-color: white;
   text-align: center;
 }
 
-.popup-product-info {
+.popup-title {
+  position: relative; /* 닫기 버튼의 절대 위치를 위한 부모 요소 */
   display: flex;
+  justify-content: space-between;
+  background-color: var(--color-bg);
+  align-items: center;
+  padding: 12px;
+}
+
+.popup-title h4 {
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.popup-close-wrapper {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  padding: 8px; /* 여유 범위 패딩 */
+  cursor: pointer;
+}
+
+.popup-close-wrapper .popup-close-btn {
+  font-size: 1.2rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.popup-close-wrapper:hover .popup-close-btn {
+  color: var(--color-red);
+  transform: rotate(90deg);
+}
+
+.popup-product-info-box {
+  display: flex;
+  padding: 2rem 2rem 0 2rem;
   flex-direction: column;
   align-items: center;
 }
 
+.popup-product-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
 .popup-product-image {
-  width: 100px;
-  margin-bottom: 10px;
+  width: 70px;
+  height: 70px;
+  border: 5px solid #fff;
+  box-shadow: 0px 0px 10px rgba(16, 24, 32, 0.1);
+  padding: 0;
+  overflow: hidden;
+}
+
+.popup-product-description {
+  display: inline-block;
+  max-width: 350px;
+  text-align: left;
 }
 
 .quantity-selector {
   display: flex;
   align-items: center;
+  gap: 10px;
+}
+
+.quantity-selector button {
+  background-color: var(--color-red);
+  color: white;
+  border: 1.5px solid var(--color-red);
+  border-radius: 4px;
+  width: 50px;
+  height: 40px;
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.quantity-selector button:hover {
+  background-color: white;
+  color: var(--color-red);
 }
 
 .quantity-input {
-  appearance: none;
+  appearance: textfield; /* 위아래 버튼 없애기 */
   border: 1px solid #ddd;
-  outline: none;
-  width: 40px;
+  border-radius: 4px;
+  width: 150px;
+  height: 40px;
   text-align: center;
-  margin: 0 10px;
+  font-size: 1.2rem;
+  transition: border-color 0.3s ease;
+}
+
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.quantity-input:focus {
+  border-color: var(--color-red);
 }
 
 .popup-buttons {
   display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+.popup-buttons * {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 24px;
+}
+
+.popup-button-white {
+  background-color: white;
+  color: var(--color-red);
+  border: 1px solid #ededed;
+}
+
+.popup-button-red {
+  background-color: var(--color-red);
+  color: white;
+}
+
+.popup-product-price {
+  margin-top: 1.2rem;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .coupon-popup-content {
@@ -180,29 +328,62 @@
 .cart-control {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .cart-control-buttons {
   display: flex;
 }
 
+.cart-tip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cart-tip * {
+  line-height: 20px;
+  font-size: 12px;
+  color: #727577;
+}
+
 .cart-order-btn {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 20px;
+  gap: 8px;
 }
 
 .control-button,
 .order-button {
+  font-weight: 700;
   padding: 5px 10px;
-  margin: 5px;
-  border: 1px solid var(--color-black);
+  border: 1px solid #ededed;
   background-color: var(--color-white);
   cursor: pointer;
 }
 
+.btn-point-red {
+  color: var(--color-red);
+}
+
+.order-button {
+  padding: 10px 25px;
+}
+
+.btn-point-shop {
+  background-color: var(--color-black);
+  color: white;
+}
+
+.btn-point-all {
+  background-color: var(--color-red);
+  color: white;
+}
 .empty-cart-message {
+  margin-top: 4.5rem;
+
   text-align: center;
-  padding: 200px;
+  background-color: #fff;
+  padding: 150px;
 }
