@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 export default function CartControl({ cartItems, setCartItems }) {
   const navigate = useNavigate();
@@ -33,10 +35,18 @@ export default function CartControl({ cartItems, setCartItems }) {
             <button onClick={removeSelectedItems} className="control-button">
               선택 상품 삭제
             </button>
-            <button className="control-button">선택 상품 찜</button>
+            <button
+              className="control-button btn-point-red"
+              style={{ marginLeft: "5px" }}
+            >
+              선택 상품 찜
+            </button>
           </div>
           <div>
-            <button onClick={continueShopping} className="control-button">
+            <button
+              onClick={continueShopping}
+              className="control-button btn-point-shop"
+            >
               쇼핑 계속하기
             </button>
           </div>
@@ -44,16 +54,26 @@ export default function CartControl({ cartItems, setCartItems }) {
 
         <div className="cart-tip">
           <span>
-            주문서 작성단계에서 할인/마일리지 적용을 하실 수 있습니다.
+            <FontAwesomeIcon icon={faCircleExclamation} /> 주문서 작성단계에서
+            할인/마일리지 적용을 하실 수 있습니다.
           </span>
-          <span>7만 원 이상 구매 시 무료배송</span>
+          <span>
+            <FontAwesomeIcon icon={faCircleExclamation} />
+            &nbsp;7만 원 이상 구매 시 무료배송
+          </span>
         </div>
 
         <div className="cart-order-btn">
-          <button onClick={orderSelectedItems} className="order-button">
+          <button
+            onClick={orderSelectedItems}
+            className="order-button btn-point-red"
+          >
             선택 상품주문
           </button>
-          <button onClick={orderAllItems} className="order-button">
+          <button
+            onClick={orderAllItems}
+            className="order-button btn-point-all"
+          >
             전체 상품 주문
           </button>
         </div>

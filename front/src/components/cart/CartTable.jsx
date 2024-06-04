@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import CartPopup from "./CartPopup.jsx";
 
 export default function CartTable({ cartItems, setCartItems }) {
   const [allChecked, setAllChecked] = useState(true);
@@ -37,6 +38,7 @@ export default function CartTable({ cartItems, setCartItems }) {
     }
     return totalPrice(selectedItems) < 70000 ? 3500 : 0;
   };
+
   // 항목의 체크 상태 업데이트
   const updateCheckedState = (index, isChecked) => {
     const updatedCartList = [...cartItems];
@@ -169,27 +171,43 @@ export default function CartTable({ cartItems, setCartItems }) {
                     <button onClick={openCouponPopup} className="coupon-button">
                       COUPON
                     </button>
-                    <Link to={`/detail/${item.id}`}>{item.name}</Link>
+                    <Link
+                      to={`/detail/${item.id}`}
+                      style={{ fontWeight: "500" }}
+                    >
+                      {item.name}
+                    </Link>
                   </div>
                 </div>
               </td>
               <td>
                 <div className="quantity-control cart">
                   <span>{item.qty}개</span>
-                  <button onClick={() => openPopup(item)}>옵션변경</button>
+                  <button
+                    onClick={() => openPopup(item)}
+                    className="option-button cart red-button"
+                  >
+                    옵션변경
+                  </button>
                 </div>
               </td>
-              <td>{item.price?.toLocaleString()}원</td>
+              <td style={{ fontWeight: "bold" }}>
+                {item.price?.toLocaleString()}원
+              </td>
               <td>
                 <div className="discount-info cart">
-                  <span>적립</span>
+                  <span className="discount-info-strong">적립</span>
                   <span>
-                    상품 +{Math.round((item.price * item.qty * 0.01) / 10) * 10}
-                    원
+                    상품&nbsp;
+                    <span style={{ fontWeight: "bold" }}>
+                      +{Math.round((item.price * item.qty * 0.01) / 10) * 10}원
+                    </span>
                   </span>
                 </div>
               </td>
-              <td>{(item.price * item.qty).toLocaleString()}원</td>
+              <td style={{ fontWeight: "bold" }}>
+                {(item.price * item.qty).toLocaleString()}원
+              </td>
               {index === 0 && (
                 <td rowSpan={cartItems.length} className="delivery-charge">
                   고정배송비 <br />
@@ -199,26 +217,42 @@ export default function CartTable({ cartItems, setCartItems }) {
               )}
             </tr>
           ))}
-          <tr>
+          <tr className="summary-row">
             <td colSpan="7">
               <div className="summary">
                 <div className="mileage-info">
                   <span>
                     적립예정 마일리지:{" "}
-                    {Math.round((totalPrice(selectedItems) * 0.01) / 10) * 10}원
+                    <span style={{ fontWeight: "bold" }}>
+                      {(
+                        Math.round((totalPrice(selectedItems) * 0.01) / 10) * 10
+                      )?.toLocaleString()}
+                      원
+                    </span>
                   </span>
                 </div>
                 <div className="total-price-info">
                   <span>
                     총 {selectedItems.length} 개의 상품금액{" "}
-                    {totalPrice(selectedItems).toLocaleString()}원 + 배송비{" "}
-                    {selectedItems.length === 0 ? 0 : totalDeliveryCharge()}원 =
-                    합계{" "}
-                    {(
-                      totalPrice(selectedItems) +
-                      (selectedItems.length === 0 ? 0 : totalDeliveryCharge())
-                    ).toLocaleString()}
-                    원
+                    <span style={{ fontWeight: "bolder" }}>
+                      {totalPrice(selectedItems).toLocaleString()}원
+                    </span>{" "}
+                    &nbsp; + &nbsp; 배송비{" "}
+                    <span style={{ fontWeight: "bolder" }}>
+                      {selectedItems.length === 0 ? 0 : totalDeliveryCharge()}원
+                    </span>
+                    &nbsp; &nbsp; = &nbsp; &nbsp;{" "}
+                    <span style={{ fontWeight: "bold" }}>합계 </span>
+                    <span
+                      className="total-price-info-strong"
+                      style={{ fontWeight: "bolder" }}
+                    >
+                      {(
+                        totalPrice(selectedItems) +
+                        (selectedItems.length === 0 ? 0 : totalDeliveryCharge())
+                      ).toLocaleString()}
+                      원
+                    </span>
                   </span>
                 </div>
               </div>
@@ -227,63 +261,15 @@ export default function CartTable({ cartItems, setCartItems }) {
         </tbody>
       </table>
       {showPopup && selectedProduct && (
-        <div className="popup-overlay">
-          <div className="popup-content">
-            <div className="popup-product-info">
-              <img
-                src={selectedProduct.image}
-                alt={selectedProduct.name}
-                className="popup-product-image"
-              />
-              <p>{selectedProduct.name}</p>
-              <div className="quantity-selector">
-                <button
-                  onClick={() =>
-                    decreaseQuantity(
-                      cartItems.findIndex(
-                        (item) => item.id === selectedProduct.id
-                      )
-                    )
-                  }
-                >
-                  -
-                </button>
-                <input
-                  type="number"
-                  value={selectedProduct.qty}
-                  onChange={(e) =>
-                    handleQuantityChange(
-                      cartItems.findIndex(
-                        (item) => item.id === selectedProduct.id
-                      ),
-                      parseInt(e.target.value)
-                    )
-                  }
-                  className="quantity-input"
-                />
-                <button
-                  onClick={() =>
-                    increaseQuantity(
-                      cartItems.findIndex(
-                        (item) => item.id === selectedProduct.id
-                      )
-                    )
-                  }
-                >
-                  +
-                </button>
-              </div>
-              <p>
-                {(selectedProduct.price * selectedProduct.qty).toLocaleString()}
-                원
-              </p>
-            </div>
-            <div className="popup-buttons">
-              <button onClick={cancelPopup}>취소</button>
-              <button onClick={confirmPopup}>확인</button>
-            </div>
-          </div>
-        </div>
+        <CartPopup
+          selectedProduct={selectedProduct}
+          cancelPopup={cancelPopup}
+          confirmPopup={confirmPopup}
+          decreaseQuantity={decreaseQuantity}
+          increaseQuantity={increaseQuantity}
+          handleQuantityChange={handleQuantityChange}
+          cartItems={cartItems}
+        />
       )}
       {showCouponPopup && (
         <div className="popup-overlay">
