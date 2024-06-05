@@ -7,6 +7,7 @@ import ProductDetail from "./pages/ProductDetail";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import FindAccount from "./components/FindAccount.jsx";
+import EmailAuth from "./components/EmailAuth.jsx";
 import EventList from "./pages/EventList.jsx";
 import WinnerNoticeList from "./pages/WinnerNoticeList.jsx";
 import WinnerNoticeDetail from "./pages/WinnerNoticeDetail.jsx";
@@ -59,6 +60,7 @@ export default function App() {
         },
         { path: "/member", element: <Login /> },
         { path: "/member/FindAccount", element: <FindAccount /> },
+        { path: "/member/FindAccount/emailAuth", element: <EmailAuth /> },
         { path: "/member/signup", element: <Signup /> },
         { path: "/eventlist", element: <EventList /> },
         {

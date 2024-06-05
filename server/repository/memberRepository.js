@@ -1,8 +1,44 @@
 import { db } from "../db/database_mysql.js";
 import bcrypt from "bcryptjs";
 
+/* ps 찾기 */
+export const findUserPs = async (userId, userName) => {
+  let info_result = 0;
+  const sql = `
+  SELECT COUNT(*) as count FROM EVER_MEMBER WHERE USER_NAME = ? AND USER_ID = ?
+  `;
+  const emailSql = `
+  SELECT CONCAT(email_id, '@', email_domain) AS email 
+  FROM EVER_MEMBER 
+  WHERE USER_NAME = ? AND USER_ID = ?
+  `;
+
+  try {
+    const [result] = await db.execute(sql, [userName, userId]);
+    info_result = result[0].count;
+
+    if (info_result === 1) {
+      const [emailResult] = await db.execute(emailSql, [userName, userId]);
+      const email = emailResult[0].email;
+
+      console.log("User ID found:", userId); // 사용자 ID를 로그에 출력합니다.
+      return { cnt: info_result, email, userId, userName }; // 사용자 ID와 결과를 반환합니다.
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+
+  return { cnt: info_result }; // 결과 행의 수를 반환합니다.
+};
+
+/* id 찾기 */
+
 export const findUserId = async (userName, mobileNumber1, mobileNumber2) => {
-  let result_rows = 0; // 초기값을 설정합니다.
+  let result_rows = 0;
+
+  // mobileNumber2가 undefined일 경우 빈 문자열로 설정합니다.
+  mobileNumber2 = mobileNumber2 || "";
 
   let mobile2 = "";
   let mobile3 = "";
@@ -21,22 +57,21 @@ export const findUserId = async (userName, mobileNumber1, mobileNumber2) => {
   `;
 
   try {
-    const [result] = await db.execute(sql, [userName, phoneNumber]); // prepared statement를 사용하여 SQL 쿼리를 실행합니다.
-    result_rows = result.length; // 결과 행의 수를 가져옵니다.
-    console.log("rows", result.length); // 결과 행의 수를 로그에 출력합니다.
+    const [result] = await db.execute(sql, [userName, phoneNumber]);
+    result_rows = result.length;
+    console.log("rows", result.length);
 
     if (result_rows === 1) {
-      // 결과 행의 수가 1이면서 사용자 ID가 존재하는 경우
       const userId = result[0].USER_ID;
-      console.log("User ID found:", userId); // 사용자 ID를 로그에 출력합니다.
-      return { userId, userName }; // 사용자 ID를 반환합니다.
+      console.log("User ID found:", userId);
+      return { userId, userName };
     }
   } catch (error) {
-    console.log(error); // 에러가 발생하면 로그에 에러를 출력합니다.
-    throw error; // 에러를 다시 던집니다.
+    console.log(error);
+    throw error;
   }
 
-  return { cnt: result_rows }; // 결과 행의 수를 반환합니다.
+  return { cnt: result_rows };
 };
 
 /** login처리 */

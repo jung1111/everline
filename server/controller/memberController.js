@@ -1,4 +1,6 @@
 import * as repository from "../repository/memberRepository.js";
+import nodemailer from "nodemailer";
+import crypto from "crypto";
 
 /* login 처리 */
 
@@ -34,4 +36,39 @@ export const findUserId = async (req, res) => {
     mobileNumber2
   ); // 수정된 부분
   res.json(result);
+};
+
+export const findUserPs = async (req, res) => {
+  const { userName, userId } = req.body;
+  console.log(req.body);
+  const result = await repository.findUserPs(userId, userName); // 수정된 부분
+  res.json(result);
+};
+
+export const sendAuthCode = async (req, res) => {
+  const { email } = req.body;
+  const authCode = crypto.randomBytes(3).toString("hex"); // 인증번호 생성
+
+  // 이메일 전송 설정
+  const transporter = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+      user: "mingongjuw@gmail.com",
+      pass: "mingongjuw06",
+    },
+  });
+
+  const mailOptions = {
+    from: "record609@naver.com",
+    to: email,
+    subject: "인증번호",
+    text: `인증번호는 ${authCode} 입니다.`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.json({ authCode });
+  } catch (error) {
+    res.status(500).json({ error: "인증번호 전송에 실패했습니다." });
+  }
 };
