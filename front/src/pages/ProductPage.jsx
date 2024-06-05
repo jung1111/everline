@@ -30,33 +30,18 @@ export default function ProductPage() {
 // 필터
 const handleChange = (e) => {
   let clickList = e.target.value;
-  let event = [...productlist]
+  let sortEvent = [...productlist]
+
 
   if(clickList === selectList[0].value){
-    let popularity = event;
-    popularity.sort((a, b)=>{
-      if(a.name > b.name) return 1;
-      if(a.name < b.name) return -1;
-      return 0;
-    })
-    setProductList(popularity);
+    sortEvent.sort((a, b)=> a.title.localeCompare(b.title));  
   }else if(clickList === selectList[1].value){
-    let highpricestitle = event;
-    highpricestitle.sort((a, b)=>{
-      if(a.price > b.price) return 1;
-      if(a.price < b.price) return -1;
-      return 0;
-    })
-    setProductList(highpricestitle);
-  }else if(clickList === selectList[2].value){
-    let lospricestitle = event;
-    lospricestitle.sort((a, b)=>{
-      if(a.price < b.price) return 1;
-      if(a.price > b.price) return -1;
-      return 0;
-    })
-    setProductList(lospricestitle);
+    sortEvent.sort((a, b)=> b.price - a.price);
   }
+  else if(clickList === selectList[2].value){
+    sortEvent.sort((a, b)=> a.price - b.price);
+  }
+  setProductList(sortEvent)
 
 }
   return (

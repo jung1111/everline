@@ -4,6 +4,10 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Location from '../components/Location';
 import axios from "axios";
+import ProductDetailInfo from '../components/ProductDetailInfo.jsx';
+import ProductDetailNotice from '../components/ProductDetailNotice.jsx';
+import ProductDetailCustomer from '../components/ProductDetailCustomer.jsx';
+import ProductDetailList from '../components/ProductDetailList.jsx';
 
 export default function ProductDetail({ addCartCount}) {
   const { id } = useParams();
@@ -11,7 +15,7 @@ export default function ProductDetail({ addCartCount}) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/data/product.json")
+      .get("http://localhost:3000/data/productdetail.json")
       .then((res) => {
         setProduct(res.data);
         const foundProduct = res.data.find((item) => item.id === id);
@@ -30,7 +34,7 @@ export default function ProductDetail({ addCartCount}) {
   const Click1 = () => {
     setMoreview1(!moreview1);
   };
-
+  /* 섹션별이동 함수 */
   const section1Ref = useRef(null);
   const section2Ref = useRef(null);
   const section3Ref = useRef(null);
@@ -42,7 +46,7 @@ export default function ProductDetail({ addCartCount}) {
     }
   };
 
-
+  /* 장바구니 연동 함수 */
   const addCartItem = (id) => {
     const selectedProduct = {
       id: id,
@@ -131,59 +135,43 @@ export default function ProductDetail({ addCartCount}) {
               </div>
         </div>
 
-
-
-
-
-
-
-
-      
-      <div className="ProductDetail-page">
-            <div className="productDetatil_sub">
-              <ul className="productDetatil_content">
-                <li
-                  className="productDetatil_info"
-                  onClick={() => scrollToSection(section1Ref)}
-                  ref={section1Ref}
-                >
-                  상품상세정보
-                </li>
-                <li
-                  className="productDetatil_notice"
-                  onClick={() => scrollToSection(section2Ref)}
-                >
-                  안내사항
-                </li>
-                <li
-                  className="productDetatil_customer"
-                  onClick={() => scrollToSection(section3Ref)}
-                >
-                  1:1문의
-                </li>
-              </ul>
-            </div>
-            <div className="productDetatil_info_box">
-              <div>
-                상품상세정보
-              </div>
-              <img
-                className="productDetatil_info_img"
-                src={product.detailimage}
-                alt=""
-              />
-            </div>
-            <div className="productDetatil_notice_box" ref={section2Ref}>
-              <div>
-                안내사항
-              </div>
-            </div>
-            <div className="productDetatil_customer_box" ref={section3Ref}>
-              <div>
-                1:1문의
-              </div>
-              <button type="button">1:1문의 남기기</button>
-            </div>
+        <div className="ProductDetail-page">
+ <div ref={section1Ref}>
+          <ProductDetailList
+            scrollToSection1={() => scrollToSection(section1Ref)}
+            scrollToSection2={() => scrollToSection(section2Ref)}
+            scrollToSection3={() => scrollToSection(section3Ref)}
+          />
+          <div className="productDetatil_info_box" >
+            <ProductDetailInfo />
+            <img
+              className="productDetatil_info_img"
+              src={product.detailimage}
+              alt=""
+            />
+          </div>
+ </div>
+<div ref={section2Ref}>
+          <ProductDetailList
+            scrollToSection1={() => scrollToSection(section1Ref)}
+            scrollToSection2={() => scrollToSection(section2Ref)}
+            scrollToSection3={() => scrollToSection(section3Ref)}
+          />
+          <div className="productDetatil_notice_box" >
+            <ProductDetailNotice />
+          </div>
+</div>
+<div ref={section3Ref}>
+          <ProductDetailList
+            scrollToSection1={() => scrollToSection(section1Ref)}
+            scrollToSection2={() => scrollToSection(section2Ref)}
+            scrollToSection3={() => scrollToSection(section3Ref)}
+          />
+          <div className="productDetatil_customer_box" >
+            <ProductDetailCustomer />
+            <button type="button">1:1문의 남기기</button>
+          </div>
+</div>
       </div>
     </div>
   );
