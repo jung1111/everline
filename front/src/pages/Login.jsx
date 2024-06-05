@@ -134,7 +134,6 @@ export default function Login() {
                     to="https://bit.ly/3weQpic"
                     className="member-link-color3"
                   >
-                    {" "}
                     네이버 아이디로 로그인
                   </Link>
                 </button>
@@ -147,7 +146,6 @@ export default function Login() {
                     to="https://bit.ly/44x2wDK"
                     className="member-link-color4"
                   >
-                    {" "}
                     카카오 아이디로 로그인
                   </Link>
                 </button>
@@ -160,7 +158,6 @@ export default function Login() {
                     to="https://apple.co/3UxpE0v"
                     className="member-link-color5"
                   >
-                    {" "}
                     애플 아이디로 로그인
                   </Link>
                 </button>

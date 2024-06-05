@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SubTitle from "./SubTitle.jsx";
 import axios from "axios";
 
@@ -12,6 +12,7 @@ const FindAccount = () => {
   });
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleSwitchMode = (newMode) => {
     setMode(newMode);
@@ -53,6 +54,28 @@ const FindAccount = () => {
     } catch (error) {
       setError(error.result ? error.result.data.error : "Error occurred");
       setResult(null);
+    }
+  };
+
+  const handleSubmit2 = async (e) => {
+    e.preventDefault();
+    try {
+      const result = await axios.post(
+        "http://127.0.0.1:8000/member/FindAccount/findUserPs",
+        {
+          userName: formData.userName,
+          userId: formData.userId,
+        }
+      );
+      const { cnt, email } = result.data;
+      console.log(email);
+      if (cnt === 1 && email) {
+        navigate("/member/FindAccount/emailAuth", { state: { email } });
+      } else {
+        alert("사용자 정보가 일치하지 않습니다.");
+      }
+    } catch (error) {
+      alert("오류가 발생했습니다. 다시 시도해주세요.");
     }
   };
 
@@ -113,7 +136,7 @@ const FindAccount = () => {
       )}
 
       {mode === "ps" && (
-        <div className="member" onSubmit={handleSubmit}>
+        <div className="member" onSubmit={handleSubmit2}>
           <SubTitle title="비밀번호찾기" />
           <form className="find-form">
             <ul>
@@ -143,6 +166,7 @@ const FindAccount = () => {
                   }}
                 />
               </li>
+              \{" "}
             </ul>
           </form>
           <div className="find-btn">
@@ -150,7 +174,7 @@ const FindAccount = () => {
               <li onClick={() => handleSwitchMode("id")}>아이디찾기</li>
             </ul>
             <li>
-              <button className="red-btn" type="button">
+              <button className="red-btn" type="button" onClick={handleSubmit2}>
                 확인
               </button>
               <button className="white-btn" type="submit">

@@ -84,13 +84,13 @@
 }
 
 .member-find-btn .custom-checkbox {
+  background-color: var(--color-white);
   width: 24px;
   height: 24px;
-  border: 1px solid #ddd;
+  border: 1px solid #ededed;
   appearance: none;
   cursor: pointer;
   position: relative;
-  display: inline-block;
 }
 
 .member-find-btn .custom-checkbox:checked {
@@ -100,12 +100,11 @@
 .member-find-btn .custom-checkbox:checked::before {
   content: "";
   position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 16px;
-  height: 16px;
+  top: 5px;
+  left: 5px;
+  width: 13px;
+  height: 13px;
   background-color: var(--color-red);
-  display: block;
 }
 
 .member-btn {
