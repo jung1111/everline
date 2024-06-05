@@ -3,16 +3,14 @@
   background-color: var(--color-white);
   padding: 4rem;
   width: 100%;
-  border-spacing: 0;
-  border-collapse: collapse;
-  text-align: left;
 }
 
 .order-area-box * {
   font-size: 0.95rem;
+  font-weight: normal;
 }
 
-.order-table-title {
+.order-title-all {
   font-size: 1rem;
   font-weight: 800;
 }
@@ -29,7 +27,7 @@
 .order-table-head th {
   text-align: center;
   background-color: var(--color-bg);
-  padding: 10px 15px;
+  padding: 15px;
   border-bottom: 1px solid rgba(16, 24, 32, 0.1);
   font-weight: bold;
 }
@@ -39,10 +37,72 @@
 }
 
 .order-table-body td {
-  padding: 10px 15px;
+  padding: 15px;
 }
 
 .order-table-quantity {
   align-items: center;
   font-weight: bold;
+}
+
+.order-info {
+  margin-top: 45px;
+}
+
+.order-info-table {
+  width: 100%;
+  border-top: 2px solid var(--color-red);
+  border-spacing: 0;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  text-align: left;
+}
+
+.order-info-table input[type="text"],
+.order-info-table select,
+.order-email-select-box {
+  background-color: #ddd;
+  height: 2.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ededed;
+  font-size: 0.95rem;
+  width: 260px;
+  box-sizing: border-box;
+}
+
+.order-email-select-box {
+  width: 180px;
+}
+.order-info-table tr {
+  border-bottom: 1px solid #ededed;
+}
+
+.order-info-table tr td {
+  padding: 1rem;
+}
+
+.order-info-table tbody tr td:first-child {
+  background-color: var(--color-bg);
+  width: 180px;
+  font-weight: 800;
+}
+
+.order-info-table tbody tr td:not(:first-child),
+.order-info-table tbody tr td:not(:first-child) * {
+  font-weight: 500;
+}
+.order-email {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.order-email-select-box {
+  position: relative;
+}
+
+.order-select-arrow {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
 }

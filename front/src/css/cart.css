@@ -4,7 +4,6 @@
   background-color: var(--color-white);
   padding: 4rem;
   width: 100%;
-  /* border: 1px solid #ddd; */
   border-spacing: 0;
   border-collapse: collapse;
   text-align: center;
@@ -161,6 +160,7 @@
   color: var(--color-red);
   letter-spacing: -0.5px;
 }
+
 /* 팝업 스타일 */
 .popup-overlay {
   position: fixed;

@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import OrderTable from "../components/order/OrderTable.jsx";
 import OrderInfo from "../components/order/OrderInfo.jsx";
-import DeliveryInfo from "../components/DeliveryInfo.jsx";
+import DeliveryInfo from "../components/order/DeliveryInfo.jsx";
 import "../css/order.css";
 import Location from "../components/Location.jsx";
 import SubTitle from "../components/SubTitle.jsx";

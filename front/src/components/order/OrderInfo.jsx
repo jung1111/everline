@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function OrderInfo() {
   const [orderInfo, setOrderInfo] = useState({
@@ -9,9 +11,43 @@ export default function OrderInfo() {
     phone: "",
     mobile: "",
     emailId: "",
-    emailDomain: "naver.com",
     zipcode: "",
   });
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectDomain, setSelectDomain] = useState(null);
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+  const handleDomainClick = (option) => {
+    setSelectDomain(option);
+    setIsOpen(false);
+    setOrderInfo((prevInfo) => {
+      let emailId = prevInfo.emailId;
+      const atIndex = emailId.indexOf("@");
+      if (option === "직접입력") {
+        if (atIndex !== -1) {
+          emailId = emailId.slice(0, atIndex) + "@";
+        }
+      } else {
+        if (atIndex !== -1) {
+          emailId = emailId.slice(0, atIndex);
+        }
+        emailId = `${emailId}@${option}`;
+      }
+      return { ...prevInfo, emailId };
+    });
+  };
+
+  const domains = [
+    "직접입력",
+    "naver.com",
+    "hanmail.com",
+    "daum.net",
+    "nate.com",
+    "hotmail.com",
+    "gmail.com",
+    "icloud.com",
+  ];
 
   useEffect(() => {
     axios
@@ -25,7 +61,6 @@ export default function OrderInfo() {
           phone: data.phone,
           mobile: data.mobile,
           emailId: data.emailId,
-          emailDomain: data.emailDomain,
           zipcode: data.zipcode,
         });
       })
@@ -42,22 +77,20 @@ export default function OrderInfo() {
     });
   };
 
-  const handleDomainChange = (e) => {
-    setOrderInfo({
-      ...orderInfo,
-      emailDomain: e.target.value,
-    });
-  };
-
   return (
     <div className="order-info">
-      <h2>주문자 정보</h2>
-      <table>
+      <h3 className="order-title-all">주문자 정보</h3>
+      <table className="order-info-table">
         <tbody>
           <tr>
             <td>주문하시는 분 *</td>
             <td>
-              <input type="text" name="userName" value={orderInfo.userName} onChange={handleChange} />
+              <input
+                type="text"
+                name="userName"
+                value={orderInfo.userName}
+                onChange={handleChange}
+              />
             </td>
           </tr>
           <tr>
@@ -67,29 +100,63 @@ export default function OrderInfo() {
           <tr>
             <td>전화번호</td>
             <td>
-              <input type="text" name="phone" value={orderInfo.phone} onChange={handleChange} />
+              <input
+                type="text"
+                name="phone"
+                value={orderInfo.phone}
+                onChange={handleChange}
+              />
             </td>
           </tr>
           <tr>
             <td>휴대폰 번호 *</td>
             <td>
-              <input type="text" name="mobile" value={orderInfo.mobile} onChange={handleChange} />
+              <input
+                type="text"
+                name="mobile"
+                value={orderInfo.mobile}
+                onChange={handleChange}
+              />
             </td>
           </tr>
           <tr>
             <td>이메일 *</td>
-            <td className="member_email">
-              <input type="text" name="emailId" value={orderInfo.emailId} onChange={handleChange} />@
-              <select name="emailDomain" value={orderInfo.emailDomain} onChange={handleDomainChange}>
-                <option value="self">직접입력</option>
-                <option value="naver.com">naver.com</option>
-                <option value="hanmail.net">hanmail.net</option>
-                <option value="daum.net">daum.net</option>
-                <option value="nate.com">nate.com</option>
-                <option value="hotmail.com">hotmail.com</option>
-                <option value="gmail.com">gmail.com</option>
-                <option value="icloud.com">icloud.com</option>
-              </select>
+            <td>
+              <div className="order-email">
+                <input
+                  className="order-email-main"
+                  type="text"
+                  name="emailId"
+                  value={orderInfo.emailId}
+                  onChange={handleChange}
+                />
+                <div className="order-email-select-box">
+                  <div
+                    className="domain-select-header"
+                    onClick={toggleDropdown}
+                  >
+                    {selectDomain || "직접입력"}
+                  </div>
+                  {isOpen && (
+                    <div className="domain-select-dropdown">
+                      {domains.map((domain) => (
+                        <div
+                          key={domain}
+                          className="domain-select-option"
+                          onClick={() => handleDomainClick(domain)}
+                        >
+                          {domain}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <FontAwesomeIcon
+                    className="order-select-arrow"
+                    icon={faAngleDown}
+                  />
+                </div>
+              </div>
             </td>
           </tr>
         </tbody>

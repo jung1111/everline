@@ -3,7 +3,7 @@ import React, { useState } from "react";
 export default function DeliveryInfo() {
   return (
     <div className="delivery-info">
-      <h2>배송정보</h2>
+      <h3 className="order-title-all">배송정보</h3>
       <table>
         <tbody>
           <tr>

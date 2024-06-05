@@ -14,7 +14,7 @@ export default function OrderTable({ selectProducts }) {
 
   return (
     <div>
-      <h3 className="order-table-title">주문상세내역</h3>
+      <h3 className="order-table-title order-title-all">주문상세내역</h3>
       <table className="order-table">
         <thead className="order-table-head">
           <tr>
