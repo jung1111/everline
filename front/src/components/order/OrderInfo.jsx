@@ -85,12 +85,7 @@ export default function OrderInfo() {
           <tr>
             <td>주문하시는 분 *</td>
             <td>
-              <input
-                type="text"
-                name="userName"
-                value={orderInfo.userName}
-                onChange={handleChange}
-              />
+              <input type="text" name="userName" value={orderInfo.userName} onChange={handleChange} />
             </td>
           </tr>
           <tr>
@@ -100,23 +95,13 @@ export default function OrderInfo() {
           <tr>
             <td>전화번호</td>
             <td>
-              <input
-                type="text"
-                name="phone"
-                value={orderInfo.phone}
-                onChange={handleChange}
-              />
+              <input type="text" name="phone" value={orderInfo.phone} onChange={handleChange} />
             </td>
           </tr>
           <tr>
             <td>휴대폰 번호 *</td>
             <td>
-              <input
-                type="text"
-                name="mobile"
-                value={orderInfo.mobile}
-                onChange={handleChange}
-              />
+              <input type="text" name="mobile" value={orderInfo.mobile} onChange={handleChange} />
             </td>
           </tr>
           <tr>
@@ -131,10 +116,7 @@ export default function OrderInfo() {
                   onChange={handleChange}
                 />
                 <div className="order-email-select-box">
-                  <div
-                    className="domain-select-header"
-                    onClick={toggleDropdown}
-                  >
+                  <div className={`domain-select-header ${isOpen ? "open-tg" : ""}`} onClick={toggleDropdown}>
                     {selectDomain || "직접입력"}
                   </div>
                   {isOpen && (
@@ -142,6 +124,7 @@ export default function OrderInfo() {
                       {domains.map((domain) => (
                         <div
                           key={domain}
+                          style={{ fontWeight: 500 }}
                           className="domain-select-option"
                           onClick={() => handleDomainClick(domain)}
                         >
@@ -151,10 +134,7 @@ export default function OrderInfo() {
                     </div>
                   )}
 
-                  <FontAwesomeIcon
-                    className="order-select-arrow"
-                    icon={faAngleDown}
-                  />
+                  <FontAwesomeIcon className="order-select-arrow" icon={faAngleDown} />
                 </div>
               </div>
             </td>

@@ -7,7 +7,7 @@
 
 .order-area-box * {
   font-size: 0.95rem;
-  font-weight: normal;
+  font-weight: 500;
 }
 
 .order-title-all {
@@ -38,6 +38,9 @@
 
 .order-table-body td {
   padding: 15px;
+}
+.order-table-body td * {
+  font-weight: 600;
 }
 
 .order-table-quantity {
@@ -89,7 +92,7 @@
 
 .order-info-table tbody tr td:not(:first-child),
 .order-info-table tbody tr td:not(:first-child) * {
-  font-weight: 500;
+  font-weight: 600;
 }
 .order-email {
   display: flex;
@@ -105,4 +108,31 @@
   right: 1rem;
   top: 50%;
   transform: translateY(-50%);
+}
+.domain-select-header {
+}
+.domain-select-dropdown {
+  width: 100%;
+  padding: 4px;
+  background-color: #ddd;
+}
+.domain-select-option {
+  padding: 5px 6px;
+  margin: 3px auto;
+  border-radius: 10px;
+  width: 70%;
+  background-color: #fff;
+}
+.domain-select-option > span {
+  font-weight: 100;
+}
+
+.domain-select-header {
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+.open-tg {
+  width: 100%;
+  border: 1px solid rebeccapurple;
 }
