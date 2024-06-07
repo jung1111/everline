@@ -18,11 +18,10 @@
   height: auto;
   margin: 3rem auto;
   text-align: center; /* 부모 요소인 .member-form에 대해 가운데 정렬 */
+  padding-top: 50px;
 }
 
 .member-input {
-  list-style: none; /* ul 스타일 제거 */
-  padding-top: 40px; /* 기본 패딩 제거 */
   margin: 0; /* 기본 마진 제거 */
 }
 
@@ -59,7 +58,7 @@
 .member-find-btn {
   display: flex;
   width: 360px;
-  margin: 15px auto;
+  margin: 20px auto;
   font-size: 10px;
   justify-content: space-between; /* 자식 요소들을 가로로 균등하게 배치합니다. */
   align-items: center; /* 세로 중앙 정렬 */
@@ -77,10 +76,6 @@
   vertical-align: middle;
   position: relative; /* 상대적 위치 지정 */
   top: -15px; /* 위로 5px 이동 */
-}
-
-.member-link-color1 {
-  color: var(--color-black);
 }
 
 .member-find-btn .custom-checkbox {
@@ -122,31 +117,171 @@
   background-color: var(--color-white);
 }
 
-.member-link-color2 {
+.member-link-color1 {
   color: var(--color-red);
 }
 
 /* sns 연동 */
+
 .member-sns-btn {
   padding-bottom: 20px;
 }
+
 .member-sns-btn button {
-  border: 1px solid #e1e1e1;
+  border: 0.3px solid #e1e1e1;
   border-radius: 2px;
   padding-top: 0 20px;
+  background-color: var(--color-white);
+  transition: background-color 0.2s ease-in-out;
 }
 
-.member-link-color3 {
-  color: rgb(26, 192, 73);
-  text-decoration: none;
+.member-sns-btn svg {
+  background-clip: content-box;
+  background-color: transparent;
 }
 
-.member-link-color4 {
-  color: rgb(45, 22, 24);
-  text-decoration: none;
+/* 버튼 스타일 */
+
+.naver-btn {
+  color: rgb(0, 199, 58);
+  fill: rgb(0, 199, 58);
 }
 
-.member-link-color5 {
+.naver-btn:hover {
+  color: var(--color-white);
+  fill: var(--color-white);
+  background-color: rgb(0, 199, 58);
+}
+
+.kakao-btn {
+  color: rgb(47, 20, 21);
+  fill: rgb(47, 20, 21);
+}
+
+.kakao-btn:hover {
+  color: rgb(47, 20, 21);
+  fill: rgb(47, 20, 21);
+  background-color: #fee500;
+}
+
+.apple-btn {
   color: var(--color-black);
+  fill: var(--color-black);
+}
+
+.apple-btn:hover {
+  color: var(--color-white);
+  fill: var(--color-white);
+  background-color: var(--color-black);
+}
+
+/* 
+** sign up
+ */
+
+.signup {
+  background-color: var(--color-white);
+  /* border: 1px solid red; */
+  width: 760px;
+  margin-top: 50px;
+  margin-left: 275px;
+  text-align: center;
+}
+
+.member-back {
+  border: 1px solid yellow;
+  width: 360px;
+  margin: 0 auto;
+}
+.member-subtitle {
+  margin-top: 40px;
+  font-weight: 900;
+  text-align: left;
+}
+
+.member-signup-type {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 25px;
+}
+
+.member-signup-type li {
+  border: 2px solid var(--color-red);
+}
+
+.member-back .input-field {
+  margin-left: -29px;
+}
+
+.member-back p {
+  text-align: left;
+}
+
+.member-back button {
+  border: 2px solid palegreen;
+  margin-left: -29px;
+  width: 360px;
+  height: 50px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.signup .buttons li {
+  margin-bottom: 20px;
+}
+
+.member-input .signup-checkid {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.member-back .buttons .white-btn {
+  color: var(--color-white);
+  border: none;
+  background-color: var(--color-red);
+}
+
+.member-back .buttons .signup-btn,
+.member-input .signup-checkid,
+.member-input .signup-btn {
+  color: var(--color-red);
+  border: 0.3px solid #e1e1e1;
+  background-color: var(--color-white);
+}
+
+.member-back .buttons .white-btn:hover,
+.member-back .buttons .signup-btn:hover {
+  text-decoration: underline;
+}
+
+.member-agreement {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.member-agreement-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.member-agreement-item p {
+  margin: 0 10px;
+}
+
+.member-agreement-item a {
+  margin-left: auto;
   text-decoration: none;
+  color: blue;
+}
+
+.member-agreement-item input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.member-input {
+  border: 1px solid red;
+  padding-bottom: 20px;
 }
