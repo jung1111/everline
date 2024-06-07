@@ -51,24 +51,29 @@ export const sendAuthCode = async (req, res) => {
 
   // 이메일 전송 설정
   const transporter = nodemailer.createTransport({
-    service: "Gmail",
+    host: "smtp.naver.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
     auth: {
-      user: "mingongjuw@gmail.com",
-      pass: "mingongjuw06",
+      user: "projecteverline@naver.com", // 네이버 이메일 주소
+      pass: "everline5", // 네이버 이메일 비밀번호
     },
   });
 
   const mailOptions = {
-    from: "record609@naver.com",
+    from: "projecteverline@naver.com", // 네이버 이메일 주소
     to: email,
     subject: "인증번호",
     text: `인증번호는 ${authCode} 입니다.`,
   };
 
   try {
+    console.log("Sending email to:", email); // 디버깅 정보 추가
+    console.log("Auth code:", authCode); // 디버깅 정보 추가
     await transporter.sendMail(mailOptions);
     res.json({ authCode });
   } catch (error) {
+    console.error("Error sending email:", error); // 오류 로그 추가
     res.status(500).json({ error: "인증번호 전송에 실패했습니다." });
   }
 };

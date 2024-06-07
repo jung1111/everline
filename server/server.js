@@ -4,6 +4,7 @@ import memberRouter from "./router/memberRouter.js";
 import noticeRouter from "./router/noticeRouter.js";
 import inquiryRouter from "./router/inquiryRouter.js";
 import findRouter from "./router/findRouter.js";
+import bodyParser from "body-parser";
 
 const server = express();
 const port = 8000;
@@ -12,6 +13,7 @@ const port = 8000;
 server.use(express.json());
 server.use(express.urlencoded());
 server.use(cors());
+server.use(bodyParser.json());
 
 //라우터
 server.use("/member", memberRouter);
