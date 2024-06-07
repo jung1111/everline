@@ -1,17 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function OrderTable({ selectProducts }) {
-  // 총 가격 계산
-  const totalPrice = (items) => {
-    return items.reduce((acc, item) => acc + item.price * item.qty, 0);
-  };
-
-  // 총 배송비 계산
-  const totalDeliveryCharge = () => {
-    return totalPrice(selectProducts) < 70000 ? 3500 : 0;
-  };
-
+export default function OrderTable({
+  selectProducts,
+  totalDeliveryCharge,
+  totalPrice,
+}) {
   return (
     <div>
       <h3 className="order-table-title order-title-all">주문상세내역</h3>

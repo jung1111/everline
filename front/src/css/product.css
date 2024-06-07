@@ -37,7 +37,7 @@ ProductDetail css
   font-weight: 700;
 }
 
-.ProductDetail-info>span:nth-child(1) {
+.ProductDetail-info > span:nth-child(1) {
   font-size: 16px;
   display: inline-block;
 }
@@ -80,7 +80,7 @@ ProductDetail css
   font-weight: 700;
   color: var(--color-grey);
 }
-.span-list span:nth-child(1){
+.span-list span:nth-child(1) {
   font-size: 13px;
   font-weight: 500;
 }
@@ -109,14 +109,13 @@ ProductDetail css
 .totalprice-box {
   display: flex;
   justify-content: space-between;
-
 }
 
-.totalprice-box>span {
+.totalprice-box > span {
   font-size: 24px;
 }
 
-.totalprice-box>span:nth-child(2) {
+.totalprice-box > span:nth-child(2) {
   color: var(--color-red);
 }
 
@@ -205,7 +204,7 @@ h4 {
   width: 866px;
   height: auto;
 }
-.productDetatil-info{
+.productDetatil-info {
   background-color: var(--color-white);
   padding-top: 30px;
   color: var(--color-red);
@@ -219,27 +218,27 @@ h4 {
   margin: auto;
   margin-bottom: 15px;
 }
-.productDetatil-notice{
+.productDetatil-notice {
   background-color: var(--color-white);
   text-align: start;
   padding: 30px 0 30px 30px;
 }
-.delivery p:nth-child(4){
+.delivery p:nth-child(4) {
   color: var(--color-red);
   font-weight: 800;
 }
-.delivery p:nth-child(5){
+.delivery p:nth-child(5) {
   color: var(--color-black);
 }
-.cscenter p:nth-child(5){
+.cscenter p:nth-child(5) {
   color: var(--color-black);
   font-weight: 500;
   padding-top: 30px;
 }
-.productDetatil-notice > div{
+.productDetatil-notice > div {
   padding-bottom: 50px;
 }
-.productDetatil-notice > div p{
+.productDetatil-notice > div p {
   margin: 0;
   padding: 2px;
   color: var(--color-grey);
@@ -254,7 +253,7 @@ h4 {
   font-size: 15px;
   padding-bottom: 10px;
 }
-.productDetatil-customer{
+.productDetatil-customer {
   background-color: var(--color-white);
   padding: 50px 0 50px 0;
   color: var(--color-grey);
@@ -269,13 +268,12 @@ h4 {
 .productDetatil-customer p {
   padding-bottom: 20px;
 }
-.customer-btn{
+.customer-btn {
   background-color: var(--color-black);
   color: var(--color-white);
   font-weight: 700;
   font-size: 13.5px;
   padding: 10px 18px 10px 18px;
-  
 }
 
 /**********************
@@ -320,12 +318,11 @@ bannerslider css
   left: 50%;
   width: 50%;
   height: 100%;
-  background: url('../../public/images/hero_lp.png') no-repeat center center;
+  background: url("../../public/images/hero_lp.png") no-repeat center center;
   background-size: contain;
   transition: right 0.3s ease-in-out;
   overflow: hidden;
   transition: 1s ease;
-
 }
 
 .BannerSlider-imgbox:hover::before {
@@ -398,7 +395,7 @@ bannerslider css
   font-size: 18px;
   background-color: var(--color-black);
   color: var(--color-white);
-  font-weight: bold
+  font-weight: bold;
 }
 
 .officialmd {
@@ -406,7 +403,7 @@ bannerslider css
   font-size: 9.375vw;
   font-weight: 900;
   color: #f8f6f5;
-  background: linear-gradient(180deg, #F6F5F5 0%, rgba(248, 246, 245, 0) 100%);
+  background: linear-gradient(180deg, #f6f5f5 0%, rgba(248, 246, 245, 0) 100%);
   text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05), -10px -10px 10px #fff;
   line-height: 9.3vw;
   letter-spacing: -2.5px;
@@ -441,7 +438,7 @@ bannerslider css
   transform: rotate(-135deg);
 }
 
-.prev:hover{
+.prev:hover {
   color: var(--color-red);
   font-weight: 900;
   scale: 1.1;
@@ -460,7 +457,7 @@ bannerslider css
   border-right: solid 1px currentColor;
   transform: rotate(45deg);
 }
-.next:hover{
+.next:hover {
   color: var(--color-red);
   font-weight: 900;
   scale: 1.1;
@@ -492,7 +489,7 @@ ProductPage css
   opacity: 1;
   transition: 0.3s;
 }
-.ProductPage-img:hover{
+.ProductPage-img:hover {
   border: 1px solid var(--color-red);
   padding: 10px;
   opacity: 1;
@@ -549,26 +546,26 @@ ProductPage css
 /**********************
 MainSub css
 ***********************/
-.newrelease{
+.newrelease {
   position: relative;
   min-height: 620px;
   width: 100%;
   justify-content: center;
 }
-.newrelease > span{
+.newrelease > span {
   position: absolute;
   left: 15%;
   top: 10%;
   display: inline-block;
 }
-.newrelease > span h2{
+.newrelease > span h2 {
   font-size: 45px;
   font-weight: 900;
 }
-.newrelease > span h2:nth-child(1){
+.newrelease > span h2:nth-child(1) {
   color: var(--color-red);
 }
-.newrelease-product{
+.newrelease-product {
   position: absolute;
   right: 250px;
   top: 40px;
@@ -582,7 +579,7 @@ MainSub css
   font-size: 20px;
   cursor: pointer;
 }
-.release-prev{
+.release-prev {
   content: "";
   position: absolute;
   left: 20%;
@@ -595,7 +592,7 @@ MainSub css
   border-right: solid 1px currentColor;
   transform: rotate(-135deg);
 }
-.release-next{
+.release-next {
   content: "";
   position: absolute;
   left: 55%;

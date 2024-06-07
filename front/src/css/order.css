@@ -1,8 +1,17 @@
 .order-area-box {
   margin-top: 5rem;
   background-color: var(--color-white);
-  padding: 4rem;
+  padding: 4rem 6rem;
   width: 100%;
+}
+
+.order-area-box a {
+  text-decoration: none;
+  color: var(--color-black);
+}
+
+.order-area-box input[type="text"]:focus {
+  outline: none; /* 포커스 시 아웃라인 제거 */
 }
 
 .order-area-box * {
@@ -48,11 +57,13 @@
   font-weight: bold;
 }
 
+/* 주문자 정보 */
+
 .order-info {
   margin-top: 45px;
 }
 
-.order-info-table {
+.order-table-type {
   width: 100%;
   border-top: 2px solid var(--color-red);
   border-spacing: 0;
@@ -62,45 +73,45 @@
 }
 
 .order-info-table input[type="text"],
+.payment-table input[type="text"],
 .order-info-table select,
 .order-email-select-box {
-  background-color: #ddd;
+  background-color: rgba(16, 24, 32, 0.06);
   height: 2.5rem;
   padding: 0.5rem;
   border: 1px solid #ededed;
   font-size: 0.95rem;
   width: 260px;
-  box-sizing: border-box;
 }
 
 .order-email-select-box {
   width: 180px;
+  background-color: #ddd;
 }
-.order-info-table tr {
+
+.order-table-type tr {
   border-bottom: 1px solid #ededed;
 }
 
-.order-info-table tr td {
+.order-table-type tr td {
   padding: 1rem;
 }
 
-.order-info-table tbody tr td:first-child {
+.order-table-type tbody tr td:first-child {
   background-color: var(--color-bg);
   width: 180px;
   font-weight: 800;
 }
 
-.order-info-table tbody tr td:not(:first-child),
-.order-info-table tbody tr td:not(:first-child) * {
+.order-table-type tbody tr td:not(:first-child),
+.order-table-type tbody tr td:not(:first-child) * {
   font-weight: 600;
 }
+
 .order-email {
   display: flex;
   align-items: center;
   gap: 10px;
-}
-.order-email-select-box {
-  position: relative;
 }
 
 .order-select-arrow {
@@ -108,31 +119,215 @@
   right: 1rem;
   top: 50%;
   transform: translateY(-50%);
+  transition: transform 0.3s ease; /* 회전 애니메이션 추가 */
 }
-.domain-select-header {
+
+.domain-select-header.open-tg .order-select-arrow {
+  transform: translateY(-50%) rotate(180deg); /* 드롭다운이 열렸을 때 180도 회전 */
 }
+
+.order-email-select-box {
+  width: 180px;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid #ddd;
+}
+
 .domain-select-dropdown {
-  width: 100%;
-  padding: 4px;
+  position: relative;
+  z-index: 4;
+  width: 180px;
+  padding: 0; /* Initial padding should be 0 */
+  margin-left: -8px;
+  border: 1px solid #ddd;
   background-color: #ddd;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease, padding 0.3s ease; /* Add transition for max-height and padding */
 }
+
 .domain-select-option {
+  position: relative;
+  z-index: 4;
   padding: 5px 6px;
   margin: 3px auto;
   border-radius: 10px;
+  width: 90%;
+  background-color: #ddd;
+  transition: width 0.3s ease, background-color 0.3s ease, margin 0.3s ease;
+}
+
+.domain-select-option.d-selected,
+.domain-select-option:hover {
   width: 70%;
   background-color: #fff;
+  margin: 3px auto;
+  border-radius: 10px;
 }
+
 .domain-select-option > span {
   font-weight: 100;
 }
 
 .domain-select-header {
-  width: 100%;
+  width: 90%;
   border: 1px solid #ddd;
 }
 
 .open-tg {
   width: 100%;
-  border: 1px solid rebeccapurple;
+}
+
+.domain-select-dropdown.open {
+  position: relative;
+  z-index: 4;
+  padding: 4px;
+  max-height: 500px;
+}
+
+/*  배송 정보 css  */
+
+.delivery-option {
+  display: flex;
+  gap: 15px;
+}
+
+.delivery-option label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.custom-radio {
+  appearance: none;
+  background-color: var(--color-white);
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ededed;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.custom-radio:checked {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-red);
+}
+
+.custom-radio:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-red);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.delivery-info-table input[type="text"] {
+  background-color: rgba(16, 24, 32, 0.06);
+  height: 2.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ededed;
+  font-size: 0.95rem;
+}
+
+.delivery-search-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.delivery-zipcode {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-search-zipcode {
+  background-color: #fff;
+  border: 1px solid #ededed;
+  padding: 0.5rem 1rem;
+}
+
+.delivery-address {
+  display: flex;
+  gap: 10px;
+}
+
+.delivery-address-main {
+  width: 40%;
+}
+.delivery-address-detail {
+  width: 20%;
+}
+
+.delivery-note {
+  width: 98%;
+}
+
+.btn-payment-coupon {
+  border: 1px solid #ededed;
+  background-color: var(--color-white);
+  padding: 0.25rem 1rem;
+  color: var(--color-red);
+  font-size: 0.8rem;
+}
+
+.btn-payment-coupon:hover {
+  border: 1px solid var(--color-red);
+}
+
+.payment-table-mileage-input {
+  text-align: right;
+}
+.payment-table-mileage {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.payment-table-mileage-held {
+  margin-left: -4px;
+  color: var(--color-red);
+}
+
+/* 최종 주문 */
+.order-final-info {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 2.3rem 0;
+  text-align: center;
+  border: 5px solid var(--color-red);
+}
+
+.order-final-info span {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.order-final-info span:last-child {
+  color: var(--color-red);
+}
+
+.btn-order-final {
+  display: block;
+  background-color: var(--color-red);
+  color: var(--color-white);
+  font-size: 1.1rem;
+  margin: 0 auto;
+  padding: 0.8rem 5rem;
+}
+.final-agree-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 20px 0;
+}
+
+.final-strong {
+  color: var(--color-red);
 }

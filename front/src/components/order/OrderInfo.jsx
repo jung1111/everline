@@ -14,7 +14,7 @@ export default function OrderInfo() {
     zipcode: "",
   });
   const [isOpen, setIsOpen] = useState(false);
-  const [selectDomain, setSelectDomain] = useState(null);
+  const [selectDomain, setSelectDomain] = useState("직접입력");
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -80,12 +80,21 @@ export default function OrderInfo() {
   return (
     <div className="order-info">
       <h3 className="order-title-all">주문자 정보</h3>
-      <table className="order-info-table">
+      <table
+        className="
+      order-table-type
+      order-info-table"
+      >
         <tbody>
           <tr>
             <td>주문하시는 분 *</td>
             <td>
-              <input type="text" name="userName" value={orderInfo.userName} onChange={handleChange} />
+              <input
+                type="text"
+                name="userName"
+                value={orderInfo.userName}
+                onChange={handleChange}
+              />
             </td>
           </tr>
           <tr>
@@ -95,13 +104,23 @@ export default function OrderInfo() {
           <tr>
             <td>전화번호</td>
             <td>
-              <input type="text" name="phone" value={orderInfo.phone} onChange={handleChange} />
+              <input
+                type="text"
+                name="phone"
+                value={orderInfo.phone}
+                onChange={handleChange}
+              />
             </td>
           </tr>
           <tr>
             <td>휴대폰 번호 *</td>
             <td>
-              <input type="text" name="mobile" value={orderInfo.mobile} onChange={handleChange} />
+              <input
+                type="text"
+                name="mobile"
+                value={orderInfo.mobile}
+                onChange={handleChange}
+              />
             </td>
           </tr>
           <tr>
@@ -115,26 +134,37 @@ export default function OrderInfo() {
                   value={orderInfo.emailId}
                   onChange={handleChange}
                 />
-                <div className="order-email-select-box">
-                  <div className={`domain-select-header ${isOpen ? "open-tg" : ""}`} onClick={toggleDropdown}>
-                    {selectDomain || "직접입력"}
+                <div
+                  className="order-email-select-box"
+                  onClick={toggleDropdown}
+                >
+                  <div
+                    className={`domain-select-header ${
+                      isOpen ? "open-tg" : ""
+                    }`}
+                  >
+                    {selectDomain}
+                    <FontAwesomeIcon
+                      className="order-select-arrow"
+                      icon={faAngleDown}
+                    />
                   </div>
-                  {isOpen && (
-                    <div className="domain-select-dropdown">
-                      {domains.map((domain) => (
-                        <div
-                          key={domain}
-                          style={{ fontWeight: 500 }}
-                          className="domain-select-option"
-                          onClick={() => handleDomainClick(domain)}
-                        >
-                          {domain}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  <FontAwesomeIcon className="order-select-arrow" icon={faAngleDown} />
+                  <div
+                    className={`domain-select-dropdown ${isOpen ? "open" : ""}`}
+                  >
+                    {domains.map((domain) => (
+                      <div
+                        key={domain}
+                        style={{ fontWeight: 500 }}
+                        className={`domain-select-option ${
+                          selectDomain === domain ? "d-selected" : ""
+                        }`}
+                        onClick={() => handleDomainClick(domain)}
+                      >
+                        {domain}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </td>
