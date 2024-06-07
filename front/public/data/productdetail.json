@@ -5,6 +5,7 @@
     "detailimage": "/images/detailproduct1.jpg",
     "title": "[PHOTOCARD EVENT] 첸 (CHEN) - The 4th Mini Album [DOOR] (랜덤)",
     "price": 11560,
+    "period": "2024년 07월 01일 결제 순 순차 배송 예정",
     "id": "1"
   },
   {
@@ -12,6 +13,7 @@
     "detailimage": "/images/detailproduct2.jpg",
     "title": "첸 (CHEN) - The 4th Mini Album [DOOR] (랜덤)",
     "price": 20000,
+    "period": "2024년 07월 01일 결제 순 순차 배송 예정",
     "id": "2"
   },
   
@@ -20,6 +22,7 @@
     "detailimage": "/images/detailproduct3.jpg",
     "title": "[5/18 FAN SIGN EVENT] Chunji (천지) - 2ND SINGLE ALBUM [A Precious Memory] (랜덤)",
     "price": 100000,
+    "period": "2024년 07월 01일 결제 순 순차 배송 예정",
     "id": "3"    
   },
   
@@ -28,6 +31,7 @@
     "detailimage": "/images/detailproduct4.jpg",
     "title": "에이티즈 (ATEEZ) - 10th Mini Album [GOLDEN HOUR : Part.1] (POCAALBUM VER.)",
     "price": 860,
+    "period": "2024년 07월 01일 결제 순 순차 배송 예정",
     "id": "4"    
   },
   
@@ -36,6 +40,7 @@
     "detailimage": "/images/detailproduct1.jpg",
     "title": "[LUCKY DRAW EVENT] 김우진 (KIM WOOJIN) - 미니3집 [I LIKE THE WAY] (랜덤)",
     "price": 4500,
+    "period": "2024년 07월 01일 결제 순 순차 배송 예정",
     "id": "5"    
   },
   
@@ -44,6 +49,7 @@
     "detailimage": "/images/detailproduct2.jpg",
     "title": "[5/12 FAN SIGN EVENT] 현준 (Hyunjun) - 5th Single Album [Backseat]",
     "price": 160,
+    "period": "2024년 07월 01일 결제 순 순차 배송 예정",
     "id": "6"    
   },
   
@@ -52,6 +58,7 @@
     "detailimage": "/images/detailproduct3.jpg",
     "title": "[5/26 FAN SIGN EVENT] 솔라 (SOLAR) - The 2nd Mini Album [COLOURS] (Nemo Ver.)",
     "price": 1100,
+    "period": "2024년 07월 01일 결제 순 순차 배송 예정",
     "id": "7"    
   },
   
@@ -60,6 +67,7 @@
     "detailimage": "/images/detailproduct4.jpg",
     "title": "[PHOTOCARD EVENT] WHIB (휘브) - 2ND SINGLE ALBUM [ETERNAL YOUTH : KICK IT] (EVER ver.)",
     "price": 15000,
+    "period": "2024년 07월 01일 결제 순 순차 배송 예정",
     "id": "8"    
   }
   

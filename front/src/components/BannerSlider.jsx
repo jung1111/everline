@@ -46,7 +46,7 @@ const [currentBanner, setCurrentBanner] = useState(0);
               <div {...handlers} className='BannerSlider-imgbox'>
                 <h3 style={{ display: index === currentBanner ? 'block' : 'none' }}><h6 style={{ display: index === currentBanner ? 'block' : 'none' }}>OFFICIAL MD</h6>{banner.title}
                   <p>{banner.release}</p>
-                  <Link to="/product" ><button className='more-btn' style={{ display: index === currentBanner ? 'block' : 'none' }}>More &nbsp;&nbsp;‣</button></Link>
+                  <Link className='link' to="/product" ><button className='more-btn' style={{ display: index === currentBanner ? 'block' : 'none' }}>More &nbsp;&nbsp;‣</button></Link>
                 </h3>
                 <img key={index} src={banner.image} alt={`Banner ${currentBanner + 1}`} style={{ display: index === currentBanner ? 'block' : 'none' }} />
               </div>
