@@ -66,8 +66,8 @@ export default function ProductDetail({ addCartCount}) {
       </div>
         <div className="ProductDetail">
               <div className="ProductDetail-infobox">
-                <h2>{product.title}</h2>
-                <h3>{product.price}</h3>
+                <h4>{product.title}</h4>
+                <h5>{product.price}원</h5>
               </div>
               <div>
                 <div className="ProductDetail-info" onClick={Click}>
@@ -78,7 +78,7 @@ export default function ProductDetail({ addCartCount}) {
                     <div>
                         <div className='span-list'>
                           <span>판매가</span>
-                          <span><strong>{product.price}</strong>원</span>
+                          <span><strong>{product.price.toLocaleString()}</strong>원</span>
                         </div>
                         <div className='span-list'>
                           <span>구매제한</span>
@@ -86,11 +86,11 @@ export default function ProductDetail({ addCartCount}) {
                         </div>
                         <div className='span-list'>
                           <span>구매혜택</span>
-                          <span>마일리지 <strong>{(product.price)*0.05}</strong>원 적립</span>
+                          <span>마일리지 <strong>{((product.price)*0.05).toLocaleString()}</strong>원 적립</span>
                         </div>
                         <div className='span-list'>
                           <span>배송비</span>
-                          <span><strong>{product.price}</strong>원</span>
+                          <span><strong>{((product.price)*0+3000).toLocaleString()}</strong>원</span>
                         </div>
                     </div>
                 )}
@@ -122,56 +122,55 @@ export default function ProductDetail({ addCartCount}) {
                   </div>
                 </div>
               <div className="line"></div>
-              <div className="product_btn_box">
+              <div className="product-btn-box">
                 <Link to="/">
-                  <button className="product_btn1" type="button">찜리스트</button>
+                  <button className="product-btn1" type="button">찜리스트</button>
                 </Link>
                 <Link to="/">
-                  <button className="product_btn2" type="button" onClick={() => addCartItem(product.id)}>장바구니</button>
+                  <button className="product-btn2" type="button" onClick={() => addCartItem(product.id)}>장바구니</button>
                 </Link>
                 <Link to="/">
-                  <button className="product_btn3" type="button">바로구매</button>
+                  <button className="product-btn3" type="button">바로구매</button>
                 </Link>
               </div>
         </div>
 
         <div className="ProductDetail-page">
- <div ref={section1Ref}>
+        <div ref={section1Ref}>
           <ProductDetailList
             scrollToSection1={() => scrollToSection(section1Ref)}
             scrollToSection2={() => scrollToSection(section2Ref)}
             scrollToSection3={() => scrollToSection(section3Ref)}
           />
-          <div className="productDetatil_info_box" >
+          <div className="productDetatil-info-box" >
             <ProductDetailInfo />
             <img
-              className="productDetatil_info_img"
+              className="productDetatil-info-img"
               src={product.detailimage}
               alt=""
             />
           </div>
- </div>
-<div ref={section2Ref}>
+        </div>
+        <div ref={section2Ref}>
           <ProductDetailList
             scrollToSection1={() => scrollToSection(section1Ref)}
             scrollToSection2={() => scrollToSection(section2Ref)}
             scrollToSection3={() => scrollToSection(section3Ref)}
           />
-          <div className="productDetatil_notice_box" >
+          <div className="productDetatil-notice-box" >
             <ProductDetailNotice />
           </div>
-</div>
-<div ref={section3Ref}>
+        </div>
+        <div ref={section3Ref}>
           <ProductDetailList
             scrollToSection1={() => scrollToSection(section1Ref)}
             scrollToSection2={() => scrollToSection(section2Ref)}
             scrollToSection3={() => scrollToSection(section3Ref)}
           />
-          <div className="productDetatil_customer_box" >
+          <div className="productDetatil-customer-box" >
             <ProductDetailCustomer />
-            <button type="button">1:1문의 남기기</button>
           </div>
-</div>
+        </div>
       </div>
     </div>
   );
