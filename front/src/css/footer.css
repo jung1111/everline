@@ -1,0 +1,157 @@
+*{
+	word-break: keep-all;
+}
+ul{
+	padding: 0;
+	margin: 0;
+}
+.footer{
+	background-color: #fff;
+}
+.footer .content{
+	padding: 35px 0 0;
+	border: 0;
+}
+.footer-contents{
+	display: flex;
+	gap: 2rem;
+	justify-content: space-between;
+}
+.footer-logo{
+	flex-shrink: 0;
+	width: 120px;
+	height: 100px;
+	background: url("https://elineptr1902.cdn-nhncommerce.com/data/skin/front/everline/images/base/logo_footer.svg" )no-repeat ;
+	font-size: 0;
+	margin-top: 63px;
+}
+.footer-business{
+	flex: 2 1 0;
+}
+.footer-info{
+	flex: 1 1 0;
+}
+.footer-link,
+.footer-list{
+	display: flex;
+	padding: 0;
+}
+.footer-link{
+	margin-bottom: 30px;
+}
+.footer-link > li{
+	position: relative;
+	margin: 0 15px;
+	font-size: 13px;
+}
+.footer-link > li:first-child{
+	margin-left: 0;
+}
+.footer-link > li::after,
+.footer-list > li::after{
+	content: '';
+	position: absolute;
+	width: 1px;
+	height: 10px;
+	display: block;
+	background-color: #e0e0e0;
+}
+.footer-link > li::after{
+	top: 7px;
+	right: -17px;
+}
+.footer-link > li:last-child::after{
+	display: none;
+}
+.footer-link > li > a{
+	font-size: 16px;
+	font-weight: bold;
+	color:#333;
+	text-decoration: none;
+}
+.footer-link > li > a:hover{
+	text-decoration: underline;
+}
+
+.footer-list{
+	align-items: center;
+	flex-wrap: wrap;
+	margin-bottom: 0;
+}
+.footer-list > li{
+	position: relative;
+	margin-right:25px;
+	line-height: 28px;
+	font-size: 13px;
+}
+.footer-list > li::after{
+	top: 9px;
+	right: -14px;
+}
+.footer-list > li:first-child:after{
+	top: 9px;
+	right: -13px;
+}
+.footer-list > li.bor::after{
+	display: none;
+}
+.footer-list > li span{
+	font-size: 13px;
+	color: #21232e;
+  line-height: 30px;
+  letter-spacing: -0.5px;
+}
+.footer-list .title{
+	font-weight: bold;
+	color: var(--color-red);
+}
+
+.footer-info strong{
+	display: block;
+	color: var(--color-red);
+	font-size: 30px;
+	font-weight: 800;
+	margin-top: -11px;
+	margin-bottom: 20px;
+}
+.footer-info p:last-child{
+	margin-bottom: 0;
+}
+
+.footer-itemBox{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 35px;
+	padding: 25px 0 35px;
+	border-top: rgba(0,0,0,0.08) solid 1px;
+}
+.copyright{
+	color:#21232e;
+	font-size: 11px;
+	font-weight: 500;
+}
+.copyright .bold{
+	font-weight: 600;
+	font-size: 11px;
+}
+.footer-itemBox-certMark{
+	display: flex;
+	flex-shrink: 0;
+	gap: 0.5rem;
+}
+.footer-itemBox-left,
+.footer-itemBox-right{
+	display: block;
+	height: 56px;
+}
+.footer-itemBox-left{
+	width: 134px;
+	background: url("../../public/images/footer-1.png")no-repeat center;
+	background-size: cover;
+}
+.footer-itemBox-right{
+	width: 94px;
+	background: url("../../public/images/footer-2.png")no-repeat center;
+	background-size: cover;
+}
