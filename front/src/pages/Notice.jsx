@@ -35,8 +35,7 @@ export default function Notice(){
 					<span className='count-no-text'><span className='count-no-red'>{noticeList.length}</span> 개의 게시물</span>
 				</span>
 			</div>
-			<Table name="notice" noticeList={noticeList} />
-			<MainNotice />
+			<Table name="notice" noticeList={noticeList} />			
 		</div>
 	);
 }
