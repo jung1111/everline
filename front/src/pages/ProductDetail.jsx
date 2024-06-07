@@ -8,6 +8,9 @@ import ProductDetailInfo from '../components/ProductDetailInfo.jsx';
 import ProductDetailNotice from '../components/ProductDetailNotice.jsx';
 import ProductDetailCustomer from '../components/ProductDetailCustomer.jsx';
 import ProductDetailList from '../components/ProductDetailList.jsx';
+import ScrollUp from '../components/ScrollUp.jsx';
+import ReservationIcon from '../components/ReservationIcon.jsx';
+import SnsShare from '../components/SnsShare.jsx';
 
 export default function ProductDetail({ addCartCount}) {
   const { id } = useParams();
@@ -60,14 +63,17 @@ export default function ProductDetail({ addCartCount}) {
   };
   return (
     <div className="content">
+      <SnsShare/>
       <Location depth1="PRODUCT" depth2="DTAIL"/>
       <div className='ProductDetail-sub'>
         <img className="ProductDetail-img" src={product.image} alt="" />
       </div>
         <div className="ProductDetail">
+        <ReservationIcon date="06.03~06.23"/>
               <div className="ProductDetail-infobox">
                 <h4>{product.title}</h4>
-                <h5>{product.price}원</h5>
+                <h6>{product.period}</h6>
+                <h5>{product.price?.toLocaleString()}원</h5>
               </div>
               <div>
                 <div className="ProductDetail-info" onClick={Click}>
@@ -86,7 +92,7 @@ export default function ProductDetail({ addCartCount}) {
                         </div>
                         <div className='span-list'>
                           <span>구매혜택</span>
-                          <span>마일리지 <strong>{((product.price)*0.05).toLocaleString()}</strong>원 적립</span>
+                          <span>마일리지 <strong>{((product.price)*0.05).toLocaleString()}</strong>원</span>
                         </div>
                         <div className='span-list'>
                           <span>배송비</span>
@@ -118,7 +124,7 @@ export default function ProductDetail({ addCartCount}) {
                 <div className="ProductDetail-info">
                   <div className='totalprice-box'>
                     <span>총 합계금액</span>
-                    <span>{product.price}</span>
+                    <span>{product.price?.toLocaleString()}원</span>
                   </div>
                 </div>
               <div className="line"></div>
@@ -172,6 +178,7 @@ export default function ProductDetail({ addCartCount}) {
           </div>
         </div>
       </div>
+      <ScrollUp/>
     </div>
   );
 }

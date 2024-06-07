@@ -5,8 +5,9 @@ common css
   font-family: "Noto Sans KR", sans-serif;
   font-size: 14px;
 }
-#root{
-	background-color: var(--color-bg);
+
+#root {
+  background-color: var(--color-bg);
 }
 
 ul *,
@@ -39,121 +40,115 @@ input::placeholder {
 /**********************
   header css
   ***********************/
-  .header-outer {
-    width: 100%;
-    display: flex;
-    padding: 30px 0;
+.header-outer {
+  width: 100%;
+  padding: 30px 0;
+  border-bottom: 1px solid #c9c9c9;
+  position: fixed;
+  z-index: 1;
+  background-color: var(--color-bg);
+  top: 0;
 }
 
 .header-outer h1 {
-    padding: 0;
-    margin: 0 0 0 50px;
-    width: 160px;
-    height: 30px;
-    background-image: url("../../public/images/base/logo.svg");
+  padding: 0;
+  margin: 0 0 0 50px;
+  width: 160px;
+  height: 30px;
+  background-image: url("../../public/images/base/logo.svg");
 }
 
 .header-menu {
-    font-size: 20px;
-    color: var(--color-black);
-    font-weight: 700;
-    margin: auto;
-    display: flex;
-    width: 70%;
-    padding: 5px;
+  position: relative;
+}
+
+.header-menu-main {
+  position: absolute;
+  margin-top: -11.5px;
+  top: 50%;
+  left: 15.3%;
+  align-items: center;
+}
+
+.header-menu-main span {
+  font-weight: 700;
+  margin-right: 65px;
+  padding-bottom: 36px;
+}
+
+.header-menu-main span:hover {
+  border-bottom: 1px solid var(--color-red);
 }
 
 .header-menu-sub {
-    width: 200px;
-    margin-top: -5px;
-    margin-left: 800px;
-    position: relative;
-    justify-content: space-between;
-    text-align: center;
-    right: 0;
-    height: auto;
+  position: absolute;
+  top: 0;
+  right: 10%;
 }
 
 .usericon {
-    position: absolute;
-    left: 0;
+  margin-right: 35px;
+  opacity: 0.8;
+}
+.carticon{
+  opacity: 0.8;
+}
+.headseticon{
+  opacity: 0.8;
+  cursor: pointer;
 }
 
-.carticon {
-    position: absolute;
-    left: 40%;
+.header-menu-sub span {
+  margin-left: 35px;
+}
+
+.headset-menu {
+  position: absolute;
+  background-color: var(--color-red);
+  padding: 15px 20px;
+  top: 205%;
+  right: -25%;
+  display: block;
+  text-align: end;
+}
+
+.headset-menu p {
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+.headset-menu p:hover {
+  border-bottom: 1px solid var(--color-white);
 }
 
 .cartcnt {
-    display: inline-block;
-    margin-right: 75px;
-    font-size: 16px;
-    color: var(--color-red);
+  display: inline-block;
+  margin-right: 75px;
+  font-size: 16px;
+  color: var(--color-red);
 }
 
 .link {
-    padding-left: 50px;
+  text-decoration: none;
+  color: var(--color-black);
 }
 
 .content {
-    position: relative;
-    width: 1320px;
-    margin: auto;
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-    border: 1px solid blue;
+  position: relative;
+  width: 1320px;
+  margin: auto;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+  border: 1px solid blue;
 }
 
-/**********************
-DropDown css
-  ***********************/
-.headset {
-    position: relative;
-    display: inline-block;
-}
-
-.headseticon {
-    position: absolute;
-    right: 0;
-    top: -20px;
-    cursor: pointer;
-}
-.headset-menu {
-    position: absolute;
-    background-color: var(--color-red);
-    display: block;
-    text-align: center;
-    width: 100px;
-    display: none;
-    top: 8px;
-    right: -40px;
-    z-index: 1;
-    padding-bottom: 10px;
-}
-
-.headset-menu span {
-    color: var(--color-white);
-    padding: 10px;
-    display: block;
-    width: 50px;
-    z-index: 1;
-    position: absolute;
-}
-.headset-menu span:hover {
-    border-bottom: 1px solid var(--color-white);
-}
-
-/* 호버 시 드롭다운 표시 */
-.headset:hover .headset-menu {
-    display: block;
-}
 /**********************
   location css
   ***********************/
 .location {
   position: absolute;
   z-index: 1;
-  top: 50px;
+  top: 130px;
   right: 0;
   width: 100%;
   height: 40px;
@@ -165,7 +160,7 @@ DropDown css
   justify-content: flex-end;
 }
 
-.location-link > li {
+.location-link>li {
   position: relative;
 }
 
@@ -220,20 +215,20 @@ DropDown css
   margin-top: 80px;
 }
 
-.sub-menu > li {
+.sub-menu>li {
   position: relative;
   width: 50%;
   text-align: center;
   padding: 12px 0;
 }
 
-.sub-menu li > a {
+.sub-menu li>a {
   color: var(--color-black);
   border-top: transparent solid 1px;
 }
 
-.sub-menu > li > a::before,
-.sub-menu > li > a::after {
+.sub-menu>li>a::before,
+.sub-menu>li>a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -242,24 +237,24 @@ DropDown css
   height: 1px;
 }
 
-.sub-menu > li > a::before {
+.sub-menu>li>a::before {
   background-color: var(--color-black);
   opacity: 0.1;
 }
 
-.sub-menu > li > a::after {
+.sub-menu>li>a::after {
   width: 1px;
   background-color: var(--color-red);
   opacity: 0;
   transition: 0.3s;
 }
 
-.sub-menu > li > a:hover:after {
+.sub-menu>li>a:hover:after {
   width: 100%;
   opacity: 1;
 }
 
-.sub-menu > li > a:hover {
+.sub-menu>li>a:hover {
   color: var(--color-red);
 }
 

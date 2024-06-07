@@ -5,6 +5,7 @@ import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';
 import ListAll from '../components/ListAll';
 import ProductList from '../components/ProductList'; 
+import ScrollUp from '../components/ScrollUp';
 
 
 export default function ProductPage() {
@@ -50,6 +51,7 @@ const handleChange = (e) => {
 			<SubTitle title="PRODUCT"/>
       <ListAll eventList={productlist} handleChange={handleChange} selectList={selectList}/>
       <ProductList rows={rows} />
+      <ScrollUp/>
       </div>
   )
 }
