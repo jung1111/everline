@@ -2,16 +2,19 @@
     {
       "id": 1,
       "image": "/images/slide (1).jpg",
-      "title": "[PHOTOCARD EVENT] 첸 (CHEN) - The 4th Mini Album [DOOR] (랜덤)"
+      "title": "[PHOTOCARD EVENT] 첸 (CHEN) - The 4th Mini Album [DOOR] (랜덤)",
+      "release": "2024.06.03 (MON) ~ 2024.06.09 (SUN) 23:59"
     },
     {
       "id": 2,
       "image": "/images/slide (2).jpg",
-      "title": "[5/18 FAN SIGN EVENT] Chunji (천지) - 2ND SINGLE ALBUM [A Precious Memory] (랜덤))"
+      "title": "[5/18 FAN SIGN EVENT] Chunji (천지) - 2ND SINGLE ALBUM [A Precious Memory] (랜덤))",
+      "release": "2024.06.03 (MON) ~ 2024.06.09 (SUN) 23:59"
     },
     {
       "id": 3,
       "image": "/images/slide (3).jpg",
-      "title": "에이티즈 (ATEEZ) - 10th Mini Album [GOLDEN HOUR : Part.1] (POCAALBUM VER.)"
+      "title": "에이티즈 (ATEEZ) - 10th Mini Album [GOLDEN HOUR : Part.1] (POCAALBUM VER.)",
+      "release": "2024.06.03 (MON) ~ 2024.06.09 (SUN) 23:59"
     }
   ]

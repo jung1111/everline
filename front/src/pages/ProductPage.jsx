@@ -1,10 +1,10 @@
 import '../css/product.css'
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from "axios";
 import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';
 import ListAll from '../components/ListAll';
+import ProductList from '../components/ProductList'; 
 
 
 export default function ProductPage() {
@@ -49,28 +49,7 @@ const handleChange = (e) => {
 			<Location depth1="PRODUCT"/>
 			<SubTitle title="PRODUCT"/>
       <ListAll eventList={productlist} handleChange={handleChange} selectList={selectList}/>
-      {
-				rows.map((row, index)=>(
-					<ul className='ProductPage' key={index}>
-					{
-						row.map((product)=>(
-							<li>
-								<div className='ProductPage-img-box'>
-									<Link to={`/detail/${product.id}`}>
-                    <img className='ProductPage-img' src={product.image} />
-                  </Link>
-								</div>
-                <div className='ProductPage-info'>
-                  <span className='ProductPage-title'>{product.title}</span>
-                  <span className='ProductPage-price'>{product.price.toLocaleString()}원</span>
-                  <span className="ProductPage-soldout">품절</span>
-                </div>
-							</li>
-						))
-					}					
-			</ul>
-				))
-			}
-          </div>
+      <ProductList rows={rows} />
+      </div>
   )
 }
