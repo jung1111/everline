@@ -1,17 +1,29 @@
 import React from "react";
 import BannerSlider from './BannerSlider';
-import MainSub from "./MainSub";
 import ScrollUp from "./ScrollUp";
 import MainNotice from "./MainNotice";
-
+import ImageSlider from "./ImageSlider";
+import { Link } from "react-router-dom";
+import '../css/product.css'
+import OnlineStore from "./OnlieStore";
 export default function Main() {
   return (
     <div>
         <BannerSlider />
-        <MainSub mainsub_title1="NEW" mainsub_title2="RELEASE"/>
-        <MainSub mainsub_title1="EVER" mainsub_title2="MUSIC"/>
-        <MainSub mainsub_title1="EVER" mainsub_title2="MD"/>
+        <ImageSlider mainsub_title1="NEW" mainsub_title2="RELEASE"/>
+        <ImageSlider mainsub_title1="EVER" mainsub_title2="MUSIC"/>
+        <ImageSlider mainsub_title1="EVER" mainsub_title2="MD"/>
 				<MainNotice notice_title1="NEWS &" notice_title2="NOTICE" />
+        <div className="bannerAD">
+          <Link to="https://everlineshop.com/board/view.php?&bdId=bulkpurchase&sno=6">
+            <img src="https://elineptr1902.cdn-nhncommerce.com/data/skin/front/everline/img/banner/527240edf39824fd5c835e23afd541ae_65681.jpeg" alt="" />
+          </Link>
+        </div>
+        <span className='onlinestore-title'>
+            <h2>ONLINE</h2>
+            <h2>STORE</h2>
+        </span>
+        <OnlineStore/>
         <ScrollUp/>
     </div>
   );

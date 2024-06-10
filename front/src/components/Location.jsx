@@ -14,11 +14,11 @@ export default function Location({depth1, depth2}){
 						<span className='location-link-arrow'><FontAwesomeIcon icon={faChevronRight} /></span>
 					</li>
 					<li>
-						<span className='location-link-text'>{depth1}</span>
+						<span className='location-link-depth1'>{depth1}</span>
 						<span className='location-link-arrow'><FontAwesomeIcon icon={faChevronRight} /></span>
 					</li>
 					<li>
-						<span className='location-link-text'>{depth2}</span>
+						<span className='location-link-depth2'>{depth2}</span>
 						</li>
 				</ul>
 		</div>
