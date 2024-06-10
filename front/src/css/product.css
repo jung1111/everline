@@ -45,7 +45,7 @@ ProductDetail css
   font-weight: 700;
 }
 
-.ProductDetail-info > span:nth-child(1) {
+.ProductDetail-info>span:nth-child(1) {
   font-size: 16px;
   display: inline-block;
 }
@@ -119,13 +119,14 @@ ProductDetail css
 .totalprice-box {
   display: flex;
   justify-content: space-between;
+
 }
 
-.totalprice-box > span {
+.totalprice-box>span {
   font-size: 24px;
 }
 
-.totalprice-box > span:nth-child(2) {
+.totalprice-box>span:nth-child(2) {
   color: var(--color-red);
 }
 
@@ -252,26 +253,23 @@ h4 {
   padding-top: 30px;
 }
 
-.productDetatil-notice > div {
+.productDetatil-notice>div {
   padding-bottom: 50px;
 }
 
-.productDetatil-notice > div p {
-  padding-bottom: 50px;
-}
-.productDetatil-notice > div p {
+.productDetatil-notice>div p {
   margin: 0;
   padding: 2px;
   color: var(--color-grey);
   font-weight: 500;
 }
 
-.productDetatil-notice > div p > strong {
+.productDetatil-notice>div p>strong {
   color: var(--color-black);
   font-size: 13px;
 }
 
-.productDetatil-notice > div > h6 {
+.productDetatil-notice>div>h6 {
   font-weight: 700;
   font-size: 15px;
   padding-bottom: 10px;
@@ -301,6 +299,7 @@ h4 {
   font-weight: 700;
   font-size: 13.5px;
   padding: 10px 18px 10px 18px;
+
 }
 
 /**********************
@@ -347,11 +346,12 @@ bannerslider css
   left: 50%;
   width: 50%;
   height: 100%;
-  background: url("../../public/images/hero_lp.png") no-repeat center center;
+  background: url('../../public/images/hero_lp.png') no-repeat center center;
   background-size: contain;
   transition: right 0.3s ease-in-out;
   overflow: hidden;
   transition: 1s ease;
+
 }
 
 .BannerSlider-imgbox:hover::before {
@@ -439,7 +439,7 @@ button * {
   font-size: 9.375vw;
   font-weight: 900;
   color: #f8f6f5;
-  background: linear-gradient(180deg, #f6f5f5 0%, rgba(248, 246, 245, 0) 100%);
+  background: linear-gradient(180deg, #F6F5F5 0%, rgba(248, 246, 245, 0) 100%);
   text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05), -10px -10px 10px #fff;
   line-height: 7.3vw;
   letter-spacing: -2.5px;
@@ -602,76 +602,6 @@ ProductPage css
 }
 
 /**********************
-MainSub css
-***********************/
-.newrelease {
-  position: relative;
-  min-height: 620px;
-  width: 100%;
-  justify-content: center;
-}
-
-.newrelease>span {
-  position: absolute;
-  left: 15%;
-  top: 10%;
-  display: inline-block;
-}
-
-.newrelease>span h2 {
-  font-size: 45px;
-  font-weight: 900;
-}
-
-.newrelease>span h2:nth-child(1) {
-  color: var(--color-red);
-}
-
-.newrelease-product {
-  position: absolute;
-  right: 250px;
-  top: 40px;
-}
-
-.release-prev,
-.release-next {
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.release-prev {
-  content: "";
-  position: absolute;
-  left: 20%;
-  bottom: -80%;
-  width: 35px;
-  height: 35px;
-  margin-top: -15px;
-  color: var(--color-black);
-  border-top: solid 1px currentColor;
-  border-right: solid 1px currentColor;
-  transform: rotate(-135deg);
-}
-
-.release-next {
-  content: "";
-  position: absolute;
-  left: 55%;
-  bottom: -80%;
-  width: 35px;
-  height: 35px;
-  margin-top: -15px;
-  color: var(--color-black);
-  border-top: solid 1px currentColor;
-  border-right: solid 1px currentColor;
-  transform: rotate(45deg);
-}
-
-
-/**********************
 ReservationIcon css
 ***********************/
 .reservation-icon {
@@ -738,16 +668,20 @@ SnsShare css
   padding: 5px 15px 4px 10px;
   font-weight: 700;
   cursor: pointer;
+
 }
-.sns:hover{
+
+.sns:hover {
   background-color: var(--color-white);
 }
-.sns span:nth-child(1){
+
+.sns span:nth-child(1) {
   font-size: 11px;
   padding: 0;
   display: flex;
 }
-.codebranch{
+
+.codebranch {
   margin-right: 5px;
   margin-top: 3px;
   font-weight: lighter;
@@ -780,7 +714,7 @@ SnsShare css
   height: 6px;
   z-index: 1;
   border-top: var(--color-grey) solid 2px;
-  border-right: var(--color-grey) solid 2px;
+  border-right: var(--color-grey)solid 2px;
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
   pointer-events: none;
@@ -794,26 +728,207 @@ SnsShare css
   width: 6px;
   height: 6px;
   z-index: 1;
-  border-top: var(--color-grey) solid 2px;
-  border-right: var(--color-grey) solid 2px;
+  border-top: var(--color-grey)solid 2px;
+  border-right: var(--color-grey)solid 2px;
   transform: rotate(315deg);
   -webkit-transform: rotate(315deg);
   pointer-events: none;
 }
-.sns-box{
+
+.sns-box {
   display: flex;
   font-size: 10px;
 }
-.sns-logo-box{
+
+.sns-logo-box {
   display: inline-block;
   text-align: center;
-  padding: 10px 20px;
+  padding: 10px 20px
 }
-.sns-logo-box >div{
-  color:var(--color-grey);
+
+.sns-logo-box>div {
+  color: var(--color-grey);
   font-size: 10px;
 }
-.sns-logo{
+
+.sns-logo {
   border-radius: 100%;
   width: 25px;
+}
+
+/**********************
+ImageSlider css
+***********************/
+.image-slider-wrap{
+  padding-bottom: 100px;
+}
+
+.image-slider {
+  position: relative;
+  top: 50px;
+  width: 1250px;
+  height: 300px;
+  overflow: hidden;
+  margin: auto;
+  display: flex;
+}
+
+.image-slider span {
+  display: inline-block;
+  width: 150px;
+}
+
+
+.image-slider span h2 {
+  font-size: 45px;
+  font-weight: 900;
+}
+
+.image-slider span h2:nth-child(1) {
+  color: var(--color-red);
+}
+
+.slider-image-wrapper {
+  position: absolute;
+  display: inline-block;
+  right: 0;
+}
+
+.slider-image-wrapper img {
+  width: 300px;
+  padding: 10px;
+}
+.slider-image-wrapper img:hover{
+  scale: 0.9;
+  border: 1px solid var(--color-red);
+  background-color: var(--color-white);
+}
+
+.button-box {
+  position: relative;
+  height: 80px;
+  background-color: var(--color-white);
+  margin-right: 0;
+  padding: 0;
+}
+
+.slider-button.prev {
+  color: var(--color-black);
+  border-top: solid 2px currentColor;
+  border-right: solid 2px currentColor;
+  transform: rotate(-135deg);
+  position: absolute;
+  content: "";
+}
+
+.slider-button.next {
+  color: var(--color-black);
+  border-top: solid 2px currentColor;
+  border-right: solid 2px currentColor;
+  transform: rotate(45deg);
+  position: absolute;
+  content: "";
+}
+.slider-button.prev:hover{
+  color: var(--color-red);
+}
+.slider-button.next:hover{
+  color: var(--color-red);
+}
+
+/**********************
+OnlineStore css
+***********************/
+.bannerAD{
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.onlinestore{
+  width: 1250px;
+  margin: auto;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.onlinestore-title{
+  display: flex;
+  margin-left: 325px;
+}
+.onlinestore-title h2{
+  font-size: 45px;
+  font-weight: 900;
+}
+.onlinestore-title h2:nth-child(2){
+  color: var(--color-red);
+}
+.onlinestore-img{
+  margin-top: 30px;
+  width: 550px;
+}
+.onlinestore-location{
+  margin-top: 30px;
+  display: flex;
+  width: 550px;
+  position: relative;
+}
+.onlinestore-location p:nth-child(1){
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+.onlinestore-location p:nth-child(2){
+  color: var(--color-grey);
+  font-size: 14px;
+}
+.onlinestore-location span:nth-child(2){
+  margin-left: 25px;
+  margin-top: 10px;
+}
+
+.onlinestore-location span>button{
+  margin-left: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+.onlinestore-location-btn1{
+color: var(--color-black);
+background-color: #dbdbdb;
+position: absolute;
+  right: 65px;
+}
+.onlinestore-location-btn2{
+  background-color: var(--color-red);
+  color: var(--color-white);
+  position: absolute;
+  right: 0;
+}
+.onlinestore-location-btn1:hover{
+  background-color: #3cdbc0;
+}
+.onlinestore-location-btn2:hover{
+  background-color: #3cdbc0;
+}
+
+/* **************
+everTV css
+****************/
+.evertv-title{
+  display: flex;
+  margin-left: 325px;
+  margin-bottom: 50px;
+}
+.evertv-title h2{
+  font-size: 45px;
+  font-weight: 900;
+}
+.evertv-title h2:nth-child(2){
+  color: var(--color-red);
+}
+.evertv{
+  display: block;
+  margin: auto;
+  
 }
