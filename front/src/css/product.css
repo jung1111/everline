@@ -22,7 +22,7 @@ ProductDetail css
 }
 
 .ProductDetail-page {
-  margin-top: 950px;
+  margin-top: 1000px;
 }
 
 .ProductDetail-infobox {
@@ -400,7 +400,7 @@ bannerslider css
 
 .pagination {
   position: absolute;
-  bottom: 85px;
+  bottom: 75px;
   left: 50%;
   transform: translateX(-30%);
   display: flex;
@@ -441,10 +441,10 @@ button * {
   color: #f8f6f5;
   background: linear-gradient(180deg, #f6f5f5 0%, rgba(248, 246, 245, 0) 100%);
   text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05), -10px -10px 10px #fff;
-  line-height: 9.3vw;
+  line-height: 7.3vw;
   letter-spacing: -2.5px;
   white-space: nowrap;
-  margin-top: -85px;
+  margin-top: -60px;
   padding: 0;
   transform: translateX(45%);
   cursor: default;
@@ -611,29 +611,22 @@ MainSub css
   justify-content: center;
 }
 
-.newrelease > span {
+.newrelease>span {
   position: absolute;
   left: 15%;
   top: 10%;
   display: inline-block;
 }
 
-.newrelease > span h2 {
+.newrelease>span h2 {
   font-size: 45px;
   font-weight: 900;
 }
 
-.newrelease > span h2:nth-child(1) {
+.newrelease>span h2:nth-child(1) {
   color: var(--color-red);
 }
 
-.newrelease > span h2 {
-  font-size: 45px;
-  font-weight: 900;
-}
-.newrelease > span h2:nth-child(1) {
-  color: var(--color-red);
-}
 .newrelease-product {
   position: absolute;
   right: 250px;
@@ -676,6 +669,7 @@ MainSub css
   border-right: solid 1px currentColor;
   transform: rotate(45deg);
 }
+
 
 /**********************
 ReservationIcon css
@@ -745,20 +739,21 @@ SnsShare css
   font-weight: 700;
   cursor: pointer;
 }
-.sns:hover {
+.sns:hover{
   background-color: var(--color-white);
 }
-.sns span:nth-child(1) {
+.sns span:nth-child(1){
   font-size: 11px;
   padding: 0;
   display: flex;
 }
-.codebranch {
+.codebranch{
   margin-right: 5px;
   margin-top: 3px;
   font-weight: lighter;
   color: var(--color-red);
 }
+
 .sns-contnt {
   position: absolute;
   left: 0;
@@ -805,20 +800,20 @@ SnsShare css
   -webkit-transform: rotate(315deg);
   pointer-events: none;
 }
-.sns-box {
+.sns-box{
   display: flex;
   font-size: 10px;
 }
-.sns-logo-box {
+.sns-logo-box{
   display: inline-block;
   text-align: center;
   padding: 10px 20px;
 }
-.sns-logo-box > div {
-  color: var(--color-grey);
+.sns-logo-box >div{
+  color:var(--color-grey);
   font-size: 10px;
 }
-.sns-logo {
+.sns-logo{
   border-radius: 100%;
   width: 25px;
 }
