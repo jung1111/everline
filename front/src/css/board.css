@@ -103,6 +103,10 @@ board 게시판공통 css
 .Board-table tbody td.Board-list-subject {
   text-align: left;
 }
+.Board-table tbody td.Board-list-subject img{
+	margin: 0 1px;
+}
+
 /* Board - 상세 */
 .Board-detail {
   width: 100%;
@@ -161,6 +165,11 @@ board 게시판공통 css
   font-size: 14px;
   border-bottom: #666;
 }
+.Board-detail-cont img{
+	width: 100%;
+	height: 100%;
+	display: block;
+}
 .Board-table input{
 	width: 100%;
 	height: 45px;
@@ -189,7 +198,8 @@ EventList css
 	width: 100%;
 }
 .EventList-img{
-	height: 360px;
+	display: block;
+	height: 350px;
 	padding: 1.5rem;
 	background: #fff;
 	overflow: hidden;
@@ -287,7 +297,6 @@ Faq css
 	border-top: 1px solid #000;
 	margin: 40px 0 115px;
 	padding-left: 0;
-	height: 450px;
 	overflow: hidden;
 }
 .MainNotice-list > li{

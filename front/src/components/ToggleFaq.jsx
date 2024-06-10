@@ -7,6 +7,7 @@ import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 export default function FaqToggle({faqData}){
 	const [isToggle, setIsToggle] = useState({});
 
+
   const handleToggle = id => {
     setIsToggle(toggle => ({
       ...toggle,
@@ -29,12 +30,13 @@ export default function FaqToggle({faqData}){
           ) : null}              
         </tr>
 				<tr>
-					{isToggle[obj.no] ? <td className='content' colSpan={4}>
-					<div className="line-break" >
-            {obj.cont.split('\n').map((line, i) => (
-              <p key={i}>{line}</p>
-            ))}
-          </div>     			
+				{isToggle[obj.no] ?
+					<td className='content' colSpan={4}>
+						<div className="line-break" >
+							{obj.cont.split('\n').map((line, i) => (
+								<p key={i}>{line}</p>
+							))}
+          	</div>     			
 					</td> : null}
 				</tr>
 				</>
@@ -42,3 +44,4 @@ export default function FaqToggle({faqData}){
 		</>
 	);
 }
+

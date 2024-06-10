@@ -5,6 +5,7 @@ import SubTitle from '../components/SubTitle';
 import SubMenu from '../components/SubMenu';
 import ListAll from '../components/ListAll';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 export default function EventList(){
@@ -17,7 +18,7 @@ export default function EventList(){
 
 		useEffect(() => {
 			axios
-				.get('/data/product.json')
+				.get('data/event.json')
 				.then(res => setEventList(res.data))
 				.catch(error => console.log(error))
 		}, [])
@@ -55,16 +56,15 @@ export default function EventList(){
 			</ul>
 			<ListAll eventList={eventList} handleChange={handleChange} selectList={selectList} />
 
-			{/* 목록 컴포넌트 넣을예정 */}
 			{
 				rows.map((row, index)=>(
 					<ul className='EventList' key={index}>
 					{
 						row.map((list)=>(
 							<li>
-								<div className='EventList-img'>
-									<img src={list.image} />
-								</div>
+								<Link to={`/eventdetail/${list.id}`} className='EventList-img'>
+									<img src={list.titImg} />
+								</Link>
 								<h2 className='EventList-title'>{list.title}</h2>
 								<p>{list.price}</p>
 							</li>

@@ -10,7 +10,7 @@ import Table from '../components/Table';
 export default function WinnerNoticeList(){
 		const [noticeList, setNoticeList] = useState([]); 
 		useEffect(()=>{
-			fetch('data/event.json')
+			fetch('data/winner.json')
 				.then(res => res.json())
 				.then(result => setNoticeList(result))
 				.catch(error => console.log(error))

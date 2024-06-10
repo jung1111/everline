@@ -7,18 +7,37 @@ import SubTitle from '../components/SubTitle';
 import SubMenu from '../components/SubMenu';
 import Table from '../components/Table';
 import axios from 'axios';
-import MainNotice from "../components/MainNotice";
+
+//paging navigation
+import Pagination from 'rc-pagination';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'rc-pagination/assets/index.css';
 
 
 export default function Notice(){
-		const [noticeList, setNoticeList] = useState([]); 
+	const [noticeList, setNoticeList] = useState([]); 
+
+	// paging
+	const [currentPage, setCurrentPage] = useState(1);
+	const [totalCount, setTotalCount] = useState(0);
+	const [pageSize, setPageSize] = useState(8);
 
 		useEffect(()=>{
-			fetch('data/event.json')
-				.then(res => res.json())
-				.then(result => setNoticeList(result))
-				.catch(error => console.log(error))
-		},[])
+			//startIndex, endIndex
+			let startIndex = 0;
+			let endIndex = 0;
+
+			startIndex = (currentPage -1) * pageSize + 1;
+			endIndex = currentPage * pageSize;
+			
+			axios.get('http://localhost:3000/data/notice.json')
+			.then(result => {
+				setNoticeList(result.data.slice(startIndex, endIndex))
+				setTotalCount(result.data.length)
+			})
+			.catch(error => console.log(error))
+		},[currentPage])
+
 
 		return (
 		<div className='content'>
@@ -32,10 +51,13 @@ export default function Notice(){
 			<div className='count'>
 				<span className="count-no">
 					<span className='count-no-icon'><FontAwesomeIcon icon={faList} /></span>
-					<span className='count-no-text'><span className='count-no-red'>{noticeList.length}</span> 개의 게시물</span>
+					<span className='count-no-text'><span className='count-no-red'>{totalCount}</span> 개의 게시물</span>
 				</span>
 			</div>
-			<Table name="notice" noticeList={noticeList} />			
+			<Table name="notice" noticeList={noticeList} />	
+			<Pagination className='d-flex justify-content-center' style={{marginTop:'15px'}} 
+									current={currentPage} total={totalCount} pageSize={pageSize} onChange={(page)=>setCurrentPage(page)}/>		
+
 		</div>
 	);
 }
