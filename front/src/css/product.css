@@ -400,7 +400,7 @@ bannerslider css
 
 .pagination {
   position: absolute;
-  bottom: 85px;
+  bottom: 75px;
   left: 50%;
   transform: translateX(-30%);
   display: flex;
@@ -441,10 +441,10 @@ button * {
   color: #f8f6f5;
   background: linear-gradient(180deg, #F6F5F5 0%, rgba(248, 246, 245, 0) 100%);
   text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05), -10px -10px 10px #fff;
-  line-height: 9.3vw;
+  line-height: 7.3vw;
   letter-spacing: -2.5px;
   white-space: nowrap;
-  margin-top: -85px;
+  margin-top: -60px;
   padding: 0;
   transform: translateX(45%);
   cursor: default;
