@@ -841,6 +841,7 @@ OnlineStore css
 ***********************/
 .bannerAD{
   text-align: center;
+  margin-top: 100px;
   margin-bottom: 100px;
 }
 .onlinestore{
@@ -909,4 +910,25 @@ position: absolute;
 }
 .onlinestore-location-btn2:hover{
   background-color: #3cdbc0;
+}
+
+/* **************
+everTV css
+****************/
+.evertv-title{
+  display: flex;
+  margin-left: 325px;
+  margin-bottom: 50px;
+}
+.evertv-title h2{
+  font-size: 45px;
+  font-weight: 900;
+}
+.evertv-title h2:nth-child(2){
+  color: var(--color-red);
+}
+.evertv{
+  display: block;
+  margin: auto;
+  
 }
