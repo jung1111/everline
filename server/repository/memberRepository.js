@@ -1,6 +1,42 @@
 import { db } from "../db/database_mysql.js";
 import bcrypt from "bcryptjs";
 
+/* ps 변경 */
+
+export const updateUserPassword = async (email, newPassword) => {
+  if (!email || !newPassword) {
+    console.log(email, newPassword);
+  }
+
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+  const sql = `
+    UPDATE ever_member
+    SET USER_PASS = ?
+    WHERE CONCAT(email_id, '@', email_domain) = ?
+  `;
+
+  try {
+    const [result] = await db.execute(sql, [hashedPassword, email]);
+    return result;
+  } catch (error) {
+    throw error; // 데이터베이스 실행 오류를 상위 수준으로 던집니다.
+  }
+};
+
+export const findUserByEmail = async (email) => {
+  const query = `
+    SELECT * FROM ever_member
+    WHERE CONCAT(email_id, '@', email_domain) = ?
+  `;
+  try {
+    const results = await db.query(query, [email]);
+    return results[0]; // 찾은 첫 번째 결과를 반환합니다. 이메일이 고유하다고 가정합니다.
+  } catch (error) {
+    throw error; // 에러를 상위 수준에서 처리할 수 있도록 throw
+  }
+};
+
 /* ps 찾기 */
 export const findUserPs = async (userId, userName) => {
   let info_result = 0;

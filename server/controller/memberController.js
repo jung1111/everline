@@ -1,6 +1,7 @@
 import * as repository from "../repository/memberRepository.js";
 import nodemailer from "nodemailer";
 import crypto from "crypto";
+import bcrypt from "bcryptjs";
 
 /* login 처리 */
 
@@ -75,5 +76,39 @@ export const sendAuthCode = async (req, res) => {
   } catch (error) {
     console.error("Error sending email:", error); // 오류 로그 추가
     res.status(500).json({ error: "인증번호 전송에 실패했습니다." });
+  }
+};
+
+/* ps 변경 */
+export const updateUserPassword = async (req, res) => {
+  const { email, newPassword } = req.body;
+
+  try {
+    console.log("Received request to update password for email:", email);
+
+    // updateUserPassword 함수 호출 시 newPassword도 함께 전달해야 합니다.
+    if (!email || !newPassword) {
+      console.log("Email or newPassword is missing:", email, newPassword);
+      return res
+        .status(400)
+        .json({ error: "이메일과 새로운 비밀번호를 모두 제공해야 합니다." });
+    }
+
+    const user = await repository.findUserByEmail(email);
+
+    if (!user || user.length === 0) {
+      console.log("User not found for email:", email);
+      return res.status(404).json({ error: "사용자를 찾을 수 없습니다." });
+    }
+
+    await repository.updateUserPassword(email, newPassword);
+
+    console.log("Password updated successfully for email:", email);
+    console.log("New password:", newPassword);
+
+    res.json({ success: true });
+  } catch (error) {
+    console.error("Error updating password:", error);
+    res.status(500).json({ error: "비밀번호 변경에 실패했습니다." });
   }
 };

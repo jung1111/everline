@@ -66,85 +66,87 @@ export default function Login() {
       <SubTitle title="로그인" style={{ fontWeight: "900" }} />
       <div className="member">
         <form className="member-form" onSubmit={handleSubmit}>
-          <ul className="member-input">
-            <li>
-              <input
-                type="text"
-                name="userId"
-                ref={userIdRef}
-                value={formData.userId}
-                onChange={handleChange}
-                placeholder="  아이디"
-                class="input-field"
-              />
-            </li>
-            <li>
-              <input
-                type="password"
-                name="userPass"
-                ref={userPassRef}
-                value={formData.userPass}
-                onChange={handleChange}
-                placeholder="  비밀번호"
-                class="input-field"
-              />
-            </li>
-          </ul>
+          <div className="login-info">
+            <ul className="member-input">
+              <li>
+                <input
+                  type="text"
+                  name="userId"
+                  ref={userIdRef}
+                  value={formData.userId}
+                  onChange={handleChange}
+                  placeholder="  아이디"
+                  class="input-field"
+                />
+              </li>
+              <li>
+                <input
+                  type="password"
+                  name="userPass"
+                  ref={userPassRef}
+                  value={formData.userPass}
+                  onChange={handleChange}
+                  placeholder="  비밀번호"
+                  class="input-field"
+                />
+              </li>
+            </ul>
 
-          <ul className="member-find-btn">
-            <li>
-              <label>
-                <input type="checkbox" className="custom-checkbox" /> 아이디
-                저장
-              </label>
-            </li>
-            <li>
-              <Link to="/member/FindAccount">
-                <span>아이디 찾기</span>
-              </Link>
-            </li>
-            <li>|</li>
-            <li>
-              <Link to="/member/FindAccount">
-                <span>비밀번호 찾기</span>
-              </Link>
-            </li>
-          </ul>
-          <ul className="member-btn">
-            <li>
-              <button className="red-btn" type="submit">
-                로그인
-              </button>
-              <Link to="/member/signup" style={{ textDecoration: "none" }}>
-                <button className="white-btn" type="button">
-                  <span className="member-link-color1">회원가입</span>
+            <ul className="member-find-btn">
+              <li>
+                <label class="custom-checkbox-label">
+                  <input type="checkbox" className="custom-checkbox" /> 아이디
+                  저장
+                </label>
+              </li>
+              <li>
+                <Link to="/member/FindAccount">
+                  <span>아이디 찾기</span>
+                </Link>
+              </li>
+              <li>|</li>
+              <li>
+                <Link to="/member/FindAccount">
+                  <span>비밀번호 찾기</span>
+                </Link>
+              </li>
+            </ul>
+            <ul className="member-btn">
+              <li>
+                <button className="red-btn" type="submit">
+                  로그인
                 </button>
-              </Link>
-            </li>
-          </ul>
+                <Link to="/member/signup" style={{ textDecoration: "none" }}>
+                  <button className="white-btn" type="button">
+                    <span className="member-link-color1">회원가입</span>
+                  </button>
+                </Link>
+              </li>
+            </ul>
 
-          <ul className="member-sns-btn">
-            <li>
-              <Link to="https://bit.ly/3weQpic">
-                <button className="naver-btn" type="button">
-                  <NaverIcon />
-                  네이버 아이디로 로그인
-                </button>
-              </Link>
-              <Link to="https://bit.ly/44x2wDK">
-                <button className="kakao-btn" type="button">
-                  <KakaoIcon />
-                  카카오 아이디로 로그인
-                </button>
-              </Link>
-              <Link to="https://apple.co/3UxpE0v">
-                <button className="apple-btn" type="button">
-                  <AppleIcon />
-                  애플 아이디로 로그인
-                </button>
-              </Link>
-            </li>
-          </ul>
+            <ul className="member-sns-btn">
+              <li>
+                <Link to="https://bit.ly/3weQpic">
+                  <button className="naver-btn" type="button">
+                    <NaverIcon />
+                    네이버 아이디로 로그인
+                  </button>
+                </Link>
+                <Link to="https://bit.ly/44x2wDK">
+                  <button className="kakao-btn" type="button">
+                    <KakaoIcon />
+                    카카오 아이디로 로그인
+                  </button>
+                </Link>
+                <Link to="https://apple.co/3UxpE0v">
+                  <button className="apple-btn" type="button">
+                    <AppleIcon />
+                    애플 아이디로 로그인
+                  </button>
+                </Link>
+              </li>
+            </ul>
+          </div>
         </form>
       </div>
     </div>
