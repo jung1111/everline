@@ -3,16 +3,13 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import DaumPostcode from "react-daum-postcode";
-import {
-  passCheck,
-  validateCheck,
-  changeEmailDomain,
-} from "../apis/validate.js";
+import { passCheck, validateCheck } from "../apis/validate.js";
 import SubTitle from "../components/SubTitle.jsx";
 import Location from "../components/Location.jsx";
 import { useNavigate } from "react-router-dom";
 import "../css/member.css";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import "../css/order.css";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -46,7 +43,7 @@ export default function Signup() {
     mobileNumber2Ref: useRef(null),
     phoneNumber1Ref: useRef(null),
     phoneNumber2Ref: useRef(null),
-    emailRef: useRef(null),
+    emailIdRef: useRef(null),
     snsSentRef: useRef(null),
     zipcodeRef: useRef(null),
     addressRef: useRef(null),
@@ -58,6 +55,7 @@ export default function Signup() {
 
   const [mode, setMode] = useState("individual");
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpen2, setIsOpen2] = useState(false);
   const [selectDomain, setSelectDomain] = useState(null);
 
   const handleChange = (e) => {
@@ -66,7 +64,7 @@ export default function Signup() {
   };
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+    setIsOpen2(!isOpen2);
   };
 
   /**
@@ -150,7 +148,7 @@ export default function Signup() {
 
   const handleDomainClick = (option) => {
     setSelectDomain(option);
-    setIsOpen(false);
+    setIsOpen2(false);
     setFormData((prevInfo) => {
       let emailId = prevInfo.emailId;
       const atIndex = emailId.indexOf("@");
@@ -272,44 +270,56 @@ export default function Signup() {
                 </button>
               </li>
               <li>
-                <div className="order-email">
-                  <input
-                    className="order-email-main"
-                    type="text"
-                    name="emailId"
-                    value={formData.emailId}
-                    onChange={handleChange}
-                  />
-                  <div className="order-email-select-box">
-                    <div
-                      className={`domain-select-header ${
-                        isOpen ? "open-tg" : ""
-                      }`}
-                      onClick={toggleDropdown}
-                    >
-                      {selectDomain || "직접입력"}
-                    </div>
-                    {isOpen && (
-                      <div className="domain-select-dropdown">
-                        {domains.map((domain) => (
+                <tbody>
+                  <tr>
+                    <td>
+                      <div className="order-email">
+                        <input
+                          className="order-email-main"
+                          type="text"
+                          name="emailId"
+                          value={formData.emailId}
+                          ref={refs.emailIdRef}
+                          onChange={handleChange}
+                        />
+                        <div
+                          className="order-email-select-box"
+                          onClick={toggleDropdown}
+                        >
                           <div
-                            key={domain}
-                            style={{ fontWeight: 500 }}
-                            className="domain-select-option"
-                            onClick={() => handleDomainClick(domain)}
+                            className={`domain-select-header ${
+                              isOpen2 ? "open-tg" : ""
+                            }`}
                           >
-                            {domain}
+                            {selectDomain}
+                            <FontAwesomeIcon
+                              className="order-select-arrow"
+                              icon={faAngleDown}
+                            />
                           </div>
-                        ))}
+                          <div
+                            className={`domain-select-dropdown ${
+                              isOpen2 ? "open" : ""
+                            }`}
+                          >
+                            {domains.map((domain) => (
+                              <div
+                                key={domain}
+                                style={{ fontWeight: 500 }}
+                                className={`domain-select-option ${
+                                  selectDomain === domain ? "d-selected" : ""
+                                }`}
+                                onClick={() => handleDomainClick(domain)}
+                              >
+                                {domain}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
                       </div>
-                    )}
-
-                    <FontAwesomeIcon
-                      className="order-select-arrow"
-                      icon={faAngleDown}
-                    />
-                  </div>
-                </div>
+                    </td>
+                  </tr>
+                </tbody>
               </li>
               <li>
                 <input
@@ -322,7 +332,9 @@ export default function Signup() {
                   }
                   checked={formData.snsSent}
                 />
-                <span>정보/이벤트 SMS 수신에 동의합니다.</span>
+                <span className="member-text">
+                  ! 정보/이벤트 SMS 수신에 동의합니다.
+                </span>
               </li>
               <li>
                 <input
@@ -395,6 +407,7 @@ export default function Signup() {
                   value={formData.address}
                   ref={refs.addressRef}
                   placeholder="주소"
+                  style={{ marginBottom: "10px" }}
                 />
                 <input
                   type="text"
@@ -416,48 +429,58 @@ export default function Signup() {
                   </div>
                 )}
               </li>
+              <tbody>
+                <tr>
+                  <td className="member-birthday">
+                    <select
+                      className="birthday-select"
+                      value={year}
+                      onChange={handleYearChange}
+                      ref={refs.birthdayYearRef}
+                      style={{ width: "140px" }}
+                    >
+                      <option value="">년도</option>
+                      {years.map((y) => (
+                        <option key={y} value={y}>
+                          {y}
+                        </option>
+                      ))}
+                    </select>
+                    <select
+                      className="birthday-select"
+                      value={month}
+                      onChange={handleMonthChange}
+                      ref={refs.birthdayMonthRef}
+                      style={{ width: "100px" }}
+                    >
+                      <option value="">월</option>
+                      {months.map((m) => (
+                        <option key={m} value={m}>
+                          {m}
+                        </option>
+                      ))}
+                    </select>
+                    <select
+                      className="birthday-select"
+                      value={day}
+                      onChange={handleDayChange}
+                      ref={refs.birthdayDayRef}
+                      style={{ width: "100px" }}
+                    >
+                      <option value="">일</option>
+                      {days.map((d) => (
+                        <option key={d} value={d}>
+                          {d}
+                        </option>
+                      ))}
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
               <li>
-                <div className="birthday-input">
-                  <select
-                    value={year}
-                    onChange={handleYearChange}
-                    ref={refs.birthdayYearRef}
-                  >
-                    <option value="">년도</option>
-                    {years.map((y) => (
-                      <option key={y} value={y}>
-                        {y}
-                      </option>
-                    ))}
-                  </select>
-                  <select
-                    value={month}
-                    onChange={handleMonthChange}
-                    ref={refs.birthdayMonthRef}
-                  >
-                    <option value="">월</option>
-                    {months.map((m) => (
-                      <option key={m} value={m}>
-                        {m}
-                      </option>
-                    ))}
-                  </select>
-                  <select
-                    value={day}
-                    onChange={handleDayChange}
-                    ref={refs.birthdayDayRef}
-                  >
-                    <option value="">일</option>
-                    {days.map((d) => (
-                      <option key={d} value={d}>
-                        {d}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </li>
-              <li>
-                <span>! 생일 쿠폰 등 혜택을 위해 생일을 입력해 주세요.</span>
+                <span className="member-text">
+                  ! 생일 쿠폰 등 혜택을 위해 생일을 입력해 주세요.
+                </span>
               </li>
               {mode === "business" && (
                 <>

@@ -1,18 +1,6 @@
 /**
  * 이메일 주소 선택
  */
-export const changeEmailDomain = (e, refs, handleChange) => {
-  const name = e.target.name; // emailDomain
-  const value = e.target.value; // naver.com
-
-  if (value === "self") {
-    refs.emailDomainRef.current.value = "";
-    refs.emailDomainRef.current.focus();
-  } else {
-    refs.emailDomainRef.current.value = value;
-    handleChange(e);
-  }
-};
 
 /* passCheck */
 export const passCheck = (refs) => {
@@ -52,10 +40,6 @@ export const validateCheck = (refs, formData) => {
   } else if (refs.emailIdRef.current.value === "") {
     alert("이메일 아이디를 입력해주세요");
     refs.emailIdRef.current.focus();
-    checkFlag = false;
-  } else if (refs.emailDomainRef.current.value === "") {
-    alert("이메일 주소를 입력해주세요");
-    refs.emailDomainRef.current.focus();
     checkFlag = false;
   } else if (refs.userPassRef.current.value === "") {
     alert("비밀번호를 입력해주세요");

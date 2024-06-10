@@ -13,7 +13,7 @@ export const updateUserPassword = async (email, newPassword) => {
   const sql = `
     UPDATE ever_member
     SET USER_PASS = ?
-    WHERE CONCAT(email_id, '@', email_domain) = ?
+    WHERE EMAIL_ID = ?
   `;
 
   try {
@@ -27,7 +27,7 @@ export const updateUserPassword = async (email, newPassword) => {
 export const findUserByEmail = async (email) => {
   const query = `
     SELECT * FROM ever_member
-    WHERE CONCAT(email_id, '@', email_domain) = ?
+    WHERE EMAIL_ID = ?
   `;
   try {
     const results = await db.query(query, [email]);
@@ -44,7 +44,7 @@ export const findUserPs = async (userId, userName) => {
   SELECT COUNT(*) as count FROM EVER_MEMBER WHERE USER_NAME = ? AND USER_ID = ?
   `;
   const emailSql = `
-  SELECT CONCAT(email_id, '@', email_domain) AS email 
+  SELECT EMAIL_ID AS email 
   FROM EVER_MEMBER 
   WHERE USER_NAME = ? AND USER_ID = ?
   `;
@@ -171,12 +171,11 @@ export const getSignup = async (formData) => {
     USER_NAME,
     MOBILE_NUMBER,
     EMAIL_ID,
-    EMAIL_DOMAIN,
     ZIPCODE,
     ADDRESS,
     SIGNUP_DATE
   )
-  values(?,?,?,?,?,?,?,?,now())
+  values(?,?,?,?,?,?,?,now())
   `;
   const params = [
     formData.userId,
@@ -184,7 +183,6 @@ export const getSignup = async (formData) => {
     formData.userName,
     mobile1.concat("-", mobile2, "-", mobile3),
     formData.emailId,
-    formData.emailDomain,
     formData.zipcode,
     formData.address.concat(" ", formData.detailAddress),
   ];
