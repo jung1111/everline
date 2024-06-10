@@ -277,18 +277,28 @@
   background: #ff7875;
 }
 
-.phone-input,
-.birthday-input {
+.member-birthday {
   display: flex;
-  width: 360px;
+  align-items: center;
+  width: 360px; /* 부모 컨테이너의 너비를 360px로 설정 */
+  margin: 0 auto; /* 가운데 정렬을 위해 auto 마진 설정 */
+  padding: 0;
+  border: none;
+  background: none;
 }
 
-.phone-input select {
-  width: auto;
+.member-birthday .birthday-select {
+  height: 50px;
+  margin-right: 10px; /* 마지막 요소 제외한 오른쪽 마진 설정 */
+  padding: 0 35px 0 17px;
+  border: none;
+  border-radius: 0;
+  background-color: #f1f1f2;
+  box-shadow: none;
 }
 
-.birthday-input select {
-  margin-right: 50px;
+.member-birthday .birthday-select:first-child {
+  margin-left: -27px; /* 마지막 요소의 오른쪽 마진 제거 */
 }
 
 .member-agreement {
