@@ -25,6 +25,8 @@ import CartPage from "./pages/CartPage.jsx";
 import { useState } from "react";
 import OrderPage from "./pages/OrderPage.jsx";
 import Upload from "./pages/Upload.jsx";
+import YouTubeSlider from "./components/YouTubeSlider.jsx";
+import YouTubeDetail from "./components/YouTubeDetail.jsx";
 
 export default function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -50,6 +52,9 @@ export default function App() {
       //loader: rootLoader,
       children: [
         { path: "/", element: <Main /> /* loader: teamLoader, */ },
+        { path:"/", element:<YouTubeSlider /> /* loader: teamLoader, */ },
+        { path:"/video/:id", element:<YouTubeDetail /> /* loader: teamLoader, */ },
+        
         {
           path: "/product",
           element: <ProductPage /> /* loader: teamLoader, */,
