@@ -24,6 +24,7 @@ import Faq from "./pages/Faq.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import { useState } from "react";
 import OrderPage from "./pages/OrderPage.jsx";
+import EventListDetail from "./pages/EventListDetail.jsx";
 
 export default function App() {
   const [cartItems, setCartItems] = useState([]);
