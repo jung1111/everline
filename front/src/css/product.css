@@ -866,19 +866,20 @@ OnlineStore css
 .bannerAD img {
   width: 1250px;
 }
-
+.onlinestore-title-wrap{
+  width: 1250px;
+  margin: auto;
+}
 .onlinestore {
   width: 1250px;
   margin: auto;
   display: flex;
-
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
 .onlinestore-title {
   display: flex;
-  margin-left: 325px;
 }
 
 .onlinestore-title h2 {
@@ -959,9 +960,12 @@ OnlineStore css
 /* **************
 everTV css
 ****************/
+.evertv-title-wrap{
+  width: 1250px;
+  margin: auto;
+}
 .evertv-title {
   display: flex;
-  margin-left: 325px;
   margin-bottom: 50px;
 }
 
