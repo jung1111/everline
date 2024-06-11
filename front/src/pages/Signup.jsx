@@ -3,15 +3,13 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import DaumPostcode from "react-daum-postcode";
-import {
-  passCheck,
-  validateCheck,
-  changeEmailDomain,
-} from "../apis/validate.js";
+import { passCheck, validateCheck } from "../apis/validate.js";
 import SubTitle from "../components/SubTitle.jsx";
 import Location from "../components/Location.jsx";
 import { useNavigate } from "react-router-dom";
 import "../css/member.css";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import "../css/order.css";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -24,7 +22,6 @@ export default function Signup() {
     phoneNumber1: "",
     phoneNumber2: "",
     emailId: "",
-    emailDomain: "",
     snsSent: false,
     zipcode: "",
     address: "",
@@ -47,7 +44,6 @@ export default function Signup() {
     phoneNumber1Ref: useRef(null),
     phoneNumber2Ref: useRef(null),
     emailIdRef: useRef(null),
-    emailDomainRef: useRef(null),
     snsSentRef: useRef(null),
     zipcodeRef: useRef(null),
     addressRef: useRef(null),
@@ -59,10 +55,16 @@ export default function Signup() {
 
   const [mode, setMode] = useState("individual");
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpen2, setIsOpen2] = useState(false);
+  const [selectDomain, setSelectDomain] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const toggleDropdown = () => {
+    setIsOpen2(!isOpen2);
   };
 
   /**
@@ -144,6 +146,37 @@ export default function Signup() {
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 100 }, (_, index) => currentYear - index);
 
+  const handleDomainClick = (option) => {
+    setSelectDomain(option);
+    setIsOpen2(false);
+    setFormData((prevInfo) => {
+      let emailId = prevInfo.emailId;
+      const atIndex = emailId.indexOf("@");
+      if (option === "직접입력") {
+        if (atIndex !== -1) {
+          emailId = emailId.slice(0, atIndex) + "@";
+        }
+      } else {
+        if (atIndex !== -1) {
+          emailId = emailId.slice(0, atIndex);
+        }
+        emailId = `${emailId}@${option}`;
+      }
+      return { ...prevInfo, emailId };
+    });
+  };
+
+  const domains = [
+    "직접입력",
+    "naver.com",
+    "hanmail.com",
+    "daum.net",
+    "nate.com",
+    "hotmail.com",
+    "gmail.com",
+    "icloud.com",
+  ];
+
   const handleYearChange = (e) => {
     setYear(e.target.value);
     setFormData({ ...formData, birthdayYear: e.target.value });
@@ -216,12 +249,12 @@ export default function Signup() {
               <li onClick={() => handleSwitchMode("individual")}>
                 <p>개인회원</p>
               </li>
-              <li onClick={() => handleSwitchMode("bussiness")}>
+              <li onClick={() => handleSwitchMode("business")}>
                 <p>사업자회원</p>
               </li>
             </ul>
             <p className="member-subtitle">기본정보</p>
-            <ul className="member-input">
+            <ul className="signup-input">
               <li>
                 <input
                   type="text"
@@ -231,44 +264,62 @@ export default function Signup() {
                   value={formData.userId}
                   onChange={handleChange}
                   ref={refs.userIdRef}
-                  class="input-field id"
                 />
-                <button
-                  type="button"
-                  onClick={handleIdCheck}
-                  className="signup-checkid"
-                >
+                <button type="button" onClick={handleIdCheck}>
                   중복확인
                 </button>
               </li>
               <li>
-                <p>
-                  이메일<span>*</span>
-                </p>
-                <input
-                  type="text"
-                  name="emailId"
-                  value={formData.emailId}
-                  ref={refs.emailIdRef}
-                  onChange={handleChange}
-                />
-                @
-                <input
-                  type="text"
-                  name="emailDomain"
-                  value={formData.emailDomain}
-                  onChange={handleChange}
-                  ref={refs.emailDomainRef}
-                />
-                <select
-                  name="emailDomain"
-                  onChange={(e) => changeEmailDomain(e, refs, handleChange)}
-                >
-                  <option value="self">직접입력</option>
-                  <option value="naver.com">네이버</option>
-                  <option value="gmail.com">구글</option>
-                  <option value="hotmail.com">MS</option>
-                </select>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div className="order-email">
+                        <input
+                          className="order-email-main"
+                          type="text"
+                          name="emailId"
+                          value={formData.emailId}
+                          ref={refs.emailIdRef}
+                          onChange={handleChange}
+                        />
+                        <div
+                          className="order-email-select-box"
+                          onClick={toggleDropdown}
+                        >
+                          <div
+                            className={`domain-select-header ${
+                              isOpen2 ? "open-tg" : ""
+                            }`}
+                          >
+                            {selectDomain}
+                            <FontAwesomeIcon
+                              className="order-select-arrow"
+                              icon={faAngleDown}
+                            />
+                          </div>
+                          <div
+                            className={`domain-select-dropdown ${
+                              isOpen2 ? "open" : ""
+                            }`}
+                          >
+                            {domains.map((domain) => (
+                              <div
+                                key={domain}
+                                style={{ fontWeight: 500 }}
+                                className={`domain-select-option ${
+                                  selectDomain === domain ? "d-selected" : ""
+                                }`}
+                                onClick={() => handleDomainClick(domain)}
+                              >
+                                {domain}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
               </li>
               <li>
                 <input
@@ -281,7 +332,9 @@ export default function Signup() {
                   }
                   checked={formData.snsSent}
                 />
-                <span>정보/이벤트 SMS 수신에 동의합니다.</span>
+                <span className="member-text">
+                  ! 정보/이벤트 SMS 수신에 동의합니다.
+                </span>
               </li>
               <li>
                 <input
@@ -292,15 +345,7 @@ export default function Signup() {
                   value={formData.userPass}
                   onChange={handleChange}
                   ref={refs.userPassRef}
-                  class="input-field"
                 />
-              </li>
-              <li>
-                <span>
-                  <FontAwesomeIcon icon={faExclamation} />{" "}
-                  영문대문자/영문소문자/숫자/특수문자 중 2종류 이상을 조합하여
-                  10자리 이상
-                </span>
               </li>
               <li>
                 <input
@@ -311,7 +356,6 @@ export default function Signup() {
                   value={formData.userPassCheck}
                   onChange={handleChange}
                   ref={refs.userPassCheckRef}
-                  class="input-field"
                 />
               </li>
               <li>
@@ -323,76 +367,47 @@ export default function Signup() {
                   value={formData.userName}
                   ref={refs.userNameRef}
                   onChange={handleChange}
-                  class="input-field"
                 />
               </li>
               <li>
-                <span>
-                  <FontAwesomeIcon icon={faExclamation} /> 배송 문제를 방지하기
-                  위해 본인의 실명을 작성해주세요.
-                </span>
-              </li>
-              <li>
-                {/* 필수전화번호 */}
-                <select name="mobileNumber1">
-                  <option value="010">010</option>
-                  <option value="011">011</option>
-                  <option value="016">016</option>
-                  <option value="017">017</option>
-                </select>
-                <input
-                  type="text"
-                  name="mobileNumber2"
-                  value={formData.mobileNumber2}
-                  onChange={handleChange}
-                  ref={refs.mobileNumber2Ref}
-                  placeholder="휴대폰 번호"
-                  class="input-field"
-                />
-              </li>
-              <li>
-                {/* 일반전화번호 */}
-                <select name="phoneNumber1">
-                  <option value="010">010</option>
-                  <option value="011">011</option>
-                  <option value="016">016</option>
-                  <option value="017">017</option>
-                </select>
-                <input
-                  type="text"
-                  name="phoneNumber2"
-                  value={formData.phoneNumber2}
-                  onChange={handleChange}
-                  ref={refs.phoneNumber2Ref}
-                  placeholder="전화번호"
-                  class="input-field"
-                />
-              </li>
-              <li>
-                <p>주소</p>
-                <button
-                  type="button"
-                  onClick={handleToggle}
-                  className="signup-btn"
-                >
-                  주소검색
-                </button>
-                <div>
+                <div className="phone-input">
+                  <select name="mobileNumber1">
+                    <option value="010">010</option>
+                    <option value="011">011</option>
+                    <option value="016">016</option>
+                    <option value="017">017</option>
+                  </select>
                   <input
                     type="text"
-                    name="zipcode"
-                    ref={refs.zipcodeRef}
-                    value={formData.zipcode}
-                    readOnly
-                    class="input-field"
+                    name="mobileNumber2"
+                    value={formData.mobileNumber2}
+                    onChange={handleChange}
+                    ref={refs.mobileNumber2Ref}
+                    placeholder="휴대폰 번호"
+                    className="input-field"
                   />
                 </div>
+              </li>
+              <li className="member-address">
+                <input
+                  type="text"
+                  name="zipcode"
+                  ref={refs.zipcodeRef}
+                  value={formData.zipcode}
+                  placeholder="우편번호"
+                  readOnly
+                />
+                <button type="button" onClick={handleToggle}>
+                  주소검색
+                </button>
+
                 <input
                   type="text"
                   name="address"
                   value={formData.address}
                   ref={refs.addressRef}
-                  class="input-field"
+                  placeholder="주소"
+                  style={{ marginBottom: "10px" }}
                 />
                 <input
                   type="text"
@@ -401,7 +416,6 @@ export default function Signup() {
                   onChange={handleChange}
                   ref={refs.detailAddressRef}
                   placeholder="상세주소를 입력해주세요"
-                  class="input-field"
                 />
                 {isOpen && (
                   <div>
@@ -415,51 +429,60 @@ export default function Signup() {
                   </div>
                 )}
               </li>
+              <tbody>
+                <tr>
+                  <td className="member-birthday">
+                    <select
+                      className="birthday-select"
+                      value={year}
+                      onChange={handleYearChange}
+                      ref={refs.birthdayYearRef}
+                      style={{ width: "140px" }}
+                    >
+                      <option value="">년도</option>
+                      {years.map((y) => (
+                        <option key={y} value={y}>
+                          {y}
+                        </option>
+                      ))}
+                    </select>
+                    <select
+                      className="birthday-select"
+                      value={month}
+                      onChange={handleMonthChange}
+                      ref={refs.birthdayMonthRef}
+                      style={{ width: "100px" }}
+                    >
+                      <option value="">월</option>
+                      {months.map((m) => (
+                        <option key={m} value={m}>
+                          {m}
+                        </option>
+                      ))}
+                    </select>
+                    <select
+                      className="birthday-select"
+                      value={day}
+                      onChange={handleDayChange}
+                      ref={refs.birthdayDayRef}
+                      style={{ width: "100px" }}
+                    >
+                      <option value="">일</option>
+                      {days.map((d) => (
+                        <option key={d} value={d}>
+                          {d}
+                        </option>
+                      ))}
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
               <li>
-                <select
-                  value={year}
-                  onChange={handleYearChange}
-                  ref={refs.birthdayYearRef}
-                >
-                  <option value="">년도</option>
-                  {years.map((y) => (
-                    <option key={y} value={y}>
-                      {y}
-                    </option>
-                  ))}
-                </select>
-                <select
-                  value={month}
-                  onChange={handleMonthChange}
-                  ref={refs.birthdayMonthRef}
-                >
-                  <option value="">월</option>
-                  {months.map((m) => (
-                    <option key={m} value={m}>
-                      {m}
-                    </option>
-                  ))}
-                </select>
-                <select
-                  value={day}
-                  onChange={handleDayChange}
-                  ref={refs.birthdayDayRef}
-                >
-                  <option value="">일</option>
-                  {days.map((d) => (
-                    <option key={d} value={d}>
-                      {d}
-                    </option>
-                  ))}
-                </select>
-              </li>
-              <li>
-                <span>
-                  <FontAwesomeIcon icon={faExclamation} /> 생일 쿠폰 등 혜택을
-                  위해 생일을 입력해 주세요.
+                <span className="member-text">
+                  ! 생일 쿠폰 등 혜택을 위해 생일을 입력해 주세요.
                 </span>
               </li>
-              {mode === "bussiness" && (
+              {mode === "business" && (
                 <>
                   <li>
                     <input type="text" placeholder="상호" />
@@ -470,8 +493,8 @@ export default function Signup() {
                 </>
               )}
             </ul>
+            <p className="member-subtitle">약관동의</p>
             <ul className="member-agreement">
-              <p className="member-subtitle">약관동의</p>
               <li className="member-agreement-item">
                 <input
                   type="checkbox"
@@ -479,8 +502,7 @@ export default function Signup() {
                   checked={formData.agreeAll}
                   onChange={handleAgreeAll}
                 />
-
-                <p>에바리인의 모든 약관을 확인하고 전체 동의합니다.</p>
+                <p>에버라인의 모든 약관을 확인하고 전체 동의합니다.</p>
               </li>
               <li className="member-agreement-item">
                 <input
@@ -489,10 +511,11 @@ export default function Signup() {
                   checked={formData.service}
                   onChange={handleAgree}
                 />
-                <p>[필수]</p> <p>이용약관</p>
+                <p>[필수] 이용약관</p>
                 <a
                   href="https://www.everlineshop.com/service/agreement.php?code=001001"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   전체
                 </a>
@@ -504,16 +527,17 @@ export default function Signup() {
                   checked={formData.personal}
                   onChange={handleAgree}
                 />
-                <p>[필수]</p> <p>개인정보 수집 및 이용</p>
+                <p>[필수] 개인정보 수집 및 이용</p>
                 <a
                   href="https://www.everlineshop.com/service/private.php"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   전체
                 </a>
               </li>
             </ul>
-            <ul className="buttons">
+            <ul className="member-buttons">
               <li>
                 <button
                   className="white-btn"
@@ -524,11 +548,7 @@ export default function Signup() {
                 </button>
               </li>
               <li>
-                <button
-                  className="signup-btn"
-                  type="button"
-                  onClick={handleCancel}
-                >
+                <button type="button" onClick={handleCancel}>
                   취소
                 </button>
               </li>

@@ -8,6 +8,10 @@
   border-collapse: collapse;
   text-align: center;
 }
+.cart-table a {
+  text-decoration: none;
+  color: #101820;
+}
 
 .cart-table * {
   font-size: 0.95rem;
@@ -164,6 +168,7 @@
 /* 팝업 스타일 */
 .popup-overlay {
   position: fixed;
+  z-index: 10;
   top: 0;
   left: 0;
   width: 100%;

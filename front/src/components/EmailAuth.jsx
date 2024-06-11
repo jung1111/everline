@@ -46,6 +46,7 @@ const EmailAuth = () => {
 
   const handleVerifyAuthCode = () => {
     if (inputCode === authCode) {
+      alert("인증되었습니다");
       navigate("/member/FindAccount/resetPassword", { state: { email } });
     } else {
       setError("인증번호가 올바르지 않습니다.");

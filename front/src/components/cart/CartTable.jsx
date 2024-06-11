@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CartPopup from "./CartPopup.jsx";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 export default function CartTable({ cartItems, setCartItems }) {
   const [allChecked, setAllChecked] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
@@ -274,23 +275,25 @@ export default function CartTable({ cartItems, setCartItems }) {
       {showCouponPopup && (
         <div className="popup-overlay">
           <div className="popup-content">
-            <h3>쿠폰 적용하기</h3>
+            <div className="popup-title">
+              <h4>쿠폰 적용하기</h4>
+              <span className="popup-close-wrapper" onClick={closeCouponPopup}>
+                <FontAwesomeIcon icon={faXmark} className="popup-close-btn" />
+              </span>
+            </div>
             <div className="coupon-popup-content">
               <p>여기에 사용 가능한 쿠폰 리스트를 표시합니다.</p>
-              <button
-                onClick={closeCouponPopup}
-                className="coupon-popup-cancel"
-              >
-                취소
-              </button>
-              <button
-                onClick={() => {
-                  console.log("쿠폰 적용");
-                }}
-                className="coupon-popup-apply"
-              >
-                쿠폰 적용
-              </button>
+              <div className="popup-buttons">
+                <button
+                  onClick={closeCouponPopup}
+                  className="popup-button-white"
+                >
+                  취소
+                </button>
+                <button onClick={closeCouponPopup} className="popup-button-red">
+                  쿠폰 적용
+                </button>
+              </div>
             </div>
           </div>
         </div>
