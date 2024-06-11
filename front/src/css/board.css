@@ -1,6 +1,9 @@
+a, button{
+	cursor: pointer;
+}
 a {
   text-decoration: none !important;
-  color: var(--color-black) !important;
+  color: var(--color-black) ;
 	word-break: break-all;
 }
 p{
@@ -14,6 +17,9 @@ button{
 }
 .text-center{
 	text-align: center !important;
+}
+.red{
+	color: var(--color-red) !important;
 }
 /**********************
 BoardButton css
@@ -33,7 +39,7 @@ BoardButton css
 }
 .BoardButton button.red{
 	background-color: var(--color-red);
-	color: var(--color-white);
+	color: var(--color-white) !important;
 	border: 1px solid var(--color-red);
 }
 .BoardButton button:hover{
@@ -94,19 +100,21 @@ board 게시판공통 css
   overflow: hidden;
   white-space: nowrap;
 }
-
 .Board-table tbody td a:hover span{
 	text-decoration: underline;
 	color: var(--color-red);
 }
-
+.Board-table td.title,
 .Board-table tbody td.Board-list-subject {
   text-align: left;
+	font-weight: 600;
 }
 .Board-table tbody td.Board-list-subject img{
 	margin: 0 1px;
 }
-
+.Board-table-content{
+	height: 250px;
+}
 /* Board - 상세 */
 .Board-detail {
   width: 100%;
@@ -216,11 +224,15 @@ EventList css
 /**********************
 Faq css
 ***********************/
+.Board-table.faq .no{
+	color: var(--color-red);
+	font-weight: 600;
+}
 .Board-table.faq .title{
 	cursor: pointer;
 	text-align: left;
-	color: 111;
-	font-weight: bold;
+	color: #111;
+	font-weight: 600;
 }
 .Board-table.faq .title:hover{
 	text-decoration: underline;
@@ -238,7 +250,7 @@ Faq css
 	text-align: left;
 }
 .Board-table.faq .content > div{
-	padding-left: 389px;
+	padding-left: 326px;
 }
 
 /* main-notice */
@@ -348,11 +360,62 @@ Faq css
 	transition: 0.3s;
 	-webkit-transition: 0.3s;
 }
-
-
-
-
-
+/* bootstrap */
+.Board .rc-pagination{
+	margin-top: 40px;
+}
+.Board .rc-pagination-item:hover,
+.Board .rc-pagination-item-active,
+.Board .rc-pagination-item-active:focus{
+	border-color: var(--color-red);
+	background-color: var(--color-red);
+	color: var(--color-white) !important;
+}
+.Board .rc-pagination-item-active:hover a,
+.Board .rc-pagination-item-active:focus a{
+	color: var(--color-white) !important;
+}
+.Board .rc-pagination-prev:hover .rc-pagination-item-link,
+.Board .rc-pagination-next:hover .rc-pagination-item-link,
+.Board .rc-pagination-item-active a{
+	border-color: var(--color-red);
+}
+.Board .rc-pagination-prev:hover button,
+.Board .rc-pagination-next:hover button{
+	color: var(--color-red);
+}
+.Board .rc-pagination-item,
+.Board .rc-pagination-prev,
+.Board .rc-pagination-next{
+	min-width: 45px;
+	height: 45px;
+	line-height: 45px;
+}
+/* search */
+.search{
+	display: block;
+	margin: 50px auto 20px;
+	text-align: center;
+}
+.search input{
+	width: 330px;
+	height: 45px;
+	background-color: #fff;
+	color: #666;
+	padding: 10px 20px;
+	border: 1px solid #666;
+}
+.search input::placeholder{
+	color: #666;
+}
+.search-btn{
+	line-height: 45px;
+	padding: 1px 25px;
+	background-color: var(--color-red);
+	color: var(--color-white);
+	text-align: center;
+	margin-left: 5px;
+}
 
 
 

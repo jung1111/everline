@@ -8,35 +8,31 @@ import SubMenu from '../components/SubMenu';
 import Table from '../components/Table';
 import axios from 'axios';
 
-//paging navigation
-import Pagination from 'rc-pagination';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'rc-pagination/assets/index.css';
-
-
 export default function Notice(){
-	const [noticeList, setNoticeList] = useState([]); 
+		const [noticeList, setNoticeList] = useState([]); //json데이터
+		const [listPage, setListPage] = useState([]); // 목록에 보여줄 게시글
+		const [currentPage, setCurrentPage] = useState(1); //현재페이지
+		const pageSize = 8; // 페이지당 게시글 갯수
 
-	// paging
-	const [currentPage, setCurrentPage] = useState(1);
-	const [totalCount, setTotalCount] = useState(0);
-	const [pageSize, setPageSize] = useState(8);
+		const totalCount = noticeList.length;
 
-		useEffect(()=>{
-			//startIndex, endIndex
-			let startIndex = 0;
-			let endIndex = 0;
+		const handleChange = (currentPage) => {
+				setCurrentPage(currentPage);
+		};
 
-			startIndex = (currentPage -1) * pageSize + 1;
-			endIndex = currentPage * pageSize;
-			
-			axios.get('http://localhost:3000/data/notice.json')
-			.then(result => {
-				setNoticeList(result.data.slice(startIndex, endIndex))
-				setTotalCount(result.data.length)
-			})
-			.catch(error => console.log(error))
-		},[currentPage])
+		useEffect(() => {
+				axios.get('http://localhost:3000/data/notice.json')
+						.then(result => {
+								setNoticeList([...result.data]);
+						})
+						.catch(error => console.log(error));
+		}, []);
+
+		useEffect(() => {
+				const startIndex = (currentPage - 1) * pageSize;
+				const endIndex = currentPage * pageSize;
+				setListPage(noticeList.slice(startIndex, endIndex));
+		}, [noticeList, currentPage]);
 
 
 		return (
@@ -54,10 +50,7 @@ export default function Notice(){
 					<span className='count-no-text'><span className='count-no-red'>{totalCount}</span> 개의 게시물</span>
 				</span>
 			</div>
-			<Table name="notice" noticeList={noticeList} />	
-			<Pagination className='d-flex justify-content-center' style={{marginTop:'15px'}} 
-									current={currentPage} total={totalCount} pageSize={pageSize} onChange={(page)=>setCurrentPage(page)}/>		
-
+			<Table name="notice" noticeList={noticeList} currentPage={currentPage} totalCount={totalCount} pageSize={pageSize} handleChange={handleChange} listPage={listPage} />	
 		</div>
 	);
 }

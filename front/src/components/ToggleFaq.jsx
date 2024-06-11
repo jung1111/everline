@@ -22,7 +22,7 @@ export default function FaqToggle({faqData}){
         <tr key={index}>
           {obj ? (
 						<>
-							<td>{obj.no}</td>
+							<td className='no'>{obj.no}</td>
 							<td>{obj.cartegory}</td>
             	<td className='title' onClick={() => handleToggle(obj.no)}>{obj.title}</td>
 							<td><FontAwesomeIcon className='icon' icon={isToggle[obj.no] ? faMinus : faPlus}  /></td>  																												

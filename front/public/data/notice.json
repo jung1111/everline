@@ -3,9 +3,7 @@
   {
 		"no" : "1",
 		"title": "NCHIVE x EVERLINE POP-UP STORE",
-    "img1": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/8df0e1f011006b181ee6cc2b3efbb1ff_194845.jpg",
-		"img2": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/71259ffd8d0dd80dee7ecc668b935900_194846.jpg",
-		"img3": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/e8046e775dccedaf927ed401364175b2_194846.jpg",
+    "img": "../images/notice/1.jpg",
 		"author" : "everline",
 		"date" : "2024-05-20",
 		"id":"1234",
@@ -17,9 +15,7 @@
 	{
 		"no": "2",
 		"title": "HANSEUNGWOO x EVERLINE POP-UP STORE",
-    "img1": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_Photo_2024-06-09-15-08-21_150946.jpeg",
-		"img2": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_Photo_2024-06-09-15-09-06002_151055.jpeg",
-		"img3": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_Photo_2024-06-09-15-09-06003_151056.jpeg",
+    "img": "../images/notice/2.jpeg",
 		"author" : "everline",
 		"date" : "2024-05-20",
 		"id":"1235"
@@ -27,9 +23,7 @@
 	{
 		"no": "3",
 		"title": "ISAAC HONG X EVERLINE POP-UP STORE",
-    "img1": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/1_181930.jpg",
-		"img2": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/2_181931.jpg",
-		"img3": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/2_181931.jpg",
+    "img": "../images/notice/3.jpg",
 		"author" : "everline",
 		"date" : "2024-05-20",
 		"id":"1236"
@@ -37,9 +31,7 @@
 	{
 		"no": "4",
 		"title": "Loossemble X EVERLINE POP-UP STORE",
-    "img1": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240425_104557770-min_190432.jpg",
-		"img2": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240425_104557770_01_190433.jpg",
-		"img3": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240425_104557770_02_190434.jpg",
+    "img": "../images/notice/4.jpg",
 		"author" : "everline",
 		"date" : "2024-05-20",
 		"id":"1237"
@@ -47,9 +39,7 @@
 	{
 		"no": "5",
 		"title": "CatchTheYoung X EVERLINE POP-UP STORE",
-    "img1": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240408_131204043_135306.jpg",
-		"img2": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240408_131204043_01_135318.jpg",
-		"img3": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240408_131204043_02_135319.jpg",
+    "img": "../images/notice/5.jpg",
 		"author" : "everline",
 		"date" : "2024-05-20",
 		"id":"1238"
@@ -57,9 +47,7 @@
 	{
 		"no": "6",
 		"title": "DRIPPIN X EVERLINE POP-UP STORE",
-    "img1": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240402_131534704_154124.jpg",
-		"img2": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240402_131534704_01_154124.jpg",
-		"img3": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240402_131534704_02_154125.jpg",
+    "img": "../images/notice/6.jpg",
 		"author" : "everline",
 		"date" : "2024-05-20",
 		"id":"1239"
@@ -67,9 +55,7 @@
 	{
 		"no": "7",
 		"title": "앰퍼샌드원 X EVERLINE POP-UP STORE",
-    "img1": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/874af22fb2241effae8be7b2ae38affb_102503.jpg",
-		"img2": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/62a6faec5da6538ae3987197455493c1_102504.jpg",
-		"img3": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/b53b8e7059038c603adec09b97ce45b4_102505.jpg",
+    "img": "../images/notice/7.jpg",
 		"author" : "everline",
 		"date" : "2024-05-20",
 		"id":"1240"
@@ -77,9 +63,7 @@
 	{
 		"no": "8",
 		"title": "TAN X EVERLINE POP-UP STORE",
-    "img1": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240328_113111332_133453.jpg",
-		"img2": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240328_113111332_01_133454.jpg",
-		"img3": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240328_113111332_02_133454.jpg",
+    "img": "../images/notice/8.jpg",
 		"author" : "everline",
 		"date" : "2024-05-20",
 		"id":"1241"
@@ -87,9 +71,7 @@
 	{
 		"no": "9",
 		"title": "NCT DREAM X EVERLINE POP-UP STORE",
-    "img1": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240322_172628544_173022.jpg",
-		"img2": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240322_172628544_173022.jpg",
-		"img3": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240322_172628544_173022.jpg",
+    "img": "../images/notice/1.jpg",
 		"author" : "everline",
 		"date" : "2024-05-20",
 		"id":"1242"
@@ -97,9 +79,7 @@
 	{
 		"no": "10",
 		"title": "THEBOYZ X EVERLINE POP-UP STORE",
-    "img1": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240320_110544921_145842.jpg",
-		"img2": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240320_110544921_01_145843.jpg",
-		"img3": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240320_110544921_02_145844.jpg",
+    "img": "../images/notice/2.jpg",
 		"author" : "everline",
 		"date" : "2024-05-20",
 		"id":"1243"
@@ -107,9 +87,7 @@
 	{
 		"no": "11",
 		"title": "NIEL X EVERLINE [WHITE DAY] POP-UP STORE",
-    "img1": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/5195a2b5ddd16ca6585d0d54e70abf3b_170615.jpg",
-		"img2": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/9bf2b19646c95f4d330b0f23214a10d6_170616.jpg",
-		"img3": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/60f9c12dd15172e659e67a0188f37020_170616.jpg",
+    "img": "../images/notice/3.jpg",
 		"author" : "everline",
 		"date" : "2024-05-20",
 		"id":"1244"
@@ -117,9 +95,7 @@
 	{
 		"no": "12",
 		"title": "ACE X EVERLINE POP-UP STORE",
-    "img1": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240312_112510845_115659.jpg",
-		"img2": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240312_112510845_115659.jpg",
-		"img3": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240312_112510845_115659.jpg",
+    "img": "../images/notice/4.jpg",
 		"author" : "everline",
 		"date" : "2024-05-20",
 		"id":"1245"
@@ -127,9 +103,7 @@
 	{
 		"no": "13",
 		"title": "ICHILLIN' X EVERLINE POP-UP STORE",
-    "img1": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240311_092027382-min_115837.jpg",
-		"img2": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240311_092027382_01_115837.jpg",
-		"img3": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240311_092027382_02_115838.jpg",
+    "img": "../images/notice/5.jpg",
 		"author" : "everline",
 		"date" : "2024-05-20",
 		"id":"1246"
@@ -137,9 +111,7 @@
 	{
 		"no": "14",
 		"title": "NIEL X EVERLINE [WHITE DAY] POP-UP STORE",
-    "img1": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/5195a2b5ddd16ca6585d0d54e70abf3b_170615.jpg",
-		"img2": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/9bf2b19646c95f4d330b0f23214a10d6_170616.jpg",
-		"img3": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/60f9c12dd15172e659e67a0188f37020_170616.jpg",
+    "img": "../images/notice/6.jpg",
 		"author" : "everline",
 		"date" : "2024-05-20",
 		"id":"1244"
@@ -147,9 +119,7 @@
 	{
 		"no": "15",
 		"title": "ACE X EVERLINE POP-UP STORE",
-    "img1": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240312_112510845_115659.jpg",
-		"img2": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240312_112510845_115659.jpg",
-		"img3": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240312_112510845_115659.jpg",
+    "img": "../images/notice/7.jpg",
 		"author" : "everline",
 		"date" : "2024-05-20",
 		"id":"1245"
@@ -157,9 +127,7 @@
 	{
 		"no": "16",
 		"title": "ICHILLIN' X EVERLINE POP-UP STORE",
-    "img1": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240311_092027382-min_115837.jpg",
-		"img2": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240311_092027382_01_115837.jpg",
-		"img3": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240311_092027382_02_115838.jpg",
+    "img": "../images/notice/1.jpg",
 		"author" : "everline",
 		"date" : "2024-05-20",
 		"id":"1246"
@@ -167,9 +135,7 @@
 	{
 		"no": "17",
 		"title": "ICHILLIN' X EVERLINE POP-UP STORE",
-    "img1": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240311_092027382-min_115837.jpg",
-		"img2": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240311_092027382_01_115837.jpg",
-		"img3": "https://elineptr1902.cdn-nhncommerce.com/data/editor/board/notice/KakaoTalk_20240311_092027382_02_115838.jpg",
+    "img": "../images/notice/2.jpg",
 		"author" : "everline",
 		"date" : "2024-05-20",
 		"id":"1246"

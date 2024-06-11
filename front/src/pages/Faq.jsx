@@ -20,9 +20,9 @@ export default function Faq(){
 		console.log('faq->', faqData);
 
 		const tableWidth ={
-			width10 : {width: '10%'},
+			width5 : {width: '5%'},
 			width20 : {width: '20%'},
-		  width60 : {width: '60%'}
+		  width70 : {width: '70%'}
 		}
 
 		return (
@@ -43,10 +43,10 @@ export default function Faq(){
 
 				<table className='Board-table faq'>
 					<colgroup>
-						<col style={tableWidth.width10} />
+						<col style={tableWidth.width5} />
 						<col style={tableWidth.width20} />
-						<col style={tableWidth.width60} />
-						<col style={tableWidth.width10} />
+						<col style={tableWidth.width70} />
+						<col style={tableWidth.width5} />
 					</colgroup>
 					<tbody>
 						<ToggleFaq faqData={faqData}/>			

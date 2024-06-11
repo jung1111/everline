@@ -49,9 +49,7 @@ export default function NoticeDetail(){
 					</li>
 				</ul>
 				<div className='Board-detail-cont'>
-						<img src={detailData.img1} alt={detailData.title} />
-						<img src={detailData.img2} alt={detailData.title} />
-						<img src={detailData.img3} alt={detailData.title} />
+						<img src={detailData.img} alt={detailData.title} />
 				</div>
 				<Link to="/notice">
 					<div className='BoardButton'>

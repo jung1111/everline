@@ -68,7 +68,11 @@ export default function Inquiry(){
 			console.log(error)
 		}
 	}
-
+	const tableWidth ={
+		width10 : {width: '10%'},
+		width20 : {width: '20%'},
+		width60 : {width: '60%'}
+	}
 
 
 		return (
@@ -88,11 +92,17 @@ export default function Inquiry(){
 			</div>
 			<div className='Board'>
 				<table className='Board-table'>
+					<colgroup>
+						<col style={tableWidth.width10} />
+						<col style={tableWidth.width60} />
+						<col style={tableWidth.width10} />
+						<col style={tableWidth.width20} />
+					</colgroup>
 					<thead>
 						<tr>
 							<th>번호</th>
 							<th>제목</th>
-							<th>작성자</th>
+							<th>조회수</th>
 							<th>날짜</th>
 						</tr>
 					</thead>
@@ -101,7 +111,7 @@ export default function Inquiry(){
 								inqList.map((item)=>(
 									<tr>
 											<td>{item.rno}</td>
-											<td>
+											<td className='title'>
 												<Link>
 													<span onClick={() => handleUpdateHits(item.bid, item.rno)}>{item.btitle}</span>		
 												</Link>															
