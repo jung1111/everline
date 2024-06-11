@@ -32,7 +32,7 @@ const CartPopup = ({
         <div className="popup-product-info-box">
           <div className="popup-product-info">
             <img
-              src={selectedProduct.image}
+              src={`http://localhost:8000/${selectedProduct.image}`}
               alt={selectedProduct.name}
               className="popup-product-image"
             />

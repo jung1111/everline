@@ -9,10 +9,10 @@ const ProductList = ({ rows }) => {
           {row.map((product) => (
             <li key={product.id}>
               <div className="ProductPage-img-box">
-                <Link to={`/detail/${product.id}`}>
+                <Link to={`/product/${product.id}`}>
                   <img
                     className="ProductPage-img"
-                    src={product.image}
+                    src={`http://localhost:8000/${product.image}`}
                     alt={product.title}
                   />
                 </Link>

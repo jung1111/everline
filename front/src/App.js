@@ -24,6 +24,7 @@ import Faq from "./pages/Faq.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import { useState } from "react";
 import OrderPage from "./pages/OrderPage.jsx";
+import Upload from "./pages/Upload.jsx";
 
 export default function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -54,7 +55,7 @@ export default function App() {
           element: <ProductPage /> /* loader: teamLoader, */,
         },
         {
-          path: "/detail/:id",
+          path: "/product/:id",
           element: (
             <ProductDetail addCartCount={addCartCount} />
           ) /* loader: teamLoader, */,
@@ -88,6 +89,7 @@ export default function App() {
         { path: "/inquiry/update/:bid/:rno", element: <InquiryUpdate /> },
         { path: "/inquiry/delete/:bid/:rno", element: <InquiryDelete /> },
         { path: "/faq", element: <Faq /> },
+        { path: "/upload", element: <Upload /> },
       ],
     },
   ]);

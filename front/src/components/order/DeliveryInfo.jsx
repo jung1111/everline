@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import DeliveryStatePopup from "./DeliveryStatepopup";
 
 export default function DeliveryInfo() {
   const [selectedOption, setSelectedOption] = useState("basic");
-
+  const [isOpen, setIsOpen] = useState(false);
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
+  };
+
+  const popupOpen = () => {
+    setIsOpen(true);
   };
 
   return (
@@ -64,7 +69,10 @@ export default function DeliveryInfo() {
                   />
                   주문자정보와 동일
                 </label>
-                <button className="control-button btn-point-shop">
+                <button
+                  className="control-button btn-point-shop"
+                  onClick={popupOpen}
+                >
                   배송지 관리
                 </button>
               </div>
@@ -120,6 +128,7 @@ export default function DeliveryInfo() {
           </tr>
         </tbody>
       </table>
+      {isOpen ? <DeliveryStatePopup setIsOpen={setIsOpen} /> : null}
     </div>
   );
 }

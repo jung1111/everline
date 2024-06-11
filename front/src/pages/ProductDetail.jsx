@@ -1,28 +1,28 @@
-import '../css/product.css'
+import "../css/product.css";
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Location from '../components/Location';
+import Location from "../components/Location";
 import axios from "axios";
-import ProductDetailInfo from '../components/ProductDetailInfo.jsx';
-import ProductDetailNotice from '../components/ProductDetailNotice.jsx';
-import ProductDetailCustomer from '../components/ProductDetailCustomer.jsx';
-import ProductDetailList from '../components/ProductDetailList.jsx';
-import ScrollUp from '../components/ScrollUp.jsx';
-import ReservationIcon from '../components/ReservationIcon.jsx';
-import SnsShare from '../components/SnsShare.jsx';
+import ProductDetailInfo from "../components/ProductDetailInfo.jsx";
+import ProductDetailNotice from "../components/ProductDetailNotice.jsx";
+import ProductDetailCustomer from "../components/ProductDetailCustomer.jsx";
+import ProductDetailList from "../components/ProductDetailList.jsx";
+import ScrollUp from "../components/ScrollUp.jsx";
+import ReservationIcon from "../components/ReservationIcon.jsx";
+import SnsShare from "../components/SnsShare.jsx";
+import { getReservationPeriod } from "../components/dateCalc.jsx";
 
-export default function ProductDetail({ addCartCount}) {
+export default function ProductDetail({ addCartCount }) {
   const { id } = useParams();
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/data/productdetail.json")
+      .get(`http://127.0.0.1:8000/product/${id}`)
       .then((res) => {
+        console.log("확인", res.data);
         setProduct(res.data);
-        const foundProduct = res.data.find((item) => item.id === id);
-        setProduct(foundProduct);
       })
       .catch((error) => console.log(error));
   }, [id]);
@@ -61,98 +61,152 @@ export default function ProductDetail({ addCartCount}) {
     };
     addCartCount(selectedProduct);
   };
+
+  // 예약 판매 기간 계산
+  const reservationInfo = getReservationPeriod(product.period);
+
   return (
     <div className="content">
-      <SnsShare/>
-      <Location depth1="PRODUCT" depth2="DTAIL"/>
-      <div className='ProductDetail-sub'>
-        <img className="ProductDetail-img" src={product.image} alt="" />
+      <SnsShare />
+      <Location depth1="PRODUCT" depth2="DETAIL" />
+      <div className="ProductDetail-sub">
+        <img
+          className="ProductDetail-img"
+          src={`http://localhost:8000/${product.image}`}
+          alt=""
+        />
       </div>
-        <div className="ProductDetail">
-        <ReservationIcon date="06.03~06.23"/>
-              <div className="ProductDetail-infobox">
-                <h4>{product.title}</h4>
-                <h6>{product.period}</h6>
-                <h5>{product.price?.toLocaleString()}원</h5>
-              </div>
-              <div>
-                <div className="ProductDetail-info" onClick={Click}>
-                  <span>상품금액</span>
-                  <span>{moreview ? (<div className="toggle_btn1"></div>) : (<div className="toggle_btn2"></div>)}</span>
-                </div>
-                {moreview && (
-                    <div>
-                        <div className='span-list'>
-                          <span>판매가</span>
-                          <span><strong>{product.price.toLocaleString()}</strong>원</span>
-                        </div>
-                        <div className='span-list'>
-                          <span>구매제한</span>
-                          <span>옵션당 최소수량 1개</span>
-                        </div>
-                        <div className='span-list'>
-                          <span>구매혜택</span>
-                          <span>마일리지 <strong>{((product.price)*0.05).toLocaleString()}</strong>원</span>
-                        </div>
-                        <div className='span-list'>
-                          <span>배송비</span>
-                          <span><strong>{((product.price)*0+3000).toLocaleString()}</strong>원</span>
-                        </div>
-                    </div>
-                )}
-              </div>
-              <div className="line"></div>
-              <div>
-                <div className="ProductDetail-info" onClick={Click1}>
-                  <span>상품정보</span>
-                  <span>{moreview1 ? (<div className="toggle_btn1"></div>) : (<div className="toggle_btn2"></div>)}</span>
-                </div>
-                {moreview1 && (
-                    <div>
-                        <div className='span-list'>
-                          <span>상품코드</span>
-                          <span><strong>1234565</strong></span>
-                        </div>
-                        <div className='span-list'>
-                          <span>브랜드</span>
-                          <span><strong>브랜드</strong></span>
-                        </div>
-                    </div>
-                )}
-              </div>
-              <div className="line"></div>
-                <div className="ProductDetail-info">
-                  <div className='totalprice-box'>
-                    <span>총 합계금액</span>
-                    <span>{product.price?.toLocaleString()}원</span>
-                  </div>
-                </div>
-              <div className="line"></div>
-              <div className="product-btn-box">
-                <Link to="/">
-                  <button className="product-btn1" type="button">찜리스트</button>
-                </Link>
-                <Link to="/">
-                  <button className="product-btn2" type="button" onClick={() => addCartItem(product.id)}>장바구니</button>
-                </Link>
-                <Link to="/">
-                  <button className="product-btn3" type="button">바로구매</button>
-                </Link>
-              </div>
+      <div className="ProductDetail">
+        {reservationInfo && (
+          <ReservationIcon
+            date={reservationInfo.period}
+            remainingPercentage={reservationInfo.remainingPercentage}
+          />
+        )}
+        <div className="ProductDetail-infobox">
+          <h4>{product.title}</h4>
+          <h6>발매일: {product.period}</h6>
+          <h5>{product.price?.toLocaleString()}원</h5>
         </div>
+        <div>
+          <div className="ProductDetail-info" onClick={Click}>
+            <span>상품금액</span>
+            <span>
+              {moreview ? (
+                <div className="toggle_btn1"></div>
+              ) : (
+                <div className="toggle_btn2"></div>
+              )}
+            </span>
+          </div>
+          {moreview && (
+            <div>
+              <div className="span-list">
+                <span>판매가</span>
+                <span>
+                  <strong>{product.price.toLocaleString()}</strong>원
+                </span>
+              </div>
+              <div className="span-list">
+                <span>구매제한</span>
+                <span>옵션당 최소수량 1개</span>
+              </div>
+              <div className="span-list">
+                <span>구매혜택</span>
+                <span>
+                  마일리지{" "}
+                  <strong>
+                    {(
+                      Math.round((product.price * 0.01) / 10) * 10
+                    ).toLocaleString()}
+                  </strong>
+                  원
+                </span>
+              </div>
+              <div className="span-list">
+                <span>배송비</span>
+                <span>
+                  <strong>
+                    {(product.price < 70000 ? 3500 : 0).toLocaleString()}
+                  </strong>
+                  원
+                </span>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="line"></div>
+        <div>
+          <div className="ProductDetail-info" onClick={Click1}>
+            <span>상품정보</span>
+            <span>
+              {moreview1 ? (
+                <div className="toggle_btn1"></div>
+              ) : (
+                <div className="toggle_btn2"></div>
+              )}
+            </span>
+          </div>
+          {moreview1 && (
+            <div>
+              <div className="span-list">
+                <span>상품코드</span>
+                <span>
+                  <strong>1234565</strong>
+                </span>
+              </div>
+              <div className="span-list">
+                <span>브랜드</span>
+                <span>
+                  <strong>브랜드</strong>
+                </span>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="line"></div>
+        <div className="ProductDetail-info">
+          <div className="totalprice-box">
+            <span>총 합계금액</span>
+            <span>{product.price?.toLocaleString()}원</span>
+          </div>
+        </div>
+        <div className="line"></div>
+        <div className="product-btn-box">
+          <Link to="/">
+            <button className="product-btn1" type="button">
+              찜리스트
+            </button>
+          </Link>
+          <Link to="/">
+            <button
+              className="product-btn2"
+              type="button"
+              onClick={() => addCartItem(product.id)}
+            >
+              장바구니
+            </button>
+          </Link>
+          <Link to="/">
+            <button className="product-btn3" type="button">
+              바로구매
+            </button>
+          </Link>
+        </div>
+      </div>
 
-        <div className="ProductDetail-page">
+      <div className="ProductDetail-page">
         <div ref={section1Ref}>
           <ProductDetailList
             scrollToSection1={() => scrollToSection(section1Ref)}
             scrollToSection2={() => scrollToSection(section2Ref)}
             scrollToSection3={() => scrollToSection(section3Ref)}
           />
-          <div className="productDetatil-info-box" >
+          <div className="productDetatil-info-box">
             <ProductDetailInfo />
             <img
               className="productDetatil-info-img"
-              src={product.detailimage}
+              src={`http://localhost:8000/${product.detailimage}`}
               alt=""
             />
           </div>
@@ -163,7 +217,7 @@ export default function ProductDetail({ addCartCount}) {
             scrollToSection2={() => scrollToSection(section2Ref)}
             scrollToSection3={() => scrollToSection(section3Ref)}
           />
-          <div className="productDetatil-notice-box" >
+          <div className="productDetatil-notice-box">
             <ProductDetailNotice />
           </div>
         </div>
@@ -173,12 +227,12 @@ export default function ProductDetail({ addCartCount}) {
             scrollToSection2={() => scrollToSection(section2Ref)}
             scrollToSection3={() => scrollToSection(section3Ref)}
           />
-          <div className="productDetatil-customer-box" >
+          <div className="productDetatil-customer-box">
             <ProductDetailCustomer />
           </div>
         </div>
       </div>
-      <ScrollUp/>
+      <ScrollUp />
     </div>
   );
 }
