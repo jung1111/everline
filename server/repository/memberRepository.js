@@ -1,5 +1,6 @@
 import { db } from "../db/database_mysql.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 /* ps 변경 */
 
@@ -114,6 +115,8 @@ export const findUserId = async (userName, mobileNumber1, mobileNumber2) => {
 
 export const getLogin = async (userId, userPass) => {
   let login_result = 0;
+  let login_token = "";
+
   const sql = `
     SELECT COUNT(user_id) AS cnt, 
            ANY_VALUE(user_pass) AS user_pass 
@@ -130,13 +133,14 @@ export const getLogin = async (userId, userPass) => {
       const isPasswordCorrect = bcrypt.compareSync(userPass, result.user_pass);
       if (isPasswordCorrect) {
         login_result = 1;
+        login_token = jwt.sign({ userId: userId }, "cmVhY3QxMjM0Cg==");
       }
     }
   } catch (error) {
     console.error("Error login:", error);
   }
 
-  return { cnt: login_result };
+  return { cnt: login_result, token: login_token };
 };
 
 /* id check */

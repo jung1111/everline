@@ -9,7 +9,6 @@ import Location from "../components/Location.jsx";
 import { useNavigate } from "react-router-dom";
 import "../css/member.css";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
-import "../css/order.css";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -57,6 +56,7 @@ export default function Signup() {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const [selectDomain, setSelectDomain] = useState(null);
+  const [activeMode, setActiveMode] = useState("individual");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -100,6 +100,7 @@ export default function Signup() {
 
   const handleSwitchMode = (newMode) => {
     setMode(newMode);
+    setActiveMode(mode);
   };
 
   const handleToggle = () => {
@@ -245,14 +246,24 @@ export default function Signup() {
         <form className="member-form">
           <div className="member-back">
             <p className="member-subtitle">회원종류</p>
-            <ul className="member-signup-type">
-              <li onClick={() => handleSwitchMode("individual")}>
-                <p>개인회원</p>
-              </li>
-              <li onClick={() => handleSwitchMode("business")}>
-                <p>사업자회원</p>
-              </li>
-            </ul>
+            <div className="member-signup-container">
+              <ul className="member-signup-type">
+                <li
+                  onClick={() => handleSwitchMode("individual")}
+                  className={activeMode === "individual" ? "active" : ""}
+                >
+                  <p>개인회원</p>
+                </li>
+                <li
+                  onClick={() => handleSwitchMode("business")}
+                  className={activeMode === "business" ? "active" : ""}
+                >
+                  <p>사업자회원</p>
+                </li>
+              </ul>
+              <div className={`slider ${activeMode}`} />
+            </div>
+
             <p className="member-subtitle">기본정보</p>
             <ul className="signup-input">
               <li>
@@ -272,18 +283,20 @@ export default function Signup() {
               <li>
                 <tbody>
                   <tr>
-                    <td>
+                    <td className="member-email">
                       <div className="order-email">
                         <input
-                          className="order-email-main"
-                          type="text"
+                          className="member-order-email-main"
+                          type="email"
                           name="emailId"
                           value={formData.emailId}
                           ref={refs.emailIdRef}
                           onChange={handleChange}
+                          style={{ fontSize: "15px", paddingLeft: "20px" }}
+                          placeholder="이메일"
                         />
                         <div
-                          className="order-email-select-box"
+                          className="member-order-email-select-box"
                           onClick={toggleDropdown}
                         >
                           <div
@@ -298,7 +311,7 @@ export default function Signup() {
                             />
                           </div>
                           <div
-                            className={`domain-select-dropdown ${
+                            className={`member-domain-select-dropdown ${
                               isOpen2 ? "open" : ""
                             }`}
                           >
@@ -322,19 +335,20 @@ export default function Signup() {
                 </tbody>
               </li>
               <li>
-                <input
-                  type="checkbox"
-                  ref={refs.snsSentRef}
-                  name="snsSent"
-                  id="snsSent"
-                  onChange={(e) =>
-                    setFormData({ ...formData, snsSent: e.target.checked })
-                  }
-                  checked={formData.snsSent}
-                />
-                <span className="member-text">
-                  ! 정보/이벤트 SMS 수신에 동의합니다.
-                </span>
+                <label className="custom-checkbox-label">
+                  <input
+                    className="custom-checkbox"
+                    type="checkbox"
+                    ref={refs.snsSentRef}
+                    name="snsSent"
+                    id="snsSent"
+                    onChange={(e) =>
+                      setFormData({ ...formData, snsSent: e.target.checked })
+                    }
+                    checked={formData.snsSent}
+                  />
+                  <span>! 정보/이벤트 email 수신에 동의합니다.</span>
+                </label>
               </li>
               <li>
                 <input
@@ -478,9 +492,7 @@ export default function Signup() {
                 </tr>
               </tbody>
               <li>
-                <span className="member-text">
-                  ! 생일 쿠폰 등 혜택을 위해 생일을 입력해 주세요.
-                </span>
+                <span>! 생일 쿠폰 등 혜택을 위해 생일을 입력해 주세요.</span>
               </li>
               {mode === "business" && (
                 <>
@@ -496,59 +508,82 @@ export default function Signup() {
             <p className="member-subtitle">약관동의</p>
             <ul className="member-agreement">
               <li className="member-agreement-item">
-                <input
-                  type="checkbox"
-                  name="agreeAll"
-                  checked={formData.agreeAll}
-                  onChange={handleAgreeAll}
-                />
-                <p>에버라인의 모든 약관을 확인하고 전체 동의합니다.</p>
+                <label className="custom-checkbox-label">
+                  <input
+                    className="custom-checkbox"
+                    type="checkbox"
+                    name="agreeAll"
+                    checked={formData.agreeAll}
+                    onChange={handleAgreeAll}
+                  />
+                  <p>
+                    {" "}
+                    <span className="required">에버라인</span>의 모든 약관을
+                    확인하고 <span className="highlight">전체동의</span>합니다.
+                  </p>
+                </label>
               </li>
               <li className="member-agreement-item">
-                <input
-                  type="checkbox"
-                  name="service"
-                  checked={formData.service}
-                  onChange={handleAgree}
-                />
-                <p>[필수] 이용약관</p>
-                <a
-                  href="https://www.everlineshop.com/service/agreement.php?code=001001"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  전체
-                </a>
+                <label className="custom-checkbox-label">
+                  <input
+                    className="custom-checkbox"
+                    type="checkbox"
+                    name="service"
+                    checked={formData.service}
+                    onChange={handleAgree}
+                  />
+                  <p>
+                    {" "}
+                    <span className="required">[필수]</span> 이용약관
+                  </p>
+                  <a
+                    href="https://www.everlineshop.com/service/agreement.php?code=001001"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    전체보기
+                  </a>
+                </label>
               </li>
               <li className="member-agreement-item">
-                <input
-                  type="checkbox"
-                  name="personal"
-                  checked={formData.personal}
-                  onChange={handleAgree}
-                />
-                <p>[필수] 개인정보 수집 및 이용</p>
-                <a
-                  href="https://www.everlineshop.com/service/private.php"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  전체
-                </a>
+                <label className="custom-checkbox-label">
+                  <input
+                    className="custom-checkbox"
+                    type="checkbox"
+                    name="personal"
+                    checked={formData.personal}
+                    onChange={handleAgree}
+                  />
+                  <p>
+                    <span className="required">[필수]</span> 개인정보 수집 및
+                    이용
+                  </p>
+                  <a
+                    href="https://www.everlineshop.com/service/private.php"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    전체보기
+                  </a>
+                </label>
               </li>
             </ul>
             <ul className="member-buttons">
               <li>
                 <button
-                  className="white-btn"
                   type="button"
+                  className="red-btn"
                   onClick={handleSubmit}
                 >
                   회원가입
                 </button>
               </li>
               <li>
-                <button type="button" onClick={handleCancel}>
+                <button
+                  type="button"
+                  className="white-btn"
+                  onClick={handleCancel}
+                >
                   취소
                 </button>
               </li>
