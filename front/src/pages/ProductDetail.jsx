@@ -16,6 +16,7 @@ import { getReservationPeriod } from "../components/dateCalc.jsx";
 export default function ProductDetail({ addCartCount }) {
   const { id } = useParams();
   const [product, setProduct] = useState({});
+  const userId = "test";
 
   useEffect(() => {
     axios
@@ -49,19 +50,23 @@ export default function ProductDetail({ addCartCount }) {
     }
   };
 
-  /* 장바구니 연동 함수 */
+  /* 장바구니 추가 */
   const addCartItem = (id) => {
-    const selectedProduct = {
-      id: id,
-      image: product.image,
-      name: product.title,
-      price: product.price,
-      qty: 1,
-      checked: true,
-    };
-    addCartCount(selectedProduct);
-  };
+    const url = `http://localhost:8000/carts/add`;
+    axios({
+      method: "post",
+      url: url,
+      data: { userId, pid: id },
+    })
+      .then((result) => {
+        if (result.data.cnt === 1) {
+          addCartCount(result.data.cnt);
+        }
+      })
+      .catch((error) => console.log(error));
 
+    // addCartCount({ id: id, size: size, qty: 1 });
+  };
   // 예약 판매 기간 계산
   const reservationInfo = getReservationPeriod(product.period);
 

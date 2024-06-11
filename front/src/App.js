@@ -22,22 +22,42 @@ import InquiryUpdate from "./pages/InquiryUpdate.jsx";
 import InquiryDelete from "./pages/InquiryDelete.jsx";
 import Faq from "./pages/Faq.jsx";
 import CartPage from "./pages/CartPage.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import OrderPage from "./pages/OrderPage.jsx";
 import Upload from "./pages/Upload.jsx";
+import axios from "axios";
 
 export default function App() {
   const [cartItems, setCartItems] = useState([]);
 
+  // 장바구니 데이터를 서버에서 가져옴
+  useEffect(() => {
+    axios
+      .post("http://localhost:8000/carts", { userId: "test" }) // userId를 필요에 따라 변경
+      .then((response) => {
+        setCartItems(response.data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
   const addCartCount = (item) => {
     const updateItemindex = cartItems.findIndex((e) => e.id === item.id);
-    console.log("인덱스", updateItemindex);
     if (updateItemindex !== -1) {
       const updateItems = [...cartItems];
       updateItems[updateItemindex].qty++;
       setCartItems(updateItems);
+      axios
+        .post("http://localhost:8000/carts/update", {
+          id: updateItems[updateItemindex].id,
+          qty: updateItems[updateItemindex].qty,
+        })
+        .catch((error) => console.log(error));
     } else {
-      setCartItems([...cartItems, item]);
+      const newItem = { ...item, qty: 1, userId: "test" }; // userId를 필요에 따라 변경
+      setCartItems([...cartItems, newItem]);
+      axios
+        .post("http://localhost:8000/carts/add", newItem)
+        .catch((error) => console.log(error));
     }
 
     alert("장바구니에 추가됐습니다.");

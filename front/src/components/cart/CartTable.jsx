@@ -163,7 +163,7 @@ export default function CartTable({ cartItems, setCartItems }) {
                 <div className="product-info">
                   <Link to={`/detail/${item.id}`}>
                     <img
-                      src={`http://localhost:8000/${item.image}`}
+                      src={item.image}
                       alt="상품 이미지"
                       className="product-image"
                     />
