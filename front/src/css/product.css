@@ -759,7 +759,7 @@ SnsShare css
 /**********************
 ImageSlider css
 ***********************/
-.image-slider-wrap{
+.image-slider-wrap {
   padding-bottom: 100px;
 }
 
@@ -767,7 +767,7 @@ ImageSlider css
   position: relative;
   top: 50px;
   width: 1250px;
-  height: 300px;
+  height: 350px;
   overflow: hidden;
   margin: auto;
   display: flex;
@@ -791,14 +791,15 @@ ImageSlider css
 .slider-image-wrapper {
   position: absolute;
   display: inline-block;
-  right: 0;
+  left: 300px;
 }
 
 .slider-image-wrapper img {
   width: 300px;
   padding: 10px;
 }
-.slider-image-wrapper img:hover{
+
+.slider-image-wrapper img:hover {
   scale: 0.9;
   border: 1px solid var(--color-red);
   background-color: var(--color-white);
@@ -829,106 +830,152 @@ ImageSlider css
   position: absolute;
   content: "";
 }
-.slider-button.prev:hover{
+
+.slider-button.prev:hover {
   color: var(--color-red);
 }
-.slider-button.next:hover{
+
+.slider-button.next:hover {
   color: var(--color-red);
+}
+.progress-bar-container {
+  width: 100%;
+  background-color: #e0e0df;
+  margin: 330px 0;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #e0e0df;
+  width: 0;
+  transition: width 0.5s;
 }
 
 /**********************
 OnlineStore css
 ***********************/
-.bannerAD{
+.bannerAD {
   text-align: center;
   margin-top: 100px;
   margin-bottom: 100px;
 }
-.onlinestore{
+
+.bannerAD img {
+  width: 1250px;
+}
+
+.onlinestore {
   width: 1250px;
   margin: auto;
   display: flex;
-  padding: 10px;
+
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.onlinestore-title{
+
+.onlinestore-title {
   display: flex;
   margin-left: 325px;
 }
-.onlinestore-title h2{
+
+.onlinestore-title h2 {
   font-size: 45px;
   font-weight: 900;
 }
-.onlinestore-title h2:nth-child(2){
+
+.onlinestore-title h2:nth-child(2) {
   color: var(--color-red);
 }
-.onlinestore-img{
+
+.onlinestore-img {
   margin-top: 30px;
   width: 550px;
 }
-.onlinestore-location{
+
+.onlinestore-location {
   margin-top: 30px;
   display: flex;
   width: 550px;
   position: relative;
 }
-.onlinestore-location p:nth-child(1){
+
+.onlinestore-location p:nth-child(1) {
   margin: 0;
   font-size: 24px;
   font-weight: 700;
 }
-.onlinestore-location p:nth-child(2){
+
+.onlinestore-location p:nth-child(2) {
   color: var(--color-grey);
   font-size: 14px;
 }
-.onlinestore-location span:nth-child(2){
+
+.onlinestore-location span:nth-child(2) {
   margin-left: 25px;
   margin-top: 10px;
 }
 
-.onlinestore-location span>button{
+.onlinestore-location span>button {
   margin-left: 10px;
   width: 50px;
   height: 50px;
   border-radius: 100%;
 }
-.onlinestore-location-btn1{
-color: var(--color-black);
-background-color: #dbdbdb;
-position: absolute;
+
+.onlinestore-location-btn1 {
+  color: var(--color-black);
+  background-color: #dbdbdb;
+  position: absolute;
   right: 65px;
+
 }
-.onlinestore-location-btn2{
+
+.onlinestore-location-btn1:hover {
+  background-color: #3cdbc0;
+}
+
+.onlinestore-location-btn2 {
   background-color: var(--color-red);
-  color: var(--color-white);
+  margin-left: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
   position: absolute;
   right: 0;
 }
-.onlinestore-location-btn1:hover{
-  background-color: #3cdbc0;
+
+.onlinestore-location-btn2 * {
+  color: var(--color-white);
 }
-.onlinestore-location-btn2:hover{
+
+.onlinestore-location-btn2:hover {
   background-color: #3cdbc0;
+
 }
 
 /* **************
 everTV css
 ****************/
-.evertv-title{
+.evertv-title {
   display: flex;
   margin-left: 325px;
   margin-bottom: 50px;
 }
-.evertv-title h2{
+
+.evertv-title h2 {
   font-size: 45px;
   font-weight: 900;
 }
-.evertv-title h2:nth-child(2){
+
+.evertv-title h2:nth-child(2) {
   color: var(--color-red);
 }
-.evertv{
+
+.evertv {
   display: block;
   margin: auto;
-  
+
 }

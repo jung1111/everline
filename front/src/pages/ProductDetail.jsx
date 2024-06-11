@@ -141,9 +141,9 @@ export default function ProductDetail({ addCartCount}) {
               </div>
         </div>
 
-        <div className="ProductDetail-page">
+        <div className="ProductDetail-page" >
         <div ref={section1Ref}>
-          <ProductDetailList
+          <ProductDetailList 
             scrollToSection1={() => scrollToSection(section1Ref)}
             scrollToSection2={() => scrollToSection(section2Ref)}
             scrollToSection3={() => scrollToSection(section3Ref)}
