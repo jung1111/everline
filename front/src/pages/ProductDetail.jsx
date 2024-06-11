@@ -11,18 +11,18 @@ import ProductDetailList from "../components/ProductDetailList.jsx";
 import ScrollUp from "../components/ScrollUp.jsx";
 import ReservationIcon from "../components/ReservationIcon.jsx";
 import SnsShare from "../components/SnsShare.jsx";
+import { getReservationPeriod } from "../components/dateCalc.jsx";
 
 export default function ProductDetail({ addCartCount }) {
   const { id } = useParams();
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/data/productdetail.json")
+      .get(`http://127.0.0.1:8000/product/${id}`)
       .then((res) => {
+        console.log("확인", res.data);
         setProduct(res.data);
-        const foundProduct = res.data.find((item) => item.id === id);
-        setProduct(foundProduct);
       })
       .catch((error) => console.log(error));
   }, [id]);
@@ -61,18 +61,31 @@ export default function ProductDetail({ addCartCount }) {
     };
     addCartCount(selectedProduct);
   };
+
+  // 예약 판매 기간 계산
+  const reservationInfo = getReservationPeriod(product.period);
+
   return (
     <div className="content">
       <SnsShare />
-      <Location depth1="PRODUCT" depth2="DTAIL" />
+      <Location depth1="PRODUCT" depth2="DETAIL" />
       <div className="ProductDetail-sub">
-        <img className="ProductDetail-img" src={product.image} alt="" />
+        <img
+          className="ProductDetail-img"
+          src={`http://localhost:8000/${product.image}`}
+          alt=""
+        />
       </div>
       <div className="ProductDetail">
-        <ReservationIcon date="06.03~06.23" />
+        {reservationInfo && (
+          <ReservationIcon
+            date={reservationInfo.period}
+            remainingPercentage={reservationInfo.remainingPercentage}
+          />
+        )}
         <div className="ProductDetail-infobox">
           <h4>{product.title}</h4>
-          <h6>{product.period}</h6>
+          <h6>발매일: {product.period}</h6>
           <h5>{product.price?.toLocaleString()}원</h5>
         </div>
         <div>
@@ -102,13 +115,20 @@ export default function ProductDetail({ addCartCount }) {
                 <span>구매혜택</span>
                 <span>
                   마일리지{" "}
-                  <strong>{(product.price * 0.05).toLocaleString()}</strong>원
+                  <strong>
+                    {(
+                      Math.round((product.price * 0.01) / 10) * 10
+                    ).toLocaleString()}
+                  </strong>
+                  원
                 </span>
               </div>
               <div className="span-list">
                 <span>배송비</span>
                 <span>
-                  <strong>{(product.price * 0 + 3000).toLocaleString()}</strong>
+                  <strong>
+                    {(product.price < 70000 ? 3500 : 0).toLocaleString()}
+                  </strong>
                   원
                 </span>
               </div>
@@ -186,7 +206,7 @@ export default function ProductDetail({ addCartCount }) {
             <ProductDetailInfo />
             <img
               className="productDetatil-info-img"
-              src={product.detailimage}
+              src={`http://localhost:8000/${product.detailimage}`}
               alt=""
             />
           </div>

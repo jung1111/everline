@@ -18,7 +18,7 @@ ProductDetail css
   position: sticky;
   float: right;
   width: 410px;
-  top: 90px;
+  top: 100px;
 }
 
 .ProductDetail-page {
@@ -720,8 +720,8 @@ ReservationIcon css
 }
 
 .remain-period {
-  width: 68%;
   display: inline-block;
+  width: 100%;
   vertical-align: middle;
   position: absolute;
   left: 0;
