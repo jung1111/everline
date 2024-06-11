@@ -2,179 +2,113 @@
   {
 		
     "no" : "1",
-    "title" : "[event][5/25 대면종료후] Chunji (천지) - 2ND SINGLE ALBUM [A Precious Memory] VIDEO CALL EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
+		"titImg":"../images/event/1.jpg",
+    "title" : "에버글로우 (EVERGLOW) 5th Single [ZOMBIE] 사인회 이벤트",
+		"img":"../images/event/1.jpg",
+		"date" : "2024-06-10 ~ 2024-06-13",
 		"id":"1234",
-		"srcImg": "https://elineptr1902.cdn-nhncommerce.com/data/skin/front/everline/board/skin/default/img/icon/icon_board_attach_img.png",
-		"srcNew" : "https://elineptr1902.cdn-nhncommerce.com/data/skin/front/everline/board/skin/default/img/icon/icon_board_new.png",
-		"altImg":"이미지첨부 있음",
-		"altNew":"신규 등록글"
+		"price":1000
    },
    
    {
     "no" : "2",
-    "title" : "[event][5/25 2:00PM] Chunji (천지) - 2ND SINGLE ALBUM [A Precious Memory] FAN SIGN EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1235"
+		"titImg":"../images/event/2.jpg",
+    "title" : "WHIB (휘브) 2ND SINGLE ALBUM [ETERNAL YOUTH : KICK IT] 사인회 이벤트",
+		"img":"../images/event/2.jpg",
+		"date" : "2024-06-10 ~ 2024-06-13",
+		"id":"1235",
+		"price":15000
    },
    {
     "no" : "3",
-    "title" : "[event][6/2 대면종료후] 수진 (SOOJIN) - 2nd EP [RIZZ] VIDEO CALL EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1236"
+		"titImg":"../images/event/3.jpg",
+    "title" : "한승우 (HAN SEUNGWOO) 1st Single Album [SCENE] 럭키드로우 이벤트",
+		"img":"../images/event/3.jpg",
+		"date" : "2024-06-10 ~ 2024-06-17",
+		"id":"1236",
+		"price":12000
    },
    {
     "no" : "4",
-    "title" : "[event][6/2 1:00PM] 수진 (SOOJIN) - 2nd EP [RIZZ] FAN SIGN EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1237"
+		"titImg":"../images/event/4.jpg",
+    "title" : "[특전증정이벤트] RIIZE 미니1집 [RIIZING] 특전증정 이벤트",
+		"img":"../images/event/4.jpg",
+		"date" : "2024-05-27 ~ 2024-06-16",
+		"id":"1237",
+		"price":4500
    },
    {
     "no" : "5",
-    "title" : "[event][5/31 9:30PM] 이브 (Yves) - LOOP VIDEO CALL EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1238"
+		"titImg":"../images/event/5.jpg",
+    "title" : "키노 (KINO) - If this is love, I want a refund 사인회 이벤트",
+		"img":"../images/event/5.jpg",
+		"date" : "2024-06-10 ~ 2024-06-13",
+		"id":"1238",
+		"price":9900
    },
    {
     "no" : "6",
-    "title" : "[event][5/22 9:00PM] 박제업 (PARK JEUP) - 미니1집 [My Everything] FAN SIGN EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1239"
+		"titImg":"../images/event/6.jpg",
+    "title" : "박제업 (PARK JEUP) - 미니1집 [My Everything] FAN SIGN EVENT 당첨자 안내",
+		"img":"../images/event/6.jpg",
+		"date" : "2024-06-10 ~ 2024-06-13",
+		"id":"1239",
+		"price":41000
    },
    {
     "no" : "7",
-    "title" : "[event][5/24 7:00PM] DRIPPIN (드리핀) - 싱글4집 [Beautiful MAZE] FAN SIGN EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1240"
+		"titImg":"../images/event/7.jpg",
+    "title" : "RESCENE (리센느) The 1st Single Album [Re:Scene] 사인회 이벤트",
+		"img":"../images/event/7.jpg",
+		"date" : "2024-05-24 ~ 2024-05-27",
+		"id":"1240",
+		"price":81000
    },
 	 {
     "no" : "8",
-    "title" : "[event][5/24 9:30PM] 원위 (ONEWE) - 3RD MINI ALBUM [Planet Nine : ISOTROPY] VIDEO CALL EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1241"
+		"titImg":"../images/event/8.jpg",
+    "title" : "원위 (ONEWE) - 3RD MINI ALBUM [Planet Nine : ISOTROPY] VIDEO CALL EVENT 당첨자 안내",
+		"img":"../images/event/8.jpg",
+		"date" : "2024-06-10 ~ 2024-06-13",
+		"id":"1241",
+		"price":150000
    },
 	 {
 		
     "no" : "9",
-    "title" : "[event][5/25 대면종료후] Chunji (천지) - 2ND SINGLE ALBUM [A Precious Memory] VIDEO CALL EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1242"
+		"titImg":"../images/event/9.jpg",
+    "title" : "[럭키드로우] 엠씨엔디 (MCND) - 6th MINI ALBUM [X10] 럭키드로우 이벤트",
+		"img":"../images/event/9.jpg",
+		"date" : "2024-06-10 ~ 2024-06-13",
+		"id":"1242",
+		"price":2000
    },
    
    {
     "no" : "10",
-    "title" : "[event][5/25 2:00PM] Chunji (천지) - 2ND SINGLE ALBUM [A Precious Memory] FAN SIGN EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1243"
+		"titImg":"../images/event/10.jpg",
+    "title" : "최예나 (YENA) - 3rd Mini Album [Good Morning] 사인회 이벤트",
+		"img":"../images/event/10.jpg",
+		"date" : "2024-06-10 ~ 2024-06-13",
+		"id":"1243",
+		"price":5000
    },
    {
     "no" : "11",
-    "title" : "[event][6/2 대면종료후] 수진 (SOOJIN) - 2nd EP [RIZZ] VIDEO CALL EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1244"
+		"titImg":"../images/event/11.jpg",
+    "title" : "유나이트 (YOUNITE) - 6TH EP [ANOTHER] 사인회 이벤트",
+		"img":"../images/event/11.jpg",
+		"date" : "2024-06-10 ~ 2024-06-13",
+		"id":"1244",
+		"price":65000
    },
    {
     "no" : "12",
-    "title" : "[event][6/2 1:00PM] 수진 (SOOJIN) - 2nd EP [RIZZ] FAN SIGN EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1245"
-   },
-   {
-    "no" : "13",
-    "title" : "[event][5/31 9:30PM] 이브 (Yves) - LOOP VIDEO CALL EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1246"
-   },
-   {
-    "no" : "14",
-    "title" : "[event][5/22 9:00PM] 박제업 (PARK JEUP) - 미니1집 [My Everything] FAN SIGN EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1247"
-   },
-   {
-    "no" : "15",
-    "title" : "[event][5/24 7:00PM] DRIPPIN (드리핀) - 싱글4집 [Beautiful MAZE] FAN SIGN EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1248"
-   },
-	 {
-    "no" : "16",
-    "title" : "[event][5/24 9:30PM] 원위 (ONEWE) - 3RD MINI ALBUM [Planet Nine : ISOTROPY] VIDEO CALL EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1249"
-   } ,
-	 {
-		
-    "no" : "17",
-    "title" : "[event][5/25 대면종료후] Chunji (천지) - 2ND SINGLE ALBUM [A Precious Memory] VIDEO CALL EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1250"
-   },
-   
-   {
-    "no" : "18",
-    "title" : "[event][5/25 2:00PM] Chunji (천지) - 2ND SINGLE ALBUM [A Precious Memory] FAN SIGN EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1251"
-   },
-   {
-    "no" : "19",
-    "title" : "[event][6/2 대면종료후] 수진 (SOOJIN) - 2nd EP [RIZZ] VIDEO CALL EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1252"
-   },
-   {
-    "no" : "20",
-    "title" : "[event][6/2 1:00PM] 수진 (SOOJIN) - 2nd EP [RIZZ] FAN SIGN EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1253"
-   },
-   {
-    "no" : "21",
-    "title" : "[event][5/31 9:30PM] 이브 (Yves) - LOOP VIDEO CALL EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1254"
-   },
-   {
-    "no" : "22",
-    "title" : "[event][5/22 9:00PM] 박제업 (PARK JEUP) - 미니1집 [My Everything] FAN SIGN EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1255"
-   },
-   {
-    "no" : "23",
-    "title" : "[event][5/24 7:00PM] DRIPPIN (드리핀) - 싱글4집 [Beautiful MAZE] FAN SIGN EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1256"
-   },
-	 {
-    "no" : "24",
-    "title" : "[event][5/24 9:30PM] 원위 (ONEWE) - 3RD MINI ALBUM [Planet Nine : ISOTROPY] VIDEO CALL EVENT 당첨자 안내",
-		"author" : "everline",
-		"date" : "2024-05-20",
-		"id":"1257"
-   }     
+		"titImg":"../images/event/12.jpg",
+    "title" : "KISS OF LIFE (키스오브라이프) 1st Single Album [Midas Touch] 럭키드로우 이벤트",
+		"img":"../images/event/12.jpg",
+		"date" : "2024-06-10 ~ 2024-06-13",
+		"id":"1245",
+		"price":700
+   }
 ]

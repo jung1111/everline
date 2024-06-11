@@ -24,7 +24,6 @@ import Faq from "./pages/Faq.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import { useState } from "react";
 import OrderPage from "./pages/OrderPage.jsx";
-import Upload from "./pages/Upload.jsx";
 
 export default function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -69,6 +68,7 @@ export default function App() {
         },
         { path: "/member/signup", element: <Signup /> },
         { path: "/eventlist", element: <EventList /> },
+				{ path: "/eventdetail/:id", element: <EventListDetail /> },
         {
           path: "/carts",
           element: (

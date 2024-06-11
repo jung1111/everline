@@ -55,7 +55,7 @@ export default function InquiryDetail(){
 									<th>제목</th>
 									<td className='text-left' colSpan={5}>{board.btitle}</td>
 							</tr>
-							<tr>
+							<tr className='Board-table-content'>
 									<th>내용</th>
 									<td className='text-left' colSpan={5}>{board.bcontent}</td>
 							</tr>						
