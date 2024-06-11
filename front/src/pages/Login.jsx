@@ -6,6 +6,8 @@ import SubTitle from "../components/SubTitle.jsx";
 import { ReactComponent as NaverIcon } from "../svg/icon_sns_login_naver.svg";
 import { ReactComponent as KakaoIcon } from "../svg/icon_sns_login_kakao.svg";
 import { ReactComponent as AppleIcon } from "../svg/icon_sns_login_apple.svg";
+import * as cookie from "../util/cookies.js";
+import { jwtDecode } from "jwt-decode";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -34,6 +36,12 @@ export default function Login() {
         .then((res) => {
           console.log("result ->", res.data);
           if (res.data.cnt === 1) {
+            console.log("token", res.data.token);
+            cookie.setCookie("x-auth-jwt", res.data.token);
+            // cookie에 저장된 token에서 userInfo를 localstorage에서 저장
+            const userInfo = jwtDecode(res.data.token); //복호화
+            // alert(JSON.stringify(userInfo));
+            localStorage.setItem("userInfo", JSON.stringify(userInfo));
             alert("로그인 성공!!");
             navigate("/"); //홈으로 이동
           } else {
@@ -76,7 +84,7 @@ export default function Login() {
                   value={formData.userId}
                   onChange={handleChange}
                   placeholder="  아이디"
-                  class="input-field"
+                  className="input-field"
                 />
               </li>
               <li>
@@ -87,14 +95,14 @@ export default function Login() {
                   value={formData.userPass}
                   onChange={handleChange}
                   placeholder="  비밀번호"
-                  class="input-field"
+                  className="input-field"
                 />
               </li>
             </ul>
 
             <ul className="member-find-btn">
               <li>
-                <label class="custom-checkbox-label">
+                <label className="custom-checkbox-label">
                   <input type="checkbox" className="custom-checkbox" /> 아이디
                   저장
                 </label>

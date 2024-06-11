@@ -42,21 +42,35 @@ const ResetPassword = () => {
   return (
     <div className="content">
       <SubTitle title="비밀번호 재설정" />
-      {email && <div>Email: {email}</div>}
-      <input
-        type="password"
-        value={newPassword}
-        onChange={(e) => setNewPassword(e.target.value)}
-        placeholder="새 비밀번호"
-      />
-      <input
-        type="password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-        placeholder="비밀번호 확인"
-      />
-      <button onClick={handleResetPassword}>비밀번호 재설정</button>
-      {error && <div style={{ color: "red" }}>{error}</div>}
+      <div className="member">
+        <div className="findaccount-emailauth">
+          {email && <div className="findaccount-email">{email}</div>}
+          <ul className="findaccount-emailauth-ul">
+            <li className="findaccount-emailauth-first">
+              <input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                placeholder="새 비밀번호"
+              />
+            </li>
+            <li className="findaccount-emailauth-first">
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="비밀번호 확인"
+              />
+            </li>
+            <li className="findaccount-emailauth-btn2">
+              <button className="red-btn" onClick={handleResetPassword}>
+                비밀번호 재설정
+              </button>
+            </li>
+            {error && <div style={{ color: "red" }}>{error}</div>}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

@@ -13,23 +13,6 @@ const EmailAuth = () => {
   const email = location.state ? location.state.email : null;
   const [inputCode, setInputCode] = useState("");
   const [error, setError] = useState("");
-  /* 
-  const sendAuthCode = async () => {
-    try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/member/send-auth-code",
-        {
-          email: userEmail,
-          userId,
-          userName,
-        }
-      );
-      setAuthCode(response.data.authCode);
-      console.log("Auth code sent:", response.data.authCode);
-    } catch (error) {
-      console.error("Error sending auth code:", error);
-    }
-  }; */
 
   const handleSendAuthCode = async () => {
     try {
@@ -56,25 +39,32 @@ const EmailAuth = () => {
   return (
     <div className="content">
       <SubTitle title="이메일 인증" />
-      {email && <div>Email: {email}</div>}
-      <button onClick={handleSendAuthCode}>인증번호 전송</button>
-      <input
-        type="text"
-        value={inputCode}
-        onChange={(e) => setInputCode(e.target.value)}
-        placeholder="인증번호 입력"
-      />
-      <button onClick={handleVerifyAuthCode}>인증하기</button>
-      {error && <div style={{ color: "red" }}>{error}</div>}
-      {/*  <input
-        type="email"
-        value={userEmail}
-        onChange={(e) => setUserEmail(e.target.value)}
-        placeholder="Enter your email"
-      />
-      <button onClick={sendAuthCode}>Send Auth Code</button>
-      {userEmail && <p>Email: {userEmail}</p>}
-      {authCode && <p>Auth Code: {authCode}</p>}{" "} */}
+      <div className="member">
+        <div className="findaccount-emailauth">
+          {email && <div className="findaccount-email">{email}</div>}
+          <ul className="findaccount-emailauth-ul">
+            <li className="findaccount-emailauth-btn">
+              <button className="red-btn" onClick={handleSendAuthCode}>
+                인증번호 전송
+              </button>
+            </li>
+            <li className="findaccount-emailauth-2">
+              <input
+                type="text"
+                value={inputCode}
+                onChange={(e) => setInputCode(e.target.value)}
+                placeholder="인증번호 입력"
+              />
+            </li>
+            <li>
+              <button className="red-btn" onClick={handleVerifyAuthCode}>
+                인증하기
+              </button>
+            </li>
+            {error && <div style={{ color: "red" }}>{error}</div>}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };
