@@ -8,20 +8,20 @@ const EverTv = () => {
     <div className='evertv-wrap'>
       <div className='marquee-wrap base01'>
         <div className='marquee'>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
+          <span> &nbsp;EVER TV </span>
+          <span> EVER TV </span>
+          <span> EVER TV </span>
+          <span> EVER TV </span>
+          <span> EVER TV </span>
+          <span> EVER TV </span>
         </div>
         <div className='marquee base01'>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
+          <span> &nbsp;EVER TV </span>
+          <span> EVER TV </span>
+          <span> EVER TV </span>
+          <span> EVER TV </span>
+          <span> EVER TV </span>
+          <span> EVER TV </span>
         </div>
       </div>
       <div className='youtube_deco'>
@@ -37,21 +37,13 @@ const EverTv = () => {
             </div>
             <YouTubeSlider/>
       <div className='marquee-wrap base01'>
-        <div className='marquee'>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
+        <div className='marqueereverse'>
+          <span>&nbsp;2024 CHA WOONG KI FANMEETING [HAPPY WOONGKI DAY-!] 비하인드🎂 </span>
+          <span>2024 CHA WOONG KI FANMEETING [HAPPY WOONGKI DAY-!] 비하인드🎂</span>
         </div>
-        <div className='marquee base01'>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
-          <span>EVER TV </span>
+        <div className='marqueereverse base01'>
+          <span>&nbsp;2024 CHA WOONG KI FANMEETING [HAPPY WOONGKI DAY-!] 비하인드🎂 </span>
+          <span>2024 CHA WOONG KI FANMEETING [HAPPY WOONGKI DAY-!] 비하인드🎂 </span>
         </div>
       </div>
     </div>

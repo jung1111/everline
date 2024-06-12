@@ -995,7 +995,7 @@ YouTubeSlider css
 .evertv-wrap {
   position: relative;
   width: 1900px;
-
+  overflow: hidden;
 }
 
 .marquee-wrap {
@@ -1015,19 +1015,53 @@ YouTubeSlider css
   background: none;
   animation: slidemarquee 50s linear infinite;
 }
-
+@keyframes slidemarquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
 .marquee span {
   font-size: 45px;
   font-weight: 900;
   line-height: 80px;
   color: #101820;
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+  opacity: 0.5;
 }
 
 .marquee.base01 {
   animation-delay: -25s;
 }
-
+.marqueereverse.base01 {
+  animation-delay: -25s;
+}
+.marqueereverse {
+  position: absolute;
+  display: inline-block;
+  white-space: nowrap;
+  background: none;
+  
+  animation: slidereversemarquee 50s linear infinite;
+}
+@keyframes slidereversemarquee {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.marqueereverse span{
+  font-size: 50px;
+  font-weight: 900;
+  line-height: 80px;
+  color: #101820;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+  opacity: 0.5;
+}
 .youtube_deco {
   position: absolute;
   left: 0;
@@ -1042,6 +1076,15 @@ YouTubeSlider css
   animation-duration: 15s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+}
+
+@keyframes turning_deco {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .youtube_deco .youtube_pic {
