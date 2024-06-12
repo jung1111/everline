@@ -1,7 +1,7 @@
 import "../css/product.css";
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Location from "../components/Location";
 import axios from "axios";
 import ProductDetailInfo from "../components/ProductDetailInfo.jsx";
@@ -16,7 +16,7 @@ import { getReservationPeriod } from "../components/dateCalc.jsx";
 export default function ProductDetail({ addCartCount }) {
   const { id } = useParams();
   const [product, setProduct] = useState({});
-  const userId = "test";
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -56,20 +56,22 @@ export default function ProductDetail({ addCartCount }) {
     axios({
       method: "post",
       url: url,
-      data: { userId, pid: id },
+      data: { pid: id, userId: "test" },
     })
       .then((result) => {
         if (result.data.cnt === 1) {
           addCartCount(result.data.cnt);
+          alert("장바구니에 추가 됐습니다.");
+          setTimeout(() => {
+            navigate("/carts");
+          }, 0); // alert가 닫힌 후에 페이지를 이동하도록 설정
         }
       })
       .catch((error) => console.log(error));
-
-    // addCartCount({ id: id, size: size, qty: 1 });
   };
+
   // 예약 판매 기간 계산
   const reservationInfo = getReservationPeriod(product.period);
-
   return (
     <div className="content">
       <SnsShare />
@@ -183,15 +185,15 @@ export default function ProductDetail({ addCartCount }) {
               찜리스트
             </button>
           </Link>
-          <Link to="/">
-            <button
-              className="product-btn2"
-              type="button"
-              onClick={() => addCartItem(product.id)}
-            >
-              장바구니
-            </button>
-          </Link>
+
+          <button
+            className="product-btn2"
+            type="button"
+            onClick={() => addCartItem(product.id)}
+          >
+            장바구니
+          </button>
+
           <Link to="/">
             <button className="product-btn3" type="button">
               바로구매
