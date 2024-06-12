@@ -38,43 +38,40 @@ export default function BannerSlider() {
 
   return (
     <div className="BannerSlider-container" {...handlers} >
-      <div className="BannerSlider-content">
-        <div className='currentBanner-left'>{`0${currentBanner + 1}`}</div>
-        <div className='currentBanner-right'>{`0${(currentBanner + 1) % banners.length + 1}`}</div>
-        <div className='officialmd-box'><span className='officialmd'>OFFICIAL MD</span></div>
-        <div>
-            <button onClick={goToPrevBanner} className="prev"></button>
-            <button onClick={goToNextBanner} className="next"></button>
-        </div>
-        <div className='BannerSlider-box'>
-          {banners.length > 0 && (
-            <div className='BannerSlider-imgbox'>
-              <img src={banners[currentBanner].image} alt={`Banner ${currentBanner + 1}`} />
-            </div>
-          )}
-          {banners.length > 0 && (
-            <div className='BannerSlider-titlebox'>
+      <div className='BannerSlider-wrap'>
+          <div className='BannerSlider-content'>
+          <div className='currentBanner-left'>{`0${currentBanner + 1}`}</div>
+            <div className="BannerSlider-button"><button  onClick={goToPrevBanner} className="btn-prev"></button></div>
+            {banners.length > 0 && (
               <h3>
-                <h6>OFFICIAL MD</h6>
-                {banners[currentBanner].title}
-                <p>{banners[currentBanner].release}</p>
-                <Link className='link' to="/product">
-                  <button className='more-btn'>More &nbsp;&nbsp;‣</button>
-                </Link>
-              </h3>
-            </div>
-          )}
+                  <h6>OFFICIAL MD</h6>
+                  {banners[currentBanner].title}
+                  <p>{banners[currentBanner].release}</p>
+                  <Link className='link' to="/product">
+                    <button className='more-btn'>More &nbsp;&nbsp;‣</button>
+                  </Link>
+                </h3>
+            )}
+          {banners.length > 0 && (
+            <div className='BannerSlider-imgbox'><img src={banners[currentBanner].image} alt={`Banner ${currentBanner + 1}`} /></div>
+            )}
+          <div className="BannerSlider-button"><button onClick={goToNextBanner} className="btn-next"></button></div>
+          <div className='currentBanner-right'>{`0${(currentBanner + 1) % banners.length + 1}`}</div>
         </div>
+ 
       </div>
-      <div className="pagination">
-        {banners.map((_, index) => (
+        <div className='officialmd-box'>
+          <span className='officialmd'>OFFICIAL MD</span>
+            <div className="pagination">
+          {banners.map((_, index) => (
           <div
-            key={index}
-            className={`pagination-dot ${index === currentBanner ? 'active' : ''}`}
-            onClick={() => goToBanner(index)}
+          key={index}
+          className={`pagination-dot ${index === currentBanner ? 'active' : ''}`}
+          onClick={() => goToBanner(index)}
           ></div>
-        ))}
-      </div>
+          ))}
+        </div>
+        </div>
     </div>
   );
 }
