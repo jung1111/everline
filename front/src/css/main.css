@@ -90,10 +90,10 @@ input::placeholder {
   margin-right: 35px;
   opacity: 0.8;
 }
-.carticon{
+.carticon {
   opacity: 0.8;
 }
-.headseticon{
+.headseticon {
   opacity: 0.8;
   cursor: pointer;
 }
@@ -159,16 +159,16 @@ input::placeholder {
   justify-content: flex-end;
 }
 
-.location-link>li {
+.location-link > li {
   position: relative;
 }
 
-.location-link-depth1{
+.location-link-depth1 {
   font-size: 12px;
   color: #222;
   font-weight: 700;
 }
-.location-link-depth2{
+.location-link-depth2 {
   font-size: 12px;
   color: #222;
 }
@@ -218,20 +218,20 @@ input::placeholder {
   margin-top: 80px;
 }
 
-.sub-menu>li {
+.sub-menu > li {
   position: relative;
   width: 50%;
   text-align: center;
   padding: 12px 0;
 }
 
-.sub-menu li>a {
+.sub-menu li > a {
   color: var(--color-black);
   border-top: transparent solid 1px;
 }
 
-.sub-menu>li>a::before,
-.sub-menu>li>a::after {
+.sub-menu > li > a::before,
+.sub-menu > li > a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -240,24 +240,24 @@ input::placeholder {
   height: 1px;
 }
 
-.sub-menu>li>a::before {
+.sub-menu > li > a::before {
   background-color: var(--color-black);
   opacity: 0.1;
 }
 
-.sub-menu>li>a::after {
+.sub-menu > li > a::after {
   width: 1px;
   background-color: var(--color-red);
   opacity: 0;
   transition: 0.3s;
 }
 
-.sub-menu>li>a:hover:after {
+.sub-menu > li > a:hover:after {
   width: 100%;
   opacity: 1;
 }
 
-.sub-menu>li>a:hover {
+.sub-menu > li > a:hover {
   color: var(--color-red);
 }
 
@@ -304,6 +304,5 @@ input::placeholder {
   border: 1px solid #e0e0e0;
   font-size: 13px;
   padding: 3px 5px;
-  
 }
 /**********************************************위의 css는 공통이므로 수정 시 협의 후 진행 ************************************ */
