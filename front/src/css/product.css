@@ -307,115 +307,169 @@ bannerslider css
 ***********************/
 
 .BannerSlider-container {
-  min-height: 820px;
-  margin-top: 90px;
-  padding-top: 15px;
   width: 100%;
+  margin: 91px 0 50px 0;
+  padding: 0;
+  padding-top: 50px;
+}
+
+.BannerSlider-wrap {
+  display: flex;
   position: relative;
+  justify-content: center;
+  width: 100%;
 }
 
 .BannerSlider-content {
-  padding: 0;
-  position: relative;
-  width: 100%;
-  margin-top: 50px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: default;
-  padding-bottom: 150px;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
 }
-.BannerSlider-box{
-  width: 1000px;
-  margin-right: 250px;
-  position: relative;
-}
-
-.BannerSlider-imgbox {
-  position: absolute;
-  right: 0;
-  margin-right: 50px;
-}
-.BannerSlider-titlebox{
-  position: absolute;
-  left: 0;
-  top: 200px;
-  width: 350px;
-}
-
-.BannerSlider-imgbox img {
-  display: block;
-  width: 550px;
-  transition: transform 0.3s ease-in-out;
+.BannerSlider-imgbox{
   z-index: 1;
+}
+.BannerSlider-imgbox img {
+  display: inline-block;
+  width: 600px;
+  margin-right: 220px;
+  transition: transform 0.3s ease-in-out;
   -webkit-box-shadow: 14px 21px 20px 0px rgba(114, 114, 114, 0.5);
   -moz-box-shadow: 14px 21px 20px 0px rgba(114, 114, 114, 0.5);
   box-shadow: 14px 21px 20px 0px rgba(114, 114, 114, 0.5);
 }
 
+.BannerSlider-content h3 {
+  width: 360px;
+  padding-right: 0;
+  padding-top: 180px;
+  font-weight: 900;
+}
+.BannerSlider-imgbox{
+  position: relative;
+}
 .BannerSlider-imgbox::before {
   content: "";
+  border-radius: 100%;
   position: absolute;
-  top: 0;
-  left: 10%;
-  width: 90%;
-  height: 100%;
-  background: url('../../public/images/hero_lp.png') no-repeat center center;
+  left: 0;
+  top: 7%;
+  width: 500px;
+  height: 500px;
+  background: url('../../public/images/hero_lp.png') no-repeat center;
   background-size: contain;
-  transition: right 1s ease-in-out;
+  transition: right 0.8s ease-in-out;
   overflow: hidden;
-  transition: 1s ease;
+  transition: 0.8s ease;
+  z-index: -1;
 }
 
 .BannerSlider-imgbox:hover::before {
-  left: 65%;
-  transform: 1s;
-  transform: rotate(90deg);
+  left: 45%;
+  transform: 0.8s;
+  transform: rotate(360deg);
 }
 
-.BannerSlider-titlebox p {
+.BannerSlider-content h3>p {
   margin-top: 25px;
   color: var(--color-grey);
   font-weight: lighter;
 }
 
-.BannerSlider-titlebox h3 {
-  width: 300px;
-  margin-right: 50px;
-  font-weight: 900;
-}
-.BannerSlider-titlebox h3>h6{
+.BannerSlider-content h3>h6 {
   font-weight: 800;
 }
 
-.BannerSlider-imgbox {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-}
-
 .currentBanner-left {
-  position: absolute;
-  left: 0;
-  top: 115%;
-  font-size: 130px;
+  padding-top: 150px;
+  font-size: 9rem;
   font-weight: 900;
   color: var(--color-red);
 }
 
 .currentBanner-right {
-  position: absolute;
-  right: 0;
-  top: 115%;
-  font-size: 130px;
+  padding-top: 150px;
+  font-size: 9rem;
   font-weight: 900;
   color: var(--color-grey);
   opacity: 0.2;
 }
 
+.BannerSlider-button {
+  padding-top: 230px;
+}
+
+.btn-prev {
+  background: none;
+  width: 35px;
+  height: 40px;
+  color: var(--color-grey);
+  border-top: solid 1px currentColor;
+  border-right: solid 1px currentColor;
+  transform: rotate(-135deg);
+}
+
+.btn-next {
+  background: none;
+  width: 35px;
+  height: 40px;
+  color: var(--color-grey);
+  border-top: solid 1px currentColor;
+  border-right: solid 1px currentColor;
+  transform: rotate(45deg);
+}
+
+.btn-prev:hover {
+  color: var(--color-red);
+  opacity: 1;
+  font-weight: 900;
+  scale: 1.1;
+}
+
+.btn-next:hover {
+  color: var(--color-red);
+  opacity: 1;
+  font-weight: 900;
+  scale: 1.1;
+}
+
+.more-btn {
+  margin-top: 20px;
+  padding: 8px 30px;
+  font-size: 18px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-weight: bold;
+}
+
+.officialmd-box {
+position: relative;
+overflow: hidden;
+min-height: 230px;
+margin-top: -5%;
+}
+
+.officialmd {
+  display: inline-block;
+  vertical-align: middle;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  font-size: 9.375vw;
+  font-weight: 900;
+  color: #f8f6f5;
+  background: linear-gradient(180deg, #F6F5F5 0%, rgba(248, 246, 245, 0) 100%);
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05), -10px -10px 10px #fff;
+  line-height: 9.375vw;
+  letter-spacing: -2.5px;
+  white-space: nowrap;
+  transform: translateX(-45%);
+
+}
+
 .pagination {
   position: absolute;
-  bottom: 80px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-30%);
   display: flex;
@@ -428,103 +482,12 @@ bannerslider css
   background-color: var(--color-grey);
   margin: 0 5px;
   cursor: pointer;
-  opacity: 0.1 ;
+  opacity: 0.1;
 }
 
 .pagination-dot.active {
   background-color: var(--color-red);
   opacity: 0.5;
-}
-
-button * {
-  text-decoration: none;
-}
-
-.more-btn {
-  margin-top: 25px;
-  padding: 8px 30px;
-  font-size: 18px;
-  background-color: var(--color-black);
-  color: var(--color-white);
-  font-weight: bold;
-}
-.officialmd-box{
-  position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    pointer-events: none;
-    overflow: hidden;
-    min-height: 800px;
-}
-.officialmd {
-  display: inline-block;
-  vertical-align: middle;
-  position: absolute;
-  left: 50%;
-  top: 58.5%;
-  padding: 0;
-  font-size: 9.375vw;
-  font-weight: 900;
-  color: #f8f6f5;
-  background: linear-gradient(180deg, #F6F5F5 0%, rgba(248, 246, 245, 0) 100%);
-  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05), -10px -10px 10px #fff;
-  line-height: 9.375vw;
-  letter-spacing: -2.5px;
-  white-space: nowrap;
-  transform: translateX(-45%);
-}
-
-.prev,
-.next {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  opacity: 0.4;
-}
-
-.prev {
-  content: "";
-  position: absolute;
-  left: 12%;
-  top: 280px;
-  width: 35px;
-  height: 41px;
-  margin-top: -15px;
-  color: #101820;
-  border-top: solid 1px currentColor;
-  border-right: solid 1px currentColor;
-  transform: rotate(-135deg);
-}
-
-.prev:hover {
-  color: var(--color-red);
-  opacity: 1;
-  font-weight: 900;
-  scale: 1.1;
-}
-
-.next {
-  content: "";
-  position: absolute;
-  right: 12%;
-  top: 280px;
-  width: 35px;
-  height: 40px;
-  margin-top: -15px;
-  color: #101820;
-  border-top: solid 1px currentColor;
-  border-right: solid 1px currentColor;
-  transform: rotate(45deg);
-}
-
-.next:hover {
-  color: var(--color-red);
-  opacity: 1;
-  font-weight: 900;
-  scale: 1.1;
 }
 
 .scrollup-btn {
@@ -831,40 +794,45 @@ ImageSlider css
   background-color: var(--color-white);
 }
 
-.button-box {
+.image-slider-button-box {
   position: relative;
+  width: 140px;
   height: 80px;
   background-color: var(--color-white);
-  margin-right: 0;
-  margin-top: 60px;
-  padding-bottom: 20px;
+  margin: 60px 0;
 }
 
-.slider-button.prev {
+.image-slider-button-prev {
   color: var(--color-black);
-  border-top: solid 2px currentColor;
-  border-right: solid 2px currentColor;
+  background: none;
+  border-top: solid 1px currentColor;
+  border-right: solid 1px currentColor;
   transform: rotate(-135deg);
   position: absolute;
-  top: 35px;
+  left: 15px;
+  bottom: 18px;
+  padding-bottom: 30px;
   content: "";
 }
 
-.slider-button.next {
+.image-slider-button-next {
   color: var(--color-black);
-  border-top: solid 2px currentColor;
-  border-right: solid 2px currentColor;
+  background: none;
+  border-top: solid 1px currentColor;
+  border-right: solid 1px currentColor;
   transform: rotate(45deg);
   position: absolute;
-  top: 35px;
+  right: 15px;
+  bottom: 18px;
+  padding-bottom: 30px;
   content: "";
 }
 
-.slider-button.prev:hover {
+.image-slider-button-prev:hover {
   color: var(--color-red);
 }
 
-.slider-button.next:hover {
+.image-slider-button-next:hover {
   color: var(--color-red);
 }
 
@@ -1042,14 +1010,17 @@ YouTubeSlider css
   background: none;
   animation: slidemarquee 50s linear infinite;
 }
+
 @keyframes slidemarquee {
   0% {
     transform: translateX(100%);
   }
+
   100% {
     transform: translateX(-100%);
   }
 }
+
 .marquee span {
   font-size: 45px;
   font-weight: 900;
@@ -1062,26 +1033,31 @@ YouTubeSlider css
 .marquee.base01 {
   animation-delay: -25s;
 }
+
 .marqueereverse.base01 {
   animation-delay: -25s;
 }
+
 .marqueereverse {
   position: absolute;
   display: inline-block;
   white-space: nowrap;
   background: none;
-  
+
   animation: slidereversemarquee 50s linear infinite;
 }
+
 @keyframes slidereversemarquee {
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(100%);
   }
 }
-.marqueereverse span{
+
+.marqueereverse span {
   font-size: 50px;
   font-weight: 900;
   line-height: 80px;
@@ -1089,6 +1065,7 @@ YouTubeSlider css
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
   opacity: 0.5;
 }
+
 .youtube_deco {
   position: absolute;
   left: 0;
@@ -1109,6 +1086,7 @@ YouTubeSlider css
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

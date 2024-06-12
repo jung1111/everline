@@ -36,9 +36,9 @@ const ImageSlider = ({ mainsub_title1, mainsub_title2, target }) => {
         <span>
           <h2>{mainsub_title1}</h2>
           <h2>{mainsub_title2}</h2>
-          <div className='button-box'>
-            <button className="slider-button prev" onClick={handlePrev}></button>
-            <button className="slider-button next" onClick={handleNext}></button>
+          <div className='image-slider-button-box'>
+            <button className="image-slider-button-prev" onClick={handlePrev}></button>
+            <button className="image-slider-button-next" onClick={handleNext}></button>
           </div>
         </span>
         <div className="slider-image-wrapper">
