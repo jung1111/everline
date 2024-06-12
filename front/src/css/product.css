@@ -311,6 +311,7 @@ bannerslider css
   margin-top: 90px;
   padding-top: 15px;
   width: 100%;
+  position: relative;
 }
 
 .BannerSlider-content {
@@ -322,16 +323,29 @@ bannerslider css
   align-items: center;
   justify-content: center;
   cursor: default;
+  padding-bottom: 150px;
+}
+.BannerSlider-box{
+  width: 1000px;
+  margin-right: 250px;
+  position: relative;
 }
 
 .BannerSlider-imgbox {
-  position: relative;
-  display: block;
+  position: absolute;
+  right: 0;
+  margin-right: 50px;
+}
+.BannerSlider-titlebox{
+  position: absolute;
+  left: 0;
+  top: 200px;
+  width: 350px;
 }
 
 .BannerSlider-imgbox img {
   display: block;
-  width: 600px;
+  width: 550px;
   transition: transform 0.3s ease-in-out;
   z-index: 1;
   -webkit-box-shadow: 14px 21px 20px 0px rgba(114, 114, 114, 0.5);
@@ -343,34 +357,35 @@ bannerslider css
   content: "";
   position: absolute;
   top: 0;
-  left: 50%;
-  width: 50%;
+  left: 10%;
+  width: 90%;
   height: 100%;
   background: url('../../public/images/hero_lp.png') no-repeat center center;
   background-size: contain;
-  transition: right 0.3s ease-in-out;
+  transition: right 1s ease-in-out;
   overflow: hidden;
   transition: 1s ease;
-
 }
 
 .BannerSlider-imgbox:hover::before {
-  left: 80%;
+  left: 65%;
   transform: 1s;
-  transform: rotate(60deg);
-  cursor: pointer;
+  transform: rotate(90deg);
 }
 
-.BannerSlider-imgbox p {
+.BannerSlider-titlebox p {
   margin-top: 25px;
   color: var(--color-grey);
   font-weight: lighter;
 }
 
-.BannerSlider-imgbox h3 {
+.BannerSlider-titlebox h3 {
   width: 300px;
   margin-right: 50px;
-  font-weight: bold;
+  font-weight: 900;
+}
+.BannerSlider-titlebox h3>h6{
+  font-weight: 800;
 }
 
 .BannerSlider-imgbox {
@@ -382,7 +397,7 @@ bannerslider css
 .currentBanner-left {
   position: absolute;
   left: 0;
-  top: 32%;
+  top: 115%;
   font-size: 130px;
   font-weight: 900;
   color: var(--color-red);
@@ -391,7 +406,7 @@ bannerslider css
 .currentBanner-right {
   position: absolute;
   right: 0;
-  top: 32%;
+  top: 115%;
   font-size: 130px;
   font-weight: 900;
   color: var(--color-grey);
@@ -400,7 +415,7 @@ bannerslider css
 
 .pagination {
   position: absolute;
-  bottom: 75px;
+  bottom: 80px;
   left: 50%;
   transform: translateX(-30%);
   display: flex;
@@ -409,16 +424,16 @@ bannerslider css
 
 .pagination-dot {
   width: 40px;
-  height: 1.2px;
+  height: 2px;
   background-color: var(--color-grey);
   margin: 0 5px;
   cursor: pointer;
-  opacity: 0.2;
+  opacity: 0.1 ;
 }
 
 .pagination-dot.active {
   background-color: var(--color-red);
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 button * {
@@ -433,26 +448,36 @@ button * {
   color: var(--color-white);
   font-weight: bold;
 }
-
+.officialmd-box{
+  position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    min-height: 800px;
+}
 .officialmd {
   display: inline-block;
+  vertical-align: middle;
+  position: absolute;
+  left: 50%;
+  top: 58.5%;
+  padding: 0;
   font-size: 9.375vw;
   font-weight: 900;
   color: #f8f6f5;
   background: linear-gradient(180deg, #F6F5F5 0%, rgba(248, 246, 245, 0) 100%);
   text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05), -10px -10px 10px #fff;
-  line-height: 7.3vw;
+  line-height: 9.375vw;
   letter-spacing: -2.5px;
   white-space: nowrap;
-  margin-top: -60px;
-  padding: 0;
-  transform: translateX(45%);
-  cursor: default;
+  transform: translateX(-45%);
 }
 
 .prev,
 .next {
-  transform: translateY(-50%);
   background: none;
   border: none;
   font-size: 20px;
@@ -463,8 +488,8 @@ button * {
 .prev {
   content: "";
   position: absolute;
-  left: 15%;
-  top: 50%;
+  left: 12%;
+  top: 280px;
   width: 35px;
   height: 41px;
   margin-top: -15px;
@@ -476,6 +501,7 @@ button * {
 
 .prev:hover {
   color: var(--color-red);
+  opacity: 1;
   font-weight: 900;
   scale: 1.1;
 }
@@ -483,8 +509,8 @@ button * {
 .next {
   content: "";
   position: absolute;
-  right: 15%;
-  top: 50%;
+  right: 12%;
+  top: 280px;
   width: 35px;
   height: 40px;
   margin-top: -15px;
@@ -496,6 +522,7 @@ button * {
 
 .next:hover {
   color: var(--color-red);
+  opacity: 1;
   font-weight: 900;
   scale: 1.1;
 }
@@ -994,7 +1021,7 @@ YouTubeSlider css
 ****************/
 .evertv-wrap {
   position: relative;
-  width: 1900px;
+  width: 100%;
   overflow: hidden;
 }
 
