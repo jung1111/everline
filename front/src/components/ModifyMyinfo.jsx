@@ -52,8 +52,7 @@ export default function ModifyMyinfo() {
       <SubTitle title="회원정보수정" />
       <div className="modify-all">
         <form onSubmit={handleSubmit}>
-          <div>
-            <label className="USER_ID">아이디:</label>
+          <div className="modify-input">
             <input
               type="text"
               id="USER_ID"
@@ -63,8 +62,7 @@ export default function ModifyMyinfo() {
               readOnly
             />
           </div>
-          <div>
-            <label className="USER_NAME">이름:</label>
+          <div className="modify-input">
             <input
               type="text"
               id="USER_NAME"
@@ -74,8 +72,7 @@ export default function ModifyMyinfo() {
               readOnly
             />
           </div>
-          <div>
-            <label className="MOBILE_NUMBER">전화번호:</label>
+          <div className="modify-input">
             <input
               type="text"
               id="MOBILE_NUMBER"
@@ -83,10 +80,10 @@ export default function ModifyMyinfo() {
               value={userInfo.MOBILE_NUMBER}
               onChange={handleChange}
               required
+              placeholder="전화번호"
             />
           </div>
-          <div>
-            <label className="EMAIL_ID">이메일:</label>
+          <div className="modify-input">
             <input
               type="email"
               id="EMAIL_ID"
@@ -94,26 +91,27 @@ export default function ModifyMyinfo() {
               value={userInfo.EMAIL_ID}
               onChange={handleChange}
               required
+              placeholder="이메일"
             />
           </div>
-          <div>
-            <label className="ZIPCODE">우편번호:</label>
+          <div className="modify-input">
             <input
               type="text"
               id="ZIPCODE"
               name="ZIPCODE"
               value={userInfo.ZIPCODE}
               onChange={handleChange}
+              placeholder="우편번호"
             />
           </div>
-          <div>
-            <label className="ADDRESS">주소:</label>
+          <div className="modify-input">
             <input
               type="text"
               id="ADDRESS"
               name="ADDRESS"
               value={userInfo.ADDRESS}
               onChange={handleChange}
+              placeholder="상세주소"
             />
           </div>
           <button type="submit">수정</button>
