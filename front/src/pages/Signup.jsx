@@ -284,7 +284,7 @@ export default function Signup() {
                 <tbody>
                   <tr>
                     <td className="member-email">
-                      <div className="order-email">
+                      <div className="order-email2">
                         <input
                           className="member-order-email-main"
                           type="email"
