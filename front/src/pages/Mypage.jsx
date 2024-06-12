@@ -8,6 +8,7 @@ import { getUser, removeUser } from "../util/localStorage.js";
 
 export default function Mypage() {
   const navigate = useNavigate();
+  const userId = getUser().userId;
 
   const handleLogout = () => {
     removeUser();
@@ -85,26 +86,36 @@ export default function Mypage() {
           <div className="mypage-info-section">
             <h3>나의 쇼핑 정보</h3>
             <ul>
+              <li>나의 장바구니</li>
               <li>주문내역 조회</li>
             </ul>
           </div>
           <div className="mypage-info-section">
             <h3>활동 정보</h3>
             <ul>
-              <li>나의 위시리스트</li>
               <li>나의 게시글</li>
             </ul>
           </div>
           <div className="mypage-info-section">
             <h3>나의 정보</h3>
             <ul>
-              <li>회원 정보 수정</li>
+              <Link to={`/mypage/modify/${userId}`}>
+                <li>회원 정보 수정</li>
+              </Link>
               <Link to="/member/FindAccountPs">
                 <li>비밀번호 변경</li>
               </Link>
               <li className="mypage-loout" onClick={handleLogout}>
                 로그아웃
               </li>
+            </ul>
+          </div>
+          <div className="mypage-info-section">
+            <h3>고객센터</h3>
+            <ul>
+              <Link to="/inquiry">
+                <li>1:1 문의</li>
+              </Link>
             </ul>
           </div>
         </div>

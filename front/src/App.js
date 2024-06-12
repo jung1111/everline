@@ -5,6 +5,7 @@ import Main from "./components/Main";
 import ProductPage from "./pages/ProductPage";
 import ProductDetail from "./pages/ProductDetail";
 import Mypage from "./pages/Mypage.jsx";
+import ModifyMyinfo from "./components/ModifyMyinfo.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import FindAccount from "./components/FindAccount.jsx";
@@ -31,7 +32,6 @@ import Upload from "./pages/Upload.jsx";
 import axios from "axios";
 import YouTubeSlider from "./components/YouTubeSlider.jsx";
 import YouTubeDetail from "./components/YouTubeDetail.jsx";
-
 
 export default function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -76,9 +76,12 @@ export default function App() {
       //loader: rootLoader,
       children: [
         { path: "/", element: <Main /> /* loader: teamLoader, */ },
-        { path:"/", element:<YouTubeSlider /> /* loader: teamLoader, */ },
-        { path:"/video/:id", element:<YouTubeDetail /> /* loader: teamLoader, */ },
-        
+        { path: "/", element: <YouTubeSlider /> /* loader: teamLoader, */ },
+        {
+          path: "/video/:id",
+          element: <YouTubeDetail /> /* loader: teamLoader, */,
+        },
+
         {
           path: "/product",
           element: <ProductPage /> /* loader: teamLoader, */,
@@ -91,6 +94,7 @@ export default function App() {
         },
         { path: "/member", element: <Login /> },
         { path: "/mypage", element: <Mypage /> },
+        { path: "/mypage/modify/:userId", element: <ModifyMyinfo /> },
         { path: "/member/FindAccount", element: <FindAccount /> },
         { path: "/member/FindAccountPs", element: <FindAccountPs /> },
         { path: "/member/FindAccount/emailAuth", element: <EmailAuth /> },
@@ -100,7 +104,7 @@ export default function App() {
         },
         { path: "/member/signup", element: <Signup /> },
         { path: "/eventlist", element: <EventList /> },
-				{ path: "/eventdetail/:id", element: <EventListDetail /> },
+        { path: "/eventdetail/:id", element: <EventListDetail /> },
         {
           path: "/carts",
           element: (
