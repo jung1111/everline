@@ -25,15 +25,18 @@ export default function OrderTable({
             <tr key={item.id}>
               <td>
                 <div className="product-info" style={{ maxWidth: "400px" }}>
-                  <Link to={`/detail/${item.id}`}>
+                  <Link to={`/product/${item.pid}`}>
                     <img
-                      src={item.image}
+                      src={`http://localhost:8000/${item.image}`}
                       alt="상품 이미지"
                       className="product-image"
                     />
                   </Link>
-                  <Link to={`/detail/${item.id}`} style={{ fontWeight: "500" }}>
-                    {item.name}
+                  <Link
+                    to={`/product/${item.pid}`}
+                    style={{ fontWeight: "500" }}
+                  >
+                    {item.title}
                   </Link>
                 </div>
               </td>

@@ -29,56 +29,40 @@ import OrderPage from "./pages/OrderPage.jsx";
 import EventListDetail from "./pages/EventListDetail.jsx";
 import Upload from "./pages/Upload.jsx";
 import axios from "axios";
+
 import YouTubeSlider from "./components/YouTubeSlider.jsx";
 import YouTubeDetail from "./components/YouTubeDetail.jsx";
 
-
 export default function App() {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartCount, setCartCount] = useState(0);
 
-  // 장바구니 데이터를 서버에서 가져옴
   useEffect(() => {
-    axios
-      .post("http://localhost:8000/carts", { userId: "test" }) // userId를 필요에 따라 변경
+    const url = "http://localhost:8000/carts/count";
+    axios({ method: "post", url: url, data: { userId: "test" } })
       .then((response) => {
-        setCartItems(response.data);
+        setCartCount(parseInt(response.data.count));
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [cartCount]);
 
-  const addCartCount = (item) => {
-    const updateItemindex = cartItems.findIndex((e) => e.id === item.id);
-    if (updateItemindex !== -1) {
-      const updateItems = [...cartItems];
-      updateItems[updateItemindex].qty++;
-      setCartItems(updateItems);
-      axios
-        .post("http://localhost:8000/carts/update", {
-          id: updateItems[updateItemindex].id,
-          qty: updateItems[updateItemindex].qty,
-        })
-        .catch((error) => console.log(error));
-    } else {
-      const newItem = { ...item, qty: 1, userId: "test" }; // userId를 필요에 따라 변경
-      setCartItems([...cartItems, newItem]);
-      axios
-        .post("http://localhost:8000/carts/add", newItem)
-        .catch((error) => console.log(error));
-    }
-
-    alert("장바구니에 추가됐습니다.");
+  const addCartCount = (result) => {
+    if (result === 1);
   };
 
   const router = createBrowserRouter([
     {
       path: "/" /* / : Root Context(루트 컨텍스트) */,
-      element: <Root cartCount={cartItems.length} />,
+      element: <Root cartCount={cartCount} />,
+
       //loader: rootLoader,
       children: [
         { path: "/", element: <Main /> /* loader: teamLoader, */ },
-        { path:"/", element:<YouTubeSlider /> /* loader: teamLoader, */ },
-        { path:"/video/:id", element:<YouTubeDetail /> /* loader: teamLoader, */ },
-        
+        { path: "/", element: <YouTubeSlider /> /* loader: teamLoader, */ },
+        {
+          path: "/video/:id",
+          element: <YouTubeDetail /> /* loader: teamLoader, */,
+        },
+
         {
           path: "/product",
           element: <ProductPage /> /* loader: teamLoader, */,
@@ -100,12 +84,10 @@ export default function App() {
         },
         { path: "/member/signup", element: <Signup /> },
         { path: "/eventlist", element: <EventList /> },
-				{ path: "/eventdetail/:id", element: <EventListDetail /> },
+        { path: "/eventdetail/:id", element: <EventListDetail /> },
         {
           path: "/carts",
-          element: (
-            <CartPage cartItems={cartItems} setCartItems={setCartItems} />
-          ),
+          element: <CartPage cartCount={cartCount} />,
         },
         {
           path: "/order",

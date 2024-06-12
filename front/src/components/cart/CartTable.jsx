@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import CartPopup from "./CartPopup.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 export default function CartTable({ cartItems, setCartItems }) {
   const [allChecked, setAllChecked] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
@@ -10,35 +11,14 @@ export default function CartTable({ cartItems, setCartItems }) {
   const [initialProductState, setInitialProductState] = useState(null);
   const [showCouponPopup, setShowCouponPopup] = useState(false);
 
-  // 장바구니 항목이 모두 선택되었는지 확인
-  useEffect(() => {
-    setAllChecked(cartItems.every((item) => item.checked));
-  }, [cartItems]);
-
-  // 컴포넌트가 처음 렌더링될 때 모든 항목의 체크 상태를 true로 설정
+  // 모든 항목의 체크 상태를 true로 설정
   useEffect(() => {
     const updatedCartList = cartItems.map((item) => ({
       ...item,
       checked: true,
     }));
     setCartItems(updatedCartList);
-  }, []);
-
-  // 선택된 항목 필터링
-  const selectedItems = cartItems.filter((item) => item.checked);
-
-  // 총 가격 계산
-  const totalPrice = (items) => {
-    return items.reduce((acc, item) => acc + item.price * item.qty, 0);
-  };
-
-  // 총 배송비 계산
-  const totalDeliveryCharge = () => {
-    if (selectedItems.length === 0) {
-      return 0;
-    }
-    return totalPrice(selectedItems) < 70000 ? 3500 : 0;
-  };
+  }, [setCartItems]);
 
   // 항목의 체크 상태 업데이트
   const updateCheckedState = (index, isChecked) => {
@@ -63,69 +43,60 @@ export default function CartTable({ cartItems, setCartItems }) {
     updateCheckedState(index, !cartItems[index].checked);
   };
 
-  // 수량 증가
-  const increaseQuantity = (index) => {
-    const updatedCartList = [...cartItems];
-    updatedCartList[index].qty += 1;
-    setCartItems(updatedCartList);
-  };
-
-  // 수량 감소
-  const decreaseQuantity = (index) => {
-    const updatedCartList = [...cartItems];
-    if (updatedCartList[index].qty > 1) {
-      updatedCartList[index].qty -= 1;
-    }
-    setCartItems(updatedCartList);
-  };
-
-  // 수량 직접 입력 변경
-  const handleQuantityChange = (index, value) => {
-    const updatedCartList = [...cartItems];
-    updatedCartList[index].qty = value;
-    setCartItems(updatedCartList);
-  };
-
-  // 팝업 열기
   const openPopup = (item) => {
     setInitialProductState({ ...item });
     setSelectedProduct(item);
     setShowPopup(true);
   };
 
-  // 팝업 닫기 (취소)
   const cancelPopup = () => {
-    if (initialProductState) {
-      const index = cartItems.findIndex(
-        (item) => item.id === initialProductState.id
-      );
-      const updatedCartList = [...cartItems];
-      updatedCartList[index] = initialProductState;
-      setCartItems(updatedCartList);
+    setShowPopup(false);
+    setSelectedProduct(null);
+    setInitialProductState(null);
+  };
+
+  const confirmPopup = async (cid, quantity) => {
+    try {
+      const response = await axios.post("http://localhost:8000/carts/update", {
+        cid,
+        newQty: quantity,
+      });
+      if (response.data.success) {
+        const updatedCartList = cartItems.map((item) =>
+          item.cid === cid ? { ...item, qty: quantity } : item
+        );
+        setCartItems(updatedCartList);
+      } else {
+        // 업데이트 실패 시 처리 로직 추가
+      }
+    } catch (error) {
+      console.error("Error updating quantity:", error);
     }
     setShowPopup(false);
     setSelectedProduct(null);
     setInitialProductState(null);
   };
 
-  // 팝업 확인
-  const confirmPopup = () => {
-    setShowPopup(false);
-    setSelectedProduct(null);
-    setInitialProductState(null);
-  };
-
-  // 쿠폰 팝업 열기
   const openCouponPopup = () => {
     setShowCouponPopup(true);
   };
 
-  // 쿠폰 팝업 닫기
   const closeCouponPopup = () => {
     setShowCouponPopup(false);
   };
 
-  console.log(cartItems);
+  const selectedItems = cartItems.filter((item) => item.checked);
+
+  const totalPrice = (items) => {
+    return items.reduce((acc, item) => acc + item.price * item.qty, 0);
+  };
+
+  const totalDeliveryCharge = () => {
+    if (selectedItems.length === 0) {
+      return 0;
+    }
+    return totalPrice(selectedItems) < 70000 ? 3500 : 0;
+  };
 
   return (
     <div className="cart-container">
@@ -136,7 +107,7 @@ export default function CartTable({ cartItems, setCartItems }) {
               <input
                 type="checkbox"
                 className="custom-checkbox"
-                onClick={handleCheckAll}
+                onChange={handleCheckAll}
                 checked={allChecked}
               />
             </th>
@@ -150,7 +121,7 @@ export default function CartTable({ cartItems, setCartItems }) {
         </thead>
         <tbody className="cart-table-body">
           {cartItems.map((item, index) => (
-            <tr key={item.id} className="cart-table-product-row">
+            <tr key={item.cid} className="cart-table-product-row">
               <td>
                 <input
                   type="checkbox"
@@ -161,7 +132,7 @@ export default function CartTable({ cartItems, setCartItems }) {
               </td>
               <td>
                 <div className="product-info">
-                  <Link to={`/detail/${item.id}`}>
+                  <Link to={`/product/${item.pid}`}>
                     <img
                       src={`http://localhost:8000/${item.image}`}
                       alt="상품 이미지"
@@ -173,10 +144,10 @@ export default function CartTable({ cartItems, setCartItems }) {
                       COUPON
                     </button>
                     <Link
-                      to={`/detail/${item.id}`}
+                      to={`/product/${item.pid}`}
                       style={{ fontWeight: "500" }}
                     >
-                      {item.name}
+                      {item.title}
                     </Link>
                   </div>
                 </div>
@@ -266,10 +237,6 @@ export default function CartTable({ cartItems, setCartItems }) {
           selectedProduct={selectedProduct}
           cancelPopup={cancelPopup}
           confirmPopup={confirmPopup}
-          decreaseQuantity={decreaseQuantity}
-          increaseQuantity={increaseQuantity}
-          handleQuantityChange={handleQuantityChange}
-          cartItems={cartItems}
         />
       )}
       {showCouponPopup && (
