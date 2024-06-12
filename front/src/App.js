@@ -4,9 +4,11 @@ import Root from "./pages/Root";
 import Main from "./components/Main";
 import ProductPage from "./pages/ProductPage";
 import ProductDetail from "./pages/ProductDetail";
+import Mypage from "./pages/Mypage.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import FindAccount from "./components/FindAccount.jsx";
+import FindAccountPs from "./components/FIndAccountPs.jsx";
 import EmailAuth from "./components/EmailAuth.jsx";
 import ResetPassword from "./components/ResetPassword.jsx";
 import EventList from "./pages/EventList.jsx";
@@ -61,7 +63,9 @@ export default function App() {
           ) /* loader: teamLoader, */,
         },
         { path: "/member", element: <Login /> },
+        { path: "/mypage", element: <Mypage /> },
         { path: "/member/FindAccount", element: <FindAccount /> },
+        { path: "/member/FindAccountPs", element: <FindAccountPs /> },
         { path: "/member/FindAccount/emailAuth", element: <EmailAuth /> },
         {
           path: "/member/FindAccount/resetPassword",

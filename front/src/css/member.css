@@ -305,7 +305,7 @@
 
 .signup-input li button {
   padding: 10px 15px;
-  background: #ff4d4f;
+  background: var(--color-red);
   color: #fff;
   border: none;
   border-radius: 5px;

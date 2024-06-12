@@ -23,8 +23,8 @@
 
 .user-menu {
   position: absolute;
-  top: 100%;
-  right: 0;
+  top: 255%;
+  margin-left: 10px;
   background-color: var(--color-red);
   border: 1px solid #ccc;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -35,10 +35,18 @@
 .user-menu .link {
   display: block;
   padding: 10px 20px;
-  color: #333;
   text-decoration: none;
 }
 
+.user-menu .user-menu-p {
+  padding-left: 33px;
+}
+.user-menu .link p,
+.user-menu p {
+  font-weight: 600;
+  color: white;
+  cursor: default;
+}
 .user-menu .link p:hover {
   border-bottom: 1px solid var(--color-white);
 }

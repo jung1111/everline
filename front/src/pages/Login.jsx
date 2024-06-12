@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../css/member.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -14,6 +14,19 @@ export default function Login() {
   const userIdRef = useRef(null);
   const userPassRef = useRef(null);
   const [formData, setFormData] = useState({ userId: "", userPass: "" });
+  const [rememberMe, setRememberMe] = useState(false);
+
+  useEffect(() => {
+    const savedUserId = cookie.getCookie("savedUserId");
+    if (savedUserId) {
+      setFormData((prevData) => ({ ...prevData, userId: savedUserId }));
+      setRememberMe(true);
+    }
+  }, []);
+
+  const handleCheckboxChange = (e) => {
+    setRememberMe(e.target.checked);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target; // {name:userId, value:'test'},{name:userPass, value:'1234'}
@@ -44,6 +57,11 @@ export default function Login() {
             localStorage.setItem("userInfo", JSON.stringify(userInfo));
             alert("로그인 성공!!");
             navigate("/"); //홈으로 이동
+            if (rememberMe) {
+              cookie.setCookie("savedUserId", formData.userId);
+            } else {
+              cookie.removeCookie("savedUserId");
+            }
           } else {
             alert("로그인 실패, 다시 입력해주세요");
             setFormData({ userId: "", userPass: "" });
@@ -103,8 +121,13 @@ export default function Login() {
             <ul className="member-find-btn">
               <li>
                 <label className="custom-checkbox-label">
-                  <input type="checkbox" className="custom-checkbox" /> 아이디
-                  저장
+                  <input
+                    type="checkbox"
+                    className="custom-checkbox"
+                    checked={rememberMe}
+                    onChange={handleCheckboxChange}
+                  />
+                  아이디 저장
                 </label>
               </li>
               <li>
@@ -114,7 +137,7 @@ export default function Login() {
               </li>
               <li>|</li>
               <li>
-                <Link to="/member/FindAccount">
+                <Link to="/member/FindAccountPs">
                   <span>비밀번호 찾기</span>
                 </Link>
               </li>
