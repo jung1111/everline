@@ -5,3 +5,18 @@
   margin-top: 50px;
   background-color: var(--color-white);
 }
+
+.modify-input {
+  display: block;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.modify-all input {
+  display: block;
+  margin: auto;
+  width: 360px;
+  height: 50px;
+  padding-left: 20px;
+}
