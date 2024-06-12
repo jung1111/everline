@@ -18,6 +18,7 @@ export default function OrderInfo() {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+
   const handleDomainClick = (option) => {
     setSelectDomain(option);
     setIsOpen(false);
@@ -50,18 +51,18 @@ export default function OrderInfo() {
   ];
 
   useEffect(() => {
+    const userId = "someUserId"; // 사용자 ID를 적절히 설정
     axios
-      .get("/data/member.json")
+      .get(`http://127.0.0.1:8000/order/info?USER_ID=${userId}`)
       .then((response) => {
-        const data = response.data[0];
+        const data = response.data;
         setOrderInfo({
-          userName: data.userName,
-          address: data.address,
-          detailAddress: data.detailAddress,
-          phone: data.phone,
-          mobile: data.mobile,
-          emailId: data.emailId,
-          zipcode: data.zipcode,
+          userName: data.USER_NAME,
+          address: data.ADDRESS,
+          phone: data.PHONE,
+          mobile: data.MOBILE_NUMBER,
+          emailId: data.EMAIL_ID,
+          zipcode: data.ZIPCODE,
         });
       })
       .catch((error) => {
@@ -80,11 +81,7 @@ export default function OrderInfo() {
   return (
     <div className="order-info">
       <h3 className="order-title-all">주문자 정보</h3>
-      <table
-        className="
-      order-table-type
-      order-info-table"
-      >
+      <table className="order-table-type order-info-table">
         <tbody>
           <tr>
             <td>주문하시는 분 *</td>
@@ -99,7 +96,7 @@ export default function OrderInfo() {
           </tr>
           <tr>
             <td>주소 </td>
-            <td>{`[${orderInfo.zipcode}] ${orderInfo.address} ${orderInfo.detailAddress}`}</td>
+            <td>{`[${orderInfo.zipcode}] ${orderInfo.address} `}</td>
           </tr>
           <tr>
             <td>전화번호</td>
