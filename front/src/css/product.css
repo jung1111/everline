@@ -350,7 +350,6 @@ bannerslider css
 }
 .BannerSlider-imgbox::before {
   content: "";
-  border: 1px solid orange;
   border-radius: 100%;
   position: absolute;
   left: 0;
