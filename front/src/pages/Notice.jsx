@@ -1,7 +1,5 @@
 import "../css/board.css";
 import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faList } from "@fortawesome/free-solid-svg-icons";
 import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';
 import SubMenu from '../components/SubMenu';
@@ -13,8 +11,6 @@ export default function Notice(){
 		const [listPage, setListPage] = useState([]); // 목록에 보여줄 게시글
 		const [currentPage, setCurrentPage] = useState(1); //현재페이지
 		const pageSize = 8; // 페이지당 게시글 갯수
-
-		const totalCount = noticeList.length;
 
 		const handleChange = (currentPage) => {
 				setCurrentPage(currentPage);
@@ -44,13 +40,7 @@ export default function Notice(){
 				<SubMenu menu="1:1문의" src="/inquiry"/>
 				<SubMenu menu="FAQ"  src="/faq"/>
 			</ul>
-			<div className='count'>
-				<span className="count-no">
-					<span className='count-no-icon'><FontAwesomeIcon icon={faList} /></span>
-					<span className='count-no-text'><span className='count-no-red'>{totalCount}</span> 개의 게시물</span>
-				</span>
-			</div>
-			<Table name="notice" noticeList={noticeList} currentPage={currentPage} totalCount={totalCount} pageSize={pageSize} handleChange={handleChange} listPage={listPage} />	
+			<Table name="notice" currentPage={currentPage} pageSize={pageSize} handleChange={handleChange} listPage={listPage} />	
 		</div>
 	);
 }

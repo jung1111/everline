@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../css/board.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faList } from "@fortawesome/free-solid-svg-icons";
 import Location from '../components/Location';
 import SubTitle from '../components/SubTitle';
 import SubMenu from '../components/SubMenu';
@@ -31,20 +33,20 @@ export default function EventList(){
 		}
 		
 		// 필터
-		const handleChange = (e) => {
-			let clickList = e.target.value;
-			let sortEvent = [...eventList];
+		// const handleChange = (e) => {
+		// 	let clickList = e.target.value;
+		// 	let sortEvent = [...eventList];
 
-			if(clickList === selectList[0].value){
-				sortEvent.sort((a, b)=> a.title.localeCompare(b.title));  
-			}else if(clickList === selectList[1].value){
-				sortEvent.sort((a, b)=> b.price - a.price);
-			}
-			else if(clickList === selectList[2].value){
-				sortEvent.sort((a, b)=> a.price - b.price);
-			}
-			setEventList(sortEvent)
-		}
+		// 	if(clickList === selectList[0].value){
+		// 		sortEvent.sort((a, b)=> a.title.localeCompare(b.title));  
+		// 	}else if(clickList === selectList[1].value){
+		// 		sortEvent.sort((a, b)=> b.price - a.price);
+		// 	}
+		// 	else if(clickList === selectList[2].value){
+		// 		sortEvent.sort((a, b)=> a.price - b.price);
+		// 	}
+		// 	setEventList(sortEvent)
+		// }
 
 		return (
 		<div className='content'>
@@ -54,7 +56,13 @@ export default function EventList(){
 				<SubMenu menu="이벤트목록" src="/eventlist"/>
 				<SubMenu menu="당첨자발표" src="/winner"/>
 			</ul>
-			<ListAll eventList={eventList} handleChange={handleChange} selectList={selectList} />
+			<div className='count'>
+				<span className="count-no">
+					<span className='count-no-icon'><FontAwesomeIcon icon={faList} /></span>
+					<span className='count-no-text'><span className='count-no-red'>{eventList.length}</span> 개의 상품</span>
+				</span>				
+			</div>
+			{/* <ListAll eventList={eventList} selectList={selectList} handleChange={handleChange} />  */}
 
 			{
 				rows.map((row, index)=>(
@@ -66,7 +74,7 @@ export default function EventList(){
 									<img src={list.titImg} />
 								</Link>
 								<h2 className='EventList-title'>{list.title}</h2>
-								<p>{list.price}</p>
+								{/* <p>{list.price}</p> */}
 							</li>
 						))
 					}					
