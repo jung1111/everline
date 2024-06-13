@@ -114,7 +114,9 @@ export default function ModifyMyinfo() {
               placeholder="상세주소"
             />
           </div>
-          <button type="submit">수정</button>
+          <button type="submit">
+            <p>수정</p>
+          </button>
         </form>
       </div>
     </div>

@@ -3,6 +3,7 @@
   height: auto;
   margin: auto;
   margin-top: 50px;
+  padding-top: 40px;
   background-color: var(--color-white);
 }
 
@@ -19,4 +20,20 @@
   width: 360px;
   height: 50px;
   padding-left: 20px;
+}
+
+.modify-all button {
+  width: 360px;
+  height: 50px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  margin-left: 200px;
+  color: var(--color-white);
+  background-color: var(--color-red);
+  font-weight: bold;
+  line-height: 30px;
+}
+
+.modify-all button p:hover {
+  text-decoration: underline;
 }
