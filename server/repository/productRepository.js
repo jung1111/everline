@@ -2,7 +2,7 @@ import { db } from "../db/database_mysql.js";
 
 export const getProducts = async (params) => {
   const sql = `
-    SELECT pid AS id, ptitle AS title, price,  image 
+    SELECT pid AS id, ptitle AS title, price, image 
     FROM ever_product
   `;
 

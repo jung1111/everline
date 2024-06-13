@@ -50,7 +50,7 @@ export default function ProductDetail({ addCartCount }) {
     }
   };
 
-  /* 장바구니 추가 */
+  // 상품 장바구니 추가 함수
   const addCartItem = (id) => {
     const url = `http://localhost:8000/carts/add`;
     axios({
@@ -69,6 +69,8 @@ export default function ProductDetail({ addCartCount }) {
       })
       .catch((error) => console.log(error));
   };
+
+  console.log("12341234", product.id);
 
   // 예약 판매 기간 계산
   const reservationInfo = getReservationPeriod(product.period);
@@ -202,9 +204,9 @@ export default function ProductDetail({ addCartCount }) {
         </div>
       </div>
 
-        <div className="ProductDetail-page">
+      <div className="ProductDetail-page">
         <div ref={section1Ref}>
-          <ProductDetailList 
+          <ProductDetailList
             scrollToSection1={() => scrollToSection(section1Ref)}
             scrollToSection2={() => scrollToSection(section2Ref)}
             scrollToSection3={() => scrollToSection(section3Ref)}

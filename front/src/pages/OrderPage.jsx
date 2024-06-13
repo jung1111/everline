@@ -11,7 +11,7 @@ import OrderFinal from "../components/order/OrderFinal.jsx";
 export default function OrderPage() {
   const location = useLocation();
   const { selectedItems } = location.state || { selectedItems: [] };
-
+  console.log(selectedItems);
   // 총 가격 계산
   const totalPrice = (items) => {
     return items.reduce((acc, item) => acc + item.price * item.qty, 0);

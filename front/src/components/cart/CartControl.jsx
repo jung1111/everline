@@ -2,13 +2,32 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
-export default function CartControl({ cartItems, setCartItems }) {
+export default function CartControl({
+  cartItems,
+  setCartItems,
+  decrementCartCount,
+}) {
   const navigate = useNavigate();
+
   // 선택된 항목 삭제
-  const removeSelectedItems = () => {
-    const filteredCartList = cartItems.filter((item) => !item.checked);
-    setCartItems(filteredCartList);
+  const removeSelectedItems = async () => {
+    const selectedItems = cartItems.filter((item) => item.checked);
+    try {
+      const response = await axios.post("http://localhost:8000/carts/remove", {
+        items: selectedItems.map((item) => ({ cid: item.cid, userId: "test" })),
+      });
+      if (response.data.success) {
+        const filteredCartList = cartItems.filter((item) => !item.checked);
+        setCartItems(filteredCartList);
+        decrementCartCount(selectedItems.length);
+      } else {
+        console.error("Error removing items from cart");
+      }
+    } catch (error) {
+      console.error("Error removing items from cart:", error);
+    }
   };
 
   // 쇼핑 계속하기
@@ -26,6 +45,7 @@ export default function CartControl({ cartItems, setCartItems }) {
   const orderAllItems = () => {
     navigate("/order", { state: { selectedItems: cartItems } });
   };
+  console.log("ssS", cartItems);
 
   return (
     <>

@@ -12,34 +12,39 @@ export const getCarts = async () => {
 
 const cartCheck = async (items) => {
   const sql = `
-  select count(cid) cnt, cid from ever_cart 
-	where pid = ? 
-    group by cid
+  SELECT COUNT(cid) cnt, cid FROM ever_cart 
+  WHERE pid = ? 
+  GROUP BY cid
   `;
-
+  if (!items.pid) {
+    throw new Error("items.pid is undefined");
+  }
   return db.execute(sql, [items.pid]).then((result) => result[0][0]); // {cnt: 1, cid : 9}
 };
 
 export const addCartItem = async (items) => {
-  // cartCheck 함수를 통해 pid
+  if (!items.pid) {
+    throw new Error("items.pid is undefined");
+  }
+
   const checkResult = await cartCheck(items);
   let result_rows = 0;
   let sql = ``;
 
-  if (checkResult === null) {
+  if (checkResult === undefined) {
     // insert
     sql = `
-    insert into ever_cart( pid, cdate, user_id )
-    values ( ?, now(), ?)
+    INSERT INTO ever_cart (pid, cdate, user_id)
+    VALUES (?, now(), 'test')
     `;
     const [result] = await db.execute(sql, [items.pid]);
     result_rows = result.affectedRows;
   } else {
     // update
     sql = `
-    update ever_cart 
-        set qty = qty + 1
-        where cid = ? 
+    UPDATE ever_cart 
+    SET qty = qty + 1
+    WHERE cid = ?
     `;
     const [result] = await db.execute(sql, [checkResult.cid]);
     result_rows = result.affectedRows;
@@ -61,9 +66,8 @@ export const updateCartItem = async (item) => {
   return { affectedRows: result.affectedRows };
 };
 
-export const removeCartItem = async (pid, userId) => {
-  userId = "test";
-  const sql = `DELETE FROM ever_cart WHERE PID = ? and user_id = ?`;
-  const [result] = await db.execute(sql, [pid, userId]);
+export const removeCartItem = async (cid, userId) => {
+  const sql = `DELETE FROM ever_cart WHERE cid = ? AND user_id = ?`;
+  const [result] = await db.execute(sql, [cid, userId]);
   return { affectedRows: result.affectedRows };
 };
