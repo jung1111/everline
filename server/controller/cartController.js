@@ -10,7 +10,6 @@ export const addCartItem = async (req, res) => {
   const result = await repository.addCartItem(items);
   res.json(result);
 };
-
 export const getCartCount = async (req, res) => {
   const { userId } = req.body;
 
@@ -25,7 +24,14 @@ export const updateCartItem = async (req, res) => {
 };
 
 export const removeCartItem = async (req, res) => {
-  const { pid, userId } = req.body;
-  const result = await repository.removeCartItem(pid, userId);
-  res.json(result);
+  const items = req.body.items;
+  try {
+    for (const item of items) {
+      await repository.removeCartItem(item.cid, item.userId);
+    }
+    res.json({ success: true });
+  } catch (error) {
+    console.error("Error removing items from cart:", error);
+    res.json({ success: false });
+  }
 };

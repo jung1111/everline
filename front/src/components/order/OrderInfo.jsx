@@ -51,7 +51,7 @@ export default function OrderInfo() {
   ];
 
   useEffect(() => {
-    const userId = "someUserId"; // 사용자 ID를 적절히 설정
+    const userId = "test";
     axios
       .get(`http://127.0.0.1:8000/order/info?USER_ID=${userId}`)
       .then((response) => {
