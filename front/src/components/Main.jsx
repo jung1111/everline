@@ -13,9 +13,9 @@ export default function Main() {
       <BannerSlider />
       <ImageSlider mainsub_title1="NEW" mainsub_title2="RELEASE" />
       <ImageSlider mainsub_title1="EVER" mainsub_title2="MUSIC" />
-      <ImageSlider mainsub_title1="EVER" mainsub_title2="MD" />
-      <MainNotice notice_title1="NEWS &" notice_title2="NOTICE" />
+      <ImageSlider mainsub_title1="EVER" mainsub_title2="MD" />     
       <EverTv />
+			<MainNotice notice_title1="NEWS &" notice_title2="NOTICE" />
       <div className="bannerAD">
         <Link to="https://everlineshop.com/board/view.php?&bdId=bulkpurchase&sno=6">
           <img
