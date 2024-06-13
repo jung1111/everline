@@ -45,7 +45,6 @@ export default function CartControl({
   const orderAllItems = () => {
     navigate("/order", { state: { selectedItems: cartItems } });
   };
-  console.log("ssS", cartItems);
 
   return (
     <>
