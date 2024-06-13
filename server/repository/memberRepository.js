@@ -153,6 +153,7 @@ export const getIdCheck = async (userId) => {
 };
 
 /* sign up */
+
 export const getSignup = async (formData) => {
   let result_rows = 0;
   console.log("formData", formData);
@@ -160,7 +161,7 @@ export const getSignup = async (formData) => {
   const mobile1 = formData.mobileNumber1;
   let mobile2 = "";
   let mobile3 = "";
-  if (formData.mobileNumber2.length == 8) {
+  if (formData.mobileNumber2.length === 8) {
     mobile2 = formData.mobileNumber2.slice(0, 4);
     mobile3 = formData.mobileNumber2.slice(4);
   } else {
@@ -181,6 +182,7 @@ export const getSignup = async (formData) => {
   )
   values(?,?,?,?,?,?,?,now())
   `;
+
   const params = [
     formData.userId,
     bcrypt.hashSync(formData.userPass, 7),
@@ -190,10 +192,23 @@ export const getSignup = async (formData) => {
     formData.zipcode,
     formData.address.concat(" ", formData.detailAddress),
   ];
+
   try {
     const [result] = await db.execute(sql, params);
     result_rows = result.affectedRows;
     console.log("rows", result.affectedRows);
+
+    if (result_rows === 1) {
+      const mileageSql = `
+      insert into ever_mileage(
+        USER_ID
+      )
+      values (?)
+      `;
+      const mileageParams = [formData.userId];
+      const [mileageResult] = await db.execute(mileageSql, mileageParams);
+      console.log("mileage rows", mileageResult.affectedRows);
+    }
   } catch (error) {
     console.log(error);
   }

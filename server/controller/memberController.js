@@ -2,6 +2,7 @@ import * as repository from "../repository/memberRepository.js";
 import nodemailer from "nodemailer";
 import crypto from "crypto";
 import bcrypt from "bcryptjs";
+import exp from "constants";
 
 /* login 처리 */
 
@@ -22,6 +23,7 @@ export const getIdCheck = async (req, res) => {
 };
 
 /* sign up */
+
 export const getSignup = async (req, res) => {
   const formData = req.body;
   const result = await repository.getSignup(formData);
