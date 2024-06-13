@@ -15,6 +15,7 @@ export default function Header({ cartCount }) {
   const userInfo = getUser();
   const handleLogout = () => {
     removeUser();
+    alert("로그아웃 되었습니다.");
     navigate("/");
   };
 

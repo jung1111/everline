@@ -337,7 +337,7 @@ export default function Signup() {
               <li>
                 <label className="custom-checkbox-label">
                   <input
-                    className="custom-checkbox"
+                    className="custom-checkbox mbcheck"
                     type="checkbox"
                     ref={refs.snsSentRef}
                     name="snsSent"
@@ -510,7 +510,7 @@ export default function Signup() {
               <li className="member-agreement-item">
                 <label className="custom-checkbox-label">
                   <input
-                    className="custom-checkbox"
+                    className="custom-checkbox mbcheck"
                     type="checkbox"
                     name="agreeAll"
                     checked={formData.agreeAll}
@@ -526,7 +526,7 @@ export default function Signup() {
               <li className="member-agreement-item">
                 <label className="custom-checkbox-label">
                   <input
-                    className="custom-checkbox"
+                    className="custom-checkbox mbcheck"
                     type="checkbox"
                     name="service"
                     checked={formData.service}
@@ -548,7 +548,7 @@ export default function Signup() {
               <li className="member-agreement-item">
                 <label className="custom-checkbox-label">
                   <input
-                    className="custom-checkbox"
+                    className="custom-checkbox mbcheck"
                     type="checkbox"
                     name="personal"
                     checked={formData.personal}

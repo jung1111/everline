@@ -123,7 +123,7 @@ export default function Login() {
                 <label className="custom-checkbox-label">
                   <input
                     type="checkbox"
-                    className="custom-checkbox"
+                    className="custom-checkbox mbcheck"
                     checked={rememberMe}
                     onChange={handleCheckboxChange}
                   />

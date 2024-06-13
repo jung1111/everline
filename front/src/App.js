@@ -5,6 +5,7 @@ import Main from "./components/Main";
 import ProductPage from "./pages/ProductPage";
 import ProductDetail from "./pages/ProductDetail";
 import Mypage from "./pages/Mypage.jsx";
+import OrderResult from "./components/OrderResult.jsx";
 import ModifyMyinfo from "./components/ModifyMyinfo.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
@@ -79,6 +80,7 @@ export default function App() {
         { path: "/member", element: <Login /> },
         { path: "/mypage", element: <Mypage /> },
         { path: "/mypage/modify/:userId", element: <ModifyMyinfo /> },
+        { path: "/mypage/order-result", element: <OrderResult /> },
         { path: "/member/FindAccount", element: <FindAccount /> },
         { path: "/member/FindAccountPs", element: <FindAccountPs /> },
         { path: "/member/FindAccount/emailAuth", element: <EmailAuth /> },

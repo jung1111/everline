@@ -5,7 +5,6 @@ import "../css/mypage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { getUser, removeUser } from "../util/localStorage.js";
-import OrderTable from "../components/order/OrderTable.jsx";
 
 export default function Mypage() {
   const navigate = useNavigate();
@@ -13,6 +12,7 @@ export default function Mypage() {
 
   const handleLogout = () => {
     removeUser();
+    alert("로그아웃 되었습니다.");
     navigate("/");
   };
 
@@ -23,7 +23,7 @@ export default function Mypage() {
         <div className="mypage-header">
           <div className="mypage-header-item">
             <p style={{ fontWeight: "bold" }}>1,000원</p>
-            <p>총적립금</p>
+            <p>총마일리지</p>
           </div>
           <div className="mypage-header-item">
             <p style={{ fontWeight: "bold" }}>0개</p>
@@ -87,8 +87,12 @@ export default function Mypage() {
           <div className="mypage-info-section">
             <h3>나의 쇼핑 정보</h3>
             <ul>
-              <li>나의 장바구니</li>
-              <li>주문내역조회</li>
+              <Link to="/carts">
+                <li>나의 장바구니</li>
+              </Link>
+              <Link to="/mypage/order-result">
+                <li>주문내역조회</li>
+              </Link>
             </ul>
           </div>
           <div className="mypage-info-section">
