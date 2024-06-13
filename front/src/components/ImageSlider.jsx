@@ -43,7 +43,7 @@ const ImageSlider = ({ mainsub_title1, mainsub_title2, target }) => {
         </span>
         <div className="slider-image-wrapper">
           {images.slice(currentIndex, currentIndex + 3).map((image, index) => (
-            <Link to={`/Detail/${currentIndex + index+1}`} key={index}>
+            <Link to={`/product/${currentIndex + index+1}`} key={index}>
               <img src={image} alt={`slide-${currentIndex + index}`} />
             </Link>
           ))}

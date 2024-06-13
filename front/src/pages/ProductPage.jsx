@@ -11,8 +11,8 @@ export default function ProductPage() {
   const [productlist, setProductList] = useState([]);
   const selectList = [
     { value: "popularity", title: "이름순" },
-    { value: "highpricestitle", title: "낮은가격순" },
-    { value: "lospricestitle", title: "높은가격순" },
+    { value: "highpricestitle", title: "높은가격순" },
+    { value: "lospricestitle", title: "낮은가격순" },
   ];
 
   useEffect(() => {
