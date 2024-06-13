@@ -7,11 +7,7 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { getUser, removeUser } from "../util/localStorage.js";
 import OrderTable from "../components/order/OrderTable.jsx";
 
-export default function Mypage({
-  selectProducts,
-  totalDeliveryCharge,
-  totalPrice,
-}) {
+export default function Mypage() {
   const navigate = useNavigate();
   const userId = getUser().userId;
 
@@ -85,49 +81,38 @@ export default function Mypage({
         </div>
         <div className="order-check">
           <h3>주문내역조회</h3>
-          {selectProducts && selectProducts.length === 0 && (
-            <p>주문내역이 없습니다</p>
-          )}
-          {selectProducts && selectProducts.length > 0 && (
-            <div className="mypage-info">
-              <div className="mypage-info-section">
-                <h3>나의 쇼핑 정보</h3>
-                <ul>
-                  <li>나의 장바구니</li>
-                  <li>
-                    <OrderTable
-                      selectProducts={selectProducts}
-                      totalDeliveryCharge={totalDeliveryCharge}
-                      totalPrice={totalPrice}
-                    />
-                  </li>
-                </ul>
-              </div>
-
-              <div className="mypage-info-section">
-                <h3>나의 정보</h3>
-                <ul>
-                  <Link to={`/mypage/modify/${userId}`}>
-                    <li>회원 정보 수정</li>
-                  </Link>
-                  <Link to="/member/FindAccountPs">
-                    <li>비밀번호 변경</li>
-                  </Link>
-                  <li className="mypage-loout" onClick={handleLogout}>
-                    로그아웃
-                  </li>
-                </ul>
-              </div>
-              <div className="mypage-info-section">
-                <h3>고객센터</h3>
-                <ul>
-                  <Link to="/inquiry">
-                    <li>1:1 문의</li>
-                  </Link>
-                </ul>
-              </div>
-            </div>
-          )}
+          <p>주문내역이 없습니다</p>
+        </div>
+        <div className="mypage-info">
+          <div className="mypage-info-section">
+            <h3>나의 쇼핑 정보</h3>
+            <ul>
+              <li>나의 장바구니</li>
+              <li>주문내역조회</li>
+            </ul>
+          </div>
+          <div className="mypage-info-section">
+            <h3>나의 정보</h3>
+            <ul>
+              <Link to={`/mypage/modify/${userId}`}>
+                <li>회원 정보 수정</li>
+              </Link>
+              <Link to="/member/FindAccountPs">
+                <li>비밀번호 변경</li>
+              </Link>
+              <li className="mypage-loout" onClick={handleLogout}>
+                로그아웃
+              </li>
+            </ul>
+          </div>
+          <div className="mypage-info-section">
+            <h3>고객센터</h3>
+            <ul>
+              <Link to="/inquiry">
+                <li>1:1 문의</li>
+              </Link>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
