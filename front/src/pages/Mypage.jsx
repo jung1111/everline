@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SubTitle from "../components/SubTitle.jsx";
 import "../css/mypage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { getUser, removeUser } from "../util/localStorage.js";
+import axios from "axios";
 
 export default function Mypage() {
   const navigate = useNavigate();
@@ -16,13 +17,30 @@ export default function Mypage() {
     navigate("/");
   };
 
+  const [mileage, setMileage] = useState({
+    mil: "",
+  });
+
+  useEffect(() => {
+    const userId = "test";
+    axios
+      .get(`http://127.0.0.1:8000/order/mileage?USER_ID=${userId}`)
+      .then((response) => {
+        const data = response.data;
+        setMileage(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <div className="content">
       <SubTitle title="마이페이지" />
       <div className="mypage-content">
         <div className="mypage-header">
           <div className="mypage-header-item">
-            <p style={{ fontWeight: "bold" }}>1,000원</p>
+            <p style={{ fontWeight: "bold" }}>
+              {mileage.mil?.toLocaleString()}원
+            </p>
             <p>총마일리지</p>
           </div>
           <div className="mypage-header-item">

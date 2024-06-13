@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-export default function OrderFinal({ effectiveTotalPrice, usedMileage }) {
+export default function OrderFinal({
+  effectiveTotalPrice,
+  usedMileage,
+  stackMileage,
+}) {
   const userId = "test";
   const [isAgreed, setIsAgreed] = useState(false);
 
@@ -11,17 +15,31 @@ export default function OrderFinal({ effectiveTotalPrice, usedMileage }) {
       return;
     }
     try {
-      const response = await axios.post(
+      const useMileageResponse = await axios.post(
         "http://localhost:8000/order/usemileage",
         {
           USER_ID: userId,
           usedMil: usedMileage,
         }
       );
-      if (response.status === 200) {
+
+      if (useMileageResponse.status !== 200) {
+        alert("마일리지 사용 처리 중 문제가 발생했습니다.");
+        return;
+      }
+
+      const stackMileageResponse = await axios.post(
+        "http://localhost:8000/order/stackmileage",
+        {
+          USER_ID: userId,
+          stackMil: stackMileage,
+        }
+      );
+
+      if (stackMileageResponse.status === 200) {
         alert("주문이 성공적으로 완료되었습니다.");
       } else {
-        alert("주문 처리 중 문제가 발생했습니다.");
+        alert("마일리지 적립 처리 중 문제가 발생했습니다.");
       }
     } catch (error) {
       console.error("Error during the order process:", error);

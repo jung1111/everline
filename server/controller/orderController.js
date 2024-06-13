@@ -29,3 +29,13 @@ export const useMileage = async (req, res) => {
     res.status(500).json({ error: "Failed to update user mileage" });
   }
 };
+
+export const stackMileage = async (req, res) => {
+  const { USER_ID, stackMil } = req.body;
+  try {
+    const result = await repository.stackMileage(USER_ID, stackMil);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update user mileage" });
+  }
+};
