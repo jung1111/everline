@@ -35,3 +35,12 @@ export const removeCartItem = async (req, res) => {
     res.json({ success: false });
   }
 };
+export const deleteItems = async (req, res) => {
+  const { userId, items } = req.body;
+  try {
+    const result = await repository.deleteItems(userId, items);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete items from cart" });
+  }
+};

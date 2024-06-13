@@ -6,9 +6,12 @@ export default function PaymentInformation({
   totalDeliveryCharge,
   totalPrice,
   mileage,
+  decrementCartCount,
 }) {
   const [usedMileage, setUsedMileage] = useState(0);
   const [useFullMileage, setUseFullMileage] = useState(false);
+
+  const stackMileage = Math.round((totalPrice(selectedItems) * 0.01) / 10) * 10; // 예상 적립 마일리지
 
   const handleMileageChange = (e) => {
     const value = Number(e.target.value);
@@ -58,7 +61,7 @@ export default function PaymentInformation({
                 <span style={{ fontWeight: "bold" }}>
                   {" "}
                   (+)
-                  {Math.round((totalPrice(selectedItems) * 0.01) / 10) * 10}원
+                  {stackMileage}원
                 </span>
               </td>
             </tr>
@@ -117,6 +120,9 @@ export default function PaymentInformation({
       <OrderFinal
         effectiveTotalPrice={effectiveTotalPrice}
         usedMileage={usedMileage}
+        stackMileage={stackMileage}
+        selectedItems={selectedItems}
+        decrementCartCount={decrementCartCount}
       />
     </>
   );

@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export default function OrderFinal({ effectiveTotalPrice, usedMileage }) {
+export default function OrderFinal({
+  effectiveTotalPrice,
+  usedMileage,
+  stackMileage,
+  selectedItems,
+  decrementCartCount,
+}) {
   const userId = "test";
   const [isAgreed, setIsAgreed] = useState(false);
+  const navigate = useNavigate();
 
   const handleOrder = async () => {
     if (!isAgreed) {
@@ -11,17 +19,54 @@ export default function OrderFinal({ effectiveTotalPrice, usedMileage }) {
       return;
     }
     try {
-      const response = await axios.post(
+      const useMileageResponse = await axios.post(
         "http://localhost:8000/order/usemileage",
         {
           USER_ID: userId,
           usedMil: usedMileage,
         }
       );
-      if (response.status === 200) {
-        alert("주문이 성공적으로 완료되었습니다.");
+
+      if (useMileageResponse.status !== 200) {
+        alert("마일리지 사용 처리 중 문제가 발생했습니다.");
+        return;
+      }
+
+      const stackMileageResponse = await axios.post(
+        "http://localhost:8000/order/stackmileage",
+        {
+          USER_ID: userId,
+          stackMil: stackMileage,
+        }
+      );
+
+      if (stackMileageResponse.status === 200) {
+        // 주문 정보 전송
+        const placeOrderResponse = await axios.post(
+          "http://localhost:8000/order/placeOrder",
+          {
+            userId: userId,
+            items: selectedItems,
+            total_price: effectiveTotalPrice,
+            used_mileage: usedMileage,
+          }
+        );
+
+        if (placeOrderResponse.status === 200) {
+          // 장바구니에서 아이템 삭제
+          await axios.post("http://localhost:8000/carts/deleteItems", {
+            userId: userId,
+            items: selectedItems,
+          });
+
+          decrementCartCount(selectedItems.length);
+          alert("주문이 성공적으로 완료되었습니다.");
+          navigate("/mypage/order-result"); // 주문 완료 후 주문 내역 페이지로 이동
+        } else {
+          alert("주문 처리 중 문제가 발생했습니다.");
+        }
       } else {
-        alert("주문 처리 중 문제가 발생했습니다.");
+        alert("마일리지 적립 처리 중 문제가 발생했습니다.");
       }
     } catch (error) {
       console.error("Error during the order process:", error);
