@@ -34,6 +34,7 @@ import axios from "axios";
 
 import YouTubeSlider from "./components/YouTubeSlider.jsx";
 import YouTubeDetail from "./components/YouTubeDetail.jsx";
+import OrderResultDetails from "./components/OrderResultDetail.jsx";
 
 export default function App() {
   const [cartCount, setCartCount] = useState(0);
@@ -102,7 +103,7 @@ export default function App() {
         },
         {
           path: "/order",
-          element: <OrderPage />,
+          element: <OrderPage decrementCartCount={decrementCartCount} />,
         },
         { path: "/winner", element: <WinnerNoticeList /> },
         { path: "/winner/:id", element: <WinnerNoticeDetail /> },
@@ -115,6 +116,10 @@ export default function App() {
         { path: "/inquiry/delete/:bid/:rno", element: <InquiryDelete /> },
         { path: "/faq", element: <Faq /> },
         { path: "/upload", element: <Upload /> },
+        {
+          path: "/orderDetails/:orderId",
+          element: <OrderResultDetails />,
+        },
       ],
     },
   ]);

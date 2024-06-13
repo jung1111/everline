@@ -31,6 +31,21 @@ export default function Mypage() {
       })
       .catch((error) => console.log(error));
   }, []);
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    const userId = "test"; // 사용자 ID
+    axios
+      .get(`http://localhost:8000/order/getOrders?USER_ID=${userId}`)
+      .then((response) => {
+        setOrders(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching orders:", error);
+      });
+  }, [userId]);
+
+  console.log(orders);
 
   return (
     <div className="content">
@@ -65,7 +80,7 @@ export default function Mypage() {
             </div>
             <div className="order-status-item">
               <p>배송준비중</p>
-              <p>0</p>
+              <p>{orders.length}</p>
             </div>
             <div className="order-status-arrow">
               <FontAwesomeIcon icon={faChevronRight} />

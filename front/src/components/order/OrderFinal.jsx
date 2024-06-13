@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function OrderFinal({
   effectiveTotalPrice,
   usedMileage,
   stackMileage,
+  selectedItems,
+  decrementCartCount,
 }) {
   const userId = "test";
   const [isAgreed, setIsAgreed] = useState(false);
+  const navigate = useNavigate();
 
   const handleOrder = async () => {
     if (!isAgreed) {
@@ -37,7 +41,30 @@ export default function OrderFinal({
       );
 
       if (stackMileageResponse.status === 200) {
-        alert("주문이 성공적으로 완료되었습니다.");
+        // 주문 정보 전송
+        const placeOrderResponse = await axios.post(
+          "http://localhost:8000/order/placeOrder",
+          {
+            userId: userId,
+            items: selectedItems,
+            total_price: effectiveTotalPrice,
+            used_mileage: usedMileage,
+          }
+        );
+
+        if (placeOrderResponse.status === 200) {
+          // 장바구니에서 아이템 삭제
+          await axios.post("http://localhost:8000/carts/deleteItems", {
+            userId: userId,
+            items: selectedItems,
+          });
+
+          decrementCartCount(selectedItems.length);
+          alert("주문이 성공적으로 완료되었습니다.");
+          navigate("/mypage/order-result"); // 주문 완료 후 주문 내역 페이지로 이동
+        } else {
+          alert("주문 처리 중 문제가 발생했습니다.");
+        }
       } else {
         alert("마일리지 적립 처리 중 문제가 발생했습니다.");
       }

@@ -8,5 +8,5 @@ router.post("/add", controller.addCartItem);
 router.post("/count", controller.getCartCount);
 router.post("/update", controller.updateCartItem);
 router.post("/remove", controller.removeCartItem);
-
+router.post("/deleteItems", controller.deleteItems);
 export default router;

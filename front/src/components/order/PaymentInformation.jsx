@@ -6,6 +6,7 @@ export default function PaymentInformation({
   totalDeliveryCharge,
   totalPrice,
   mileage,
+  decrementCartCount,
 }) {
   const [usedMileage, setUsedMileage] = useState(0);
   const [useFullMileage, setUseFullMileage] = useState(false);
@@ -120,6 +121,8 @@ export default function PaymentInformation({
         effectiveTotalPrice={effectiveTotalPrice}
         usedMileage={usedMileage}
         stackMileage={stackMileage}
+        selectedItems={selectedItems}
+        decrementCartCount={decrementCartCount}
       />
     </>
   );
