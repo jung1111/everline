@@ -1,18 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
-export default function OrderInfo() {
-  const [orderInfo, setOrderInfo] = useState({
-    userName: "",
-    address: "",
-    detailAddress: "",
-    phone: "",
-    mobile: "",
-    emailId: "",
-    zipcode: "",
-  });
+export default function OrderInfo({ orderInfo, setOrderInfo }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectDomain, setSelectDomain] = useState("직접입력");
   const toggleDropdown = () => {
@@ -49,26 +40,6 @@ export default function OrderInfo() {
     "gmail.com",
     "icloud.com",
   ];
-
-  useEffect(() => {
-    const userId = "test";
-    axios
-      .get(`http://127.0.0.1:8000/order/info?USER_ID=${userId}`)
-      .then((response) => {
-        const data = response.data;
-        setOrderInfo({
-          userName: data.USER_NAME,
-          address: data.ADDRESS,
-          phone: data.PHONE,
-          mobile: data.MOBILE_NUMBER,
-          emailId: data.EMAIL_ID,
-          zipcode: data.ZIPCODE,
-        });
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the order info!", error);
-      });
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
