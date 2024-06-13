@@ -18,7 +18,7 @@ export default function CartTable({ cartItems, setCartItems }) {
       checked: true,
     }));
     setCartItems(updatedCartList);
-  }, [setCartItems]);
+  }, [cartItems.length]);
 
   // 항목의 체크 상태 업데이트
   const updateCheckedState = (index, isChecked) => {
@@ -37,7 +37,6 @@ export default function CartTable({ cartItems, setCartItems }) {
     setCartItems(updatedCartList);
     setAllChecked(!allChecked);
   };
-
   // 개별 항목 체크 상태 변경
   const handleCheck = (index) => {
     updateCheckedState(index, !cartItems[index].checked);

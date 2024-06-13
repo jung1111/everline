@@ -68,7 +68,20 @@ export default function ProductDetail({ addCartCount }) {
       .catch((error) => console.log(error));
   };
 
-  console.log("12341234", product.id);
+  const SelectOrder = () => {
+    const selectedItems = [
+      {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        qty: 1,
+        image: product.image,
+      },
+    ];
+    navigate("/order", { state: { selectedItems } });
+  };
+
+  console.log("12341234", product);
 
   // 예약 판매 기간 계산
   const reservationInfo = getReservationPeriod(product.period);
@@ -194,11 +207,9 @@ export default function ProductDetail({ addCartCount }) {
             장바구니
           </button>
 
-          <Link to="/">
-            <button className="product-btn3" type="button">
-              바로구매
-            </button>
-          </Link>
+          <button className="product-btn3" type="button" onClick={SelectOrder}>
+            바로구매
+          </button>
         </div>
       </div>
 

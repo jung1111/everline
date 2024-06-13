@@ -1,13 +1,52 @@
-export default function OrderFinal({ totalPrice, selectProducts }) {
+import React, { useState } from "react";
+import axios from "axios";
+
+export default function OrderFinal({ effectiveTotalPrice, usedMileage }) {
+  const userId = "test";
+  const [isAgreed, setIsAgreed] = useState(false);
+
+  const handleOrder = async () => {
+    if (!isAgreed) {
+      alert("구매진행에 동의해 주세요.");
+      return;
+    }
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/order/usemileage",
+        {
+          USER_ID: userId,
+          usedMil: usedMileage,
+        }
+      );
+      if (response.status === 200) {
+        alert("주문이 성공적으로 완료되었습니다.");
+      } else {
+        alert("주문 처리 중 문제가 발생했습니다.");
+      }
+    } catch (error) {
+      console.error("Error during the order process:", error);
+      alert("주문 처리 중 문제가 발생했습니다.");
+    }
+  };
+
   return (
     <div className="order-final">
       <div className="order-final-info">
         <span>결제금액</span>{" "}
-        <span>{totalPrice(selectProducts)?.toLocaleString()}원</span>
+        <span>
+          {" "}
+          {effectiveTotalPrice > 0 ? effectiveTotalPrice.toLocaleString() : 0}원
+        </span>
       </div>
 
       <div className="final-agree-box">
-        <input id="final-agree" type="checkbox" className="custom-checkbox" />
+        <input
+          id="final-agree"
+          type="checkbox"
+          className="custom-checkbox"
+          checked={isAgreed}
+          onChange={() => setIsAgreed(!isAgreed)}
+        />
         <label htmlFor="final-agree">
           <strong style={{ fontWeight: "bolder" }} className="final-strong">
             [필수]{" "}
@@ -16,7 +55,11 @@ export default function OrderFinal({ totalPrice, selectProducts }) {
         </label>
       </div>
       <div>
-        <button style={{ fontWeight: "bolder" }} className="btn-order-final">
+        <button
+          style={{ fontWeight: "bolder" }}
+          className="btn-order-final"
+          onClick={handleOrder}
+        >
           주문
         </button>
       </div>

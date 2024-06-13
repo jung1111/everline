@@ -6,3 +6,23 @@ export const getUserInfo = async (userId) => {
   ]);
   return rows[0];
 };
+
+export const getmilage = async (userId) => {
+  const [rows] = await db.query(
+    "SELECT mil FROM ever_mileage WHERE USER_ID = ?",
+    [userId]
+  );
+  return rows[0];
+};
+
+export const useMileage = async (userId, usedMil) => {
+  const [result] = await db.query(
+    `
+    UPDATE ever_mileage 
+    SET mil = mil - ? 
+    WHERE USER_ID = ? 
+    `,
+    [usedMil, userId]
+  );
+  return result;
+};
