@@ -46,9 +46,11 @@ export default function App() {
       .catch((error) => console.log(error));
   }, [cartCount]);
 
-  const addCartCount = (result) => {
-    if (result === 1);
+  const addCartCount = () => {
+    setCartCount((prevCount) => prevCount + 1);
   };
+
+  const decrementCartCount = (count) => setCartCount((prev) => prev - count);
 
   const router = createBrowserRouter([
     {
@@ -89,7 +91,12 @@ export default function App() {
         { path: "/eventdetail/:id", element: <EventListDetail /> },
         {
           path: "/carts",
-          element: <CartPage cartCount={cartCount} />,
+          element: (
+            <CartPage
+              cartCount={cartCount}
+              decrementCartCount={decrementCartCount}
+            />
+          ),
         },
         {
           path: "/order",

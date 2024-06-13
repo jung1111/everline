@@ -5,7 +5,7 @@ import CartControl from "../components/cart/CartControl.jsx";
 import SubTitle from "../components/SubTitle.jsx";
 import "../css/cart.css";
 
-export default function CartPage() {
+export default function CartPage({ decrementCartCount }) {
   const [cartItems, setCartItems] = useState([]);
   const url = "http://localhost:8000/carts";
   useEffect(() => {
@@ -24,7 +24,11 @@ export default function CartPage() {
       ) : (
         <div className="cart-table">
           <CartTable cartItems={cartItems} setCartItems={setCartItems} />
-          <CartControl cartItems={cartItems} setCartItems={setCartItems} />
+          <CartControl
+            cartItems={cartItems}
+            setCartItems={setCartItems}
+            decrementCartCount={decrementCartCount}
+          />
         </div>
       )}
     </div>

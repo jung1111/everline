@@ -62,9 +62,7 @@ export default function ProductDetail({ addCartCount }) {
         if (result.data.cnt === 1) {
           addCartCount(result.data.cnt);
           alert("장바구니에 추가 됐습니다.");
-          setTimeout(() => {
-            navigate("/carts");
-          }, 0); // alert가 닫힌 후에 페이지를 이동하도록 설정
+          navigate("/carts");
         }
       })
       .catch((error) => console.log(error));
