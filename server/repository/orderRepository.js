@@ -26,3 +26,15 @@ export const useMileage = async (userId, usedMil) => {
   );
   return result;
 };
+
+export const stackMileage = async (userId, stackMil) => {
+  const [result] = await db.query(
+    `
+    UPDATE ever_mileage 
+    SET mil = mil + ? 
+    WHERE USER_ID = ? 
+    `,
+    [stackMil, userId]
+  );
+  return result;
+};
