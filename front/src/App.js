@@ -36,7 +36,7 @@ import YouTubeDetail from "./components/YouTubeDetail.jsx";
 import OrderResult from "./components/OrderResult.jsx";
 import OrderResultDetails from "./components/OrderResultDetail.jsx";
 import { getUser } from "./util/localStorage.js";
-import ScrollUp from "./components/ScrollUp.jsx";
+
 export default function App() {
   const [cartCount, setCartCount] = useState(0);
   const [userId, setUserId] = useState("guest");
