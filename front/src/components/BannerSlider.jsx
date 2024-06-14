@@ -10,7 +10,7 @@ export default function BannerSlider() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/data/slide.json") // 배너 데이터를 가져오는 API 호출
+      .get("http://192.168.10.67:3000/data/slide.json") // 배너 데이터를 가져오는 API 호출
       .then(res => setBanners(res.data)) // 데이터를 받아 상태에 저장
       .catch(error => console.log(error)); // 에러 로그 출력
   }, []);
