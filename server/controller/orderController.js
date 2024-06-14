@@ -73,3 +73,12 @@ export const getOrderDetails = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch order details" });
   }
 };
+export const deleteOrder = async (req, res) => {
+  const orderId = req.params.orderId;
+  try {
+    const result = await repository.deleteOrder(orderId);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete order" });
+  }
+};

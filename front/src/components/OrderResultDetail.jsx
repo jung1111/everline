@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import SubTitle from "./SubTitle";
 
 export default function OrderResultDetails() {
   const { orderId } = useParams();
   const [orderDetails, setOrderDetails] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -17,6 +18,21 @@ export default function OrderResultDetails() {
         console.error("Error fetching order details:", error);
       });
   }, [orderId]);
+
+  const handleDeleteOrder = () => {
+    axios
+      .delete(`http://localhost:8000/order/deleteOrder/${orderId}`)
+      .then((response) => {
+        if (response.status === 200) {
+          alert("주문이 성공적으로 취소되었습니다.");
+          navigate("/mypage/order-result");
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting order:", error);
+        alert("주문 취소 중 문제가 발생했습니다.");
+      });
+  };
 
   return (
     <div className="content">
@@ -52,6 +68,7 @@ export default function OrderResultDetails() {
             </tbody>
           </table>
         )}
+        <button onClick={handleDeleteOrder}>주문 취소</button>
       </div>
     </div>
   );
