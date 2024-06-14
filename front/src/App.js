@@ -5,7 +5,6 @@ import Main from "./components/Main";
 import ProductPage from "./pages/ProductPage";
 import ProductDetail from "./pages/ProductDetail";
 import Mypage from "./pages/Mypage.jsx";
-import OrderResult from "./components/OrderResult.jsx";
 import ModifyMyinfo from "./components/ModifyMyinfo.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
@@ -34,6 +33,8 @@ import axios from "axios";
 
 import YouTubeSlider from "./components/YouTubeSlider.jsx";
 import YouTubeDetail from "./components/YouTubeDetail.jsx";
+import OrderResult from "./components/OrderResult.jsx";
+import OrderResultDetails from "./components/OrderResultDetail.jsx";
 
 export default function App() {
   const [cartCount, setCartCount] = useState(0);
@@ -45,7 +46,7 @@ export default function App() {
         setCartCount(parseInt(response.data.count));
       })
       .catch((error) => console.log(error));
-  }, [cartCount]);
+  }, []);
 
   const addCartCount = () => {
     setCartCount((prevCount) => prevCount + 1);
@@ -80,7 +81,6 @@ export default function App() {
         { path: "/member", element: <Login /> },
         { path: "/mypage", element: <Mypage /> },
         { path: "/mypage/modify/:userId", element: <ModifyMyinfo /> },
-        { path: "/mypage/order-result", element: <OrderResult /> },
         { path: "/member/FindAccount", element: <FindAccount /> },
         { path: "/member/FindAccountPs", element: <FindAccountPs /> },
         { path: "/member/FindAccount/emailAuth", element: <EmailAuth /> },
@@ -102,7 +102,7 @@ export default function App() {
         },
         {
           path: "/order",
-          element: <OrderPage />,
+          element: <OrderPage decrementCartCount={decrementCartCount} />,
         },
         { path: "/winner", element: <WinnerNoticeList /> },
         { path: "/winner/:id", element: <WinnerNoticeDetail /> },
@@ -115,6 +115,11 @@ export default function App() {
         { path: "/inquiry/delete/:bid/:rno", element: <InquiryDelete /> },
         { path: "/faq", element: <Faq /> },
         { path: "/upload", element: <Upload /> },
+        { path: "/mypage/order-result", element: <OrderResult /> },
+        {
+          path: "/orderDetails/:orderId",
+          element: <OrderResultDetails />,
+        },
       ],
     },
   ]);

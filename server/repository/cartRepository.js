@@ -71,3 +71,11 @@ export const removeCartItem = async (cid, userId) => {
   const [result] = await db.execute(sql, [cid, userId]);
   return { affectedRows: result.affectedRows };
 };
+export const deleteItems = async (userId, items) => {
+  const itemIds = items.map((item) => item.pid);
+  const [result] = await db.query(
+    `DELETE FROM ever_cart WHERE user_id = ? AND pid IN (?)`,
+    [userId, itemIds]
+  );
+  return result;
+};

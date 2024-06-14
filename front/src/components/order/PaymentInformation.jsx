@@ -1,14 +1,39 @@
 import React, { useState } from "react";
+import OrderFinal from "./OrderFinal"; // OrderFinal 컴포넌트를 임포트해야 합니다.
 
 export default function PaymentInformation({
   selectProducts,
   totalDeliveryCharge,
   totalPrice,
+  mileage,
 }) {
+  const [usedMileage, setUsedMileage] = useState(0);
+  const [useFullMileage, setUseFullMileage] = useState(false);
+
+  const handleMileageChange = (e) => {
+    const value = Number(e.target.value);
+    if (value > mileage.mil) {
+      setUsedMileage(mileage.mil);
+      setUseFullMileage(true);
+    } else {
+      setUsedMileage(value);
+      setUseFullMileage(value === mileage.mil);
+    }
+  };
+
+  const handleFullMileageUse = () => {
+    setUsedMileage(useFullMileage ? 0 : mileage.mil);
+    setUseFullMileage(!useFullMileage);
+  };
+
+  const effectiveTotalPrice =
+    totalPrice(selectProducts) + totalDeliveryCharge() - usedMileage;
+
+  const remainingMileage = mileage.mil - usedMileage;
+
   return (
     <div className="payment-info">
       <h3 className="order-title-all">결제정보</h3>
-
       <table className="order-table-type payment-table">
         <tbody>
           <tr>
@@ -50,12 +75,23 @@ export default function PaymentInformation({
             <td>마일리지 사용</td>
             <td>
               <div className="payment-table-mileage">
-                <input type="text" className="payment-table-mileage-input" />
+                <input
+                  type="text"
+                  className="payment-table-mileage-input"
+                  value={usedMileage}
+                  onChange={handleMileageChange}
+                  max={mileage.mil}
+                />
                 <span>원</span>
-                <input type="checkbox" className="custom-checkbox" />
+                <input
+                  type="checkbox"
+                  className="custom-checkbox"
+                  checked={useFullMileage}
+                  onChange={handleFullMileageUse}
+                />
                 <span>전액 사용하기</span>
                 <span className="payment-table-mileage-held">
-                  (보유 마일리지 : 1,000 원)
+                  (보유 마일리지 : {remainingMileage.toLocaleString()}원)
                 </span>
               </div>
             </td>
@@ -65,16 +101,22 @@ export default function PaymentInformation({
             <td>총 합계 금액</td>
             <td>
               <span style={{ fontWeight: "bolder" }}>
-                {(
-                  totalPrice(selectProducts) +
-                  (selectProducts.length === 0 ? 0 : totalDeliveryCharge())
-                ).toLocaleString()}
+                {effectiveTotalPrice > 0
+                  ? effectiveTotalPrice.toLocaleString()
+                  : 0}
                 원
               </span>
             </td>
           </tr>
         </tbody>
       </table>
+      <OrderFinal
+        effectiveTotalPrice={effectiveTotalPrice}
+        usedMileage={usedMileage}
+        selectProducts={selectProducts}
+        totalDeliveryCharge={totalDeliveryCharge}
+        totalPrice={totalPrice}
+      />
     </div>
   );
 }

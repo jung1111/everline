@@ -9,7 +9,7 @@ import Location from "../components/Location.jsx";
 import SubTitle from "../components/SubTitle.jsx";
 import PaymentInformation from "../components/order/PaymentInformation.jsx";
 
-export default function OrderPage() {
+export default function OrderPage({ decrementCartCount }) {
   const location = useLocation();
   const { selectedItems } = location.state || { selectedItems: [] };
   console.log("넘어온 값", selectedItems);
@@ -90,6 +90,7 @@ export default function OrderPage() {
           totalPrice={totalPrice}
           totalDeliveryCharge={totalDeliveryCharge}
           mileage={mileage}
+          decrementCartCount={decrementCartCount}
         />
       </div>
     </div>

@@ -7,7 +7,7 @@ export const getUserInfo = async (userId) => {
   return rows[0];
 };
 
-export const getmilage = async (userId) => {
+export const getMileage = async (userId) => {
   const [rows] = await db.query(
     "SELECT mil FROM ever_mileage WHERE USER_ID = ?",
     [userId]
@@ -23,18 +23,6 @@ export const useMileage = async (userId, usedMil) => {
     WHERE USER_ID = ? 
     `,
     [usedMil, userId]
-  );
-  return result;
-};
-
-export const stackMileage = async (userId, stackMil) => {
-  const [result] = await db.query(
-    `
-    UPDATE ever_mileage 
-    SET mil = mil + ? 
-    WHERE USER_ID = ? 
-    `,
-    [stackMil, userId]
   );
   return result;
 };
