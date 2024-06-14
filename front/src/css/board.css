@@ -219,7 +219,7 @@ EventList css
 }
 .EventList-title{
 	font-size: 1rem;
-	margin-top: 15px;
+	margin: 15px 0 40px;
 }
 /**********************
 Faq css
@@ -255,12 +255,13 @@ Faq css
 
 /* main-notice */
 .MainNotice{
-	width: 1320px;
-	margin: auto;
+	width: 1250px;
+	margin: 120px auto;
 }
 .MainNotice-title{
 	position: relative;
 	font-size: 45px;
+	font-weight: 900;
 }
 .MainNotice-title-red{
 	font-size: 45px;
@@ -324,6 +325,8 @@ Faq css
 .MainNotice-link > a{
 	display: block;
 	font-size: 20px;
+	font-weight: 600;
+	color: #222;
 }
 .MainNotice-link > a:hover{
 	text-decoration: underline !important;
@@ -390,6 +393,10 @@ Faq css
 	min-width: 45px;
 	height: 45px;
 	line-height: 45px;
+}
+.Board .rc-pagination-prev button:after,
+.Board .rc-pagination-next button:after{
+	line-height: 23px;
 }
 /* search */
 .search{

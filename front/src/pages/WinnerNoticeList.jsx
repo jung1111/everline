@@ -28,6 +28,7 @@ export default function WinnerNoticeList(){
 					})
 					.catch(error => console.log(error));
 	}, []);
+	
 
 	useEffect(() => {
 			const startIndex = (currentPage - 1) * pageSize;
@@ -44,13 +45,7 @@ export default function WinnerNoticeList(){
 			<ul className='sub-menu'>
 				<SubMenu menu="이벤트목록" src="/eventlist"/>
 				<SubMenu menu="당첨자발표" src="/winner"/>
-			</ul>
-			<div className='count'>
-				<span className="count-no">
-					<span className='count-no-icon'><FontAwesomeIcon icon={faList} /></span>
-					<span className='count-no-text'><span className='count-no-red'>{totalCount}</span> 개의 게시물</span>
-				</span>
-			</div>
+			</ul>		
 			<Table name="winner" currentPage={currentPage} totalCount={totalCount} pageSize={pageSize} handleChange={handleChange} listPage={listPage} />
 		</div>
 	);

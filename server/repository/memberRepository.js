@@ -141,7 +141,7 @@ export const getLogin = async (userId, userPass) => {
   }
 
   return { cnt: login_result, token: login_token };
-};
+}; 
 
 /* id check */
 export const getIdCheck = async (userId) => {

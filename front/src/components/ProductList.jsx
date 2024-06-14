@@ -22,7 +22,6 @@ const ProductList = ({ rows }) => {
                 <span className="ProductPage-price">
                   {product.price.toLocaleString()}원
                 </span>
-                <span className="ProductPage-soldout">품절</span>
               </div>
             </li>
           ))}
