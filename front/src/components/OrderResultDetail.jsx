@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import SubTitle from "./SubTitle";
+import "../css/resultorder.css";
 
 export default function OrderResultDetails() {
   const { orderId } = useParams();
@@ -39,10 +40,10 @@ export default function OrderResultDetails() {
       <SubTitle title="주문 상세내역" />
       <div className="order-details">
         {orderDetails.length === 0 ? (
-          <p>주문 상세내역이 없습니다</p>
+          <p className="order-detail-text">주문 상세내역이 없습니다</p>
         ) : (
-          <table>
-            <thead>
+          <table className="order-result-table-area">
+            <thead className="order-result-table-head">
               <tr>
                 <th>이미지</th>
                 <th>상품명</th>
@@ -50,7 +51,7 @@ export default function OrderResultDetails() {
                 <th>가격</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="order-result-table-body">
               {orderDetails.map((detail, index) => (
                 <tr key={index}>
                   <td>
@@ -60,7 +61,7 @@ export default function OrderResultDetails() {
                       width="50"
                     />
                   </td>
-                  <td>{detail.ptitle}</td>
+                  <td className="order-detail-title">{detail.ptitle}</td>
                   <td>{detail.qty}</td>
                   <td>{detail.price.toLocaleString()}원</td>
                 </tr>
@@ -68,7 +69,13 @@ export default function OrderResultDetails() {
             </tbody>
           </table>
         )}
-        <button onClick={handleDeleteOrder}>주문 취소</button>
+        <button
+          type="button"
+          className="order-detail-btn"
+          onClick={handleDeleteOrder}
+        >
+          주문 취소
+        </button>
       </div>
     </div>
   );

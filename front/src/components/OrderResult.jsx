@@ -29,10 +29,10 @@ export default function OrderResult() {
       <SubTitle title="주문내역조회" />
       <div className="order-result-all">
         {orders.length === 0 ? (
-          <p>주문 내역이 없습니다</p>
+          <p className="order-result-text">주문 내역이 없습니다</p>
         ) : (
-          <table>
-            <thead>
+          <table className="order-result-table-area">
+            <thead className="order-result-table-head">
               <tr>
                 <th>주문번호</th>
                 <th>주문일자</th>
@@ -40,13 +40,14 @@ export default function OrderResult() {
                 <th>사용한 마일리지</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="order-result-table-body">
               {orders.map((order, index) => (
                 <tr
                   key={index}
                   onClick={() => handleOrderClick(order.order_id)}
+                  className="order-result-table-tr"
                 >
-                  <td>{order.order_id}</td>
+                  <td className="order-result-table-name">{order.order_id}</td>
                   <td>{new Date(order.odate).toLocaleDateString()}</td>
                   <td>{order.total_price.toLocaleString()}원</td>
                   <td>{order.used_mileage.toLocaleString()}원</td>
