@@ -78,6 +78,30 @@ export const getOrderDetails = async (orderId) => {
   return rows;
 };
 
+export const deleteOrder = async (orderId) => {
+  // 트랜잭션 시작
+  await db.query("START TRANSACTION");
+
+  try {
+    // 주문 상세 내역 삭제
+    await db.query(`DELETE FROM ever_order_detail WHERE order_id = ?`, [
+      orderId,
+    ]);
+
+    // 주문 삭제
+    await db.query(`DELETE FROM ever_order WHERE order_id = ?`, [orderId]);
+
+    // 트랜잭션 커밋
+    await db.query("COMMIT");
+
+    return { success: true };
+  } catch (error) {
+    // 트랜잭션 롤백
+    await db.query("ROLLBACK");
+    throw error;
+  }
+};
+
 const generateOrderId = () => {
   return Math.random().toString(36).substring(2, 11).toUpperCase();
 };
