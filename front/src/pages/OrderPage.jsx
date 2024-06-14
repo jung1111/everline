@@ -8,9 +8,12 @@ import "../css/order.css";
 import Location from "../components/Location.jsx";
 import SubTitle from "../components/SubTitle.jsx";
 import PaymentInformation from "../components/order/PaymentInformation.jsx";
+import { getUser } from "../util/localStorage.js";
 
 export default function OrderPage({ decrementCartCount }) {
+  console.log("teeees", getUser().userId);
   const location = useLocation();
+  const userId = getUser().userId;
   const { selectedItems } = location.state || { selectedItems: [] };
   console.log("넘어온 값", selectedItems);
   const [orderInfo, setOrderInfo] = useState({
@@ -27,7 +30,6 @@ export default function OrderPage({ decrementCartCount }) {
   });
 
   useEffect(() => {
-    const userId = "test";
     axios
       .get(`http://127.0.0.1:8000/order/info?USER_ID=${userId}`)
       .then((response) => {
@@ -58,7 +60,6 @@ export default function OrderPage({ decrementCartCount }) {
 
   // 마일리지
   useEffect(() => {
-    const userId = "test";
     axios
       .get(`http://127.0.0.1:8000/order/mileage?USER_ID=${userId}`)
       .then((response) => {

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import { getUser } from "../../util/localStorage.js";
 
 export default function CartControl({
   cartItems,
@@ -10,13 +11,15 @@ export default function CartControl({
   decrementCartCount,
 }) {
   const navigate = useNavigate();
+  const userId = getUser().userId;
+  console.log("idddd", getUser().userId);
 
   // 선택된 항목 삭제
   const removeSelectedItems = async () => {
     const selectedItems = cartItems.filter((item) => item.checked);
     try {
       const response = await axios.post("http://localhost:8000/carts/remove", {
-        items: selectedItems.map((item) => ({ cid: item.cid, userId: "test" })),
+        items: selectedItems.map((item) => ({ cid: item.cid, userId: userId })),
       });
       if (response.data.success) {
         const filteredCartList = cartItems.filter((item) => !item.checked);

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { getUser } from "../../util/localStorage.js";
 
 export default function OrderFinal({
   effectiveTotalPrice,
@@ -9,9 +10,9 @@ export default function OrderFinal({
   selectedItems,
   decrementCartCount,
 }) {
-  const userId = "test";
   const [isAgreed, setIsAgreed] = useState(false);
   const navigate = useNavigate();
+  const userId = getUser().userId;
 
   const handleOrder = async () => {
     if (!isAgreed) {

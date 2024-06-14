@@ -9,7 +9,7 @@ import axios from "axios";
 
 export default function Mypage() {
   const navigate = useNavigate();
-  const userId = getUser().userId;
+  const userId = getUser()?.USER_ID;
 
   const handleLogout = () => {
     removeUser();
@@ -22,27 +22,30 @@ export default function Mypage() {
   });
 
   useEffect(() => {
-    const userId = "test";
-    axios
-      .get(`http://127.0.0.1:8000/order/mileage?USER_ID=${userId}`)
-      .then((response) => {
-        const data = response.data;
-        setMileage(data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+    if (userId) {
+      axios
+        .get(`http://127.0.0.1:8000/order/mileage?USER_ID=${userId}`)
+        .then((response) => {
+          const data = response.data;
+          setMileage(data);
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [userId]);
+
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    const userId = "test"; // 사용자 ID
-    axios
-      .get(`http://localhost:8000/order/getOrders?USER_ID=${userId}`)
-      .then((response) => {
-        setOrders(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching orders:", error);
-      });
+    if (userId) {
+      axios
+        .get(`http://localhost:8000/order/getOrders?USER_ID=${userId}`)
+        .then((response) => {
+          setOrders(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching orders:", error);
+        });
+    }
   }, [userId]);
 
   console.log(orders);

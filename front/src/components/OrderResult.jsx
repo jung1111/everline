@@ -3,11 +3,12 @@ import axios from "axios";
 import SubTitle from "./SubTitle";
 import "../css/resultorder.css";
 import { useNavigate } from "react-router-dom";
+import { getUser } from "../util/localStorage.js";
 
 export default function OrderResult() {
   const [orders, setOrders] = useState([]);
-  const userId = "test"; // 사용자 ID
   const navigate = useNavigate();
+  const userId = getUser().userId;
 
   useEffect(() => {
     axios

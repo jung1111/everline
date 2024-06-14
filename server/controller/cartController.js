@@ -35,6 +35,7 @@ export const removeCartItem = async (req, res) => {
     res.json({ success: false });
   }
 };
+
 export const deleteItems = async (req, res) => {
   const { userId, items } = req.body;
   try {

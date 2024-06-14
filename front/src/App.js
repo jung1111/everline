@@ -35,13 +35,15 @@ import YouTubeSlider from "./components/YouTubeSlider.jsx";
 import YouTubeDetail from "./components/YouTubeDetail.jsx";
 import OrderResult from "./components/OrderResult.jsx";
 import OrderResultDetails from "./components/OrderResultDetail.jsx";
+import { getUser } from "./util/localStorage.js";
 
 export default function App() {
   const [cartCount, setCartCount] = useState(0);
+  const userId = getUser().userId;
 
   useEffect(() => {
     const url = "http://localhost:8000/carts/count";
-    axios({ method: "post", url: url, data: { userId: "test" } })
+    axios({ method: "post", url: url, data: { userId: userId } })
       .then((response) => {
         setCartCount(parseInt(response.data.count));
       })

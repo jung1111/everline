@@ -35,9 +35,9 @@ export const addCartItem = async (items) => {
     // insert
     sql = `
     INSERT INTO ever_cart (pid, cdate, user_id)
-    VALUES (?, now(), 'test')
+    VALUES (?, now(), ?)
     `;
-    const [result] = await db.execute(sql, [items.pid]);
+    const [result] = await db.execute(sql, [items.pid, items.userId]);
     result_rows = result.affectedRows;
   } else {
     // update
