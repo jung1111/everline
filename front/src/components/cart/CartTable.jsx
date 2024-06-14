@@ -56,10 +56,13 @@ export default function CartTable({ cartItems, setCartItems }) {
 
   const confirmPopup = async (cid, quantity) => {
     try {
-      const response = await axios.post("http://localhost:8000/carts/update", {
-        cid,
-        newQty: quantity,
-      });
+      const response = await axios.post(
+        "http://192.168.50.76:8000/carts/update",
+        {
+          cid,
+          newQty: quantity,
+        }
+      );
       if (response.data.success) {
         const updatedCartList = cartItems.map((item) =>
           item.cid === cid ? { ...item, qty: quantity } : item
@@ -133,7 +136,7 @@ export default function CartTable({ cartItems, setCartItems }) {
                 <div className="product-info">
                   <Link to={`/product/${item.pid}`}>
                     <img
-                      src={`http://localhost:8000/${item.image}`}
+                      src={`http://192.168.50.76:8000/${item.image}`}
                       alt="상품 이미지"
                       className="product-image"
                     />

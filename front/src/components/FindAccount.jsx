@@ -35,7 +35,7 @@ const FindAccount = () => {
 
     try {
       const result = await axios.post(
-        "http://127.0.0.1:8000/member/FindAccount/findUserId",
+        "http://192.168.50.76:8000/member/FindAccount/findUserId",
         {
           userName: formData.userName,
           mobileNumber1: formData.mobileNumber1,
@@ -61,7 +61,7 @@ const FindAccount = () => {
     e.preventDefault();
     try {
       const result = await axios.post(
-        "http://127.0.0.1:8000/member/FindAccount/findUserPs",
+        "http://192.168.50.76:8000/member/FindAccount/findUserPs",
         {
           userName: formData.userName,
           userId: formData.userId,

@@ -4,14 +4,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import SubTitle from "./SubTitle";
 import "../css/resultorder.css";
 
-export default function OrderResultDetails() {
+export default function OrderResultDetails({ userId }) {
   const { orderId } = useParams();
   const [orderDetails, setOrderDetails] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/order/orderDetails?orderId=${orderId}`)
+      .get(`http://192.168.50.76:8000/order/orderDetails?orderId=${orderId}`)
       .then((response) => {
         setOrderDetails(response.data);
       })
@@ -22,7 +22,7 @@ export default function OrderResultDetails() {
 
   const handleDeleteOrder = () => {
     axios
-      .delete(`http://localhost:8000/order/deleteOrder/${orderId}`)
+      .delete(`http://192.168.50.76:8000/order/deleteOrder/${orderId}`)
       .then((response) => {
         if (response.status === 200) {
           alert("주문이 성공적으로 취소되었습니다.");
@@ -56,7 +56,7 @@ export default function OrderResultDetails() {
                 <tr key={index}>
                   <td>
                     <img
-                      src={`http://localhost:8000/${detail.image}`}
+                      src={`http://192.168.50.76:8000/${detail.image}`}
                       alt={detail.ptitle}
                       width="50"
                     />

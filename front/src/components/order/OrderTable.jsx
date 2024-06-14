@@ -27,7 +27,7 @@ export default function OrderTable({
                 <div className="product-info" style={{ maxWidth: "400px" }}>
                   <Link to={`/product/${item.pid}`}>
                     <img
-                      src={`http://localhost:8000/${item.image}`}
+                      src={`http://192.168.50.76:8000/${item.image}`}
                       alt="상품 이미지"
                       className="product-image"
                     />

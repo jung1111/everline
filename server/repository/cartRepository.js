@@ -1,28 +1,26 @@
 import { db } from "../db/database_mysql.js";
 
-export const getCarts = async () => {
+export const getCarts = async (userId) => {
   const sql = `
-    SELECT   ec.cid, ec.pid, ec.qty, ec.cdate, ep.ptitle as title, ep.price, ep.image 
-    FROM ever_cart ec,ever_product ep
-    WHERE ep.pid = ec.pid
+    SELECT ec.user_id, ec.cid, ec.pid, ec.qty, ec.cdate, ep.ptitle as title, ep.price, ep.image 
+    FROM ever_cart ec
+    JOIN ever_product ep ON ep.pid = ec.pid
+    WHERE ec.user_id = ?
   `;
-
-  return db.execute(sql).then((result) => result[0]);
+  return db.execute(sql, [userId]).then((result) => result[0]);
 };
 
 const cartCheck = async (items) => {
   const sql = `
   SELECT COUNT(cid) cnt, cid FROM ever_cart 
-  WHERE pid = ? 
+  WHERE pid = ? AND user_id = ?
   GROUP BY cid
   `;
-  if (!items.pid) {
-    throw new Error("items.pid is undefined");
-  }
-  return db.execute(sql, [items.pid]).then((result) => result[0][0]); // {cnt: 1, cid : 9}
+  return db
+    .execute(sql, [items.pid, items.userId])
+    .then((result) => result[0][0]);
 };
-
-export const addCartItem = async (items) => {
+export const addCartItem = async (items, userId) => {
   if (!items.pid) {
     throw new Error("items.pid is undefined");
   }
@@ -35,9 +33,9 @@ export const addCartItem = async (items) => {
     // insert
     sql = `
     INSERT INTO ever_cart (pid, cdate, user_id)
-    VALUES (?, now(), 'test')
+    VALUES (?, now(), ?)
     `;
-    const [result] = await db.execute(sql, [items.pid]);
+    const [result] = await db.execute(sql, [items.pid, userId]);
     result_rows = result.affectedRows;
   } else {
     // update
@@ -71,6 +69,7 @@ export const removeCartItem = async (cid, userId) => {
   const [result] = await db.execute(sql, [cid, userId]);
   return { affectedRows: result.affectedRows };
 };
+
 export const deleteItems = async (userId, items) => {
   const itemIds = items.map((item) => item.pid);
   const [result] = await db.query(

@@ -35,18 +35,27 @@ import YouTubeSlider from "./components/YouTubeSlider.jsx";
 import YouTubeDetail from "./components/YouTubeDetail.jsx";
 import OrderResult from "./components/OrderResult.jsx";
 import OrderResultDetails from "./components/OrderResultDetail.jsx";
-
+import { getUser } from "./util/localStorage.js";
+import ScrollUp from "./components/ScrollUp.jsx";
 export default function App() {
   const [cartCount, setCartCount] = useState(0);
+  const [userId, setUserId] = useState("guest");
 
   useEffect(() => {
-    const url = "http://localhost:8000/carts/count";
-    axios({ method: "post", url: url, data: { userId: "test" } })
+    const storedUser = getUser();
+    if (storedUser && storedUser.userId) {
+      setUserId(storedUser.userId);
+    }
+  }, []);
+
+  useEffect(() => {
+    const url = "http://192.168.50.76:8000/carts/count";
+    axios({ method: "post", url: url, data: { userId: userId } })
       .then((response) => {
         setCartCount(parseInt(response.data.count));
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [userId]);
 
   const addCartCount = () => {
     setCartCount((prevCount) => prevCount + 1);
@@ -75,7 +84,7 @@ export default function App() {
         {
           path: "/product/:id",
           element: (
-            <ProductDetail addCartCount={addCartCount} />
+            <ProductDetail addCartCount={addCartCount} userId={userId} />
           ) /* loader: teamLoader, */,
         },
         { path: "/member", element: <Login /> },
@@ -95,6 +104,7 @@ export default function App() {
           path: "/carts",
           element: (
             <CartPage
+              userId={userId}
               cartCount={cartCount}
               decrementCartCount={decrementCartCount}
             />
@@ -102,7 +112,12 @@ export default function App() {
         },
         {
           path: "/order",
-          element: <OrderPage decrementCartCount={decrementCartCount} />,
+          element: (
+            <OrderPage
+              decrementCartCount={decrementCartCount}
+              userId={userId}
+            />
+          ),
         },
         { path: "/winner", element: <WinnerNoticeList /> },
         { path: "/winner/:id", element: <WinnerNoticeDetail /> },
@@ -115,10 +130,13 @@ export default function App() {
         { path: "/inquiry/delete/:bid/:rno", element: <InquiryDelete /> },
         { path: "/faq", element: <Faq /> },
         { path: "/upload", element: <Upload /> },
-        { path: "/mypage/order-result", element: <OrderResult /> },
+        {
+          path: "/mypage/order-result",
+          element: <OrderResult userId={userId} />,
+        },
         {
           path: "/orderDetails/:orderId",
-          element: <OrderResultDetails />,
+          element: <OrderResultDetails userId={userId} />,
         },
       ],
     },

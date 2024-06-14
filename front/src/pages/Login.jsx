@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../css/member.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import SubTitle from "../components/SubTitle.jsx";
 import { ReactComponent as NaverIcon } from "../svg/icon_sns_login_naver.svg";
@@ -10,7 +10,6 @@ import * as cookie from "../util/cookies.js";
 import { jwtDecode } from "jwt-decode";
 
 export default function Login() {
-  const navigate = useNavigate();
   const userIdRef = useRef(null);
   const userPassRef = useRef(null);
   const [formData, setFormData] = useState({ userId: "", userPass: "" });
@@ -40,7 +39,7 @@ export default function Login() {
     e.preventDefault();
 
     if (validataionCheck()) {
-      const url = "http://127.0.0.1:8000/member/login";
+      const url = "http://192.168.50.76:8000/member/login";
       axios({
         method: "POST",
         url: url,
@@ -56,7 +55,7 @@ export default function Login() {
             // alert(JSON.stringify(userInfo));
             localStorage.setItem("userInfo", JSON.stringify(userInfo));
             alert("로그인 성공!!");
-            navigate("/"); //홈으로 이동
+            window.location.href = "/";
             if (rememberMe) {
               cookie.setCookie("savedUserId", formData.userId);
             } else {

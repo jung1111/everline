@@ -13,14 +13,14 @@ import ReservationIcon from "../components/ReservationIcon.jsx";
 import SnsShare from "../components/SnsShare.jsx";
 import { getReservationPeriod } from "../components/dateCalc.jsx";
 
-export default function ProductDetail({ addCartCount }) {
+export default function ProductDetail({ addCartCount, userId }) {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const navigate = useNavigate();
-
+  console.log("ssssss1", userId);
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/product/${id}`)
+      .get(`http://192.168.50.76:8000/product/${id}`)
       .then((res) => {
         console.log("확인", res.data);
         setProduct(res.data);
@@ -51,21 +51,18 @@ export default function ProductDetail({ addCartCount }) {
   };
 
   // 상품 장바구니 추가 함수
-  const addCartItem = (id) => {
-    const url = `http://localhost:8000/carts/add`;
-    axios({
-      method: "post",
-      url: url,
-      data: { pid: id, userId: "test" },
-    })
-      .then((result) => {
-        if (result.data.cnt === 1) {
-          addCartCount(result.data.cnt);
-          alert("장바구니에 추가 됐습니다.");
-          navigate("/carts");
-        }
-      })
-      .catch((error) => console.log(error));
+  const addCartItem = async (id) => {
+    const url = `http://192.168.50.76:8000/carts/add`;
+    try {
+      const result = await axios.post(url, { pid: id, userId: userId });
+      if (result.data.cnt === 1) {
+        addCartCount(result.data.cnt);
+        alert("장바구니에 추가 됐습니다.");
+        navigate("/carts");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const SelectOrder = () => {
@@ -92,7 +89,7 @@ export default function ProductDetail({ addCartCount }) {
       <div className="ProductDetail-sub">
         <img
           className="ProductDetail-img"
-          src={`http://localhost:8000/${product.image}`}
+          src={`http://192.168.50.76:8000/${product.image}`}
           alt=""
         />
       </div>
@@ -224,7 +221,7 @@ export default function ProductDetail({ addCartCount }) {
             <ProductDetailInfo />
             <img
               className="productDetatil-info-img"
-              src={`http://localhost:8000/${product.detailimage}`}
+              src={`http://192.168.50.76:8000/${product.detailimage}`}
               alt=""
             />
           </div>

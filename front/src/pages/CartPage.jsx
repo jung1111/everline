@@ -5,16 +5,16 @@ import CartControl from "../components/cart/CartControl.jsx";
 import SubTitle from "../components/SubTitle.jsx";
 import "../css/cart.css";
 
-export default function CartPage({ decrementCartCount }) {
+export default function CartPage({ decrementCartCount, userId }) {
   const [cartItems, setCartItems] = useState([]);
-  const url = "http://localhost:8000/carts";
+  const url = "http://192.168.50.76:8000/carts";
   useEffect(() => {
-    axios({ method: "post", url: url })
+    axios({ method: "post", url: url, data: { userId: userId } })
       .then((result) => {
         setCartItems(result.data);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [userId]);
 
   return (
     <div className="content">
@@ -28,6 +28,7 @@ export default function CartPage({ decrementCartCount }) {
             cartItems={cartItems}
             setCartItems={setCartItems}
             decrementCartCount={decrementCartCount}
+            userId={userId}
           />
         </div>
       )}

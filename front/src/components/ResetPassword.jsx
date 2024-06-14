@@ -21,7 +21,7 @@ const ResetPassword = () => {
     try {
       console.log("Sending request to server..."); // 추가
       const response = await axios.post(
-        "http://127.0.0.1:8000/member/FindAccount/updateUserPassword",
+        "http://192.168.50.76:8000/member/FindAccount/updateUserPassword",
         {
           email,
           newPassword,

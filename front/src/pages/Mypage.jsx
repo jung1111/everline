@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SubTitle from "../components/SubTitle.jsx";
 import "../css/mypage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,13 +8,12 @@ import { getUser, removeUser } from "../util/localStorage.js";
 import axios from "axios";
 
 export default function Mypage() {
-  const navigate = useNavigate();
   const userId = getUser().userId;
 
   const handleLogout = () => {
     removeUser();
     alert("로그아웃 되었습니다.");
-    navigate("/");
+    window.location.href = "/";
   };
 
   const [mileage, setMileage] = useState({
@@ -22,9 +21,8 @@ export default function Mypage() {
   });
 
   useEffect(() => {
-    const userId = "test";
     axios
-      .get(`http://127.0.0.1:8000/order/mileage?USER_ID=${userId}`)
+      .get(`http://192.168.50.76:8000/order/mileage?USER_ID=${userId}`)
       .then((response) => {
         const data = response.data;
         setMileage(data);
@@ -34,9 +32,8 @@ export default function Mypage() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    const userId = "test"; // 사용자 ID
     axios
-      .get(`http://localhost:8000/order/getOrders?USER_ID=${userId}`)
+      .get(`http://192.168.50.76:8000/order/getOrders?USER_ID=${userId}`)
       .then((response) => {
         setOrders(response.data);
       })
@@ -112,10 +109,7 @@ export default function Mypage() {
             <p>0</p>
           </div>
         </div>
-        <div className="order-check">
-          <h3>주문내역조회</h3>
-          <p>주문내역이 없습니다</p>
-        </div>
+
         <div className="mypage-info">
           <div className="mypage-info-section">
             <h3>나의 쇼핑 정보</h3>

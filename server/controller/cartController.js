@@ -1,15 +1,31 @@
 import * as repository from "../repository/cartRepository.js";
 
 export const getCarts = async (req, res) => {
-  const cartList = await repository.getCarts(req.body);
+  const { userId } = req.body;
+  const cartList = await repository.getCarts(userId);
   res.json(cartList);
 };
 
 export const addCartItem = async (req, res) => {
   const items = req.body;
-  const result = await repository.addCartItem(items);
-  res.json(result);
+  const { userId } = req.body;
+
+  if (!userId) {
+    return res.status(400).json({ error: "USER_ID is missing" });
+  }
+  if (!items || !items.pid) {
+    return res.status(400).json({ error: "PID is missing" });
+  }
+
+  try {
+    const result = await repository.addCartItem(items, userId);
+    res.json(result);
+  } catch (error) {
+    console.error("Error adding item to cart:", error);
+    res.status(500).json({ error: "Failed to add item to cart" });
+  }
 };
+
 export const getCartCount = async (req, res) => {
   const { userId } = req.body;
 
@@ -25,9 +41,15 @@ export const updateCartItem = async (req, res) => {
 
 export const removeCartItem = async (req, res) => {
   const items = req.body.items;
+  const { userId } = req.body;
+
+  if (!userId) {
+    return res.status(400).json({ error: "USER_ID is missing" });
+  }
+
   try {
     for (const item of items) {
-      await repository.removeCartItem(item.cid, item.userId);
+      await repository.removeCartItem(item.cid, userId);
     }
     res.json({ success: true });
   } catch (error) {
@@ -35,6 +57,7 @@ export const removeCartItem = async (req, res) => {
     res.json({ success: false });
   }
 };
+
 export const deleteItems = async (req, res) => {
   const { userId, items } = req.body;
   try {

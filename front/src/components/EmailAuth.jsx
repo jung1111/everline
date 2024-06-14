@@ -17,7 +17,7 @@ const EmailAuth = () => {
   const handleSendAuthCode = async () => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/member/send-auth-code",
+        "http://192.168.50.76:8000/member/send-auth-code",
         { email }
       );
       setAuthCode(response.data.authCode); // 서버에서 받은 인증번호 저장

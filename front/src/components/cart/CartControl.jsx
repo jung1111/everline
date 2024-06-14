@@ -8,6 +8,7 @@ export default function CartControl({
   cartItems,
   setCartItems,
   decrementCartCount,
+  userId,
 }) {
   const navigate = useNavigate();
 
@@ -15,9 +16,13 @@ export default function CartControl({
   const removeSelectedItems = async () => {
     const selectedItems = cartItems.filter((item) => item.checked);
     try {
-      const response = await axios.post("http://localhost:8000/carts/remove", {
-        items: selectedItems.map((item) => ({ cid: item.cid, userId: "test" })),
-      });
+      const response = await axios.post(
+        "http://192.168.50.76:8000/carts/remove",
+        {
+          items: selectedItems.map((item) => ({ cid: item.cid })),
+          userId: userId,
+        }
+      );
       if (response.data.success) {
         const filteredCartList = cartItems.filter((item) => !item.checked);
         setCartItems(filteredCartList);

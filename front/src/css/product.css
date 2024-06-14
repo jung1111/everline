@@ -782,6 +782,7 @@ ImageSlider css
 .slider-image-wrapper img {
   width: 300px;
   padding: 10px;
+  transition: all 0.4s;
 }
 
 .slider-image-wrapper img:hover {

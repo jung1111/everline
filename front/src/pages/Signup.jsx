@@ -75,7 +75,7 @@ export default function Signup() {
       alert("아이디를 입력해주세요");
       refs.userIdRef.current.focus();
     } else {
-      const url = "http://127.0.0.1:8000/member/idCheck";
+      const url = "http://192.168.50.76:8000/member/idCheck";
       const userId = refs.userIdRef.current.value;
       axios({
         method: "post",
@@ -213,7 +213,7 @@ export default function Signup() {
   const handleSubmit = async () => {
     if (validateCheck(refs, formData)) {
       if (passCheck(refs)) {
-        const url = "http://127.0.0.1:8000/member/signup";
+        const url = "http://192.168.50.76:8000/member/signup";
         axios({
           method: "post",
           url: url,

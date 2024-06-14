@@ -4,14 +4,13 @@ import SubTitle from "./SubTitle";
 import "../css/resultorder.css";
 import { useNavigate } from "react-router-dom";
 
-export default function OrderResult() {
+export default function OrderResult({ userId }) {
   const [orders, setOrders] = useState([]);
-  const userId = "test"; // 사용자 ID
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/order/getOrders?USER_ID=${userId}`)
+      .get(`http://192.168.50.76:8000/order/getOrders?USER_ID=${userId}`)
       .then((response) => {
         setOrders(response.data);
       })
