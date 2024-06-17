@@ -14,7 +14,7 @@ export default function InquiryUpdate() {
 
   //게시글 상세정보 가져오기
   useEffect(() => {
-    const url = `http://192.168.50.76:8000/inquiry/${bid}`;
+    const url = `http://localhost:8000/inquiry/${bid}`;
     axios({
       method: "get",
       url: url,
@@ -28,11 +28,9 @@ export default function InquiryUpdate() {
     setBoardFormData({ ...boardFormData, [name]: value });
   };
 
-  console.log("boardFormData->>", boardFormData);
-
   //수정완료
   const handleUpdateSubmit = () => {
-    const url = "http://192.168.50.76:8000/inquiry/update";
+    const url = "http://localhost:8000/inquiry/update";
     axios({
       method: "post",
       url: url,

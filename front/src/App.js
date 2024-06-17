@@ -49,7 +49,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const url = "http://192.168.50.76:8000/carts/count";
+    const url = "http://localhost:8000/carts/count";
     axios({ method: "post", url: url, data: { userId: userId } })
       .then((response) => {
         setCartCount(parseInt(response.data.count));

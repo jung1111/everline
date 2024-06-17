@@ -12,7 +12,7 @@ export default function InquiryDelete() {
 
   //삭제완료
   const handleDeleteSubmit = () => {
-    const url = "http://192.168.50.76:8000/inquiry/delete";
+    const url = "http://localhost:8000/inquiry/delete";
     axios({
       method: "post",
       url: url,

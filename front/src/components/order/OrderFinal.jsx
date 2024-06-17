@@ -20,7 +20,7 @@ export default function OrderFinal({
     }
     try {
       const useMileageResponse = await axios.post(
-        "http://192.168.50.76:8000/order/usemileage",
+        "http://localhost:8000/order/usemileage",
         {
           USER_ID: userId,
           usedMil: usedMileage,
@@ -33,7 +33,7 @@ export default function OrderFinal({
       }
 
       const stackMileageResponse = await axios.post(
-        "http://192.168.50.76:8000/order/stackmileage",
+        "http://localhost:8000/order/stackmileage",
         {
           USER_ID: userId,
           stackMil: stackMileage,
@@ -43,7 +43,7 @@ export default function OrderFinal({
       if (stackMileageResponse.status === 200) {
         // 주문 정보 전송
         const placeOrderResponse = await axios.post(
-          "http://192.168.50.76:8000/order/placeOrder",
+          "http://localhost:8000/order/placeOrder",
           {
             userId: userId,
             items: selectedItems,
@@ -54,7 +54,7 @@ export default function OrderFinal({
 
         if (placeOrderResponse.status === 200) {
           // 장바구니에서 아이템 삭제
-          await axios.post("http://192.168.50.76:8000/carts/deleteItems", {
+          await axios.post("http://localhost:8000/carts/deleteItems", {
             userId: userId,
             items: selectedItems,
           });

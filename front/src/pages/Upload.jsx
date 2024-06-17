@@ -22,7 +22,7 @@ export default function Upload() {
 
     try {
       const response = await axios.post(
-        "http://192.168.50.76:8000/upload",
+        "http://localhost:8000/upload",
         formData,
         {
           headers: {

@@ -16,7 +16,7 @@ export default function ProductPage() {
   ];
 
   useEffect(() => {
-    const url = "http://192.168.50.76:8000/product";
+    const url = "http://localhost:8000/product";
     axios
       .post(url)
       .then((res) => setProductList(res.data))

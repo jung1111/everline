@@ -22,7 +22,7 @@ export default function WinnerNoticeList() {
 
   useEffect(() => {
     axios
-      .get("http://192.168.50.76:3000/data/winner.json")
+      .get("http://localhost:3000/data/winner.json")
       .then((result) => {
         setNoticeList([...result.data]);
       })

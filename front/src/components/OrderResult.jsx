@@ -10,7 +10,7 @@ export default function OrderResult({ userId }) {
 
   useEffect(() => {
     axios
-      .get(`http://192.168.50.76:8000/order/getOrders?USER_ID=${userId}`)
+      .get(`http://localhost:8000/order/getOrders?USER_ID=${userId}`)
       .then((response) => {
         setOrders(response.data);
       })

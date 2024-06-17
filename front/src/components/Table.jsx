@@ -31,7 +31,7 @@ export default function Table({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://192.168.50.76:3000/data/${name}.json`
+          `http://localhost:3000/data/${name}.json`
         );
         setPosts(response.data);
       } catch (error) {

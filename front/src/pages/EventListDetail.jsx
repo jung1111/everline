@@ -13,7 +13,7 @@ export default function EventListDetail() {
 
   useEffect(() => {
     axios
-      .get("http://192.168.50.76:3000/data/event.json")
+      .get("http://localhost:3000/data/event.json")
       .then((res) => {
         setEventDetail(res.data);
         const jsonData = res.data.find((res) => res.id === id);
@@ -22,8 +22,6 @@ export default function EventListDetail() {
 
       .catch((erorr) => console.log(erorr));
   }, [id]);
-
-  console.log("data", eventDetail);
 
   return (
     <div className="content">

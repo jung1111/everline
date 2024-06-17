@@ -7,7 +7,7 @@ import "../css/cart.css";
 
 export default function CartPage({ decrementCartCount, userId }) {
   const [cartItems, setCartItems] = useState([]);
-  const url = "http://192.168.50.76:8000/carts";
+  const url = "http://localhost:8000/carts";
   useEffect(() => {
     axios({ method: "post", url: url, data: { userId: userId } })
       .then((result) => {

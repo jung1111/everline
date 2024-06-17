@@ -39,7 +39,7 @@ export default function Login() {
     e.preventDefault();
 
     if (validataionCheck()) {
-      const url = "http://192.168.50.76:8000/member/login";
+      const url = "http://localhost:8000/member/login";
       axios({
         method: "POST",
         url: url,
@@ -48,7 +48,6 @@ export default function Login() {
         .then((res) => {
           console.log("result ->", res.data);
           if (res.data.cnt === 1) {
-            console.log("token", res.data.token);
             cookie.setCookie("x-auth-jwt", res.data.token);
             // cookie에 저장된 token에서 userInfo를 localstorage에서 저장
             const userInfo = jwtDecode(res.data.token); //복호화

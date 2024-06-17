@@ -75,7 +75,7 @@ export default function Signup() {
       alert("아이디를 입력해주세요");
       refs.userIdRef.current.focus();
     } else {
-      const url = "http://192.168.50.76:8000/member/idCheck";
+      const url = "http://localhost:8000/member/idCheck";
       const userId = refs.userIdRef.current.value;
       axios({
         method: "post",
@@ -83,7 +83,6 @@ export default function Signup() {
         data: { userId: userId },
       })
         .then((res) => {
-          console.log(res.data);
           if (res.data.cnt === 1) {
             alert("이미 사용중인 아이디 입니다. 다시 입력해주세요");
             refs.userIdRef.current.focus();
@@ -213,15 +212,13 @@ export default function Signup() {
   const handleSubmit = async () => {
     if (validateCheck(refs, formData)) {
       if (passCheck(refs)) {
-        const url = "http://192.168.50.76:8000/member/signup";
+        const url = "http://localhost:8000/member/signup";
         axios({
           method: "post",
           url: url,
           data: formData,
         })
           .then((res) => {
-            //console.log("result ->", res.data);
-            //console.log("formdata ->", formData);
             if (res.data.cnt === 1) {
               alert("회원가입성공");
               window.location.href = "/member";

@@ -16,7 +16,7 @@ export default function NoticeDetail() {
 
   useEffect(() => {
     axios
-      .get("http://192.168.50.76:3000/data/notice.json")
+      .get("http://localhost:3000/data/notice.json")
       .then((res) => {
         setDetailData(res.data);
         const jsonData = res.data.find((res) => res.id === id);
@@ -25,8 +25,6 @@ export default function NoticeDetail() {
 
       .catch((erorr) => console.log(erorr));
   }, [id]);
-
-  console.log("data->", detailData);
 
   return (
     <div className="content">

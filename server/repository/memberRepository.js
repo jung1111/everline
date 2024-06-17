@@ -141,7 +141,7 @@ export const getLogin = async (userId, userPass) => {
   }
 
   return { cnt: login_result, token: login_token };
-}; 
+};
 
 /* id check */
 export const getIdCheck = async (userId) => {
@@ -196,7 +196,6 @@ export const getSignup = async (formData) => {
   try {
     const [result] = await db.execute(sql, params);
     result_rows = result.affectedRows;
-    console.log("rows", result.affectedRows);
 
     if (result_rows === 1) {
       const mileageSql = `

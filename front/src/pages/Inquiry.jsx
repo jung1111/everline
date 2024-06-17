@@ -18,20 +18,18 @@ import "rc-pagination/assets/index.css";
 export default function Inquiry() {
   const [inqList, setInqList] = useState([]);
   const navigate = useNavigate();
-  // paging
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [pageSize, setPageSize] = useState(8);
 
   useEffect(() => {
-    //startIndex, endIndex
     let startIndex = 0;
     let endIndex = 0;
 
     startIndex = (currentPage - 1) * pageSize + 1;
     endIndex = currentPage * pageSize;
 
-    const url = "http://192.168.50.76:8000/inquiry/list";
+    const url = "http://localhost:8000/inquiry/list";
     axios({
       method: "post",
       url: url,
@@ -44,14 +42,11 @@ export default function Inquiry() {
       .catch((error) => console.log(error));
   }, [currentPage]);
 
-  console.log("totalCount", totalCount);
-
   // 조회수 업데이트 > 게시글 상세보기
   const handleUpdateHits = (bid, rno) => {
-    // alert('bid->>>'+ bid);
     try {
       //1. 조회수 업데이트
-      const url = "http://192.168.50.76:8000/inquiry/updateHits";
+      const url = "http://localhost:8000/inquiry/updateHits";
       axios({
         method: "post",
         url: url,

@@ -12,7 +12,7 @@ const ProductList = ({ rows }) => {
                 <Link to={`/product/${product.id}`}>
                   <img
                     className="ProductPage-img"
-                    src={`http://192.168.50.76:8000/${product.image}`}
+                    src={`http://localhost:8000/${product.image}`}
                     alt={product.title}
                   />
                 </Link>

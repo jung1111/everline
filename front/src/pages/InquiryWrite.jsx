@@ -18,11 +18,10 @@ export default function NoticeWrite() {
     const { name, value } = e.target;
     setBoardFormData({ ...boardFormData, [name]: value });
   };
-  console.log(boardFormData);
 
   //등록완료
   const handleWriteSubmit = () => {
-    const url = "http://192.168.50.76:8000/inquiry/write";
+    const url = "http://localhost:8000/inquiry/write";
     axios({
       method: "post",
       url: url,

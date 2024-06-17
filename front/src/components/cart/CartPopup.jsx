@@ -40,7 +40,7 @@ const CartPopup = ({ selectedProduct, cancelPopup, confirmPopup }) => {
         <div className="popup-product-info-box">
           <div className="popup-product-info">
             <img
-              src={`http://192.168.50.76:8000/${image}`}
+              src={`http://localhost:8000/${image}`}
               alt={title}
               className="popup-product-image"
             />

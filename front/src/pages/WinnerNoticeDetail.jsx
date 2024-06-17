@@ -16,7 +16,7 @@ export default function WinnerNoticeDetail() {
 
   useEffect(() => {
     axios
-      .get("http://192.168.50.76:3000/data/winner.json")
+      .get("http://localhost:3000/data/winner.json")
       .then((res) => {
         setWinnerList(res.data);
         const result = res.data.find((res) => res.id === id);
@@ -24,8 +24,6 @@ export default function WinnerNoticeDetail() {
       })
       .catch((error) => console.log(error));
   }, [id]);
-
-  console.log(winnerList);
 
   return (
     <div className="content">

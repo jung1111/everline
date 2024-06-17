@@ -20,7 +20,7 @@ export default function ModifyMyinfo() {
   useEffect(() => {
     // Fetch user info when component mounts
     axios
-      .get(`http://192.168.50.76:8000/modify/info?USER_ID=${userId}`)
+      .get(`http://localhost:8000/modify/info?USER_ID=${userId}`)
       .then((response) => {
         setUserInfo(response.data);
       })
@@ -35,7 +35,7 @@ export default function ModifyMyinfo() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put("http://192.168.50.76:8000/modify/update", userInfo)
+      .put("http://localhost:8000/modify/update", userInfo)
       .then((response) => {
         if (response.data.success) {
           alert("회원정보가 성공적으로 수정되었습니다.");

@@ -22,7 +22,7 @@ export default function Mypage() {
 
   useEffect(() => {
     axios
-      .get(`http://192.168.50.76:8000/order/mileage?USER_ID=${userId}`)
+      .get(`http://localhost:8000/order/mileage?USER_ID=${userId}`)
       .then((response) => {
         const data = response.data;
         setMileage(data);
@@ -33,7 +33,7 @@ export default function Mypage() {
 
   useEffect(() => {
     axios
-      .get(`http://192.168.50.76:8000/order/getOrders?USER_ID=${userId}`)
+      .get(`http://localhost:8000/order/getOrders?USER_ID=${userId}`)
       .then((response) => {
         setOrders(response.data);
       })
@@ -41,8 +41,6 @@ export default function Mypage() {
         console.error("Error fetching orders:", error);
       });
   }, [userId]);
-
-  console.log(orders);
 
   return (
     <div className="content">

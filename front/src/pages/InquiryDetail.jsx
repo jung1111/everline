@@ -11,7 +11,7 @@ export default function InquiryDetail() {
   const [board, setBoard] = useState({});
 
   useEffect(() => {
-    const url = `http://192.168.50.76:8000/inquiry/${bid}`;
+    const url = `http://localhost:8000/inquiry/${bid}`;
     axios({
       method: "get",
       url: url,
@@ -19,8 +19,6 @@ export default function InquiryDetail() {
       .then((result) => setBoard(result.data))
       .catch((error) => console.log(error));
   }, [bid]);
-
-  console.log("board->>>", board);
 
   const navigate = useNavigate();
 
@@ -31,7 +29,6 @@ export default function InquiryDetail() {
       : navigate(`/inquiry/${type}/${board.bid}/${rno}`);
   };
 
-  // console.log('board->>>',board);
   return (
     <div className="content">
       <Location depth1="CUSTOMER" depth2="1:1문의" />

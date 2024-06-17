@@ -17,12 +17,10 @@ export default function ProductDetail({ addCartCount, userId }) {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const navigate = useNavigate();
-  console.log("ssssss1", userId);
   useEffect(() => {
     axios
-      .get(`http://192.168.50.76:8000/product/${id}`)
+      .get(`http://localhost:8000/product/${id}`)
       .then((res) => {
-        console.log("확인", res.data);
         setProduct(res.data);
       })
       .catch((error) => console.log(error));
@@ -52,7 +50,7 @@ export default function ProductDetail({ addCartCount, userId }) {
 
   // 상품 장바구니 추가 함수
   const addCartItem = async (id) => {
-    const url = `http://192.168.50.76:8000/carts/add`;
+    const url = `http://localhost:8000/carts/add`;
     try {
       const result = await axios.post(url, { pid: id, userId: userId });
       if (result.data.cnt === 1) {
@@ -78,8 +76,6 @@ export default function ProductDetail({ addCartCount, userId }) {
     navigate("/order", { state: { selectedItems } });
   };
 
-  console.log("12341234", product);
-
   // 예약 판매 기간 계산
   const reservationInfo = getReservationPeriod(product.period);
   return (
@@ -89,7 +85,7 @@ export default function ProductDetail({ addCartCount, userId }) {
       <div className="ProductDetail-sub">
         <img
           className="ProductDetail-img"
-          src={`http://192.168.50.76:8000/${product.image}`}
+          src={`http://localhost:8000/${product.image}`}
           alt=""
         />
       </div>
@@ -221,7 +217,7 @@ export default function ProductDetail({ addCartCount, userId }) {
             <ProductDetailInfo />
             <img
               className="productDetatil-info-img"
-              src={`http://192.168.50.76:8000/${product.detailimage}`}
+              src={`http://localhost:8000/${product.detailimage}`}
               alt=""
             />
           </div>

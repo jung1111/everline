@@ -12,7 +12,6 @@ import PaymentInformation from "../components/order/PaymentInformation.jsx";
 export default function OrderPage({ decrementCartCount, userId }) {
   const location = useLocation();
   const { selectedItems } = location.state || { selectedItems: [] };
-  console.log("넘어온 값", selectedItems);
   const [orderInfo, setOrderInfo] = useState({
     userName: "",
     address: "",
@@ -28,7 +27,7 @@ export default function OrderPage({ decrementCartCount, userId }) {
 
   useEffect(() => {
     axios
-      .get(`http://192.168.50.76:8000/order/info?USER_ID=${userId}`)
+      .get(`http://localhost:8000/order/info?USER_ID=${userId}`)
       .then((response) => {
         const data = response.data;
         setOrderInfo({
@@ -58,7 +57,7 @@ export default function OrderPage({ decrementCartCount, userId }) {
   // 마일리지
   useEffect(() => {
     axios
-      .get(`http://192.168.50.76:8000/order/mileage?USER_ID=${userId}`)
+      .get(`http://localhost:8000/order/mileage?USER_ID=${userId}`)
       .then((response) => {
         const data = response.data;
         setMileage(data);

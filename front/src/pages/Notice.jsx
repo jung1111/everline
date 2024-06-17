@@ -18,7 +18,7 @@ export default function Notice() {
 
   useEffect(() => {
     axios
-      .get("http://192.168.50.76:3000/data/notice.json")
+      .get("http://localhost:3000/data/notice.json")
       .then((result) => {
         setNoticeList([...result.data]);
       })
